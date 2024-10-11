@@ -10,20 +10,16 @@
 
 int main(int argc, char* argv[])
 {
-    FO4SAVE* save = readFO4Save("fo4.fos");
+    FO3SAVE* save = readFO3Save("fo3.fos");
 
     if (save == NULL)
     {
-        return -1;
+        return 1;
     }
 
-    char value[] = "lucia";
+    printFO3Save(save);
 
-    writeFO4StringProperty(save, &save->characterName, &value, &save->characterNameAddress, 0, false);
-
-    printFO4Save(save);
-
-    closeFO4Save(save);
+    closeFO3Save(save);
 
     return 0;
 }

@@ -6,9 +6,9 @@
  * License : MIT
  */
 
-#include "fo4.h"
+#include "fo3.h"
 
-FO4SAVE* readFO4Save(char* saveName)
+FO3SAVE* readFO3Save(char* saveName)
 {
     FILE* file = fopen(saveName, "r+w+b");
 
@@ -17,7 +17,7 @@ FO4SAVE* readFO4Save(char* saveName)
         return NULL;
     }
 
-    FO4SAVE* save = malloc(sizeof(FO4SAVE));
+    FO3SAVE* save = malloc(sizeof(FO3SAVE));
 
     if (save == NULL)
     {
@@ -29,47 +29,41 @@ FO4SAVE* readFO4Save(char* saveName)
     unsigned long address = 0x00;
 
     save->saveSignatureAddress = address;
-    readFO4ArrayProperty(save, save->saveSignature, &address, 0, SAVE_SIGNATURE_LENGTH, true);
+    readFO3ArrayProperty(save, save->saveSignature, &address, 0, SAVE_SIGNATURE_LENGTH, true);
 
     if (strcmp(save->saveSignature, SAVE_SIGNATURE) != 0)
     {
         return NULL;
     }
-    
-    save->engineVersionAddress = address;
-    readFO4Property(save, &save->engineVersion, &address, 4, 4, true);
+
+    save->snapshotWidthAddress = address;
+    readFO3Property(save, &save->snapshotWidth, &address, 0x08 + 0x01, 4, true);
+
+    save->snapshotHeightAddress = address;
+    readFO3Property(save, &save->snapshotHeight, &address, 0x01, 4, true);
 
     save->saveNumberAddress = address;
-    readFO4Property(save, &save->saveNumber, &address, 0, 4, true);
+    readFO3Property(save, &save->saveNumber, &address, 0x01, 4, true);
 
     save->characterNameAddress = address;
-    readFO4StringProperty(save, &save->characterName, &address, 0, true);
+    readFO3StringProperty(save, &save->characterName, &address, 0x01, true);
+
+    save->characterTitleAddress = address;
+    readFO3StringProperty(save, &save->characterTitle, &address, 0x01, true);
 
     save->characterLevelAddress = address;
-    readFO4Property(save, &save->characterLevel, &address, 0, 4, true);
+    readFO3Property(save, &save->characterLevel, &address, 0x01, 4, true);
 
     save->characterLocationAddress = address;
-    readFO4StringProperty(save, &save->characterLocation, &address, 0, true);
+    readFO3StringProperty(save, &save->characterLocation, &address, 0x01, true);
 
     save->characterPlaytimeAddress = address;
-    readFO4StringProperty(save, &save->characterPlaytime, &address, 0, true);
-
-    save->characterRaceAddress = address;
-    readFO4StringProperty(save, &save->characterRace, &address, 0, true);
-
-    save->characterSexAddress = address;
-    readFO4Property(save, &save->characterSex, &address, 0, 2, true);
-
-    save->characterCurrentXpAddress = address;
-    readFO4Property(save, &save->characterCurrentXp, &address, 0, 4, true);
-
-    save->characterRequiredXpAddress = address;
-    readFO4Property(save, &save->characterRequiredXp, &address, 0, 4, true);
+    readFO3StringProperty(save, &save->characterPlaytime, &address, 0x01, true);
 
     return save;
 }
 
-bool writeFO4Save(FO4SAVE* save, char* saveName)
+bool writeFO3Save(FO3SAVE* save, char* saveName)
 {
     if (save == NULL)
     {
@@ -79,7 +73,7 @@ bool writeFO4Save(FO4SAVE* save, char* saveName)
     return fflush(save->saveFile) == 0;
 }
 
-bool closeFO4Save(FO4SAVE* save)
+bool closeFO3Save(FO3SAVE* save)
 {
     if (save == NULL)
     {
@@ -91,25 +85,21 @@ bool closeFO4Save(FO4SAVE* save)
     return true;
 }
 
-void printFO4Save(FO4SAVE* save)
+void printFO3Save(FO3SAVE* save)
 {
-    printf("%#08X Save Signature        : %s \n", save->saveSignatureAddress, save->saveSignature);
-    printf("%#08X Engine Version        : %u \n", save->engineVersionAddress, save->engineVersion);
-    printf("%#08X Save Number           : %u \n", save->saveNumberAddress, save->saveNumber);
-
-    printf("%#08X Character Name        : %s \n", save->characterNameAddress, save->characterName);
-    printf("%#08X Character Level       : %u \n", save->characterLevelAddress, save->characterLevel);
-    printf("%#08X Character Location    : %s \n", save->characterLocationAddress, save->characterLocation);
-    printf("%#08X Character Playtime    : %s \n", save->characterPlaytimeAddress, save->characterPlaytime);
-    printf("%#08X Character Race        : %s \n", save->characterRaceAddress, save->characterRace);
-    printf("%#08X Character Sex         : %u \n", save->characterSexAddress, save->characterSex);
-    printf("%#08X Character Current Xp  : %f \n", save->characterCurrentXpAddress, save->characterCurrentXp);
-    printf("%#08X Character Required Xp : %f \n", save->characterRequiredXpAddress, save->characterRequiredXp);
+    printf("%#08X Save Signature     : %s \n", save->saveSignatureAddress, save->saveSignature);
+    printf("%#08X Snapshot Width     : %u \n", save->snapshotWidthAddress, save->snapshotWidth);
+    printf("%#08X Snapshot Height    : %u \n", save->snapshotHeightAddress, save->snapshotHeight);
+    printf("%#08X Save Number        : %u \n", save->saveNumberAddress, save->saveNumber);
+    printf("%#08X Character Name     : %s \n", save->characterNameAddress, save->characterName);
+    printf("%#08X Character Title    : %s \n", save->characterTitleAddress, save->characterTitle);
+    printf("%#08X Character Location : %s \n", save->characterLocationAddress, save->characterLocation);
+    printf("%#08X Character Playtime : %s \n", save->characterPlaytimeAddress, save->characterPlaytime);
 }
 
 
 
-bool readFO4Property(FO4SAVE* save, void* property, unsigned long* address, unsigned long skip, unsigned size, bool next)
+bool readFO3Property(FO3SAVE* save, void* property, unsigned long* address, unsigned long skip, unsigned size, bool next)
 {
     if (save == NULL || save->saveFile == NULL || property == NULL || address == NULL)
     {
@@ -139,7 +129,7 @@ bool readFO4Property(FO4SAVE* save, void* property, unsigned long* address, unsi
     return true;
 }
 
-bool readFO4StringProperty(FO4SAVE* save, void** property, unsigned long* address, unsigned long skip, bool next)
+bool readFO3StringProperty(FO3SAVE* save, void** property, unsigned long* address, unsigned long skip, bool next)
 {
     unsigned size = sizeof(**property);
 
@@ -162,6 +152,11 @@ bool readFO4StringProperty(FO4SAVE* save, void** property, unsigned long* addres
 
     *property = malloc(length + 1);
 
+    if (fseek(save->saveFile, 0x01, SEEK_CUR) != 0)
+    {
+        return false;
+    }
+
     if (fread(*property, size, length, save->saveFile) != length)
     {
         return false;
@@ -171,13 +166,13 @@ bool readFO4StringProperty(FO4SAVE* save, void** property, unsigned long* addres
 
     if (next)
     {
-        *address += length + skip + sizeof(length);
+        *address += length + skip + sizeof(length) + 1;
     }
 
     return true;
 }
 
-bool readFO4ArrayProperty(FO4SAVE* save, void* property, unsigned long* address, unsigned long skip, int length, bool next)
+bool readFO3ArrayProperty(FO3SAVE* save, void* property, unsigned long* address, unsigned long skip, int length, bool next)
 {
     unsigned size = sizeof(*property);
 
@@ -206,7 +201,7 @@ bool readFO4ArrayProperty(FO4SAVE* save, void* property, unsigned long* address,
 
 
 
-bool writeFO4Property(FO4SAVE* save, void* property, void* value, unsigned long* address, unsigned long skip, unsigned size, bool next)
+bool writeFO3Property(FO3SAVE* save, void* property, void* value, unsigned long* address, unsigned long skip, unsigned size, bool next)
 {
     if (save == NULL || save->saveFile == NULL || property == NULL || value == NULL || address == NULL)
     {
@@ -228,12 +223,12 @@ bool writeFO4Property(FO4SAVE* save, void* property, void* value, unsigned long*
         return false;
     }
 
-    readFO4Property(save, property, address, skip, size, next);
+    readFO3Property(save, property, address, skip, size, next);
 
     return true;
 }
 
-bool writeFO4StringProperty(FO4SAVE* save, void** property, void* value, unsigned long* address, unsigned long skip, bool next)
+bool writeFO3StringProperty(FO3SAVE* save, void** property, void* value, unsigned long* address, unsigned long skip, bool next)
 {
     unsigned size = sizeof(**property);
 
@@ -264,12 +259,12 @@ bool writeFO4StringProperty(FO4SAVE* save, void** property, void* value, unsigne
         return false;
     }
 
-    readFO4StringProperty(save, property, address, skip, next);
+    readFO3StringProperty(save, property, address, skip, next);
 
     return true;
 }
 
-bool writeFO4ArrayProperty(FO4SAVE* save, void* property, void* value, unsigned long* address, unsigned long skip, int length, bool next)
+bool writeFO3ArrayProperty(FO3SAVE* save, void* property, void* value, unsigned long* address, unsigned long skip, int length, bool next)
 {
     unsigned size = sizeof(*property);
 
@@ -288,7 +283,7 @@ bool writeFO4ArrayProperty(FO4SAVE* save, void* property, void* value, unsigned 
         return false;
     }
 
-    readFO4ArrayProperty(save, property, address, skip, length, next);
+    readFO3ArrayProperty(save, property, address, skip, length, next);
 
     return true;
 }

@@ -14,7 +14,7 @@ int main(int argc, char* argv[])
 
     if (save == NULL)
     {
-        return -1;
+        return 1;
     }
 
     printFO4Save(save);

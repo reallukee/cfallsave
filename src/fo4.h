@@ -15,6 +15,9 @@
 #ifndef FO4_H   // FO4_H
 #define FO4_H
 
+#define SAVE_SIGNATURE "FO4_SAVEGAME"
+#define SAVE_SIGNATURE_LENGTH 12
+
 typedef struct {
     FILE* saveFile;
 
@@ -22,11 +25,25 @@ typedef struct {
     unsigned engineVersion;
     unsigned saveNumber;
     char* characterName;
+    unsigned characterLevel;
+    char* characterLocation;
+    char* characterPlaytime;
+    char* characterRace;
+    unsigned short characterSex;
+    float characterCurrentXp;
+    float characterRequiredXp;
 
     unsigned long saveSignatureAddress;
     unsigned long engineVersionAddress;
     unsigned long saveNumberAddress;
     unsigned long characterNameAddress;
+    unsigned long characterLevelAddress;
+    unsigned long characterLocationAddress;
+    unsigned long characterPlaytimeAddress;
+    unsigned long characterRaceAddress;
+    unsigned long characterSexAddress;
+    unsigned long characterCurrentXpAddress;
+    unsigned long characterRequiredXpAddress;
 } FO4SAVE;
 
 FO4SAVE* readFO4Save(char* saveName);

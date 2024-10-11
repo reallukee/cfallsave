@@ -1,12 +1,12 @@
 # CFallSave
 
-A C Library to Read and Write Fallout Save Files
+A C/C++ Library to Read and Write Fallout Save Files
 
 # Documentation
 
 * [Fallout 4 Save File Format](./fo4.md)
 * [Fallout New Vegas Save File Format](./fonv.md)
-* [Fallout 4 Save File Format](./fo3.md)
+* [Fallout 3 Save File Format](./fo3.md)
 
 # Examples
 
@@ -35,7 +35,6 @@ int main(int argc, char* argv[])
     return 0;
 }
 ```
-
 
 
 ## Write Fallout 4 Save

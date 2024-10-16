@@ -1,6 +1,7 @@
 TARGET = cfallsave
 CC = gcc
 CFLAGS = -Wall -Wextra -g
+LDFLAGS =
 
 SRCS = $(wildcard ./src/*.c)
 OBJS = $(SRCS:.c=.o)
@@ -15,8 +16,5 @@ $(TARGET): $(OBJS)
 
 clean:
 	rm -f $(OBJS) $(TARGET)
-
-run:
-	./cfallsave
 
 rebuild: clean all

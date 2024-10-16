@@ -13,3 +13,6 @@
 | Character Sex         | unsigned short | unsigned short |
 | Character Current Xp  | float          | float          |
 | Character Required Xp | float          | float          |
+| Snapshot Widht        | unsigned       | unsigned       |
+| Snapshot Height       | unsigned       | unsigned       |
+| Snapshot              | unsigned char* | unsigned char* |

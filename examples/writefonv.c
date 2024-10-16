@@ -26,6 +26,8 @@ int main(int argc, char* argv[])
 
     printFONVSave(save);
 
+    writeFONVSave(save, "newfoNV.fos");
+
     closeFONVSave(save);
 
     return 0;

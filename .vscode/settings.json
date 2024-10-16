@@ -45,6 +45,9 @@
         "math.h": "c",
         "fo4.h": "c",
         "fo3.h": "c",
-        "fonv.h": "c"
+        "fonv.h": "c",
+        "istream": "c",
+        "string.h": "c",
+        "_stdlib.h": "c"
     }
 }

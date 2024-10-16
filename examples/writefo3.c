@@ -10,23 +10,25 @@
 
 int main(int argc, char* argv[])
 {
-    char* saveName = "fonv.fos";
+    char* saveName = "fo3.fos";
 
-    if (!isFONVSave(saveName))
+    if (!isFO3Save(saveName))
     {
         return 1;
     }
 
-    FONVSAVE* save = readFONVSave(saveName, true);
+    FO3SAVE* save = readFO3Save(saveName, true);
 
     if (save == NULL)
     {
         return 1;
     }
 
-    printFONVSave(save);
+    printFO3Save(save);
 
-    closeFONVSave(save);
+    writeFO3Save(save, "newfo3.fos");
+
+    closeFO3Save(save);
 
     return 0;
 }

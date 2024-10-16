@@ -11,8 +11,8 @@
 
 #define CFALLSAVE_VERSION   "1.0"
 
-#include "fo4.h"
-#include "fonv.h"
-#include "fo3.h"
+#include "fo4.h"    // Fallout 4
+#include "fonv.h"   // Fallout New Vegas
+#include "fo3.h"    // Fallout 3
 
 #endif  // ! CFALLSAVE_H

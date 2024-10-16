@@ -8,7 +8,7 @@
 
 #include "fo3.h"
 
-FO3SAVE* readFO3Save(char* saveName)
+FO3SAVE* readFO3Save(char* saveName, bool readProperties)
 {
     FILE* file = fopen(saveName, "r+w+b");
 
@@ -26,41 +26,97 @@ FO3SAVE* readFO3Save(char* saveName)
 
     save->saveFile = file;
 
-    unsigned long address = 0x00;
+    if (readProperties)
+    {
+        if (!readFO3Properties(save))
+        {
+            return NULL;
+        }
+    }
 
-    save->saveSignatureAddress = address;
-    readFO3ArrayProperty(save, save->saveSignature, &address, 0, SAVE_SIGNATURE_LENGTH, true);
+    return save;
+}
 
-    if (strcmp(save->saveSignature, SAVE_SIGNATURE) != 0)
+bool isFO3Save(char* saveName)
+{
+    FILE* file = fopen(saveName, "r+b");
+
+    if (file == NULL)
     {
         return NULL;
     }
 
-    save->snapshotWidthAddress = address;
-    readFO3Property(save, &save->snapshotWidth, &address, 0x08 + 0x01, 4, true);
+    char saveSignature[SAVE_SIGNATURE_LENGTH + 1];
 
-    save->snapshotHeightAddress = address;
-    readFO3Property(save, &save->snapshotHeight, &address, 0x01, 4, true);
+    if (fread(saveSignature, 1, SAVE_SIGNATURE_LENGTH, file) != SAVE_SIGNATURE_LENGTH)
+    {
+        return false;
+    }
 
-    save->saveNumberAddress = address;
-    readFO3Property(save, &save->saveNumber, &address, 0x01, 4, true);
+    saveSignature[SAVE_SIGNATURE_LENGTH] = '\0';
 
-    save->characterNameAddress = address;
-    readFO3StringProperty(save, &save->characterName, &address, 0x01, true);
+    if (strcmp(saveSignature, SAVE_SIGNATURE) != 0)
+    {
+        return false;
+    }
 
-    save->characterTitleAddress = address;
-    readFO3StringProperty(save, &save->characterTitle, &address, 0x01, true);
+    if (fseek(file, 24, SEEK_SET) != 0)
+    {
+        return false;
+    }
 
-    save->characterLevelAddress = address;
-    readFO3Property(save, &save->characterLevel, &address, 0x01, 4, true);
+    char nv;
 
-    save->characterLocationAddress = address;
-    readFO3StringProperty(save, &save->characterLocation, &address, 0x01, true);
+    if (fread(&nv, 1, 1, file) != 1)
+    {
+        return false;
+    }
 
-    save->characterPlaytimeAddress = address;
-    readFO3StringProperty(save, &save->characterPlaytime, &address, 0x01, true);
+    return nv != '|';
+}
 
-    return save;
+bool readFO3Properties(FO3SAVE* save)
+{
+    unsigned long address = 0x00;
+
+    save->saveSignatureAddress = getNextFO3PropertyAddress(address, 0);
+    readFO3ArrayProperty(save, save->saveSignature, &address, 0, SAVE_SIGNATURE_LENGTH, true);
+
+    if (strcmp(save->saveSignature, SAVE_SIGNATURE) != 0)
+    {
+        return false;
+    }
+
+    save->snapshotWidthAddress = getNextFO3PropertyAddress(address, 9);
+    readFO3Property(save, &save->snapshotWidth, &address, 9, 4, true);
+
+    save->snapshotHeightAddress = getNextFO3PropertyAddress(address, 1);
+    readFO3Property(save, &save->snapshotHeight, &address, 1, 4, true);
+
+    save->saveNumberAddress = getNextFO3PropertyAddress(address, 1);
+    readFO3Property(save, &save->saveNumber, &address, 1, 4, true);
+
+    save->characterNameAddress = getNextFO3PropertyAddress(address, 1);
+    readFO3StringProperty(save, &save->characterName, &address, 1, true);
+
+    save->characterTitleAddress = getNextFO3PropertyAddress(address, 1);
+    readFO3StringProperty(save, &save->characterTitle, &address, 1, true);
+
+    save->characterLevelAddress = getNextFO3PropertyAddress(address, 1);
+    readFO3Property(save, &save->characterLevel, &address, 1, 4, true);
+
+    save->characterLocationAddress = getNextFO3PropertyAddress(address, 1);
+    readFO3StringProperty(save, &save->characterLocation, &address, 1, true);
+
+    save->characterPlaytimeAddress = getNextFO3PropertyAddress(address, 1);
+    readFO3StringProperty(save, &save->characterPlaytime, &address, 1, true);
+
+    save->snapshotLength = save->snapshotWidth * save->snapshotHeight;
+
+    save->snapshotAddress = getNextFO3PropertyAddress(address, 0);
+    readFO3ArrayProperty(save, save->snapshot, &address, 0, save->snapshotLength, true);
+
+    return true;
 }
 
 bool writeFO3Save(FO3SAVE* save, char* saveName)
@@ -85,16 +141,11 @@ bool closeFO3Save(FO3SAVE* save)
     return true;
 }
 
-void printFO3Save(FO3SAVE* save)
+
+
+unsigned long getNextFO3PropertyAddress(unsigned long address, unsigned long skip)
 {
-    printf("%#08X Save Signature     : %s \n", save->saveSignatureAddress, save->saveSignature);
-    printf("%#08X Snapshot Width     : %u \n", save->snapshotWidthAddress, save->snapshotWidth);
-    printf("%#08X Snapshot Height    : %u \n", save->snapshotHeightAddress, save->snapshotHeight);
-    printf("%#08X Save Number        : %u \n", save->saveNumberAddress, save->saveNumber);
-    printf("%#08X Character Name     : %s \n", save->characterNameAddress, save->characterName);
-    printf("%#08X Character Title    : %s \n", save->characterTitleAddress, save->characterTitle);
-    printf("%#08X Character Location : %s \n", save->characterLocationAddress, save->characterLocation);
-    printf("%#08X Character Playtime : %s \n", save->characterPlaytimeAddress, save->characterPlaytime);
+    return address + skip;
 }
 
 
@@ -286,4 +337,18 @@ bool writeFO3ArrayProperty(FO3SAVE* save, void* property, void* value, unsigned 
     readFO3ArrayProperty(save, property, address, skip, length, next);
 
     return true;
+}
+
+
+
+void printFO3Save(FO3SAVE* save)
+{
+    printf("%#08X Save Signature     : %s \n", save->saveSignatureAddress, save->saveSignature);
+    printf("%#08X Snapshot Width     : %u \n", save->snapshotWidthAddress, save->snapshotWidth);
+    printf("%#08X Snapshot Height    : %u \n", save->snapshotHeightAddress, save->snapshotHeight);
+    printf("%#08X Save Number        : %u \n", save->saveNumberAddress, save->saveNumber);
+    printf("%#08X Character Name     : %s \n", save->characterNameAddress, save->characterName);
+    printf("%#08X Character Title    : %s \n", save->characterTitleAddress, save->characterTitle);
+    printf("%#08X Character Location : %s \n", save->characterLocationAddress, save->characterLocation);
+    printf("%#08X Character Playtime : %s \n", save->characterPlaytimeAddress, save->characterPlaytime);
 }

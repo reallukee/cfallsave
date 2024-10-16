@@ -6,11 +6,18 @@
  * License : MIT
  */
 
-#include "cfallsave.h"
+#include "../src/cfallsave.h"
 
 int main(int argc, char* argv[])
 {
-    FO4SAVE* save = readFO4Save("fo4.fos");
+    char* saveName = "fo4.fos";
+
+    if (!isFO4Save(saveName))
+    {
+        return 1;
+    }
+
+    FO4SAVE* save = readFO4Save(saveName, true);
 
     if (save == NULL)
     {
@@ -19,7 +26,7 @@ int main(int argc, char* argv[])
 
     printFO4Save(save);
 
-    wroteFO4Save(save, "newfo4.fos");
+    closeFO4Save(save);
 
     return 0;
 }

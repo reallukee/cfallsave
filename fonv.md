@@ -1,4 +1,4 @@
-# Fallout 3 Save File Format
+# Fallout: New Vegas Save File Format
 
 | Property              | Type           | CFAllSave Type |
 | :-------------------  | :------------- | :------------- |

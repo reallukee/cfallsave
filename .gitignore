@@ -1,0 +1,22 @@
+# Binary
+*.bin
+*.so
+*.o
+
+# Fallout
+*.dat
+*.sav
+*.fos
+
+# Compilation
+bin/
+obj/
+
+# Windows
+[Dd]esktop.ini
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*

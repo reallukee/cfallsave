@@ -15,7 +15,7 @@
 #include "reader.h"
 
 FO2SAVE* readFO2Save(
-    char* saveName
+    const char* saveName
 )
 {
     FILE* file = fopen(saveName, "r+b");
@@ -40,7 +40,7 @@ FO2SAVE* readFO2Save(
     {
         closeFO2Save(save);
 
-        return false;
+        return NULL;
     }
 
     readFixedString(file, save->playerName, 32, &address, 12);
@@ -52,7 +52,7 @@ FO2SAVE* readFO2Save(
 }
 
 bool isFO2Save(
-    char* saveName
+    const char* saveName
 )
 {
     FILE* file = fopen(saveName, "r+b");

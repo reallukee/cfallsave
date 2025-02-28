@@ -1,6 +1,6 @@
 # Fallout 3 Save File Format
 
-> [!IMPORTANT]
+> [!NOTE]
 > Fallout 3 Save Format IS VERY CLOSE to Fallout: New Vegas Save Format
 
 | Property         | Type                | CFAllSave Type |

@@ -31,11 +31,11 @@ typedef struct
 
 
 CFALLSAVE_API FO1SAVE* readFO1Save(
-    char* saveName
+    const char* saveName
 );
 
 CFALLSAVE_API bool isFO1Save(
-    char* saveName
+    const char* saveName
 );
 
 CFALLSAVE_API void printFO1Save(

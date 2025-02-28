@@ -15,7 +15,7 @@
 #include "reader.h"
 
 FO4SAVE* readFO4Save(
-    char* saveName
+    const char* saveName
 )
 {
     FILE* file = fopen(saveName, "r+b");
@@ -40,7 +40,7 @@ FO4SAVE* readFO4Save(
     {
         closeFO4Save(save);
 
-        return false;
+        return NULL;
     }
 
     readUInt(file, &save->engineVersion, &address, 4);
@@ -73,7 +73,7 @@ FO4SAVE* readFO4Save(
 }
 
 bool isFO4Save(
-    char* saveName
+    const char* saveName
 )
 {
     FILE* file = fopen(saveName, "r+b");

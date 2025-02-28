@@ -38,11 +38,20 @@ git clone https://github.com/reallukee/cfallsave.git
 cd cfallsave
 ```
 
+## CFallsave
+
 ```
-make
+make -f makefile
 ```
 
+## CFallsave++
 
+> [!WARNING]
+> Experimental!
+
+```
+make -f c++makefile
+```
 
 # Author
 

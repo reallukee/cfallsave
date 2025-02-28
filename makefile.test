@@ -10,13 +10,13 @@ BIN_DIR = bin
 EXCLUDED_HEADERS = writer.h
 EXCLUDED_SOURCES = writer.c
 
-ALL_SOURCES = $(wildcard $(SRC_DIR)/*.c)
-ALL_HEADERS = $(wildcard $(SRC_DIR)/*.h)
+ALL_SOURCES = $(notdir $(wildcard $(SRC_DIR)/*.c))
+ALL_HEADERS = $(notdir $(wildcard $(SRC_DIR)/*.h))
 
 SOURCES = $(filter-out $(EXCLUDED_SOURCES), $(ALL_SOURCES))
 HEADERS = $(filter-out $(EXCLUDED_HEADERS), $(ALL_HEADERS))
 
-OBJECTS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SOURCES))
+OBJECTS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SOURCES))
 
 all: $(BIN_DIR)/$(TARGET).bin
 

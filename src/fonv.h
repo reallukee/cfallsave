@@ -40,11 +40,11 @@ typedef struct
 
 
 CFALLSAVE_API FONVSAVE* readFONVSave(
-    char* saveName
+    const char* saveName
 );
 
 CFALLSAVE_API bool isFONVSave(
-    char* saveName
+    const char* saveName
 );
 
 CFALLSAVE_API void printFONVSave(

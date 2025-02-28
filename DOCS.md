@@ -2,24 +2,24 @@
 
 ## Functions
 
-* `readFO1Save(char* saveName)`
-* `isFO1Save(char* saveName)`
+* `readFO1Save(const char* saveName)`
+* `isFO1Save(const char* saveName)`
 * `printFO1Save(FO1SAVE* save)`
 * `closeFO1Save(FO1SAVE* save)`
-* `readFO2Save(char* saveName)`
-* `isFO2Save(char* saveName)`
+* `readFO2Save(const char* saveName)`
+* `isFO2Save(const char* saveName)`
 * `printFO2Save(FO2SAVE* save)`
 * `closeFO2Save(FO2SAVE* save)`
-* `readFO3Save(char* saveName)`
-* `isFO3Save(char* saveName)`
+* `readFO3Save(const char* saveName)`
+* `isFO3Save(const char* saveName)`
 * `printFO3Save(FO3SAVE* save)`
 * `closeFO3Save(FO3SAVE* save)`
-* `readFONVSave(char* saveName)`
-* `isFONVSave(char* saveName)`
+* `readFONVSave(const char* saveName)`
+* `isFONVSave(const char* saveName)`
 * `printFONVSave(FONVSAVE* save)`
 * `closeFONVSave(FONVSAVE* save)`
-* `readFO4Save(char* saveName)`
-* `isFO4Save(char* saveName)`
+* `readFO4Save(const char* saveName)`
+* `isFO4Save(const char* saveName)`
 * `printFO4Save(FO4SAVE* save)`
 * `closeFO4Save(FO4SAVE* save)`
 

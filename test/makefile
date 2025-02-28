@@ -3,14 +3,20 @@ CC      = gcc
 CFLAGS  = -Wall -Wextra -fPIC
 LDFLAGS = -L../bin/ -lcfallsave -Wl,-rpath,../../bin/
 
-SRC_DIR = .
+SRC_DIR = ./src
 OBJ_DIR = obj
 BIN_DIR = bin
 
-SOURCES = $(wildcard $(SRC_DIR)/*.c)
-HEADERS = $(wildcard $(SRC_DIR)/*.h)
+EXCLUDED_HEADERS =
+EXCLUDED_SOURCES =
 
-OBJECTS = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SOURCES))
+ALL_SOURCES = $(notdir $(wildcard $(SRC_DIR)/*.c))
+ALL_HEADERS = $(notdir $(wildcard $(SRC_DIR)/*.h))
+
+SOURCES = $(filter-out $(EXCLUDED_SOURCES), $(ALL_SOURCES))
+HEADERS = $(filter-out $(EXCLUDED_HEADERS), $(ALL_HEADERS))
+
+OBJECTS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SOURCES))
 
 all: $(BIN_DIR)/$(TARGET).bin
 

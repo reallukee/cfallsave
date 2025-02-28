@@ -15,7 +15,7 @@
 #include "reader.h"
 
 FONVSAVE* readFONVSave(
-    char* saveName
+    const char* saveName
 )
 {
     FILE* file = fopen(saveName, "r+b");
@@ -40,7 +40,7 @@ FONVSAVE* readFONVSave(
     {
         closeFONVSave(save);
 
-        return false;
+        return NULL;
     }
 
     readUInt(file, &save->engineVersion, &address, 4);
@@ -70,7 +70,7 @@ FONVSAVE* readFONVSave(
 }
 
 bool isFONVSave(
-    char* saveName
+    const char* saveName
 )
 {
     FILE* file = fopen(saveName, "r+b");

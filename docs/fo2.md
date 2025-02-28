@@ -1,6 +1,6 @@
 # Fallout 2 Save File Format
 
-> [!IMPORTANT]
+> [!NOTE]
 > Fallout 2 Format IS VERY CLOSE to Fallout 1 Save Format
 
 | Property       | Type           | CFAllSave Type |

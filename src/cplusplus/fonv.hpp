@@ -10,29 +10,29 @@
  * License : MIT
  */
 
-#ifndef CFALLSAVE_FO4_HPP
-#define CFALLSAVE_FO4_HPP
+#ifndef CFALLSAVE_FONV_HPP
+#define CFALLSAVE_FONV_HPP
 
 #include "header.hpp"
 
-#include "../fo4.h"
+#include "../fonv.h"
 
 using namespace std;
 
 namespace cfallsave
 {
-    class CFALLSAVE_CPP_API FO4Save
+    class CFALLSAVE_CPP_API FONVSave
     {
 
     private:
 
-        FO4SAVE* save;
+        FONVSAVE* save;
 
     public:
 
-        FO4Save();
-        FO4Save(string saveName);
-        ~FO4Save();
+        FONVSave();
+        FONVSave(string saveName);
+        ~FONVSave();
 
         void readSave(string saveName);
 
@@ -44,12 +44,9 @@ namespace cfallsave
 
         string getPlayerName();
         unsigned getPlayerLevel();
+        string getPlayerTitle();
         string getPlayerLocation();
         string getPlayerPlaytime();
-        string getPlayerRace();
-        unsigned short getPlayerSex();
-        float getPlayerCurrentXp();
-        float getPlayerRequiredXp();
 
         unsigned getSnapshotWidth();
         unsigned getSnapshotHeight();
@@ -58,4 +55,4 @@ namespace cfallsave
     };
 }
 
-#endif // !CFALLSAVE_FO4_HPP
+#endif // !CFALLSAVE_FONV_HPP

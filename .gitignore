@@ -1,7 +1,9 @@
 # Binary
 *.bin
 *.so
+*.a
 *.o
+*.opp
 
 # Fallout
 *.dat

@@ -1,6 +1,8 @@
 # ToDo
 
-- [ ] C++ Wrapper
+- [x] Common Reader
+- [ ] Common Writer
+- [x] C++ Wrapper
 - [ ] Documentation (Markdown + oxygen)
 - [x] Save Reading
 - [ ] Save Writing

@@ -2,7 +2,7 @@
 
 ![GitHub License](https://img.shields.io/github/license/reallukee/cfallsave?style=flat&label=License)
 
-A C/C++ Library to Read Fallout Save Files!
+A C/C++ Library to Read Fallout Save Files
 
 > [ToDo](./TODO.md)
 

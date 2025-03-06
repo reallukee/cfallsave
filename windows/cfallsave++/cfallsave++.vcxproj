@@ -135,23 +135,23 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)bin\cplusplus\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)obj\cplusplus\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)bin\cfallsave++\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)obj\cfallsave++\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)-d-x86</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)bin\cplusplus\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)obj\cplusplus\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)bin\cfallsave++\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)obj\cfallsave++\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)-x86</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)bin\cplusplus\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)obj\cplusplus\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)bin\cfallsave++\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)obj\cfallsave++\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)-d-x64</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)bin\cplusplus\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)obj\cplusplus\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)bin\cfallsave++\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)obj\cfallsave++\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)-x64</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">

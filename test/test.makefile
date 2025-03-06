@@ -1,7 +1,7 @@
 TARGET  = cfallsave.test
 CC      = gcc
 CFLAGS  = -Wall -Wextra -fPIC
-LDFLAGS = -L../bin/ -lcfallsave -Wl,-rpath,../../bin/
+LDFLAGS = -L../bin -lcfallsave -Wl,-rpath,../../bin
 
 SRC_DIR = ./src
 OBJ_DIR = obj
@@ -30,6 +30,9 @@ $(OBJ_DIR) $(BIN_DIR):
 	mkdir -p $@
 
 clean:
+	rm -rf $(OBJECTS)
+
+full-clean:
 	rm -rf $(OBJ_DIR) $(BIN_DIR)
 
 build: all

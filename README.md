@@ -40,13 +40,6 @@ A C/C++ Library to Read Fallout Save Files
 
 > View [Examples](./EXAMPLES.md)
 
-* [Read Fallout 1 Save File](./EXAMPLES.md#read-fallout-1-save-file)
-* [Read Fallout 2 Save File](./EXAMPLES.md#read-fallout-2-save-file)
-* [Read Fallout Tactics: Brotherhood of Steel Save File](./EXAMPLES.md#read-fallout-tactics-brotherhood-of-steel-save-file)
-* [Read Fallout 3 Save File](./EXAMPLES.md#read-fallout-3-save-file)
-* [Read Fallout: New Vegas Save File](./EXAMPLES.md#read-fallout-new-vegas-save-file)
-* [Read Fallout 4 Save File](./EXAMPLES.md#read-fallout-4-save-file)
-
 
 
 # Compilation
@@ -73,7 +66,7 @@ make -f cfallsave++.makefile
 
 # Author
 
-* [Reallukee](https://github.com/reallukee)
+* [Luca Pollicino](https://github.com/reallukee)
 
 
 

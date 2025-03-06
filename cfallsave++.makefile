@@ -4,8 +4,8 @@ CXXFLAGS = -Wall -Wextra -fPIC
 LDFLAGS  = -shared
 
 SRC_DIR = ./src
-OBJ_DIR = obj
-BIN_DIR = bin
+OBJ_DIR = obj/cfallsave++
+BIN_DIR = bin/cfallsave++
 
 EXCLUDED_HEADERS     = writer.h cfallsave.h
 EXCLUDED_SOURCES     = writer.c main.c
@@ -39,6 +39,9 @@ $(OBJ_DIR) $(OBJ_DIR)/cplusplus $(BIN_DIR):
 	mkdir -p $@
 
 clean:
+	rm -rf $(OBJECTS)
+
+full-clean:
 	rm -rf $(OBJ_DIR) $(BIN_DIR)
 
 build: all

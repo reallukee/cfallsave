@@ -1,11 +1,11 @@
 TARGET   = cfallsave++.test
 CXX      = g++
 CXXFLAGS = -Wall -Wextra -fPIC
-LDFLAGS  = -L../bin/ -lcfallsave++ -Wl,-rpath,../../bin/
+LDFLAGS  = -L../bin/cfallsave++ -lcfallsave++ -Wl,-rpath,../../bin/cfallsave++
 
 SRC_DIR = ./src/cplusplus
-OBJ_DIR = obj
-BIN_DIR = bin
+OBJ_DIR = obj/test++
+BIN_DIR = bin/test++
 
 EXCLUDED_HEADERS =
 EXCLUDED_SOURCES =
@@ -30,6 +30,9 @@ $(OBJ_DIR) $(BIN_DIR):
 	mkdir -p $@
 
 clean:
+	rm -rf $(OBJECTS)
+
+full-clean:
 	rm -rf $(OBJ_DIR) $(BIN_DIR)
 
 build: all

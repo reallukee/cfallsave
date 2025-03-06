@@ -30,6 +30,9 @@ $(OBJ_DIR) $(BIN_DIR):
 	mkdir -p $@
 
 clean:
+	rm -rf $(OBJECTS)
+
+full-clean:
 	rm -rf $(OBJ_DIR) $(BIN_DIR)
 
 build: all

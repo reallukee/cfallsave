@@ -1,12 +1,12 @@
 #include <iostream>
-#include "../../../src/cplusplus/cfallsave.hpp"
+#include "../src/cplusplus/cfallsave.hpp"
 
 using namespace std;
 using namespace cfallsave;
 
 int main()
 {
-    FO4Save* save = new FO4Save("fo4.fos");
+    FO1Save* save = new FO1Save("fo1.dat");
 
     save->printSave();
 

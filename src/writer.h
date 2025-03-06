@@ -5,9 +5,15 @@
  *
  * A C/C++ Library to Read Fallout Save Files
  *
- * Author  : Reallukee
- * Version : 1.0
- * License : MIT
+ * File Name   : writer.c
+ *
+ * Title       : WRITER HEADER
+ * Description : Writer Header
+ *
+ * Author      : Luca Pollicino
+ *               (https://github.com/reallukee)
+ * Version     : 2.0.0
+ * License     : MIT
  */
 
 #ifndef CFALLSAVE_WRITER_H

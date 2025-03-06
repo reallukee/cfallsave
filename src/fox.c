@@ -5,9 +5,15 @@
  *
  * A C/C++ Library to Read Fallout Save Files
  *
- * Author  : Reallukee
- * Version : 1.0
- * License : MIT
+ * File Name   : fox.c
+ *
+ * Title       : FALLOUT X SOURCE
+ * Description : Fallout X Source
+ *
+ * Author      : Luca Pollicino
+ *               (https://github.com/reallukee)
+ * Version     : 2.0.0
+ * License     : MIT
  */
 
 #include "fox.h"
@@ -30,6 +36,14 @@ FOXSAVE* readFOXSAVE(
     {
         save->save = readFO2Save(saveName);
         save->saveType = FOXSAVE_TYPE_FO2;
+
+        return save;
+    }
+
+    if (isFOTBOSSave(saveName))
+    {
+        save->save = readFOTBOSSave(saveName);
+        save->saveType = FOXSAVE_TYPE_FOTBOS;
 
         return save;
     }
@@ -79,6 +93,10 @@ void printFOXSAVE(
             printFO2Save((FO2SAVE*)save->save);
             break;
 
+        case FOXSAVE_TYPE_FOTBOS:
+            printFOTBOSSave((FOTBOSSAVE*)save->save);
+            break;
+
         case FOXSAVE_TYPE_FO3:
             printFO3Save((FO3SAVE*)save->save);
             break;
@@ -111,6 +129,10 @@ void closeFOXSAVE(
 
         case FOXSAVE_TYPE_FO2:
             closeFO2Save((FO2SAVE*)save->save);
+            break;
+
+        case FOXSAVE_TYPE_FOTBOS:
+            closeFOTBOSSave((FOTBOSSAVE*)save->save);
             break;
 
         case FOXSAVE_TYPE_FO3:

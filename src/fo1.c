@@ -5,9 +5,15 @@
  *
  * A C/C++ Library to Read Fallout Save Files
  *
- * Author  : Reallukee
- * Version : 1.0
- * License : MIT
+ * File Name   : fo1.c
+ *
+ * Title       : FALLOUT 1 SOURCE
+ * Description : Fallout 1 Source
+ *
+ * Author      : Luca Pollicino
+ *               (https://github.com/reallukee)
+ * Version     : 2.0.0
+ * License     : MIT
  */
 
 #include "fo1.h"
@@ -29,22 +35,33 @@ FO1SAVE* readFO1Save(
 
     if (save == NULL)
     {
+        fclose(file);
+
         return NULL;
     }
 
     unsigned long address = 0;
 
-    readFixedString(file, save->saveSignature, FO1_SAVE_SIGNATURE_LENGTH, &address, 0);
+    readFixedString(file, save->saveSignature, FO1SAVE_SIGNATURE_LENGTH, &address, 0);
 
-    if (strcmp(save->saveSignature, FO1_SAVE_SIGNATURE) != 0)
+    if (strcmp(save->saveSignature, FO1SAVE_SIGNATURE) != 0)
     {
         closeFO1Save(save);
+
+        fclose(file);
 
         return NULL;
     }
 
-    readFixedString(file, save->playerName, 32, &address, 12);
-    readFixedString(file, save->saveName, 32, &address, 0);
+    bool ok = true;
+
+    ok &= readFixedString(file, save->playerName, 32, &address, 12);
+    ok &= readFixedString(file, save->saveName, 32, &address, 0);
+
+    if (!ok)
+    {
+        closeFO1Save(save);
+    }
 
     fclose(file);
 
@@ -59,21 +76,23 @@ bool isFO1Save(
 
     if (file == NULL)
     {
-        return NULL;
+        return false;
     }
 
     FO1SAVE* save = (FO1SAVE*)malloc(FO1SAVE_SIZE);
 
     if (save == NULL)
     {
-        return NULL;
+        fclose(file);
+
+        return false;
     }
 
     unsigned long address = 0;
 
-    readFixedString(file, save->saveSignature, FO1_SAVE_SIGNATURE_LENGTH, &address, 0);
+    readFixedString(file, save->saveSignature, FO1SAVE_SIGNATURE_LENGTH, &address, 0);
 
-    int r_strcmp = strcmp(save->saveSignature, FO1_SAVE_SIGNATURE);
+    int r_strcmp = strcmp(save->saveSignature, FO1SAVE_SIGNATURE);
 
     closeFO1Save(save);
 

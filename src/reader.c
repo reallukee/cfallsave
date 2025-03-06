@@ -5,9 +5,15 @@
  *
  * A C/C++ Library to Read Fallout Save Files
  *
- * Author  : Reallukee
- * Version : 1.0
- * License : MIT
+ * File Name   : reader.c
+ *
+ * Title       : READER SOURCE
+ * Description : Reader Source
+ *
+ * Author      : Luca Pollicino
+ *               (https://github.com/reallukee)
+ * Version     : 2.0.0
+ * License     : MIT
  */
 
 #include "reader.h"
@@ -15,7 +21,7 @@
 bool readFixedString(
     FILE* file,
     char* property,
-    int length,
+    unsigned long length,
     unsigned long* address,
     unsigned long skip
 )
@@ -36,7 +42,7 @@ bool readFixedString(
 
     int CHAR_SIZE = sizeof(char);
 
-    int r_fread = fread(property, CHAR_SIZE, length, file);
+    size_t r_fread = fread(property, CHAR_SIZE, length, file);
 
     if (r_fread != length)
     {
@@ -81,6 +87,53 @@ bool readString(
     return true;
 }
 
+bool readCURSEDString(
+    FILE* file,
+    char** property,
+    unsigned long* address,
+    unsigned long skipLength,
+    unsigned long skipString
+)
+{
+    unsigned short length = 0;
+
+    readUShort(file, &length, address, skipLength);
+
+    char* cursedPropery = (char*)malloc(length * 2 + 1);
+
+    if (cursedPropery == NULL)
+    {
+        return false;
+    }
+
+    readFixedString(file, cursedPropery, length * 2, address, skipString);
+
+    if (*property != NULL)
+    {
+        free(*property);
+    }
+
+    *property = (char*)malloc(length + 1);
+
+    if (*property == NULL)
+    {
+        free(cursedPropery);
+
+        return false;
+    }
+
+    for (int i = 0, j = 0; i < length * 2 && j < length; i += 2, j++)
+    {
+        (*property)[j] = cursedPropery[i];
+    }
+
+    (*property)[length] = '\0';
+
+    free(cursedPropery);
+
+    return true;
+}
+
 
 
 bool readUByte(
@@ -106,9 +159,9 @@ bool readUByte(
 
     int UBYTE_SIZE = sizeof(unsigned char);
 
-    int f_read = fread(property, UBYTE_SIZE, 1, file);
+    size_t r_fread = fread(property, UBYTE_SIZE, 1, file);
 
-    if (f_read != 1)
+    if (r_fread != 1)
     {
         *address -= skip;
 
@@ -143,9 +196,9 @@ bool readUShort(
 
     int USHORT_SIZE = sizeof(unsigned short);
 
-    int f_read = fread(property, USHORT_SIZE, 1, file);
+    size_t r_fread = fread(property, USHORT_SIZE, 1, file);
 
-    if (f_read != 1)
+    if (r_fread != 1)
     {
         *address -= skip;
 
@@ -180,9 +233,9 @@ bool readUInt(
 
     int UINT_SIZE = sizeof(unsigned int);
 
-    int f_read = fread(property, UINT_SIZE, 1, file);
+    size_t r_fread = fread(property, UINT_SIZE, 1, file);
 
-    if (f_read != 1)
+    if (r_fread != 1)
     {
         *address -= skip;
 
@@ -217,9 +270,9 @@ bool readULong(
 
     int ULONG_SIZE = sizeof(unsigned long);
 
-    int f_read = fread(property, ULONG_SIZE, 1, file);
+    size_t r_fread = fread(property, ULONG_SIZE, 1, file);
 
-    if (f_read != 1)
+    if (r_fread != 1)
     {
         *address -= skip;
 
@@ -254,9 +307,9 @@ bool readFloat(
 
     int FLOAT_SIZE = sizeof(float);
 
-    int f_read = fread(property, FLOAT_SIZE, 1, file);
+    size_t r_fread = fread(property, FLOAT_SIZE, 1, file);
 
-    if (f_read != 1)
+    if (r_fread != 1)
     {
         *address -= skip;
 
@@ -273,7 +326,7 @@ bool readFloat(
 bool readUByteArray(
     FILE* file,
     unsigned char* property,
-    int length,
+    long unsigned length,
     unsigned long* address,
     unsigned long skip
 )
@@ -294,7 +347,7 @@ bool readUByteArray(
 
     int UBYTE_SIZE = sizeof(unsigned char);
 
-    int r_fread = fread(property, UBYTE_SIZE, length, file);
+    size_t r_fread = fread(property, UBYTE_SIZE, length, file);
 
     if (r_fread != length)
     {

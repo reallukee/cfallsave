@@ -5,9 +5,15 @@
  *
  * A C/C++ Library to Read Fallout Save Files
  *
- * Author  : Reallukee
- * Version : 1.0
- * License : MIT
+ * File Name   : fo3.h
+ *
+ * Title       : FALLOUT 3 HEADER
+ * Description : Fallout 3 Header
+ *
+ * Author      : Luca Pollicino
+ *               (https://github.com/reallukee)
+ * Version     : 2.0.0
+ * License     : MIT
  */
 
 #ifndef CFALLSAVE_FO3_H
@@ -15,12 +21,12 @@
 
 #include "header.h"
 
-#define FO3_SAVE_SIGNATURE          "FO3SAVEGAME"
-#define FO3_SAVE_SIGNATURE_LENGTH   11
+#define FO3SAVE_SIGNATURE           "FO3SAVEGAME"
+#define FO3SAVE_SIGNATURE_LENGTH    11
 
-typedef struct
+typedef struct FO3SAVE
 {
-    char saveSignature[12];
+    char saveSignature[FO3SAVE_SIGNATURE_LENGTH + 1];
     unsigned engineVersion;
     unsigned saveNumber;
 
@@ -48,6 +54,10 @@ CFALLSAVE_API bool isFO3Save(
 );
 
 CFALLSAVE_API void printFO3Save(
+    FO3SAVE* save
+);
+
+CFALLSAVE_API void printFO3SaveSnapshot(
     FO3SAVE* save
 );
 

@@ -1,17 +1,23 @@
 /**
- * ---------
- * CFallSave
- * ---------
+ * -----------
+ * CFallSave++
+ * -----------
  *
  * A C/C++ Library to Read Fallout Save Files
  *
- * Author  : Reallukee
- * Version : 1.0
- * License : MIT
+ * File Name   : fonv.hpp
+ *
+ * Title       : FALLOUT: NEW VEGAS HEADER
+ * Description : Fallout: New Vegas Header
+ *
+ * Author      : Luca Pollicino
+ *               (https://github.com/reallukee)
+ * Version     : 2.0.0
+ * License     : MIT
  */
 
-#ifndef CFALLSAVE_FONV_HPP
-#define CFALLSAVE_FONV_HPP
+#ifndef CFALLSAVEPP_FONV_HPP
+#define CFALLSAVEPP_FONV_HPP
 
 #include "header.hpp"
 
@@ -21,12 +27,12 @@ using namespace std;
 
 namespace cfallsave
 {
-    class CFALLSAVE_CPP_API FONVSave
+    class CFALLSAVEPP_API FONVSave
     {
 
     private:
 
-        FONVSAVE* save;
+        FONVSAVE* save = nullptr;
 
     public:
 
@@ -35,8 +41,10 @@ namespace cfallsave
         ~FONVSave();
 
         void readSave(string saveName);
+        bool isOpen();
 
         void printSave();
+        void printSaveSnapshot();
 
         string getSaveSignature();
         unsigned getEngineVersion();
@@ -55,4 +63,4 @@ namespace cfallsave
     };
 }
 
-#endif // !CFALLSAVE_FONV_HPP
+#endif // !CFALLSAVEPP_FONV_HPP

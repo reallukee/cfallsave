@@ -5,9 +5,15 @@
  *
  * A C/C++ Library to Read Fallout Save Files
  *
- * Author  : Reallukee
- * Version : 1.0
- * License : MIT
+ * File Name   : reader.h
+ *
+ * Title       : READER HEADER
+ * Description : Reader Header
+ *
+ * Author      : Luca Pollicino
+ *               (https://github.com/reallukee)
+ * Version     : 2.0.0
+ * License     : MIT
  */
 
 #ifndef CFALLSAVE_READER_H
@@ -18,12 +24,20 @@
 bool readFixedString(
     FILE* file,
     char* property,
-    int length,
+    long unsigned length,
     unsigned long* address,
     unsigned long skip
 );
 
 bool readString(
+    FILE* file,
+    char** property,
+    unsigned long* address,
+    unsigned long skipLength,
+    unsigned long skipString
+);
+
+bool readCURSEDString(
     FILE* file,
     char** property,
     unsigned long* address,
@@ -73,7 +87,7 @@ bool readFloat(
 bool readUByteArray(
     FILE* file,
     unsigned char* property,
-    int length,
+    long unsigned length,
     unsigned long* address,
     unsigned long skip
 );

@@ -1,28 +1,34 @@
 /**
- * ---------
- * CFallSave
- * ---------
+ * -----------
+ * CFallSave++
+ * -----------
  *
  * A C/C++ Library to Read Fallout Save Files
  *
- * Author  : Reallukee
- * Version : 1.0
- * License : MIT
+ * File Name   : export.hpp
+ *
+ * Title       : EXPORT++
+ * Description : Export++
+ *
+ * Author      : Luca Pollicino
+ *               (https://github.com/reallukee)
+ * Version     : 2.0.0
+ * License     : MIT
  */
 
-#ifndef CFALLSAVE_EXPORT_HPP
-#define CFALLSAVE_EXPORT_HPP
+#ifndef CFALLSAVEPP_EXPORT_HPP
+#define CFALLSAVEPP_EXPORT_HPP
 
-#define CFALLSAVE_CPP_LIBRARY
+#define CFALLSAVEPP_LIBRARY
 
 #if defined(_WIN32) || defined(_WIN64)
-    #ifdef CFALLSAVE_CPP_LIBRARY
-        #define CFALLSAVE_CPP_API __declspec(dllexport)
+    #ifdef CFALLSAVEPP_LIBRARY
+        #define CFALLSAVEPP_API __declspec(dllexport)
     #else
-        #define CFALLSAVE_CPP_API __declspec(dllimport)
-    #endif // CFALLSAVE_CPP_API
+        #define CFALLSAVEPP_API __declspec(dllimport)
+    #endif // CFALLSAVEPP_LIBRARY
 #else
-    #define CFALLSAVE_CPP_API
+    #define CFALLSAVEPP_API
 #endif // _WIN32 || _WIN64
 
-#endif // !CFALLSAVE_EXPORT_HPP
+#endif // !CFALLSAVEPP_EXPORT_HPP

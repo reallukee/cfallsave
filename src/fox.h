@@ -5,9 +5,15 @@
  *
  * A C/C++ Library to Read Fallout Save Files
  *
- * Author  : Reallukee
- * Version : 1.0
- * License : MIT
+ * File Name   : fox.h
+ *
+ * Title       : FALLOUT X HEADER
+ * Description : Fallout X Header
+ *
+ * Author      : Luca Pollicino
+ *               (https://github.com/reallukee)
+ * Version     : 2.0.0
+ * License     : MIT
  */
 
 #ifndef CFALLSAVE_FOX_H
@@ -17,14 +23,16 @@
 
 #include "fo1.h"
 #include "fo2.h"
+#include "fotbos.h"
 #include "fo3.h"
 #include "fonv.h"
 #include "fo4.h"
 
-typedef enum
+typedef enum FOXSAVE_TYPE
 {
     FOXSAVE_TYPE_FO1,
     FOXSAVE_TYPE_FO2,
+    FOXSAVE_TYPE_FOTBOS,
     FOXSAVE_TYPE_FO3,
     FOXSAVE_TYPE_FONV,
     FOXSAVE_TYPE_FO4
@@ -32,7 +40,7 @@ typedef enum
 
 
 
-typedef struct
+typedef struct FOXSAVE
 {
     FOXSAVE_TYPE saveType;
 

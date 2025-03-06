@@ -2,8 +2,7 @@
 
 - [x] Common Reader
 - [ ] Common Writer
-- [x] C++ Wrapper
-- [ ] Documentation (Markdown)
+- [x] Documentation (Markdown)
 - [ ] Documentation (Doxygen)
 - [x] Save Reading
 - [ ] Save Writing
@@ -12,7 +11,7 @@
 - [x] `Fallout 3` Support
 - [x] `Fallout: New Vegas` Support
 - [x] `Fallout 4` Support
-- [ ] `Fallout Tactics: Brotherhood of Steel` Support
+- [x] `Fallout Tactics: Brotherhood of Steel` Support
 - [ ] More support for `Fallout 1`
 - [ ] More support for `Fallout 2`
 - [ ] More support for `Fallout 3`

@@ -5,9 +5,15 @@
  *
  * A C/C++ Library to Read Fallout Save Files
  *
- * Author  : Reallukee
- * Version : 1.0
- * License : MIT
+ * File Name   : fonv.h
+ *
+ * Title       : FALLOUT: NEW VEGAS HEADER
+ * Description : Fallout: New Vegas Header
+ *
+ * Author      : Luca Pollicino
+ *               (https://github.com/reallukee)
+ * Version     : 2.0.0
+ * License     : MIT
  */
 
 #ifndef CFALLSAVE_FONV_H
@@ -15,12 +21,12 @@
 
 #include "header.h"
 
-#define FONV_SAVE_SIGNATURE          "FO3SAVEGAME"
-#define FONV_SAVE_SIGNATURE_LENGTH   11
+#define FONVSAVE_SIGNATURE          "FO3SAVEGAME"
+#define FONVSAVE_SIGNATURE_LENGTH   11
 
-typedef struct
+typedef struct FONVSAVE
 {
-    char saveSignature[12];
+    char saveSignature[FONVSAVE_SIGNATURE_LENGTH + 1];
     unsigned engineVersion;
     unsigned saveNumber;
 
@@ -48,6 +54,10 @@ CFALLSAVE_API bool isFONVSave(
 );
 
 CFALLSAVE_API void printFONVSave(
+    FONVSAVE* save
+);
+
+CFALLSAVE_API void printFONVSaveSnapshot(
     FONVSAVE* save
 );
 

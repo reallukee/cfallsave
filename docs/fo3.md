@@ -1,34 +1,69 @@
-# Fallout 3 Save File Format
+# Fallout 3 API
 
-> [!NOTE]
-> Fallout 3 Save Format IS VERY CLOSE to Fallout: New Vegas Save Format
+> [Back to Documentation](../DOCS.md)
 
-| Property         | Type                | CFAllSave Type |
-| :--------------- | :------------------ | :------------- |
-| Save Signature   | char[12]            | char[12]       |
-| Engine Version ? | unsigned            | unsigned       |
-| Snapshot Width   | unsigned            | unsigned       |
-| Snapshot Height  | unsigned            | unsigned       |
-| Save Number      | unsigned            | unsigned       |
-| Player Name      | short + '|' + char* | char*          |
-| Player Level     | unsigned            | unsigned       |
-| Player Title     | short + '|' + char* | char*          |
-| Player Location  | short + '|' + char* | char*          |
-| Player Playtime  | short + '|' + char* | char*          |
-| Snapshot         | unsigned char*      | unsigned char* |
+Source: [fo3.h](../src/fo3.h), [fo3.hpp](../src/cplusplus/fo3.hpp)
 
-## char[n]
 
-`char[n] = '\n'`
 
-## short + '|' + char*
+## Functions
 
-```binary
-0C 00   7C   4A 6F 68 6E 20 46 61 6C 6C 6F 75 74
-```
+* `FO3SAVE* readFO3Save(const char* saveName)`
+* `bool isFO3Save(const char* saveName)`
+* `void printFO3Save(FO3SAVE* save)`
+* `void printFO3SaveSnapshot(FO3SAVE* save)`
+* `void closeFO3Save(FO3SAVE* save)`
 
-| Bytes                               | Type      | Value        |
-| :---------------------------------- | :-------- | :----------- |
-| 0C 00                               | Length    | 12           |
-| 7C                                  | Separator | \|           |
-| 4A 6F 68 6E 20 46 61 6C 6C 6F 75 74 | Value     | John Fallout |
+
+
+## Structures
+
+### `FO3SAVE`
+
+* `char saveSignature[FO3SAVE_SIGNATURE_LENGTH + 1]`
+* `unsigned engineVersion`
+* `unsigned saveNumber`
+* `char* playerName`
+* `unsigned playerLevel`
+* `char* playerTitle`
+* `char* playerLocation`
+* `char* playerPlaytime`
+* `unsigned snapshotWidth`
+* `unsigned snapshotHeight`
+* `unsigned char* snapshot`
+
+
+
+## Macros
+
+* `FO3SAVE_SIGNATURE`
+* `FO3SAVE_SIGNATURE_LENGTH`
+* `FO3SAVE_SIZE`
+
+
+
+## Classes
+
+> !IMPORTANT
+> Only for C++
+
+### `FO3Save`
+
+* `FO3Save()`
+* `FO3Save(string saveName)`
+* `~FO3Save()`
+* `void readSave(string saveName)`
+* `bool isOpen()`
+* `void printSave()`
+* `void printSaveSnapshot()`
+* `string getSaveSignature()`
+* `unsigned getEngineVersion()`
+* `unsigned getSaveNumber()`
+* `string getPlayerName()`
+* `unsigned getPlayerLevel()`
+* `string getPlayerTitle()`
+* `string getPlayerLocation()`
+* `string getPlayerPlaytime()`
+* `unsigned getSnapshotWidth()`
+* `unsigned getSnapshotHeight()`
+* `unsigned char* getSnapshot()`

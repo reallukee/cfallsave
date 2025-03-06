@@ -1,30 +1,51 @@
+<div align="center">
+
+![Logo](./assets/banner-logo+cfallsave.png)
+
 # CFallSave
 
 ![GitHub License](https://img.shields.io/github/license/reallukee/cfallsave?style=flat&label=License)
 
 A C/C++ Library to Read Fallout Save Files
 
-> [ToDo](./TODO.md)
+</div>
 
 
 
-# [Documentation](./DOCS.md)
+# Documentation
 
-* [Fallout 1 Save File Format](./DOCS/fo1.md)
-* [Fallout 2 Save File Format](./DOCS/fo2.md)
-* [Fallout 3 Save File Format](./DOCS/fo3.md)
-* [Fallout: New Vegas Save File Format](./DOCS/fonv.md)
-* [Fallout 4 Save File Format](./DOCS/fo4.md)
+> View [Documentation](./DOCS.md)
+
+## API
+
+* [Fallout 1 API](./docs/fo1.md)
+* [Fallout 2 API](./docs/fo2.md)
+* [Fallout Tactics: Brotherhood of Steel API](./docs/fotbos.md)
+* [Fallout 3 API](./docs/fo3.md)
+* [Fallout: New Vegas API](./docs/fonv.md)
+* [Fallout 4 API](./docs/fo4.md)
+
+## Save File Format
+
+* [Fallout 1 Save File Format](./docs/fo1-save-format.md)
+* [Fallout 2 Save File Format](./docs/fo2-save-format.md)
+* [Fallout Tactics: Brotherhood of Steel Save File Format](./docs/fotbos-save-format.md)
+* [Fallout 3 Save File Format](./docs/fo3-save-format.md)
+* [Fallout: New Vegas Save File Format](./docs/fonv-save-format.md)
+* [Fallout 4 Save File Format](./docs/fo4-save-format.md)
 
 
 
-# [Examples](./EXAMPLES.md)
+# Examples
 
-* [Read Fallout 1 Save File](./EXAMPLES.md#read-fallout-1-save)
-* [Read Fallout 2 Save File](./EXAMPLES.md#read-fallout-2-save)
-* [Read Fallout 3 Save File](./EXAMPLES.md#read-fallout-3-save)
-* [Read Fallout: New Veags Save File](./EXAMPLES.md#read-fallout-new-vegas-save)
-* [Read Fallout 4 Save File](./EXAMPLES.md#read-fallout-4-save)
+> View [Examples](./EXAMPLES.md)
+
+* [Read Fallout 1 Save File](./EXAMPLES.md#read-fallout-1-save-file)
+* [Read Fallout 2 Save File](./EXAMPLES.md#read-fallout-2-save-file)
+* [Read Fallout Tactics: Brotherhood of Steel Save File](./EXAMPLES.md#read-fallout-tactics-brotherhood-of-steel-save-file)
+* [Read Fallout 3 Save File](./EXAMPLES.md#read-fallout-3-save-file)
+* [Read Fallout: New Vegas Save File](./EXAMPLES.md#read-fallout-new-vegas-save-file)
+* [Read Fallout 4 Save File](./EXAMPLES.md#read-fallout-4-save-file)
 
 
 
@@ -41,16 +62,13 @@ cd cfallsave
 ## CFallsave
 
 ```
-make -f makefile
+make -f cfallsave.makefile
 ```
 
 ## CFallsave++
 
-> [!WARNING]
-> Experimental!
-
 ```
-make -f cplusplus.makefile
+make -f cfallsave++.makefile
 ```
 
 # Author

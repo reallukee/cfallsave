@@ -16,11 +16,11 @@ ALL_HEADERS = $(notdir $(wildcard $(SRC_DIR)/*.hpp))
 SOURCES = $(filter-out $(EXCLUDED_SOURCES), $(ALL_SOURCES))
 HEADERS = $(filter-out $(EXCLUDED_HEADERS), $(ALL_HEADERS))
 
-OBJECTS = $(patsubst %.cpp, $(OBJ_DIR)/%.opp, $(SOURCES))
+OBJECTS = $(patsubst %.cpp, $(OBJ_DIR)/%.o, $(SOURCES))
 
 all: $(BIN_DIR)/$(TARGET).bin
 
-$(OBJ_DIR)/%.opp: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 $(BIN_DIR)/$(TARGET).bin: $(OBJECTS) | $(BIN_DIR)

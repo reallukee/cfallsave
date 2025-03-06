@@ -1,20 +1,26 @@
 /**
- * ---------
- * CFallSave
- * ---------
+ * -----------
+ * CFallSave++
+ * -----------
  *
  * A C/C++ Library to Read Fallout Save Files
  *
- * Author  : Reallukee
- * Version : 1.0
- * License : MIT
+ * File Name   : header.hpp
+ *
+ * Title       : HEADER++
+ * Description : Header++
+ *
+ * Author      : Luca Pollicino
+ *               (https://github.com/reallukee)
+ * Version     : 2.0.0
+ * License     : MIT
  */
 
-#ifndef CFALLSAVE_HEADER_HPP
-#define CFALLSAVE_HEADER_HPP
+#ifndef CFALLSAVEPP_HEADER_HPP
+#define CFALLSAVEPP_HEADER_HPP
 
 #include "export.hpp"
 
 #include <string>
 
-#endif // !CFALLSAVE_HEADER_HPP
+#endif // !CFALLSAVEPP_HEADER_HPP

@@ -5,9 +5,15 @@
  *
  * A C/C++ Library to Read Fallout Save Files
  *
- * Author  : Reallukee
- * Version : 1.0
- * License : MIT
+ * File Name   : fonv.c
+ *
+ * Title       : FALLOUT: NEW VEGAS SOURCE
+ * Description : Fallout: New Vegas Source
+ *
+ * Author      : Luca Pollicino
+ *               (https://github.com/reallukee)
+ * Version     : 2.0.0
+ * License     : MIT
  */
 
 #include "fonv.h"
@@ -29,29 +35,35 @@ FONVSAVE* readFONVSave(
 
     if (save == NULL)
     {
+        fclose(file);
+
         return NULL;
     }
 
     unsigned long address = 0;
 
-    readFixedString(file, save->saveSignature, FONV_SAVE_SIGNATURE_LENGTH, &address, 0);
+    readFixedString(file, save->saveSignature, FONVSAVE_SIGNATURE_LENGTH, &address, 0);
 
-    if (strcmp(save->saveSignature, FONV_SAVE_SIGNATURE) != 0)
+    if (strcmp(save->saveSignature, FONVSAVE_SIGNATURE) != 0)
     {
         closeFONVSave(save);
+
+        fclose(file);
 
         return NULL;
     }
 
-    readUInt(file, &save->engineVersion, &address, 4);
-    readUInt(file, &save->snapshotWidth, &address, 66);
-    readUInt(file, &save->snapshotHeight, &address, 1);
-    readUInt(file, &save->saveNumber, &address, 1);
-    readString(file, &save->playerName, &address, 1, 1);
-    readString(file, &save->playerTitle, &address, 1, 1);
-    readUInt(file, &save->playerLevel, &address, 1);
-    readString(file, &save->playerLocation, &address, 1, 1);
-    readString(file, &save->playerPlaytime, &address, 1, 1);
+    bool ok = true;
+
+    ok &= readUInt(file, &save->engineVersion, &address, 4);
+    ok &= readUInt(file, &save->snapshotWidth, &address, 66);
+    ok &= readUInt(file, &save->snapshotHeight, &address, 1);
+    ok &= readUInt(file, &save->saveNumber, &address, 1);
+    ok &= readString(file, &save->playerName, &address, 1, 1);
+    ok &= readString(file, &save->playerTitle, &address, 1, 1);
+    ok &= readUInt(file, &save->playerLevel, &address, 1);
+    ok &= readString(file, &save->playerLocation, &address, 1, 1);
+    ok &= readString(file, &save->playerPlaytime, &address, 1, 1);
 
     unsigned long snapshotLength = save->snapshotWidth * save->snapshotHeight * 4;
 
@@ -59,10 +71,19 @@ FONVSAVE* readFONVSave(
 
     if (save->snapshot == NULL)
     {
+        closeFONVSave(save);
+
+        fclose(file);
+
         return NULL;
     }
 
-    readUByteArray(file, save->snapshot, snapshotLength, &address, 0);
+    ok &= readUByteArray(file, save->snapshot, snapshotLength, &address, 0);
+
+    if (!ok)
+    {
+        closeFONVSave(save);
+    }
 
     fclose(file);
 
@@ -77,21 +98,23 @@ bool isFONVSave(
 
     if (file == NULL)
     {
-        return NULL;
+        return false;
     }
 
     FONVSAVE* save = (FONVSAVE*)malloc(FONVSAVE_SIZE);
 
     if (save == NULL)
     {
-        return NULL;
+        fclose(file);
+
+        return false;
     }
 
     unsigned long address = 0;
 
-    readFixedString(file, save->saveSignature, FONV_SAVE_SIGNATURE_LENGTH, &address, 0);
+    readFixedString(file, save->saveSignature, FONVSAVE_SIGNATURE_LENGTH, &address, 0);
 
-    int r_strcmp = strcmp(save->saveSignature, FONV_SAVE_SIGNATURE);
+    int r_strcmp = strcmp(save->saveSignature, FONVSAVE_SIGNATURE);
 
     if (r_strcmp != 0)
     {
@@ -145,6 +168,20 @@ void printFONVSave(
 
     unsigned long snapshotLength = save->snapshotWidth * save->snapshotHeight * 4;
 
+    printf("Snapshot Length : %lu\n", snapshotLength);
+}
+
+void printFONVSaveSnapshot(
+    FONVSAVE* save
+)
+{
+    if (save == NULL)
+    {
+        return;
+    }
+
+    unsigned long snapshotLength = save->snapshotWidth * save->snapshotHeight * 4;
+
     for (unsigned long i = 0; i < snapshotLength; i += 4)
     {
         printf("R : %03u ", save->snapshot[i + 0]);
@@ -161,8 +198,6 @@ void printFONVSave(
             printf("  ");
         }
     }
-
-    return;
 }
 
 void closeFONVSave(
@@ -171,30 +206,11 @@ void closeFONVSave(
 {
     if (save != NULL)
     {
-        if (save->playerName != NULL)
-        {
-            free(save->playerName);
-        }
-
-        if (save->playerTitle != NULL)
-        {
-            free(save->playerTitle);
-        }
-
-        if (save->playerLocation != NULL)
-        {
-            free(save->playerLocation);
-        }
-
-        if (save->playerPlaytime != NULL)
-        {
-            free(save->playerPlaytime);
-        }
-
-        if (save->snapshot != NULL)
-        {
-            free(save->snapshot);
-        }
+        free(save->playerName);
+        free(save->playerTitle);
+        free(save->playerLocation);
+        free(save->playerPlaytime);
+        free(save->snapshot);
 
         free(save);
     }

@@ -5,9 +5,15 @@
  *
  * A C/C++ Library to Read Fallout Save Files
  *
- * Author  : Reallukee
- * Version : 1.0
- * License : MIT
+ * File Name   : fo4.h
+ *
+ * Title       : FALLOUT 4 HEADER
+ * Description : Fallout 4 Header
+ *
+ * Author      : Luca Pollicino
+ *               (https://github.com/reallukee)
+ * Version     : 2.0.0
+ * License     : MIT
  */
 
 #ifndef CFALLSAVE_FO4_H
@@ -15,12 +21,12 @@
 
 #include "header.h"
 
-#define FO4_SAVE_SIGNATURE          "FO4_SAVEGAME"
-#define FO4_SAVE_SIGNATURE_LENGTH   12
+#define FO4SAVE_SIGNATURE           "FO4_SAVEGAME"
+#define FO4SAVE_SIGNATURE_LENGTH    12
 
-typedef struct
+typedef struct FO4SAVE
 {
-    char saveSignature[FO4_SAVE_SIGNATURE_LENGTH + 1];
+    char saveSignature[FO4SAVE_SIGNATURE_LENGTH + 1];
     unsigned engineVersion;
     unsigned saveNumber;
 
@@ -51,6 +57,10 @@ CFALLSAVE_API bool isFO4Save(
 );
 
 CFALLSAVE_API void printFO4Save(
+    FO4SAVE* save
+);
+
+CFALLSAVE_API void printFO4SaveSnapshot(
     FO4SAVE* save
 );
 

@@ -1,14 +1,15 @@
 # Examples
 
-* [Read Fallout 1 Save](#read-fallout-1-save)
-* [Read Fallout 2 Save](#read-fallout-2-save)
-* [Read Fallout 3 Save](#read-fallout-3-save)
-* [Read Fallout: new Vegas Save](#read-fallout-new-vegas-save)
-* [Read Fallout 4 Save](#read-fallout-4-save)
+* [Read Fallout 1 Save File](#read-fallout-1-save-file)
+* [Read Fallout 2 Save File](#read-fallout-2-save-file)
+* [Read Fallout Tactics: Brotherhood of Steel Save File](#read-fallout-tactics-brotherhood-of-steel-save-file)
+* [Read Fallout 3 Save File](#read-fallout-3-save-file)
+* [Read Fallout: New Vegas Save File](#read-fallout-new-vegas-save-file)
+* [Read Fallout 4 Save File](#read-fallout-4-save-file)
 
 
 
-## Read Fallout 1 Save
+## Read Fallout 1 Save File
 
 > [Source code](./examples/readFO1Save.c)
 
@@ -17,7 +18,7 @@
 
 int main(int argc, char* argv[])
 {
-    char* saveName = "fo1.fos";
+    char* saveName = "fo1.dat";
 
     if (!isFO1Save(saveName))
     {
@@ -41,7 +42,7 @@ int main(int argc, char* argv[])
 
 
 
-## Read Fallout 2 Save
+## Read Fallout 2 Save File
 
 > [Source code](./examples/readFO2Save.c)
 
@@ -50,7 +51,7 @@ int main(int argc, char* argv[])
 
 int main(int argc, char* argv[])
 {
-    char* saveName = "fo2.fos";
+    char* saveName = "fo2.dat";
 
     if (!isFO2Save(saveName))
     {
@@ -74,7 +75,40 @@ int main(int argc, char* argv[])
 
 
 
-## Read Fallout 3 Save
+## Read Fallout Tactics: Brotherhood of Steel Save File
+
+> [Source code](./examples/readFOTBOSSave.c)
+
+```c
+#include "cfallsave.h"
+
+int main(int argc, char* argv[])
+{
+    char* saveName = "fotbos.sav";
+
+    if (!isFOTBOSSave(saveName))
+    {
+        return -1;
+    }
+
+    FOTBOSSAVE* save = readFOTBOSSave(saveName);
+
+    if (save == NULL)
+    {
+        return -1;
+    }
+
+    printFOTBOSSave(save);
+
+    closeFOTBOSSave(save);
+
+    return 0;
+}
+```
+
+
+
+## Read Fallout 3 Save File
 
 > [Source code](./examples/readFO3Save.c)
 
@@ -107,7 +141,7 @@ int main(int argc, char* argv[])
 
 
 
-## Read Fallout: new Vegas Save
+## Read Fallout: New Vegas Save File
 
 > [Source code](./examples/readFONVSave.c)
 
@@ -140,7 +174,7 @@ int main(int argc, char* argv[])
 
 
 
-## Read Fallout 4 Save
+## Read Fallout 4 Save File
 
 > [Source code](./examples/readFO4Save.c)
 

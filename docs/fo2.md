@@ -1,10 +1,51 @@
-# Fallout 2 Save File Format
+# Fallout 2 API
 
-> [!NOTE]
-> Fallout 2 Format IS VERY CLOSE to Fallout 1 Save Format
+> [Back to Documentation](../DOCS.md)
 
-| Property       | Type           | CFAllSave Type |
-| :------------- | :------------- | :------------- |
-| Save Signature | char[18]       | char[18]       |
-| Player Name    | char[32]       | char[32]       |
-| Save Name      | char[32]       | char[32]       |
+Source: [fo2.h](../src/fo2.h), [fo2.hpp](../src/cplusplus/fo2.hpp)
+
+
+
+## Functions
+
+* `FO2SAVE* readFO2Save(const char* saveName)`
+* `bool isFO2Save(const char* saveName)`
+* `void printFO2Save(FO2SAVE* save)`
+* `void closeFO2Save(FO2SAVE* save)`
+
+
+
+## Structures
+
+### `FO2SAVE`
+
+* `char saveSignature[FO2SAVE_SIGNATURE_LENGTH + 1]`
+* `char saveName[32]`
+* `char playerName[32]`
+
+
+
+## Macros
+
+* `FO2SAVE_SIGNATURE`
+* `FO2SAVE_SIGNATURE_LENGTH`
+* `FO2SAVE_SIZE`
+
+
+
+## Classes
+
+> !IMPORTANT
+> Only for C++
+
+### `FO2Save`
+
+* `FO2Save()`
+* `FO2Save(string saveName)`
+* `~FO2Save()`
+* `void readSave(string saveName)`
+* `bool isOpen()`
+* `void printSave()`
+* `string getSaveSignature()`
+* `string getSaveName()`
+* `string getPlayerName()`

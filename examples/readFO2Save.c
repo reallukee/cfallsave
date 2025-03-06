@@ -2,7 +2,7 @@
 
 int main(int argc, char* argv[])
 {
-    char* saveName = "fo2.fos";
+    char* saveName = "fo2.dat";
 
     if (!isFO2Save(saveName))
     {

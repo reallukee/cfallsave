@@ -3,5 +3,11 @@
         "editor.tabSize": 2,
         "editor.insertSpaces": true
     },
-    "files.eol": "\r\n"
+    "files.eol": "\r\n",
+    "files.associations": {
+        "*.makefile": "makefile"
+    },
+    "material-icon-theme.files.associations": {
+        "*.makefile": "makefile"
+    }
 }

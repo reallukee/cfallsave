@@ -5,9 +5,15 @@
  *
  * A C/C++ Library to Read Fallout Save Files
  *
- * Author  : Reallukee
- * Version : 1.0
- * License : MIT
+ * File Name   : export.h
+ *
+ * Title       : EXPORT
+ * Description : Export
+ *
+ * Author      : Luca Pollicino
+ *               (https://github.com/reallukee)
+ * Version     : 2.0.0
+ * License     : MIT
  */
 
 #ifndef CFALLSAVE_EXPORT_H
@@ -20,7 +26,7 @@
         #define CFALLSAVE_API __declspec(dllexport)
     #else
         #define CFALLSAVE_API __declspec(dllimport)
-    #endif // CFALLSAVE_API
+    #endif // CFALLSAVE_LIBRARY
 #else
     #define CFALLSAVE_API
 #endif // _WIN32 || _WIN64

@@ -1,13 +1,19 @@
 /**
- * ---------
- * CFallSave
- * ---------
+ * -----------
+ * CFallSave++
+ * -----------
  *
  * A C/C++ Library to Read Fallout Save Files
  *
- * Author  : Reallukee
- * Version : 1.0
- * License : MIT
+ * File Name   : fo1.cpp
+ *
+ * Title       : FALLOUT 1 SOURCE
+ * Description : Fallout 1 Source
+ *
+ * Author      : Luca Pollicino
+ *               (https://github.com/reallukee)
+ * Version     : 2.0.0
+ * License     : MIT
  */
 
 #include "fo1.hpp"
@@ -29,35 +35,63 @@ namespace cfallsave
         closeFO1Save(this->save);
     }
 
+
+
     void FO1Save::readSave(string saveName)
     {
         const char* c_saveName = saveName.c_str();
 
         this->save = readFO1Save(c_saveName);
 
-        if (this->save == NULL)
+        if (this->save == nullptr)
         {
             return;
         }
     }
+
+    bool FO1Save::isOpen()
+    {
+        return this->save != nullptr;
+    }
+
+
 
     void FO1Save::printSave()
     {
         printFO1Save(this->save);
     }
 
+
+
     string FO1Save::getSaveSignature()
     {
-        return string(this->save->saveSignature);
+        if (this->save == nullptr)
+        {
+            return "";
+        }
+
+        return this->save->saveSignature;
     }
 
     string FO1Save::getSaveName()
     {
-        return string(this->save->saveName);
+        if (this->save == nullptr)
+        {
+            return "";
+        }
+
+        return this->save->saveName;
     }
+
+
 
     string FO1Save::getPlayerName()
     {
-        return string(this->save->playerName);
+        if (this->save == nullptr)
+        {
+            return "";
+        }
+
+        return this->save->playerName;
     }
 }

@@ -5,9 +5,15 @@
  *
  * A C/C++ Library to Read Fallout Save Files
  *
- * Author  : Reallukee
- * Version : 1.0
- * License : MIT
+ * File Name   : fo1.h
+ *
+ * Title       : FALLOUT 1 HEADER
+ * Description : Fallout 1 Header
+ *
+ * Author      : Luca Pollicino
+ *               (https://github.com/reallukee)
+ * Version     : 2.0.0
+ * License     : MIT
  */
 
 #ifndef CFALLSAVE_FO1_H
@@ -15,12 +21,12 @@
 
 #include "header.h"
 
-#define FO1_SAVE_SIGNATURE         "FALLOUT SAVE FILE"
-#define FO1_SAVE_SIGNATURE_LENGTH  17
+#define FO1SAVE_SIGNATURE           "FALLOUT SAVE FILE"
+#define FO1SAVE_SIGNATURE_LENGTH    17
 
-typedef struct
+typedef struct FO1SAVE
 {
-    char saveSignature[FO1_SAVE_SIGNATURE_LENGTH + 1];
+    char saveSignature[FO1SAVE_SIGNATURE_LENGTH + 1];
     char saveName[32];
 
     char playerName[32];

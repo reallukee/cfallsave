@@ -1,34 +1,69 @@
-# Fallout: New Vegas Save File Format
+# Fallout: New Vegas API
 
-> [!NOTE]
-> Fallout: New Vegas Save Format IS VERY CLOSE to Fallout 3 Save Format
+> [Back to Documentation](../DOCS.md)
 
-| Property         | Type                | CFAllSave Type |
-| :--------------- | :------------------ | :------------- |
-| Save Signature   | char[12]            | char[12]       |
-| Engine Version ? | unsigned            | unsigned       |
-| Snapshot Width   | unsigned            | unsigned       |
-| Snapshot Height  | unsigned            | unsigned       |
-| Save Number      | unsigned            | unsigned       |
-| Player Name      | short + '|' + char* | char*          |
-| Player Level     | unsigned            | unsigned       |
-| Player Title     | short + '|' + char* | char*          |
-| Player Location  | short + '|' + char* | char*          |
-| Player Playtime  | short + '|' + char* | char*          |
-| Snapshot         | unsigned char*      | unsigned char* |
+Source: [fonv.h](../src/fonv.h), [fonv.hpp](../src/cplusplus/fonv.hpp)
 
-## char[n]
 
-`char[n] = '\n'`
 
-## short + '|' + char*
+## Functions
 
-```binary
-0C 00   7C   4A 6F 68 6E 20 46 61 6C 6C 6F 75 74
-```
+* `FONVSAVE* readFONVSave(const char* saveName)`
+* `bool isFONVSave(const char* saveName)`
+* `void printFONVSave(FONVSAVE* save)`
+* `void printFONVSaveSnapshot(FONVSAVE* save)`
+* `void closeFONVSave(FONVSAVE* save)`
 
-| Bytes                               | Type      | Value        |
-| :---------------------------------- | :-------- | :----------- |
-| 0C 00                               | Length    | 12           |
-| 7C                                  | Separator | \|           |
-| 4A 6F 68 6E 20 46 61 6C 6C 6F 75 74 | Value     | John Fallout |
+
+
+## Structures
+
+### `FONVSAVE`
+
+* `char saveSignature[FONVSAVE_SIGNATURE_LENGTH + 1]`
+* `unsigned engineVersion`
+* `unsigned saveNumber`
+* `char* playerName`
+* `unsigned playerLevel`
+* `char* playerTitle`
+* `char* playerLocation`
+* `char* playerPlaytime`
+* `unsigned snapshotWidth`
+* `unsigned snapshotHeight`
+* `unsigned char* snapshot`
+
+
+
+## Macros
+
+* `FONVSAVE_SIGNATURE`
+* `FONVSAVE_SIGNATURE_LENGTH`
+* `FONVSAVE_SIZE`
+
+
+
+## Classes
+
+> !IMPORTANT
+> Only for C++
+
+### `FONVSave`
+
+* `FONVSave()`
+* `FONVSave(string saveName)`
+* `~FONVSave()`
+* `void readSave(string saveName)`
+* `bool isOpen()`
+* `void printSave()`
+* `void printSaveSnapshot()`
+* `string getSaveSignature()`
+* `unsigned getEngineVersion()`
+* `unsigned getSaveNumber()`
+* `string getPlayerName()`
+* `unsigned getPlayerLevel()`
+* `string getPlayerTitle()`
+* `string getPlayerLocation()`
+* `string getPlayerPlaytime()`
+* `unsigned getSnapshotWidth()`
+* `unsigned getSnapshotHeight()`
+* `unsigned char* getSnapshot()`

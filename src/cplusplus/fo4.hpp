@@ -1,17 +1,23 @@
 /**
- * ---------
- * CFallSave
- * ---------
+ * -----------
+ * CFallSave++
+ * -----------
  *
  * A C/C++ Library to Read Fallout Save Files
  *
- * Author  : Reallukee
- * Version : 1.0
- * License : MIT
+ * File Name   : fo4.hpp
+ *
+ * Title       : FALLOUT 4 HEADER
+ * Description : Fallout 4 Header
+ *
+ * Author      : Luca Pollicino
+ *               (https://github.com/reallukee)
+ * Version     : 2.0.0
+ * License     : MIT
  */
 
-#ifndef CFALLSAVE_FO4_HPP
-#define CFALLSAVE_FO4_HPP
+#ifndef CFALLSAVEPP_FO4_HPP
+#define CFALLSAVEPP_FO4_HPP
 
 #include "header.hpp"
 
@@ -21,12 +27,12 @@ using namespace std;
 
 namespace cfallsave
 {
-    class CFALLSAVE_CPP_API FO4Save
+    class CFALLSAVEPP_API FO4Save
     {
 
     private:
 
-        FO4SAVE* save;
+        FO4SAVE* save = nullptr;
 
     public:
 
@@ -35,8 +41,10 @@ namespace cfallsave
         ~FO4Save();
 
         void readSave(string saveName);
+        bool isOpen();
 
         void printSave();
+        void printSaveSnapshot();
 
         string getSaveSignature();
         unsigned getEngineVersion();
@@ -58,4 +66,4 @@ namespace cfallsave
     };
 }
 
-#endif // !CFALLSAVE_FO4_HPP
+#endif // !CFALLSAVEPP_FO4_HPP

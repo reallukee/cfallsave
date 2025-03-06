@@ -1,33 +1,75 @@
-# Fallout 4 Save File Format
+# Fallout 4 API
 
-| Property           | Type           | CFAllSave Type |
-| :----------------- | :------------- | :------------- |
-| Save Signature     | char[13]       | char[13]       |
-| Engine Version     | unsigned       | unsigned       |
-| Save Number        | unsigned       | unsigned       |
-| Player Name        | short + char*  | char*          |
-| Player Level       | unsigned       | unsigned       |
-| Player Location    | short + char*  | char*          |
-| Player Playtime    | short + char*  | char*          |
-| Player Race        | short + char*  | char*          |
-| Player Sex         | unsigned short | unsigned short |
-| Player Current Xp  | float          | float          |
-| Player Required Xp | float          | float          |
-| Snapshot Width     | unsigned       | unsigned       |
-| Snapshot Height    | unsigned       | unsigned       |
-| Snapshot           | unsigned char* | unsigned char* |
+> [Back to Documentation](../DOCS.md)
 
-## char[n]
+Source: [fo4.h](../src/fo4.h), [fo4.hpp](../src/cplusplus/fo4.hpp)
 
-`char[n] = '\n'`
 
-## short + char*
 
-```binary
-0C 00   4A 6F 68 6E 20 46 61 6C 6C 6F 75 74
-```
+## Functions
 
-| Bytes                               | Type   | Value        |
-| :---------------------------------- | :----- | :----------- |
-| 0C 00                               | Length | 12           |
-| 4A 6F 68 6E 20 46 61 6C 6C 6F 75 74 | Value  | John Fallout |
+* `FO4SAVE* readFO4Save(const char* saveName)`
+* `bool isFO4Save(const char* saveName)`
+* `void printFO4Save(FO4SAVE* save)`
+* `void printFO4SaveSnapshot(FO4SAVE* save)`
+* `void closeFO4Save(FO4SAVE* save)`
+
+
+
+## Structures
+
+### `FO4SAVE`
+
+* `char saveSignature[FO4SAVE_SIGNATURE_LENGTH + 1]`
+* `unsigned engineVersion`
+* `unsigned saveNumber`
+* `char* playerName`
+* `unsigned playerLevel`
+* `char* playerLocation`
+* `char* playerPlaytime`
+* `char* playerRace`
+* `unsigned short playerSex`
+* `float playerCurrentXp`
+* `float playerRequiredXp`
+* `unsigned snapshotWidth`
+* `unsigned snapshotHeight`
+* `unsigned char* snapshot`
+
+
+
+## Macros
+
+* `FO4SAVE_SIGNATURE`
+* `FO4SAVE_SIGNATURE_LENGTH`
+* `FO4SAVE_SIZE`
+
+
+
+## Classes
+
+> !IMPORTANT
+> Only for C++
+
+### `FO4Save`
+
+* `FO4Save()`
+* `FO4Save(string saveName)`
+* `~FO4Save()`
+* `void readSave(string saveName)`
+* `bool isOpen()`
+* `void printSave()`
+* `void printSaveSnapshot()`
+* `string getSaveSignature()`
+* `unsigned getEngineVersion()`
+* `unsigned getSaveNumber()`
+* `string getPlayerName()`
+* `unsigned getPlayerLevel()`
+* `string getPlayerLocation()`
+* `string getPlayerPlaytime()`
+* `string getPlayerRace()`
+* `unsigned short getPlayerSex()`
+* `float getPlayerCurrentXp()`
+* `float getPlayerRequiredXp()`
+* `unsigned getSnapshotWidth()`
+* `unsigned getSnapshotHeight()`
+* `unsigned char* getSnapshot()`

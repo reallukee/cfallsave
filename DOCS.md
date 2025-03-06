@@ -1,239 +1,49 @@
 # Documentation
 
-* [Fallout 1](#fallout-1)
-* [Fallout 2](#fallout-2)
-* [Fallout 3](#fallout-3)
-* [Fallout: New Vegas](#fallout-new-vegas)
-* [Fallout 4](#fallout-4)
-* [Fallout X](#fallout-x)
-
-
-
-## Fallout 1
-
-Headers: [fo1.h](./src/fo1.h), [fo1.hpp](./src/cplusplus/fo1.hpp)
-
-### Functions
-
-* `FO1SAVE* readFO1Save(const char* saveName)`
-* `bool isFO1Save(const char* saveName)`
-* `void printFO1Save(FO1SAVE* save)`
-* `void closeFO1Save(FO1SAVE* save)`
-
-### Classes
-
-> [!NOTE]
-> Only if compiled as C++
-
-* `FO1Save`
-  * `FO1Save()`
-  * `FO1Save(string saveName)`
-  * `~FO1Save()`
-  * `void readSave(string saveName)`
-  * `void printSave()`
-  * `string getSaveSignature()`
-  * `string getSaveName()`
-  * `string getPlayerName()`
-
-### Structures
-
-* `FO1SAVE`
-
-### Constants
-
-* `FO1SAVE_SIZE`
-
-
-
-## Fallout 2
-
-Headers: [fo2.h](./src/fo2.h), [fo2.hpp](./src/cplusplus/fo2.hpp)
-
-### Functions
-
-* `FO2SAVE* readFO2Save(const char* saveName)`
-* `bool isFO2Save(const char* saveName)`
-* `void printFO2Save(FO2SAVE* save)`
-* `void closeFO2Save(FO2SAVE* save)`
-
-### Classes
-
-> [!NOTE]
-> Only if compiled as C++
-
-* `FO2Save`
-  * `FO2Save()`
-  * `FO2Save(string saveName)`
-  * `~FO2Save()`
-  * `void readSave(string saveName)`
-  * `void printSave()`
-  * `string getSaveSignature()`
-  * `string getSaveName()`
-  * `string getPlayerName()`
-
-### Structures
-
-* `FO2SAVE`
-
-### Constants
-
-* `FO2SAVE_SIZE`
-
-
-
-## Fallout 3
-
-Headers: [fo3.h](./src/fo3.h), [fo3.hpp](./src/cplusplus/fo3.hpp)
-
-### Functions
-
-* `FO3SAVE* readFO3Save(const char* saveName)`
-* `bool isFO3Save(const char* saveName)`
-* `void printFO3Save(FO3SAVE* save)`
-* `void closeFO3Save(FO3SAVE* save)`
-
-### Classes
-
-> [!NOTE]
-> Only if compiled as C++
-
-* `FO3Save`
-  * `FO3Save()`
-  * `FO3Save(string saveName)`
-  * `~FO3Save()`
-  * `void readSave(string saveName)`
-  * `void printSave()`
-  * `string getSaveSignature()`
-  * `unsigned getEngineVersion()`
-  * `unsigned getSaveNumber()`
-  * `string getPlayerName()`
-  * `unsigned getPlayerLevel()`
-  * `string getPlayerTitle()`
-  * `string getPlayerLocation()`
-  * `string getPlayerPlaytime()`
-  * `unsigned getSnapshotWidth()`
-  * `unsigned getSnapshotHeight()`
-  * `unsigned char* getSnapshot()`
-
-### Structures
-
-* `FO3SAVE`
-
-### Constants
-
-* `FO3SAVE_SIZE`
-
-
-
-## Fallout: New Vegas
-
-Headers: [fonv.h](./src/fonv.h), [fonv.hpp](./src/cplusplus/fonv.hpp)
-
-### Functions
-
-* `FONVSAVE* readFONVSave(const char* saveName)`
-* `bool isFONVSave(const char* saveName)`
-* `void printFONVSave(FONVSAVE* save)`
-* `void closeFONVSave(FONVSAVE* save)`
-
-### Classes
-
-> [!NOTE]
-> Only if compiled as C++
-
-* `FONVSave`
-  * `FONVSave()`
-  * `FONVSave(string saveName)`
-  * `~FONVSave()`
-  * `void readSave(string saveName)`
-  * `void printSave()`
-  * `string getSaveSignature()`
-  * `unsigned getEngineVersion()`
-  * `unsigned getSaveNumber()`
-  * `string getPlayerName()`
-  * `unsigned getPlayerLevel()`
-  * `string getPlayerTitle()`
-  * `string getPlayerLocation()`
-  * `string getPlayerPlaytime()`
-  * `unsigned getSnapshotWidth()`
-  * `unsigned getSnapshotHeight()`
-  * `unsigned char* getSnapshot()`
-
-### Structures
-
-* `FONVSAVE`
-
-### Constants
-
-* `FONVSAVE_SIZE`
-
-
-
-## Fallout 4
-
-Headers: [fo4.h](./src/fo4.h), [fo4.hpp](./src/cplusplus/fo4.hpp)
-
-### Functions
-
-* `FO4SAVE* readFO4Save(const char* saveName)`
-* `bool isFO4Save(const char* saveName)`
-* `void printFO4Save(FO4SAVE* save)`
-* `void closeFO4Save(FO4SAVE* save)`
-
-### Classes
-
-> [!NOTE]
-> Only if compiled as C++
-
-* `FO4Save`
-  * `FO4Save()`
-  * `FO4Save(string saveName)`
-  * `~FO4Save()`
-  * `void readSave(string saveName)`
-  * `void printSave()`
-  * `string getSaveSignature()`
-  * `unsigned getEngineVersion()`
-  * `unsigned getSaveNumber()`
-  * `string getPlayerName()`
-  * `unsigned getPlayerLevel()`
-  * `string getPlayerLocation()`
-  * `string getPlayerPlaytime()`
-  * `string getPlayerRace()`
-  * `unsigned short getPlayerSex()`
-  * `float getPlayerCurrentXp()`
-  * `float getPlayerRequiredXp()`
-  * `unsigned getSnapshotWidth()`
-  * `unsigned getSnapshotHeight()`
-  * `unsigned char* getSnapshot()`
-
-### Structures
-
-* `FO4SAVE`
-
-### Constants
-
-* `FO4SAVE_SIZE`
-
-
-
-## Fallout X
-
-Headers: [fox.h](./src/fox.h)
-
-### Functions
-
-* 🧪 `FOXSAVE* readFOXSave(const char* saveName)`
-* 🧪 `void printFOXSave(FOXSAVE* save)`
-* 🧪 `void closeFOXSave(FOXSAVE* save)`
-
-### Structures
-
-* 🧪 `FOXSAVE`
-
-### Enumerations
-
-* 🧪 `FOXSAVE_TYPE`
-
-### Constants
-
-* 🧪 `FOXSAVE_SIZE`
+## API
+
+* [Fallout 1 API](./docs/fo1.md)
+  * [Functions](./docs/fo1.md#functions)
+  * [Structures](./docs/fo1.md#structures)
+  * [Macros](./docs/fo1.md#macros)
+  * [Classes](./docs/fo1.md#classes)
+* [Fallout 2 API](./docs/fo2.md)
+  * [Functions](./docs/fo2.md#functions)
+  * [Structures](./docs/fo2.md#structures)
+  * [Macros](./docs/fo2.md#macros)
+  * [Classes](./docs/fo2.md#classes)
+* [Fallout Tactics: Brotherhood of Steel API](./docs/fotbos.md)
+  * [Functions](./docs/fotbos.md#functions)
+  * [Structures](./docs/fotbos.md#structures)
+  * [Macros](./docs/fotbos.md#macros)
+  * [Classes](./docs/fotbos.md#classes)
+* [Fallout 3 API](./docs/fo3.md)
+  * [Functions](./docs/fo3.md#functions)
+  * [Structures](./docs/fo3.md#structures)
+  * [Macros](./docs/fo3.md#macros)
+  * [Classes](./docs/fo3.md#classes)
+* [Fallout: New Vegas API](./docs/fonv.md)
+  * [Functions](./docs/fonv.md#functions)
+  * [Structures](./docs/fonv.md#structures)
+  * [Macros](./docs/fonv.md#macros)
+  * [Classes](./docs/fonv.md#classes)
+* [Fallout 4 API](./docs/fo4.md)
+  * [Functions](./docs/fo4.md#functions)
+  * [Structures](./docs/fo4.md#structures)
+  * [Macros](./docs/fo4.md#macros)
+  * [Classes](./docs/fo4.md#classes)
+
+## Save File Format
+
+* [Fallout 1 Save File Format](./docs/fo1-save-format.md)
+  * [Data Structure](./docs/fo1-save-format.md#data-structure)
+* [Fallout 2 Save File Format](./docs/fo2-save-format.md)
+  * [Data Structure](./docs/fo2-save-format.md#data-structure)
+* [Fallout Tactics: Brotherhood of Steel Save File Format](./docs/fotbos-save-format.md)
+  * [Data Structure](./docs/fotbos-save-format.md#data-structure)
+* [Fallout 3 Save File Format](./docs/fo3-save-format.md)
+  * [Data Structure](./docs/fo3-save-format.md#data-structure)
+* [Fallout: New Vegas Save File Format](./docs/fonv-save-format.md)
+  * [Data Structure](./docs/fonv-save-format.md#data-structure)
+* [Fallout 4 Save File Format](./docs/fo4-save-format.md)
+  * [Data Structure](./docs/fo4-save-format.md#data-structure)

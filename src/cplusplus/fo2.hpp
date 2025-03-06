@@ -1,17 +1,23 @@
 /**
- * ---------
- * CFallSave
- * ---------
+ * -----------
+ * CFallSave++
+ * -----------
  *
  * A C/C++ Library to Read Fallout Save Files
  *
- * Author  : Reallukee
- * Version : 1.0
- * License : MIT
+ * File Name   : fo2.hpp
+ *
+ * Title       : FALLOUT 2 HEADER
+ * Description : Fallout 2 Header
+ *
+ * Author      : Luca Pollicino
+ *               (https://github.com/reallukee)
+ * Version     : 2.0.0
+ * License     : MIT
  */
 
-#ifndef CFALLSAVE_FO2_HPP
-#define CFALLSAVE_FO2_HPP
+#ifndef CFALLSAVEPP_FO2_HPP
+#define CFALLSAVEPP_FO2_HPP
 
 #include "header.hpp"
 
@@ -21,12 +27,12 @@ using namespace std;
 
 namespace cfallsave
 {
-    class CFALLSAVE_CPP_API FO2Save
+    class CFALLSAVEPP_API FO2Save
     {
 
     private:
 
-        FO2SAVE* save;
+        FO2SAVE* save = nullptr;
 
     public:
 
@@ -35,6 +41,7 @@ namespace cfallsave
         ~FO2Save();
 
         void readSave(string saveName);
+        bool isOpen();
 
         void printSave();
 
@@ -46,4 +53,4 @@ namespace cfallsave
     };
 }
 
-#endif // !CFALLSAVE_FO2_HPP
+#endif // !CFALLSAVEPP_FO2_HPP

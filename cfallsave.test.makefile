@@ -7,8 +7,8 @@ SRC_DIR = ./src
 OBJ_DIR = obj
 BIN_DIR = bin
 
-EXCLUDED_HEADERS = writer.h
-EXCLUDED_SOURCES = writer.c
+EXCLUDED_HEADERS =
+EXCLUDED_SOURCES =
 
 ALL_SOURCES = $(notdir $(wildcard $(SRC_DIR)/*.c))
 ALL_HEADERS = $(notdir $(wildcard $(SRC_DIR)/*.h))

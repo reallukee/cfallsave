@@ -4,7 +4,7 @@
 using namespace std;
 using namespace cfallsave;
 
-int main()
+int main(int argc, char* argv[])
 {
     FO4Save* save = new FO4Save("fo4.fos");
 

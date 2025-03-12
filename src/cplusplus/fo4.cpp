@@ -78,7 +78,7 @@ namespace cfallsave
         return this->save->saveSignature;
     }
 
-    unsigned FO4Save::getEngineVersion()
+    unsigned int FO4Save::getEngineVersion()
     {
         if (this->save == nullptr)
         {
@@ -88,7 +88,7 @@ namespace cfallsave
         return this->save->engineVersion;
     }
 
-    unsigned FO4Save::getSaveNumber()
+    unsigned int FO4Save::getSaveNumber()
     {
         if (this->save == nullptr)
         {
@@ -110,7 +110,7 @@ namespace cfallsave
         return this->save->playerName;
     }
 
-    unsigned FO4Save::getPlayerLevel()
+    unsigned int FO4Save::getPlayerLevel()
     {
         if (this->save == nullptr)
         {
@@ -182,7 +182,7 @@ namespace cfallsave
 
 
 
-    unsigned FO4Save::getSnapshotWidth()
+    unsigned int FO4Save::getSnapshotWidth()
     {
         if (this->save == nullptr)
         {
@@ -192,7 +192,7 @@ namespace cfallsave
         return this->save->snapshotWidth;
     }
 
-    unsigned FO4Save::getSnapshotHeight()
+    unsigned int FO4Save::getSnapshotHeight()
     {
         if (this->save == nullptr)
         {

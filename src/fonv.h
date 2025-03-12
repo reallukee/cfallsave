@@ -21,27 +21,58 @@
 
 #include "header.h"
 
+#define FONVSAVE_GAME_NAME          "Fallout: New Vegas"
 #define FONVSAVE_SIGNATURE          "FO3SAVEGAME"
 #define FONVSAVE_SIGNATURE_LENGTH   11
+#define FONVSAVE_PROPS_COUNT        11
+
+typedef enum FONVSAVE_PROPS
+{
+    FONVSAVE_PROPS_SAVE_SIGNATURE   = 0,
+    FONVSAVE_PROPS_ENGINE_VERSION   = 1,
+    FONVSAVE_PROPS_SAVE_NUMBER      = 2,
+    FONVSAVE_PROPS_PLAYER_NAME      = 3,
+    FONVSAVE_PROPS_PLAYER_LEVEL     = 4,
+    FONVSAVE_PROPS_PLAYER_TITLE     = 5,
+    FONVSAVE_PROPS_PLAYER_LOCATION  = 6,
+    FONVSAVE_PROPS_PLAYER_PLAYTIME  = 7,
+    FONVSAVE_PROPS_SNAPSHOT_WIDTH   = 8,
+    FONVSAVE_PROPS_SNAPSHOT_HEIGHT  = 9,
+    FONVSAVE_PROPS_SNAPHOST         = 10
+} FONVSAVE_PROPS;
+
+#define FONVSAVE_MAX_SNAPSHOT_WIDTH     512
+#define FONVSAVE_MAX_SNAPSHOT_HEIGHT    288
+#define FONVSAVE_MAX_SNAPSHOT_LENGTH    442368
+
+#define FONVSAVE_SNAPSHOT_COLOR_BYTES   3
 
 typedef struct FONVSAVE
 {
+    FILE* save;
+
+    char* saveFileName;
+
     char saveSignature[FONVSAVE_SIGNATURE_LENGTH + 1];
-    unsigned engineVersion;
-    unsigned saveNumber;
+    unsigned int engineVersion;
+    unsigned int saveNumber;
 
     char* playerName;
-    unsigned playerLevel;
+    unsigned int playerLevel;
     char* playerTitle;
     char* playerLocation;
     char* playerPlaytime;
 
-    unsigned snapshotWidth;
-    unsigned snapshotHeight;
+    unsigned int snapshotWidth;
+    unsigned int snapshotHeight;
+    unsigned long snapshotLength;
     unsigned char* snapshot;
+
+    unsigned long propAddresses[FONVSAVE_PROPS_COUNT];
 } FONVSAVE;
 
-#define FONVSAVE_SIZE sizeof(FONVSAVE)
+#define FONVSAVE_PROPS_SIZE sizeof(FONVSAVE_PROPS)
+#define FONVSAVE_SIZE       sizeof(FONVSAVE)
 
 
 
@@ -49,19 +80,48 @@ CFALLSAVE_API FONVSAVE* readFONVSave(
     const char* saveName
 );
 
+CFALLSAVE_API bool writeFONVSave(
+    FONVSAVE* save,
+    char* saveName
+);
+
 CFALLSAVE_API bool isFONVSave(
     const char* saveName
 );
 
-CFALLSAVE_API void printFONVSave(
-    FONVSAVE* save
-);
-
-CFALLSAVE_API void printFONVSaveSnapshot(
-    FONVSAVE* save
-);
-
 CFALLSAVE_API void closeFONVSave(
+    FONVSAVE* save
+);
+
+
+
+CFALLSAVE_API bool readFONVSaveProperty(
+    FONVSAVE* save,
+    FONVSAVE_PROPS property,
+    void** value
+);
+
+CFALLSAVE_API bool writeFONVSaveProperty(
+    FONVSAVE* save,
+    FONVSAVE_PROPS property,
+    void* value
+);
+
+
+
+CFALLSAVE_API bool printFONVSave(
+    FONVSAVE* save
+);
+
+CFALLSAVE_API bool printFONVSaveProps(
+    FONVSAVE* save
+);
+
+CFALLSAVE_API bool printFONVSavePropAddresses(
+    FONVSAVE* save
+);
+
+CFALLSAVE_API bool printFONVSaveSnapshot(
     FONVSAVE* save
 );
 

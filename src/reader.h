@@ -22,74 +22,83 @@
 #include "header.h"
 
 bool readFixedString(
-    FILE* file,
-    char* property,
-    long unsigned length,
+    FILE* source,
+    char* destination,
+    unsigned long length,
     unsigned long* address,
-    unsigned long skip
+    unsigned long skip,
+    bool updateAddress
 );
 
 bool readString(
-    FILE* file,
-    char** property,
+    FILE* source,
+    char** destination,
     unsigned long* address,
     unsigned long skipLength,
-    unsigned long skipString
+    unsigned long skipString,
+    bool updateAddress
 );
 
 bool readCURSEDString(
-    FILE* file,
-    char** property,
+    FILE* source,
+    char** destination,
     unsigned long* address,
     unsigned long skipLength,
-    unsigned long skipString
+    unsigned long skipString,
+    bool updateAddress
 );
 
 
 
 bool readUByte(
-    FILE* file,
-    unsigned short* property,
+    FILE* source,
+    unsigned char* destination,
     unsigned long* address,
-    unsigned long skip
+    unsigned long skip,
+    bool updateAddress
 );
 
 bool readUShort(
-    FILE* file,
-    unsigned short* property,
+    FILE* source,
+    unsigned short* destination,
     unsigned long* address,
-    unsigned long skip
+    unsigned long skip,
+    bool updateAddress
 );
 
 bool readUInt(
-    FILE* file,
-    unsigned* property,
+    FILE* source,
+    unsigned int* destination,
     unsigned long* address,
-    unsigned long skip
+    unsigned long skip,
+    bool updateAddress
 );
 
 bool readULong(
-    FILE* file,
-    unsigned long* property,
+    FILE* source,
+    unsigned long* destination,
     unsigned long* address,
-    unsigned long skip
+    unsigned long skip,
+    bool updateAddress
 );
 
 bool readFloat(
-    FILE* file,
-    float* property,
+    FILE* source,
+    float* destination,
     unsigned long* address,
-    unsigned long skip
+    unsigned long skip,
+    bool updateAddress
 );
 
 
 
 bool readUByteArray(
-    FILE* file,
-    unsigned char* property,
-    long unsigned length,
+    FILE* source,
+    unsigned char* destination,
+    unsigned long length,
     unsigned long* address,
-    unsigned long skip
+    unsigned long skip,
+    bool updateAddress
 );
 
 #endif // !CFALLSAVE_READER_H

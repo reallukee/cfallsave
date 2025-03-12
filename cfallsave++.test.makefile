@@ -7,8 +7,8 @@ SRC_DIR = ./src
 OBJ_DIR = obj/cfallsave++
 BIN_DIR = bin/cfallsave++
 
-EXCLUDED_HEADERS     = writer.h cfallsave.h
-EXCLUDED_SOURCES     = writer.c main.c
+EXCLUDED_HEADERS     = cfallsave.h
+EXCLUDED_SOURCES     = main.c
 EXCLUDED_CPP_HEADERS =
 EXCLUDED_CPP_SOURCES =
 

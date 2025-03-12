@@ -47,17 +47,17 @@ namespace cfallsave
         void printSaveSnapshot();
 
         string getSaveSignature();
-        unsigned getEngineVersion();
-        unsigned getSaveNumber();
+        unsigned int getEngineVersion();
+        unsigned int getSaveNumber();
 
         string getPlayerName();
-        unsigned getPlayerLevel();
+        unsigned int getPlayerLevel();
         string getPlayerTitle();
         string getPlayerLocation();
         string getPlayerPlaytime();
 
-        unsigned getSnapshotWidth();
-        unsigned getSnapshotHeight();
+        unsigned int getSnapshotWidth();
+        unsigned int getSnapshotHeight();
         unsigned char* getSnapshot();
 
     };

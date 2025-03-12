@@ -19,21 +19,20 @@
 #include "reader.h"
 
 bool readFixedString(
-    FILE* file,
-    char* property,
+    FILE* source,
+    char* destination,
     unsigned long length,
     unsigned long* address,
-    unsigned long skip
+    unsigned long skip,
+    bool updateAddress
 )
 {
-    if (file == NULL || property == NULL || address == NULL)
+    if (source == NULL || destination == NULL || address == NULL)
     {
         return false;
     }
 
-    *address += skip;
-
-    int r_fseek = fseek(file, *address, SEEK_SET);
+    int r_fseek = fseek(source, *address + skip, SEEK_SET);
 
     if (r_fseek != 0)
     {
@@ -42,62 +41,97 @@ bool readFixedString(
 
     int CHAR_SIZE = sizeof(char);
 
-    size_t r_fread = fread(property, CHAR_SIZE, length, file);
+    size_t r_fread = fread(destination, CHAR_SIZE, length, source);
 
     if (r_fread != length)
     {
-        *address -= skip;
-
         return false;
     }
 
-    property[length + 1] = '\0';
+    destination[length + 1] = '\0';
 
-    *address += length;
+    if (updateAddress)
+    {
+        *address += skip + length;
+    }
 
     return true;
 }
 
 bool readString(
-    FILE* file,
-    char** property,
+    FILE* source,
+    char** destination,
     unsigned long* address,
     unsigned long skipLength,
-    unsigned long skipString
+    unsigned long skipString,
+    bool updateAddress
 )
 {
     unsigned short length = 0;
 
-    readUShort(file, &length, address, skipLength);
+    bool r_readUShort = readUShort(source, &length, address, skipLength, updateAddress);
 
-    if (*property != NULL)
-    {
-        free(*property);
-    }
-
-    *property = (char*)malloc(length + 1);
-
-    if (*property == NULL)
+    if (!r_readUShort)
     {
         return false;
     }
 
-    readFixedString(file, *property, length, address, skipString);
+    if (!updateAddress)
+    {
+        *address += 2;
+    }
+
+    if (*destination != NULL)
+    {
+        free(*destination);
+    }
+
+    *destination = (char*)malloc(length + 1);
+
+    if (*destination == NULL)
+    {
+        return false;
+    }
+
+    bool r_readFixedString = readFixedString(source, *destination, length, address, skipString, updateAddress);
+
+    if (!r_readFixedString)
+    {
+        free(*destination);
+
+        return false;
+    }
+
+    if (!updateAddress)
+    {
+        *address -= 2;
+    }
 
     return true;
 }
 
 bool readCURSEDString(
-    FILE* file,
-    char** property,
+    FILE* source,
+    char** destination,
     unsigned long* address,
     unsigned long skipLength,
-    unsigned long skipString
+    unsigned long skipString,
+    bool updateAddress
 )
 {
     unsigned short length = 0;
 
-    readUShort(file, &length, address, skipLength);
+    bool r_readUShort = readUShort(source, &length, address, skipLength, updateAddress);
+
+    if (!r_readUShort)
+    {
+        return false;
+    }
+
+    if (!updateAddress)
+    {
+        *address += 2;
+    }
 
     char* cursedPropery = (char*)malloc(length * 2 + 1);
 
@@ -106,16 +140,23 @@ bool readCURSEDString(
         return false;
     }
 
-    readFixedString(file, cursedPropery, length * 2, address, skipString);
+    bool r_readFixedString = readFixedString(source, cursedPropery, length * 2, address, skipString, false);
 
-    if (*property != NULL)
+    if (!r_readFixedString)
     {
-        free(*property);
+        free(cursedPropery);
+
+        return false;
     }
 
-    *property = (char*)malloc(length + 1);
+    if (*destination != NULL)
+    {
+        free(*destination);
+    }
 
-    if (*property == NULL)
+    *destination = (char*)malloc(length + 1);
+
+    if (*destination == NULL)
     {
         free(cursedPropery);
 
@@ -124,12 +165,17 @@ bool readCURSEDString(
 
     for (int i = 0, j = 0; i < length * 2 && j < length; i += 2, j++)
     {
-        (*property)[j] = cursedPropery[i];
+        (*destination)[j] = cursedPropery[i];
     }
 
-    (*property)[length] = '\0';
+    (*destination)[length] = '\0';
 
     free(cursedPropery);
+
+    if (!updateAddress)
+    {
+        *address -= 2;
+    }
 
     return true;
 }
@@ -137,20 +183,19 @@ bool readCURSEDString(
 
 
 bool readUByte(
-    FILE* file,
-    unsigned short* property,
+    FILE* source,
+    unsigned char* destination,
     unsigned long* address,
-    unsigned long skip
+    unsigned long skip,
+    bool updateAddress
 )
 {
-    if (file == NULL || property == NULL || address == NULL)
+    if (source == NULL || destination == NULL || address == NULL)
     {
         return false;
     }
 
-    *address += skip;
-
-    int r_fseek = fseek(file, *address, SEEK_SET);
+    int r_fseek = fseek(source, *address + skip, SEEK_SET);
 
     if (r_fseek != 0)
     {
@@ -159,35 +204,35 @@ bool readUByte(
 
     int UBYTE_SIZE = sizeof(unsigned char);
 
-    size_t r_fread = fread(property, UBYTE_SIZE, 1, file);
+    size_t r_fread = fread(destination, UBYTE_SIZE, 1, source);
 
     if (r_fread != 1)
     {
-        *address -= skip;
-
         return false;
     }
 
-    *address += UBYTE_SIZE;
+    if (updateAddress)
+    {
+        *address += skip + UBYTE_SIZE;
+    }
 
     return true;
 }
 
 bool readUShort(
-    FILE* file,
-    unsigned short* property,
+    FILE* source,
+    unsigned short* destination,
     unsigned long* address,
-    unsigned long skip
+    unsigned long skip,
+    bool updateAddress
 )
 {
-    if (file == NULL || property == NULL || address == NULL)
+    if (source == NULL || destination == NULL || address == NULL)
     {
         return false;
     }
 
-    *address += skip;
-
-    int r_fseek = fseek(file, *address, SEEK_SET);
+    int r_fseek = fseek(source, *address + skip, SEEK_SET);
 
     if (r_fseek != 0)
     {
@@ -196,35 +241,35 @@ bool readUShort(
 
     int USHORT_SIZE = sizeof(unsigned short);
 
-    size_t r_fread = fread(property, USHORT_SIZE, 1, file);
+    size_t r_fread = fread(destination, USHORT_SIZE, 1, source);
 
     if (r_fread != 1)
     {
-        *address -= skip;
-
         return false;
     }
 
-    *address += USHORT_SIZE;
+    if (updateAddress)
+    {
+        *address += skip + USHORT_SIZE;
+    }
 
     return true;
 }
 
 bool readUInt(
-    FILE* file,
-    unsigned* property,
+    FILE* source,
+    unsigned int* destination,
     unsigned long* address,
-    unsigned long skip
+    unsigned long skip,
+    bool updateAddress
 )
 {
-    if (file == NULL || property == NULL || address == NULL)
+    if (source == NULL || destination == NULL || address == NULL)
     {
         return false;
     }
 
-    *address += skip;
-
-    int r_fseek = fseek(file, *address, SEEK_SET);
+    int r_fseek = fseek(source, *address + skip, SEEK_SET);
 
     if (r_fseek != 0)
     {
@@ -233,35 +278,35 @@ bool readUInt(
 
     int UINT_SIZE = sizeof(unsigned int);
 
-    size_t r_fread = fread(property, UINT_SIZE, 1, file);
+    size_t r_fread = fread(destination, UINT_SIZE, 1, source);
 
     if (r_fread != 1)
     {
-        *address -= skip;
-
         return false;
     }
 
-    *address += UINT_SIZE;
+    if (updateAddress)
+    {
+        *address += skip + UINT_SIZE;
+    }
 
     return true;
 }
 
 bool readULong(
-    FILE* file,
-    unsigned long* property,
+    FILE* source,
+    unsigned long* destination,
     unsigned long* address,
-    unsigned long skip
+    unsigned long skip,
+    bool updateAddress
 )
 {
-    if (file == NULL || property == NULL || address == NULL)
+    if (source == NULL || destination == NULL || address == NULL)
     {
         return false;
     }
 
-    *address += skip;
-
-    int r_fseek = fseek(file, *address, SEEK_SET);
+    int r_fseek = fseek(source, *address + skip, SEEK_SET);
 
     if (r_fseek != 0)
     {
@@ -270,35 +315,35 @@ bool readULong(
 
     int ULONG_SIZE = sizeof(unsigned long);
 
-    size_t r_fread = fread(property, ULONG_SIZE, 1, file);
+    size_t r_fread = fread(destination, ULONG_SIZE, 1, source);
 
     if (r_fread != 1)
     {
-        *address -= skip;
-
         return false;
     }
 
-    *address += ULONG_SIZE;
+    if (updateAddress)
+    {
+        *address += skip + ULONG_SIZE;
+    }
 
     return true;
 }
 
 bool readFloat(
-    FILE* file,
-    float* property,
+    FILE* source,
+    float* destination,
     unsigned long* address,
-    unsigned long skip
+    unsigned long skip,
+    bool updateAddress
 )
 {
-    if (file == NULL || property == NULL || address == NULL)
+    if (source == NULL || destination == NULL || address == NULL)
     {
         return false;
     }
 
-    *address += skip;
-
-    int r_fseek = fseek(file, *address, SEEK_SET);
+    int r_fseek = fseek(source, *address + skip, SEEK_SET);
 
     if (r_fseek != 0)
     {
@@ -307,16 +352,17 @@ bool readFloat(
 
     int FLOAT_SIZE = sizeof(float);
 
-    size_t r_fread = fread(property, FLOAT_SIZE, 1, file);
+    size_t r_fread = fread(destination, FLOAT_SIZE, 1, source);
 
     if (r_fread != 1)
     {
-        *address -= skip;
-
         return false;
     }
 
-    *address += FLOAT_SIZE;
+    if (updateAddress)
+    {
+        *address += skip + FLOAT_SIZE;
+    }
 
     return true;
 }
@@ -324,21 +370,20 @@ bool readFloat(
 
 
 bool readUByteArray(
-    FILE* file,
-    unsigned char* property,
-    long unsigned length,
+    FILE* source,
+    unsigned char* destination,
+    unsigned long length,
     unsigned long* address,
-    unsigned long skip
+    unsigned long skip,
+    bool updateAddress
 )
 {
-    if (file == NULL || property == NULL || address == NULL)
+    if (source == NULL || destination == NULL || address == NULL)
     {
         return false;
     }
 
-    *address += skip;
-
-    int r_fseek = fseek(file, *address, SEEK_SET);
+    int r_fseek = fseek(source, *address + skip, SEEK_SET);
 
     if (r_fseek != 0)
     {
@@ -347,18 +392,17 @@ bool readUByteArray(
 
     int UBYTE_SIZE = sizeof(unsigned char);
 
-    size_t r_fread = fread(property, UBYTE_SIZE, length, file);
+    size_t r_fread = fread(destination, UBYTE_SIZE, length, source);
 
     if (r_fread != length)
     {
-        *address -= skip;
-
         return false;
     }
 
-    property[length + 1] = '\0';
-
-    *address += length;
+    if (updateAddress)
+    {
+        *address += skip + length;
+    }
 
     return true;
 }

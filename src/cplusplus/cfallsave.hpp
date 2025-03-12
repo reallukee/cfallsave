@@ -21,13 +21,13 @@
 
 #include "header.hpp"
 
-#include "fo1.hpp"      // Falllout 1
-#include "fo2.hpp"      // Fallout 2
-#include "fotbos.hpp"   // Fallout Tactics: Brotherhood of Steel
-#include "fo3.hpp"      // Fallout 3
-#include "fonv.hpp"     // Fallout: New Vegas
-#include "fo4.hpp"      // Fallout 4
-#include "fox.hpp"      // Fallout X
+#include "fo1.hpp"
+#include "fo2.hpp"
+#include "fotbos.hpp"
+#include "fo3.hpp"
+#include "fonv.hpp"
+#include "fo4.hpp"
+#include "fox.hpp"
 
 #define CFALLSAVEPP_VERSION     "2_0_0"
 #define CFALLSAVEPP_MIN_VERSION "2_0_0"

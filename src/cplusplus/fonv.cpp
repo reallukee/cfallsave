@@ -78,7 +78,7 @@ namespace cfallsave
         return this->save->saveSignature;
     }
 
-    unsigned FONVSave::getEngineVersion()
+    unsigned int FONVSave::getEngineVersion()
     {
         if (this->save == nullptr)
         {
@@ -88,7 +88,7 @@ namespace cfallsave
         return this->save->engineVersion;
     }
 
-    unsigned FONVSave::getSaveNumber()
+    unsigned int FONVSave::getSaveNumber()
     {
         if (this->save == nullptr)
         {
@@ -110,7 +110,7 @@ namespace cfallsave
         return this->save->playerName;
     }
 
-    unsigned FONVSave::getPlayerLevel()
+    unsigned int FONVSave::getPlayerLevel()
     {
         if (this->save == nullptr)
         {
@@ -152,7 +152,7 @@ namespace cfallsave
 
 
 
-    unsigned FONVSave::getSnapshotWidth()
+    unsigned int FONVSave::getSnapshotWidth()
     {
         if (this->save == nullptr)
         {
@@ -162,7 +162,7 @@ namespace cfallsave
         return this->save->snapshotWidth;
     }
 
-    unsigned FONVSave::getSnapshotHeight()
+    unsigned int FONVSave::getSnapshotHeight()
     {
         if (this->save == nullptr)
         {

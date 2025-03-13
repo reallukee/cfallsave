@@ -1,10 +1,10 @@
 <div align="center">
 
-![Logo](./assets/banner-logo+cfallsave.png)
+![Logo 192x192](./assets/logo_192x192.gif)
 
 # CFallSave
 
-![GitHub License](https://img.shields.io/github/license/reallukee/cfallsave?style=flat&label=License)
+![CFallSave License](https://img.shields.io/github/license/reallukee/cfallsave?style=flat&label=License)
 
 A C/C++ Library to Read Fallout Save Files
 
@@ -12,57 +12,148 @@ A C/C++ Library to Read Fallout Save Files
 
 
 
+# Introduction
+
+```c
+#include "cfallsave.h"
+
+int main(int argc, char* argv[])
+{
+    char* saveName = "fo4.fos";
+
+    if (!isFO4Save(saveName))
+    {
+        return -1;
+    }
+
+    FO4SAVE* save = readFO4Save(saveName);
+
+    if (save == NULL)
+    {
+        return -1;
+    }
+
+    printFO4Save(save);
+
+    closeFO4Save(save);
+
+    return 0;
+}
+```
+
+```c++
+#include <iostream>
+#include "cfallsave.hpp"
+
+using namespace std;
+using namespace cfallsave;
+
+int main(int argc, char* argv[])
+{
+    FO4Save* save = new FO4Save("fo4.fos");
+
+    save->printSave();
+
+    delete save;
+
+    return 0;
+}
+```
+
+
+
 # Documentation
 
-> View [Documentation](./DOCS.md)
+> View the [Documentation](./DOCS.md)
 
-## API
-
-* [Fallout 1 API](./docs/fo1.md)
-* [Fallout 2 API](./docs/fo2.md)
-* [Fallout Tactics: Brotherhood of Steel API](./docs/fotbos.md)
-* [Fallout 3 API](./docs/fo3.md)
-* [Fallout: New Vegas API](./docs/fonv.md)
-* [Fallout 4 API](./docs/fo4.md)
-
-## Save File Format
-
-* [Fallout 1 Save File Format](./docs/fo1-save-format.md)
-* [Fallout 2 Save File Format](./docs/fo2-save-format.md)
-* [Fallout Tactics: Brotherhood of Steel Save File Format](./docs/fotbos-save-format.md)
-* [Fallout 3 Save File Format](./docs/fo3-save-format.md)
-* [Fallout: New Vegas Save File Format](./docs/fonv-save-format.md)
-* [Fallout 4 Save File Format](./docs/fo4-save-format.md)
+* [APIs](./DOCS.md#apis)
+* [Save Formats](./DOCS.md#save-formats)
 
 
 
 # Examples
 
-> View [Examples](./EXAMPLES.md)
+> View the [Examples](./EXAMPLES.md)
+
+* [CFallSave](./EXAMPLES.md#cfallsave)
+* [CFallSave++](./EXAMPLES.md#cfallsave-1)
 
 
 
-# Compilation
+# Building
 
-```
+* [Requirements](#1-requirements)
+* [Get the source](#2-get-the-source)
+* [Building](#3-building)
+
+
+
+## 1. Requirements
+
+> *Optional requirement*<br />
+> Example: "*git*"
+
+* [*git*]()
+* [g++]()
+* [gcc]()
+* [make]()
+* [*Visual Studio 2022*]()
+    * Desktop development with C++
+* [*Visual Studio Build Tools*]()
+
+
+
+## 2. Get the source
+
+* Using [`git`](#using-git)
+* Using [`GitHub`](#using-github)
+
+### Using `git`
+
+```git
 git clone https://github.com/reallukee/cfallsave.git
 ```
 
-```
-cd cfallsave
+### Using `GitHub`
+
+> [Download]()
+
+
+
+## 3. Building
+
+* [Linux](#linux)
+* [Windows](#windows)
+
+### Linux
+
+```bash
+cd cfallsave/
 ```
 
-## CFallsave
-
-```
+```bash
+# CFallSave
 make -f cfallsave.makefile
-```
 
-## CFallsave++
-
-```
+# CFallSave++
 make -f cfallsave++.makefile
 ```
+
+### Windows
+
+```batch
+cd cfallsave\windows
+```
+
+```batch
+:: CFallSave
+msbuild ./cfallsave -p:Configuration=Release -p:Platform=x64
+
+:: CFallSave++
+msbuild ./cfallsave++ -p:Configuration=Release -p:Platform=x64
+```
+
+
 
 # Author
 

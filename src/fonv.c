@@ -131,7 +131,7 @@ bool isFONVSave(
 
     if (save == NULL)
     {
-        return NULL;
+        return false;
     }
 
     save->save = fopen(saveName, "r+b");
@@ -140,7 +140,7 @@ bool isFONVSave(
     {
         closeFONVSave(save);
 
-        return NULL;
+        return false;
     }
 
     unsigned long address = 0;
@@ -196,9 +196,9 @@ void closeFONVSave(
 
 
 
-bool readFONVSaveProperty(
+bool readFONVSaveProp(
     FONVSAVE* save,
-    FONVSAVE_PROPS property,
+    FONVSAVE_PROPS prop,
     void** value
 )
 {
@@ -209,10 +209,10 @@ bool readFONVSaveProperty(
 
     bool result = true;
 
-    switch (property)
+    switch (prop)
     {
     case FONVSAVE_PROPS_SAVE_SIGNATURE:
-        result = readFixedString(save->save, (char*)value, FONVSAVE_SIGNATURE_LENGTH, &save->propAddresses[property], 0, false);
+        result = readFixedString(save->save, (char*)value, FONVSAVE_SIGNATURE_LENGTH, &save->propAddresses[prop], 0, false);
         break;
 
     case FONVSAVE_PROPS_ENGINE_VERSION:
@@ -220,18 +220,18 @@ bool readFONVSaveProperty(
     case FONVSAVE_PROPS_PLAYER_LEVEL:
     case FONVSAVE_PROPS_SNAPSHOT_WIDTH:
     case FONVSAVE_PROPS_SNAPSHOT_HEIGHT:
-        result = readUInt(save->save, (unsigned int*)value, &save->propAddresses[property], 0, false);
+        result = readUInt(save->save, (unsigned int*)value, &save->propAddresses[prop], 0, false);
         break;
 
     case FONVSAVE_PROPS_PLAYER_NAME:
     case FONVSAVE_PROPS_PLAYER_TITLE:
     case FONVSAVE_PROPS_PLAYER_LOCATION:
     case FONVSAVE_PROPS_PLAYER_PLAYTIME:
-        result = readString(save->save, (char**)value, &save->propAddresses[property], 0, 1, false);
+        result = readString(save->save, (char**)value, &save->propAddresses[prop], 0, 1, false);
         break;
 
     case FONVSAVE_PROPS_SNAPHOST:
-        result = readUByteArray(save->save, (unsigned char*)value, save->snapshotLength, &save->propAddresses[property], 0, false);
+        result = readUByteArray(save->save, (unsigned char*)value, save->snapshotLength, &save->propAddresses[prop], 0, false);
         break;
 
     default:
@@ -241,9 +241,9 @@ bool readFONVSaveProperty(
     return result;
 }
 
-bool writeFONVSaveProperty(
+bool writeFONVSaveProp(
     FONVSAVE* save,
-    FONVSAVE_PROPS property,
+    FONVSAVE_PROPS prop,
     void* value
 )
 {

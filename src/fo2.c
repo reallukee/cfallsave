@@ -89,7 +89,7 @@ bool isFO2Save(
 
     if (save == NULL)
     {
-        return NULL;
+        return false;
     }
 
     save->save = fopen(saveName, "r+b");
@@ -98,7 +98,7 @@ bool isFO2Save(
     {
         closeFO2Save(save);
 
-        return NULL;
+        return false;
     }
 
     unsigned long address = 0;
@@ -131,9 +131,9 @@ void closeFO2Save(
 
 
 
-bool readFO2SaveProperty(
+bool readFO2SaveProp(
     FO2SAVE* save,
-    FO2SAVE_PROPS property,
+    FO2SAVE_PROPS prop,
     void** value
 )
 {
@@ -144,15 +144,15 @@ bool readFO2SaveProperty(
 
     bool result = true;
 
-    switch (property)
+    switch (prop)
     {
     case FO2SAVE_PROPS_SAVE_SIGNATURE:
-        result = readFixedString(save->save, (char*)value, FO2SAVE_SIGNATURE_LENGTH, &save->propAddresses[property], 0, false);
+        result = readFixedString(save->save, (char*)value, FO2SAVE_SIGNATURE_LENGTH, &save->propAddresses[prop], 0, false);
         break;
 
     case FO2SAVE_PROPS_SAVE_NAME:
     case FO2SAVE_PROPS_PLAYER_NAME:
-        result = readFixedString(save->save, (char*)value, 32, &save->propAddresses[property], 0, false);
+        result = readFixedString(save->save, (char*)value, 32, &save->propAddresses[prop], 0, false);
         break;
 
     default:
@@ -162,9 +162,9 @@ bool readFO2SaveProperty(
     return result;
 }
 
-bool writeFO2SaveProperty(
+bool writeFO2SaveProp(
     FO2SAVE* save,
-    FO2SAVE_PROPS property,
+    FO2SAVE_PROPS prop,
     void* value
 )
 {

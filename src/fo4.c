@@ -140,7 +140,7 @@ bool isFO4Save(
 
     if (save == NULL)
     {
-        return NULL;
+        return false;
     }
 
     save->save = fopen(saveName, "r+b");
@@ -149,7 +149,7 @@ bool isFO4Save(
     {
         closeFO4Save(save);
 
-        return NULL;
+        return false;
     }
 
     unsigned long address = 0;
@@ -188,9 +188,9 @@ void closeFO4Save(
 
 
 
-bool readFO4SaveProperty(
+bool readFO4SaveProp(
     FO4SAVE* save,
-    FO4SAVE_PROPS property,
+    FO4SAVE_PROPS prop,
     void** value
 )
 {
@@ -201,10 +201,10 @@ bool readFO4SaveProperty(
 
     bool result = true;
 
-    switch (property)
+    switch (prop)
     {
     case FO4SAVE_PROPS_SAVE_SIGNATURE:
-        result = readFixedString(save->save, (char*)value, FO4SAVE_SIGNATURE_LENGTH, &save->propAddresses[property], 0, false);
+        result = readFixedString(save->save, (char*)value, FO4SAVE_SIGNATURE_LENGTH, &save->propAddresses[prop], 0, false);
         break;
 
     case FO4SAVE_PROPS_ENGINE_VERSION:
@@ -212,27 +212,27 @@ bool readFO4SaveProperty(
     case FO4SAVE_PROPS_PLAYER_LEVEL:
     case FO4SAVE_PROPS_SNAPSHOT_WIDTH:
     case FO4SAVE_PROPS_SNAPSHOT_HEIGHT:
-        result = readUInt(save->save, (unsigned int*)value, &save->propAddresses[property], 0, false);
+        result = readUInt(save->save, (unsigned int*)value, &save->propAddresses[prop], 0, false);
         break;
 
     case FO4SAVE_PROPS_PLAYER_NAME:
     case FO4SAVE_PROPS_PLAYER_LOCATION:
     case FO4SAVE_PROPS_PLAYER_PLAYTIME:
     case FO4SAVE_PROPS_PLAYER_RACE:
-        result = readString(save->save, (char**)value, &save->propAddresses[property], 0, 0, false);
+        result = readString(save->save, (char**)value, &save->propAddresses[prop], 0, 0, false);
         break;
 
     case FO4SAVE_PROPS_PLAYER_SEX:
-        result = readUShort(save->save, (unsigned short*)value, &save->propAddresses[property], 0, false);
+        result = readUShort(save->save, (unsigned short*)value, &save->propAddresses[prop], 0, false);
         break;
 
     case FO4SAVE_PROPS_PLAYER_CURRENT_XP:
     case FO4SAVE_PROPS_PLAYER_REQUIRED_XP:
-        result = readFloat(save->save, (float*)value, &save->propAddresses[property], 0, false);
+        result = readFloat(save->save, (float*)value, &save->propAddresses[prop], 0, false);
         break;
 
     case FO4SAVE_PROPS_SNAPSHOT:
-        result = readUByteArray(save->save, (unsigned char*)value, save->snapshotLength, &save->propAddresses[property], 0, false);
+        result = readUByteArray(save->save, (unsigned char*)value, save->snapshotLength, &save->propAddresses[prop], 0, false);
         break;
 
     default:
@@ -242,9 +242,9 @@ bool readFO4SaveProperty(
     return result;
 }
 
-bool writeFO4SaveProperty(
+bool writeFO4SaveProp(
     FO4SAVE* save,
-    FO4SAVE_PROPS property,
+    FO4SAVE_PROPS prop,
     void* value
 )
 {

@@ -131,7 +131,7 @@ bool isFO3Save(
 
     if (save == NULL)
     {
-        return NULL;
+        return false;
     }
 
     save->save = fopen(saveName, "r+b");
@@ -140,7 +140,7 @@ bool isFO3Save(
     {
         closeFO3Save(save);
 
-        return NULL;
+        return false;
     }
 
     unsigned long address = 0;
@@ -196,9 +196,9 @@ void closeFO3Save(
 
 
 
-bool readFO3SaveProperty(
+bool readFO3SaveProp(
     FO3SAVE* save,
-    FO3SAVE_PROPS property,
+    FO3SAVE_PROPS prop,
     void** value
 )
 {
@@ -209,10 +209,10 @@ bool readFO3SaveProperty(
 
     bool result = true;
 
-    switch (property)
+    switch (prop)
     {
     case FO3SAVE_PROPS_SAVE_SIGNATURE:
-        result = readFixedString(save->save, (char*)value, FO3SAVE_SIGNATURE_LENGTH, &save->propAddresses[property], 0, false);
+        result = readFixedString(save->save, (char*)value, FO3SAVE_SIGNATURE_LENGTH, &save->propAddresses[prop], 0, false);
         break;
 
     case FO3SAVE_PROPS_ENGINE_VERSION:
@@ -220,18 +220,18 @@ bool readFO3SaveProperty(
     case FO3SAVE_PROPS_PLAYER_LEVEL:
     case FO3SAVE_PROPS_SNAPSHOT_WIDTH:
     case FO3SAVE_PROPS_SNAPSHOT_HEIGHT:
-        result = readUInt(save->save, (unsigned int*)value, &save->propAddresses[property], 0, false);
+        result = readUInt(save->save, (unsigned int*)value, &save->propAddresses[prop], 0, false);
         break;
 
     case FO3SAVE_PROPS_PLAYER_NAME:
     case FO3SAVE_PROPS_PLAYER_TITLE:
     case FO3SAVE_PROPS_PLAYER_LOCATION:
     case FO3SAVE_PROPS_PLAYER_PLAYTIME:
-        result = readString(save->save, (char**)value, &save->propAddresses[property], 0, 1, false);
+        result = readString(save->save, (char**)value, &save->propAddresses[prop], 0, 1, false);
         break;
 
     case FO3SAVE_PROPS_SNAPHOST:
-        result = readUByteArray(save->save, (unsigned char*)value, save->snapshotLength, &save->propAddresses[property], 0, false);
+        result = readUByteArray(save->save, (unsigned char*)value, save->snapshotLength, &save->propAddresses[prop], 0, false);
         break;
 
     default:
@@ -241,9 +241,9 @@ bool readFO3SaveProperty(
     return result;
 }
 
-bool writeFO3SaveProperty(
+bool writeFO3SaveProp(
     FO3SAVE* save,
-    FO3SAVE_PROPS property,
+    FO3SAVE_PROPS prop,
     void* value
 )
 {

@@ -1,4 +1,12 @@
+<div align="center">
+
+![ToDo Logo 192x192](./assets/todo/todo_logo_192x192.gif)
+
 # ToDo
+
+</div>
+
+
 
 - [x] Common Reader
 - [ ] Common Writer
@@ -18,3 +26,5 @@
 - [ ] More support for `Fallout: New Vegas`
 - [ ] More support for `Fallout 4`
 - [ ] More support for `Fallout Tactics: Brotherhood of Steel`
+- [ ] Read/Write Number
+- [ ] Read/Write Array

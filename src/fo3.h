@@ -95,15 +95,15 @@ CFALLSAVE_API void closeFO3Save(
 
 
 
-CFALLSAVE_API bool readFO3SaveProperty(
+CFALLSAVE_API bool readFO3SaveProp(
     FO3SAVE* save,
-    FO3SAVE_PROPS property,
+    FO3SAVE_PROPS prop,
     void** value
 );
 
-CFALLSAVE_API bool writeFO3SaveProperty(
+CFALLSAVE_API bool writeFO3SaveProp(
     FO3SAVE* save,
-    FO3SAVE_PROPS property,
+    FO3SAVE_PROPS prop,
     void* value
 );
 

@@ -10,7 +10,7 @@ int main()
 
     save->printSave();
 
-    delete(save);
+    delete save;
 
     return 0;
 }

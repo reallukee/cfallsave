@@ -95,15 +95,15 @@ CFALLSAVE_API void closeFONVSave(
 
 
 
-CFALLSAVE_API bool readFONVSaveProperty(
+CFALLSAVE_API bool readFONVSaveProp(
     FONVSAVE* save,
-    FONVSAVE_PROPS property,
+    FONVSAVE_PROPS prop,
     void** value
 );
 
-CFALLSAVE_API bool writeFONVSaveProperty(
+CFALLSAVE_API bool writeFONVSaveProp(
     FONVSAVE* save,
-    FONVSAVE_PROPS property,
+    FONVSAVE_PROPS prop,
     void* value
 );
 

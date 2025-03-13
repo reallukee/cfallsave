@@ -71,15 +71,15 @@ CFALLSAVE_API void closeFO1Save(
 
 
 
-CFALLSAVE_API bool readFO1SaveProperty(
+CFALLSAVE_API bool readFO1SaveProp(
     FO1SAVE* save,
-    FO1SAVE_PROPS property,
+    FO1SAVE_PROPS prop,
     void** value
 );
 
-CFALLSAVE_API bool writeFO1SaveProperty(
+CFALLSAVE_API bool writeFO1SaveProp(
     FO1SAVE* save,
-    FO1SAVE_PROPS property,
+    FO1SAVE_PROPS prop,
     void* value
 );
 

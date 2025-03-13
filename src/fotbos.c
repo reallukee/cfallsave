@@ -95,7 +95,7 @@ bool isFOTBOSSave(
 
     if (save == NULL)
     {
-        return NULL;
+        return false;
     }
 
     save->save = fopen(saveName, "r+b");
@@ -104,7 +104,7 @@ bool isFOTBOSSave(
     {
         closeFOTBOSSave(save);
 
-        return NULL;
+        return false;
     }
 
     unsigned long address = 0;
@@ -142,9 +142,9 @@ void closeFOTBOSSave(
 
 
 
-bool readFOTBOSSaveProperty(
+bool readFOTBOSSaveProp(
     FOTBOSSAVE* save,
-    FOTBOSSAVE_PROPS property,
+    FOTBOSSAVE_PROPS prop,
     void** value
 )
 {
@@ -155,17 +155,17 @@ bool readFOTBOSSaveProperty(
 
     bool result = true;
 
-    switch (property)
+    switch (prop)
     {
     case FOTBOSSAVE_PROPS_SAVE_SIGNATURE:
-        result = readFixedString(save->save, (char*)value, FOTBOSSAVE_SIGNATURE_LENGTH, &save->propAddresses[property], 0, false);
+        result = readFixedString(save->save, (char*)value, FOTBOSSAVE_SIGNATURE_LENGTH, &save->propAddresses[prop], 0, false);
         break;
 
     case FOTBOSSAVE_PROPS_SAVE_NAME:
     case FOTBOSSAVE_PROPS_PLAYER_NAME:
     case FOTBOSSAVE_PROPS_PLAYER_LOCATION:
     case FOTBOSSAVE_PROPS_GAME_DATE_TIME:
-        result = readCURSEDString(save->save, (char**)value, &save->propAddresses[property], 0, 2, false);
+        result = readCURSEDString(save->save, (char**)value, &save->propAddresses[prop], 0, 2, false);
         break;
 
     default:
@@ -175,9 +175,9 @@ bool readFOTBOSSaveProperty(
     return result;
 }
 
-bool writeFOTBOSSaveProperty(
+bool writeFOTBOSSaveProp(
     FOTBOSSAVE* save,
-    FOTBOSSAVE_PROPS property,
+    FOTBOSSAVE_PROPS prop,
     void* value
 )
 {

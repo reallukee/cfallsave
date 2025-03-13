@@ -71,15 +71,15 @@ CFALLSAVE_API void closeFO2Save(
 
 
 
-CFALLSAVE_API bool readFO2SaveProperty(
+CFALLSAVE_API bool readFO2SaveProp(
     FO2SAVE* save,
-    FO2SAVE_PROPS property,
+    FO2SAVE_PROPS prop,
     void** value
 );
 
-CFALLSAVE_API bool writeFO2SaveProperty(
+CFALLSAVE_API bool writeFO2SaveProp(
     FO2SAVE* save,
-    FO2SAVE_PROPS property,
+    FO2SAVE_PROPS prop,
     void* value
 );
 

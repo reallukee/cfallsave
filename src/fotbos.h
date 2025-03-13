@@ -75,15 +75,15 @@ CFALLSAVE_API void closeFOTBOSSave(
 
 
 
-CFALLSAVE_API bool readFOTBOSSaveProperty(
+CFALLSAVE_API bool readFOTBOSSaveProp(
     FOTBOSSAVE* save,
-    FOTBOSSAVE_PROPS property,
+    FOTBOSSAVE_PROPS prop,
     void** value
 );
 
-CFALLSAVE_API bool writeFOTBOSSaveProperty(
+CFALLSAVE_API bool writeFOTBOSSaveProp(
     FOTBOSSAVE* save,
-    FOTBOSSAVE_PROPS property,
+    FOTBOSSAVE_PROPS prop,
     void* value
 );
 

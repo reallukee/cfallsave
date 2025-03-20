@@ -21,10 +21,11 @@
 
 #include "header.h"
 
-#define FOTBOSSAVE_GAME_NAME        "Fallout Tactics: Brotherhood of Steel"
-#define FOTBOSSAVE_SIGNATURE        "<saveh>"
-#define FOTBOSSAVE_SIGNATURE_LENGTH 7
-#define FOTBOSSAVE_PROPS_COUNT      5
+#define FOTBOSSAVE_GAME_NAME            "Fallout Tactics: Brotherhood of Steel"
+#define FOTBOSSAVE_SIGNATURE            "<saveh>"
+#define FOTBOSSAVE_SIGNATURE_LENGTH     7
+#define FOTBOSSAVE_PROPS_COUNT          5
+#define FOTBOSSAVE_SAVE_STANDARD_EXT    ".sav"
 
 typedef enum FOTBOSSAVE_PROPS
 {
@@ -48,7 +49,7 @@ typedef struct FOTBOSSAVE
     char* playerLocation;
     char* gameDateTime;
 
-    unsigned long propAddresses[FOTBOSSAVE_PROPS_COUNT];
+    long unsigned int propAddresses[FOTBOSSAVE_PROPS_COUNT];
 } FOTBOSSAVE;
 
 #define FOTBOSSAVE_PROPS_SIZE   sizeof(FOTBOSSAVE_PROPS)
@@ -61,12 +62,15 @@ CFALLSAVE_API FOTBOSSAVE* readFOTBOSSave(
 );
 
 CFALLSAVE_API bool writeFOTBOSSave(
-    FOTBOSSAVE* save,
-    char* saveName
+    FOTBOSSAVE* save
 );
 
 CFALLSAVE_API bool isFOTBOSSave(
     const char* saveName
+);
+
+CFALLSAVE_API bool isFOTBOSSaveOpen(
+    FOTBOSSAVE* save
 );
 
 CFALLSAVE_API void closeFOTBOSSave(
@@ -75,16 +79,30 @@ CFALLSAVE_API void closeFOTBOSSave(
 
 
 
-CFALLSAVE_API bool readFOTBOSSaveProp(
+CFALLSAVE_API bool getFOTBOSSaveProp(
+    FOTBOSSAVE* save,
+    FOTBOSSAVE_PROPS prop,
+    void** destination
+);
+
+CFALLSAVE_API bool setFOTBOSSaveProp(
     FOTBOSSAVE* save,
     FOTBOSSAVE_PROPS prop,
     void** value
 );
 
+
+
+CFALLSAVE_API bool readFOTBOSSaveProp(
+    FOTBOSSAVE* save,
+    FOTBOSSAVE_PROPS prop,
+    void** destination
+);
+
 CFALLSAVE_API bool writeFOTBOSSaveProp(
     FOTBOSSAVE* save,
     FOTBOSSAVE_PROPS prop,
-    void* value
+    void** value
 );
 
 

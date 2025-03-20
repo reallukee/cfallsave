@@ -24,6 +24,11 @@ FO3SAVE* readFO3Save(
     const char* saveName
 )
 {
+    if (saveName == NULL)
+    {
+        return NULL;
+    }
+
     FO3SAVE* save = (FO3SAVE*)malloc(FO3SAVE_SIZE);
 
     if (save == NULL)
@@ -51,7 +56,7 @@ FO3SAVE* readFO3Save(
 
     strcpy(save->saveFileName, saveName);
 
-    unsigned long address = 0;
+    long unsigned int address = 0;
     bool fail = false;
 
     save->propAddresses[FO3SAVE_PROPS_SAVE_SIGNATURE] = address;
@@ -116,23 +121,34 @@ FO3SAVE* readFO3Save(
 }
 
 bool writeFO3Save(
-    FO3SAVE* save,
-    char* saveName
+    FO3SAVE* save
 )
 {
-    return false;
+    if (save == NULL)
+    {
+        return false;
+    }
+
+    return true;
 }
 
 bool isFO3Save(
     const char* saveName
 )
 {
+    if (saveName == NULL)
+    {
+        return false;
+    }
+
     FO3SAVE* save = (FO3SAVE*)malloc(FO3SAVE_SIZE);
 
     if (save == NULL)
     {
         return false;
     }
+
+    memset(save, 0, FO3SAVE_SIZE);
 
     save->save = fopen(saveName, "r+b");
 
@@ -143,7 +159,7 @@ bool isFO3Save(
         return false;
     }
 
-    unsigned long address = 0;
+    long unsigned int address = 0;
 
     readFixedString(save->save, save->saveSignature, FO3SAVE_SIGNATURE_LENGTH, &address, 0, true);
 
@@ -171,6 +187,18 @@ bool isFO3Save(
     return nv == '|';
 }
 
+bool isFO3SaveOpen(
+    FO3SAVE* save
+)
+{
+    if (save == NULL)
+    {
+        return false;
+    }
+
+    return save->save != NULL;
+}
+
 void closeFO3Save(
     FO3SAVE* save
 )
@@ -196,7 +224,82 @@ void closeFO3Save(
 
 
 
+bool getFO3SaveProp(
+    FO3SAVE* save,
+    FO3SAVE_PROPS prop,
+    void** destination
+)
+{
+    if (save == NULL || destination == NULL)
+    {
+        return false;
+    }
+
+    return false;
+}
+
+bool setFO3SaveProp(
+    FO3SAVE* save,
+    FO3SAVE_PROPS prop,
+    void** value
+)
+{
+    if (save == NULL || value == NULL)
+    {
+        return false;
+    }
+
+    return false;
+}
+
+
+
 bool readFO3SaveProp(
+    FO3SAVE* save,
+    FO3SAVE_PROPS prop,
+    void** destination
+)
+{
+    if (save == NULL || save->save == NULL)
+    {
+        return false;
+    }
+
+    bool result = true;
+
+    switch (prop)
+    {
+    case FO3SAVE_PROPS_SAVE_SIGNATURE:
+        result = readFixedString(save->save, (char*)destination, FO3SAVE_SIGNATURE_LENGTH, &save->propAddresses[prop], 0, false);
+        break;
+
+    case FO3SAVE_PROPS_ENGINE_VERSION:
+    case FO3SAVE_PROPS_SAVE_NUMBER:
+    case FO3SAVE_PROPS_PLAYER_LEVEL:
+    case FO3SAVE_PROPS_SNAPSHOT_WIDTH:
+    case FO3SAVE_PROPS_SNAPSHOT_HEIGHT:
+        result = readUInt(save->save, (unsigned int*)destination, &save->propAddresses[prop], 0, false);
+        break;
+
+    case FO3SAVE_PROPS_PLAYER_NAME:
+    case FO3SAVE_PROPS_PLAYER_TITLE:
+    case FO3SAVE_PROPS_PLAYER_LOCATION:
+    case FO3SAVE_PROPS_PLAYER_PLAYTIME:
+        result = readString(save->save, (char**)destination, &save->propAddresses[prop], 0, 1, false);
+        break;
+
+    case FO3SAVE_PROPS_SNAPHOST:
+        result = readUByteArray(save->save, (unsigned char*)destination, save->snapshotLength, &save->propAddresses[prop], 0, false);
+        break;
+
+    default:
+        break;
+    }
+
+    return result;
+}
+
+bool writeFO3SaveProp(
     FO3SAVE* save,
     FO3SAVE_PROPS prop,
     void** value
@@ -211,8 +314,8 @@ bool readFO3SaveProp(
 
     switch (prop)
     {
-    case FO3SAVE_PROPS_SAVE_SIGNATURE:
-        result = readFixedString(save->save, (char*)value, FO3SAVE_SIGNATURE_LENGTH, &save->propAddresses[prop], 0, false);
+        case FO3SAVE_PROPS_SAVE_SIGNATURE:
+        result = writeFixedString(save->save, (char*)value, FO3SAVE_SIGNATURE_LENGTH, &save->propAddresses[prop], 0, false);
         break;
 
     case FO3SAVE_PROPS_ENGINE_VERSION:
@@ -220,18 +323,18 @@ bool readFO3SaveProp(
     case FO3SAVE_PROPS_PLAYER_LEVEL:
     case FO3SAVE_PROPS_SNAPSHOT_WIDTH:
     case FO3SAVE_PROPS_SNAPSHOT_HEIGHT:
-        result = readUInt(save->save, (unsigned int*)value, &save->propAddresses[prop], 0, false);
+        result = writeUInt(save->save, (unsigned int*)value, &save->propAddresses[prop], 0, false);
         break;
 
     case FO3SAVE_PROPS_PLAYER_NAME:
     case FO3SAVE_PROPS_PLAYER_TITLE:
     case FO3SAVE_PROPS_PLAYER_LOCATION:
     case FO3SAVE_PROPS_PLAYER_PLAYTIME:
-        result = readString(save->save, (char**)value, &save->propAddresses[prop], 0, 1, false);
+        result = writeString(save->save, (char**)value, &save->propAddresses[prop], 0, 1, false);
         break;
 
     case FO3SAVE_PROPS_SNAPHOST:
-        result = readUByteArray(save->save, (unsigned char*)value, save->snapshotLength, &save->propAddresses[prop], 0, false);
+        result = writeUByteArray(save->save, (unsigned char*)value, save->snapshotLength, &save->propAddresses[prop], 0, false);
         break;
 
     default:
@@ -239,15 +342,6 @@ bool readFO3SaveProp(
     }
 
     return result;
-}
-
-bool writeFO3SaveProp(
-    FO3SAVE* save,
-    FO3SAVE_PROPS prop,
-    void* value
-)
-{
-    return false;
 }
 
 
@@ -283,7 +377,7 @@ bool printFO3SaveProps(
     printf("\n");
 
     printf("Game Name       : %s\n", FO3SAVE_GAME_NAME);
-    printf("Save Name       : %s\n", save->saveFileName);
+    printf("Save File Name  : %s\n", save->saveFileName);
 
     printf("\n");
 
@@ -311,14 +405,14 @@ bool printFO3SavePropAddresses(
         return false;
     }
 
-    printf("***************************\n");
-    printf("* FO3SAVE PROPS ADDRESSES *\n");
-    printf("***************************\n");
+    printf("**************************\n");
+    printf("* FO3SAVE PROP ADDRESSES *\n");
+    printf("**************************\n");
 
     printf("\n");
 
     printf("%-15s : %s\n", "Game Name", FO3SAVE_GAME_NAME);
-    printf("%-15s : %s\n", "Save Name", save->saveFileName);
+    printf("%-15s : %s\n", "Save File Name", save->saveFileName);
 
     printf("\n");
 
@@ -335,7 +429,7 @@ bool printFO3SavePropAddresses(
         "Snapshot Height"
     };
 
-    unsigned long* propAddresses[] = {
+    long unsigned int* propAddresses[FO3SAVE_PROPS_COUNT - 1] = {
         &save->propAddresses[FO3SAVE_PROPS_SAVE_SIGNATURE],
         &save->propAddresses[FO3SAVE_PROPS_ENGINE_VERSION],
         &save->propAddresses[FO3SAVE_PROPS_SAVE_NUMBER],
@@ -348,7 +442,7 @@ bool printFO3SavePropAddresses(
         &save->propAddresses[FO3SAVE_PROPS_SNAPSHOT_HEIGHT]
     };
 
-    for (unsigned long i = 0; i < FO3SAVE_PROPS_COUNT - 1; i++)
+    for (long unsigned int i = 0; i < FO3SAVE_PROPS_COUNT - 1; i++)
     {
         printf("%-15s : %016lu %04lX\n", propNames[i], *propAddresses[i], *propAddresses[i]);
     }
@@ -365,7 +459,7 @@ bool printFO3SaveSnapshot(
         return false;
     }
 
-    for (unsigned long i = 0; i < save->snapshotLength; i += FO3SAVE_SNAPSHOT_COLOR_BYTES)
+    for (long unsigned int i = 0; i < save->snapshotLength; i += FO3SAVE_SNAPSHOT_COLOR_BYTES)
     {
         printf("R : %03u", save->snapshot[i + 0]);
         printf("G : %03u", save->snapshot[i + 1]);

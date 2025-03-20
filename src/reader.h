@@ -21,83 +21,83 @@
 
 #include "header.h"
 
-bool readFixedString(
+CFALLSAVE_API bool readFixedString(
     FILE* source,
     char* destination,
-    unsigned long length,
-    unsigned long* address,
-    unsigned long skip,
+    long unsigned int length,
+    long unsigned int* address,
+    long unsigned int skip,
     bool updateAddress
 );
 
-bool readString(
+CFALLSAVE_API bool readString(
     FILE* source,
     char** destination,
-    unsigned long* address,
-    unsigned long skipLength,
-    unsigned long skipString,
+    long unsigned int* address,
+    long unsigned int skipLength,
+    long unsigned int skipString,
     bool updateAddress
 );
 
-bool readCURSEDString(
+CFALLSAVE_API bool readCURSEDString(
     FILE* source,
     char** destination,
-    unsigned long* address,
-    unsigned long skipLength,
-    unsigned long skipString,
+    long unsigned int* address,
+    long unsigned int skipLength,
+    long unsigned int skipString,
     bool updateAddress
 );
 
 
 
-bool readUByte(
+CFALLSAVE_API bool readUByte(
     FILE* source,
     unsigned char* destination,
-    unsigned long* address,
-    unsigned long skip,
+    long unsigned int* address,
+    long unsigned int skip,
     bool updateAddress
 );
 
-bool readUShort(
+CFALLSAVE_API bool readUShort(
     FILE* source,
-    unsigned short* destination,
-    unsigned long* address,
-    unsigned long skip,
+    short unsigned int* destination,
+    long unsigned int* address,
+    long unsigned int skip,
     bool updateAddress
 );
 
-bool readUInt(
+CFALLSAVE_API bool readUInt(
     FILE* source,
     unsigned int* destination,
-    unsigned long* address,
-    unsigned long skip,
+    long unsigned int* address,
+    long unsigned int skip,
     bool updateAddress
 );
 
-bool readULong(
+CFALLSAVE_API bool readULong(
     FILE* source,
-    unsigned long* destination,
-    unsigned long* address,
-    unsigned long skip,
+    long unsigned int* destination,
+    long unsigned int* address,
+    long unsigned int skip,
     bool updateAddress
 );
 
-bool readFloat(
+CFALLSAVE_API bool readFloat(
     FILE* source,
     float* destination,
-    unsigned long* address,
-    unsigned long skip,
+    long unsigned int* address,
+    long unsigned int skip,
     bool updateAddress
 );
 
 
 
-bool readUByteArray(
+CFALLSAVE_API bool readUByteArray(
     FILE* source,
     unsigned char* destination,
-    unsigned long length,
-    unsigned long* address,
-    unsigned long skip,
+    long unsigned int length,
+    long unsigned int* address,
+    long unsigned int skip,
     bool updateAddress
 );
 

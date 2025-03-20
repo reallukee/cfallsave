@@ -18,7 +18,7 @@
 
 #include "fox.h"
 
-FOXSAVE* readFOXSAVE(
+FOXSAVE* readFOXSave(
     const char* saveName
 )
 {
@@ -77,80 +77,148 @@ FOXSAVE* readFOXSAVE(
     return NULL;
 }
 
-void printFOXSAVE(
+bool writeFOXSave(
     FOXSAVE* save
 )
 {
-    if (save->save != NULL)
+    if (save == NULL)
     {
-        switch (save->saveType)
-        {
-        case FOXSAVE_TYPE_FO1:
-            printFO1Save((FO1SAVE*)save->save);
-            break;
+        return false;
+    }
 
-        case FOXSAVE_TYPE_FO2:
-            printFO2Save((FO2SAVE*)save->save);
-            break;
+    switch (save->saveType)
+    {
+    case FOXSAVE_TYPE_FO1:
+        return writeFO1Save((FO1SAVE*)save->save);
 
-        case FOXSAVE_TYPE_FOTBOS:
-            printFOTBOSSave((FOTBOSSAVE*)save->save);
-            break;
+    case FOXSAVE_TYPE_FO2:
+        return writeFO2Save((FO2SAVE*)save->save);
 
-        case FOXSAVE_TYPE_FO3:
-            printFO3Save((FO3SAVE*)save->save);
-            break;
+    case FOXSAVE_TYPE_FOTBOS:
+        return writeFOTBOSSave((FOTBOSSAVE*)save->save);
 
-        case FOXSAVE_TYPE_FONV:
-            printFONVSave((FONVSAVE*)save->save);
-            break;
+    case FOXSAVE_TYPE_FO3:
+        return writeFO3Save((FO3SAVE*)save->save);
 
-        case FOXSAVE_TYPE_FO4:
-            printFO4Save((FO4SAVE*)save->save);
-            break;
+    case FOXSAVE_TYPE_FONV:
+        return writeFONVSave((FONVSAVE*)save->save);
 
-        default:
-            break;
-        }
+    case FOXSAVE_TYPE_FO4:
+        return writeFO4Save((FO4SAVE*)save->save);
+
+    default:
+        return false;
     }
 }
 
-void closeFOXSAVE(
+bool isFOXSaveOpen(
     FOXSAVE* save
 )
 {
-    if (save->save != NULL)
+    if (save == NULL)
     {
-        switch (save->saveType)
-        {
-        case FOXSAVE_TYPE_FO1:
-            closeFO1Save((FO1SAVE*)save->save);
-            break;
+        return false;
+    }
 
-        case FOXSAVE_TYPE_FO2:
-            closeFO2Save((FO2SAVE*)save->save);
-            break;
+    switch (save->saveType)
+    {
+    case FOXSAVE_TYPE_FO1:
+        return isFO1SaveOpen((FO1SAVE*)save->save);
 
-        case FOXSAVE_TYPE_FOTBOS:
-            closeFOTBOSSave((FOTBOSSAVE*)save->save);
-            break;
+    case FOXSAVE_TYPE_FO2:
+        return isFO2SaveOpen((FO2SAVE*)save->save);
 
-        case FOXSAVE_TYPE_FO3:
-            closeFO3Save((FO3SAVE*)save->save);
-            break;
+    case FOXSAVE_TYPE_FOTBOS:
+        return isFOTBOSSaveOpen((FOTBOSSAVE*)save->save);
 
-        case FOXSAVE_TYPE_FONV:
-            closeFONVSave((FONVSAVE*)save->save);
-            break;
+    case FOXSAVE_TYPE_FO3:
+        return isFO3SaveOpen((FO3SAVE*)save->save);
 
-        case FOXSAVE_TYPE_FO4:
-            closeFO4Save((FO4SAVE*)save->save);
-            break;
+    case FOXSAVE_TYPE_FONV:
+        return isFONVSaveOpen((FONVSAVE*)save->save);
 
-        default:
-            break;
-        }
+    case FOXSAVE_TYPE_FO4:
+        return isFO4SaveOpen((FO4SAVE*)save->save);
+
+    default:
+        return false;
+    }
+}
+
+void closeFOXSave(
+    FOXSAVE* save
+)
+{
+    if (save->save == NULL)
+    {
+        return;
+    }
+
+    switch (save->saveType)
+    {
+    case FOXSAVE_TYPE_FO1:
+        closeFO1Save((FO1SAVE*)save->save);
+        break;
+
+    case FOXSAVE_TYPE_FO2:
+        closeFO2Save((FO2SAVE*)save->save);
+        break;
+
+    case FOXSAVE_TYPE_FOTBOS:
+        closeFOTBOSSave((FOTBOSSAVE*)save->save);
+        break;
+
+    case FOXSAVE_TYPE_FO3:
+        closeFO3Save((FO3SAVE*)save->save);
+        break;
+
+    case FOXSAVE_TYPE_FONV:
+        closeFONVSave((FONVSAVE*)save->save);
+        break;
+
+    case FOXSAVE_TYPE_FO4:
+        closeFO4Save((FO4SAVE*)save->save);
+        break;
+
+    default:
+        break;
     }
 
     free(save);
+}
+
+
+
+bool printFOXSave(
+    FOXSAVE* save
+)
+{
+    if (save->save == NULL)
+    {
+        return false;
+    }
+
+    switch (save->saveType)
+    {
+    case FOXSAVE_TYPE_FO1:
+        return printFO1Save((FO1SAVE*)save->save);
+
+    case FOXSAVE_TYPE_FO2:
+        return printFO2Save((FO2SAVE*)save->save);
+
+    case FOXSAVE_TYPE_FOTBOS:
+        return printFOTBOSSave((FOTBOSSAVE*)save->save);
+
+    case FOXSAVE_TYPE_FO3:
+        return printFO3Save((FO3SAVE*)save->save);
+
+    case FOXSAVE_TYPE_FONV:
+        return printFONVSave((FONVSAVE*)save->save);
+
+    case FOXSAVE_TYPE_FO4:
+        return printFO4Save((FO4SAVE*)save->save);
+
+    default:
+        return false;
+    }
 }

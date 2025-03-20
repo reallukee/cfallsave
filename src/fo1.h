@@ -25,6 +25,7 @@
 #define FO1SAVE_SIGNATURE           "FALLOUT SAVE FILE"
 #define FO1SAVE_SIGNATURE_LENGTH    17
 #define FO1SAVE_PROPS_COUNT         3
+#define FO1SAVE_SAVE_STANDARD_EXT   ".dat"
 
 typedef enum FO1SAVE_PROPS
 {
@@ -44,7 +45,7 @@ typedef struct FO1SAVE
 
     char playerName[32];
 
-    unsigned long propAddresses[FO1SAVE_PROPS_COUNT];
+    long unsigned int propAddresses[FO1SAVE_PROPS_COUNT];
 } FO1SAVE;
 
 #define FO1SAVE_PROPS_SIZE  sizeof(FO1SAVE_PROPS)
@@ -57,12 +58,15 @@ CFALLSAVE_API FO1SAVE* readFO1Save(
 );
 
 CFALLSAVE_API bool writeFO1Save(
-    FO1SAVE* save,
-    char* saveName
+    FO1SAVE* save
 );
 
 CFALLSAVE_API bool isFO1Save(
     const char* saveName
+);
+
+CFALLSAVE_API bool isFO1SaveOpen(
+    FO1SAVE* save
 );
 
 CFALLSAVE_API void closeFO1Save(
@@ -71,16 +75,30 @@ CFALLSAVE_API void closeFO1Save(
 
 
 
-CFALLSAVE_API bool readFO1SaveProp(
+CFALLSAVE_API bool getFO1SaveProp(
+    FO1SAVE* save,
+    FO1SAVE_PROPS prop,
+    void** destination
+);
+
+CFALLSAVE_API bool setFO1SaveProp(
     FO1SAVE* save,
     FO1SAVE_PROPS prop,
     void** value
 );
 
+
+
+CFALLSAVE_API bool readFO1SaveProp(
+    FO1SAVE* save,
+    FO1SAVE_PROPS prop,
+    void** destination
+);
+
 CFALLSAVE_API bool writeFO1SaveProp(
     FO1SAVE* save,
     FO1SAVE_PROPS prop,
-    void* value
+    void** value
 );
 
 

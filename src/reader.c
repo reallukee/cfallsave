@@ -21,9 +21,9 @@
 bool readFixedString(
     FILE* source,
     char* destination,
-    unsigned long length,
-    unsigned long* address,
-    unsigned long skip,
+    long unsigned int length,
+    long unsigned int* address,
+    long unsigned int skip,
     bool updateAddress
 )
 {
@@ -61,13 +61,13 @@ bool readFixedString(
 bool readString(
     FILE* source,
     char** destination,
-    unsigned long* address,
-    unsigned long skipLength,
-    unsigned long skipString,
+    long unsigned int* address,
+    long unsigned int skipLength,
+    long unsigned int skipString,
     bool updateAddress
 )
 {
-    unsigned short length = 0;
+    short unsigned int length = 0;
 
     bool r_readUShort = readUShort(source, &length, address, skipLength, updateAddress);
 
@@ -113,13 +113,13 @@ bool readString(
 bool readCURSEDString(
     FILE* source,
     char** destination,
-    unsigned long* address,
-    unsigned long skipLength,
-    unsigned long skipString,
+    long unsigned int* address,
+    long unsigned int skipLength,
+    long unsigned int skipString,
     bool updateAddress
 )
 {
-    unsigned short length = 0;
+    short unsigned int length = 0;
 
     bool r_readUShort = readUShort(source, &length, address, skipLength, updateAddress);
 
@@ -185,8 +185,8 @@ bool readCURSEDString(
 bool readUByte(
     FILE* source,
     unsigned char* destination,
-    unsigned long* address,
-    unsigned long skip,
+    long unsigned int* address,
+    long unsigned int skip,
     bool updateAddress
 )
 {
@@ -221,9 +221,9 @@ bool readUByte(
 
 bool readUShort(
     FILE* source,
-    unsigned short* destination,
-    unsigned long* address,
-    unsigned long skip,
+    short unsigned int* destination,
+    long unsigned int* address,
+    long unsigned int skip,
     bool updateAddress
 )
 {
@@ -239,7 +239,7 @@ bool readUShort(
         return false;
     }
 
-    int USHORT_SIZE = sizeof(unsigned short);
+    int USHORT_SIZE = sizeof(short unsigned int);
 
     size_t r_fread = fread(destination, USHORT_SIZE, 1, source);
 
@@ -259,8 +259,8 @@ bool readUShort(
 bool readUInt(
     FILE* source,
     unsigned int* destination,
-    unsigned long* address,
-    unsigned long skip,
+    long unsigned int* address,
+    long unsigned int skip,
     bool updateAddress
 )
 {
@@ -295,9 +295,9 @@ bool readUInt(
 
 bool readULong(
     FILE* source,
-    unsigned long* destination,
-    unsigned long* address,
-    unsigned long skip,
+    long unsigned int* destination,
+    long unsigned int* address,
+    long unsigned int skip,
     bool updateAddress
 )
 {
@@ -313,7 +313,7 @@ bool readULong(
         return false;
     }
 
-    int ULONG_SIZE = sizeof(unsigned long);
+    int ULONG_SIZE = sizeof(long unsigned int);
 
     size_t r_fread = fread(destination, ULONG_SIZE, 1, source);
 
@@ -333,8 +333,8 @@ bool readULong(
 bool readFloat(
     FILE* source,
     float* destination,
-    unsigned long* address,
-    unsigned long skip,
+    long unsigned int* address,
+    long unsigned int skip,
     bool updateAddress
 )
 {
@@ -372,9 +372,9 @@ bool readFloat(
 bool readUByteArray(
     FILE* source,
     unsigned char* destination,
-    unsigned long length,
-    unsigned long* address,
-    unsigned long skip,
+    long unsigned int length,
+    long unsigned int* address,
+    long unsigned int skip,
     bool updateAddress
 )
 {

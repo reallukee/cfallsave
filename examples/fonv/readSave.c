@@ -11,7 +11,7 @@ int main(int argc, char* argv[])
 
     FONVSAVE* save = readFONVSave(saveName);
 
-    if (save == NULL)
+    if (!isFONVSaveOpen(save))
     {
         return -1;
     }

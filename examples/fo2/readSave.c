@@ -11,7 +11,7 @@ int main(int argc, char* argv[])
 
     FO2SAVE* save = readFO2Save(saveName);
 
-    if (save == NULL)
+    if (!isFO2SaveOpen(save))
     {
         return -1;
     }

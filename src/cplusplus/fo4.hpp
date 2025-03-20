@@ -25,8 +25,26 @@
 
 using namespace std;
 
-namespace cfallsave
+namespace cfallsavepp
 {
+    enum class CFALLSAVEPP_API FO4SaveProps
+    {
+        SaveSignature       = 0,
+        EngineVersion       = 1,
+        SaveNumber          = 2,
+        PlayerName          = 3,
+        PlayerLevel         = 4,
+        PlayerLocation      = 5,
+        PlayerPlaytime      = 6,
+        PlayerRace          = 7,
+        PlayerSex           = 8,
+        PlayerCurrentXP     = 9,
+        PlayerRequiredXP    = 10,
+        SnapshotWidth       = 11,
+        SnapshotHeight      = 12,
+        Snapshot            = 13
+    };
+
     class CFALLSAVEPP_API FO4Save
     {
 
@@ -36,15 +54,31 @@ namespace cfallsave
 
     public:
 
+        FO4SAVE* getFO4SAVE();
+        void setFO4SAVE(FO4SAVE* save);
+
+
+
         FO4Save();
+        FO4Save(FO4SAVE* save);
         FO4Save(string saveName);
         ~FO4Save();
 
-        void readSave(string saveName);
+        bool readSave(string saveName);
+        bool writeSave();
+        void closeSave();
+        static bool isSave(string saveName);
         bool isOpen();
 
         void printSave();
+        void printSaveProps();
+        void printSavePropAddresses();
         void printSaveSnapshot();
+
+
+
+        string getGameName();
+        string getSaveFileName();
 
         string getSaveSignature();
         unsigned int getEngineVersion();
@@ -55,12 +89,13 @@ namespace cfallsave
         string getPlayerLocation();
         string getPlayerPlaytime();
         string getPlayerRace();
-        unsigned short getPlayerSex();
+        short unsigned int getPlayerSex();
         float getPlayerCurrentXp();
         float getPlayerRequiredXp();
 
         unsigned int getSnapshotWidth();
         unsigned int getSnapshotHeight();
+        long unsigned int getSnapshotLength();
         unsigned char* getSnapshot();
 
     };

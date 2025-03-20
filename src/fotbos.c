@@ -24,6 +24,11 @@ FOTBOSSAVE* readFOTBOSSave(
     const char* saveName
 )
 {
+    if (saveName == NULL)
+    {
+        return NULL;
+    }
+
     FOTBOSSAVE* save = (FOTBOSSAVE*)malloc(FOTBOSSAVE_SIZE);
 
     if (save == NULL)
@@ -51,7 +56,7 @@ FOTBOSSAVE* readFOTBOSSave(
 
     strcpy(save->saveFileName, saveName);
 
-    unsigned long address = 0;
+    long unsigned int address = 0;
     bool fail = false;
 
     save->propAddresses[FOTBOSSAVE_PROPS_SAVE_SIGNATURE] = address;
@@ -80,23 +85,34 @@ FOTBOSSAVE* readFOTBOSSave(
 }
 
 bool writeFOTBOSSave(
-    FOTBOSSAVE* save,
-    char* saveName
+    FOTBOSSAVE* save
 )
 {
-    return false;
+    if (save == NULL)
+    {
+        return false;
+    }
+
+    return true;
 }
 
 bool isFOTBOSSave(
     const char* saveName
 )
 {
+    if (saveName == NULL)
+    {
+        return false;
+    }
+
     FOTBOSSAVE* save = (FOTBOSSAVE*)malloc(FOTBOSSAVE_SIZE);
 
     if (save == NULL)
     {
         return false;
     }
+
+    memset(save, 0, FOTBOSSAVE_SIZE);
 
     save->save = fopen(saveName, "r+b");
 
@@ -107,7 +123,7 @@ bool isFOTBOSSave(
         return false;
     }
 
-    unsigned long address = 0;
+    long unsigned int address = 0;
 
     readFixedString(save->save, save->saveSignature, FOTBOSSAVE_SIGNATURE_LENGTH, &address, 0, true);
 
@@ -116,6 +132,18 @@ bool isFOTBOSSave(
     closeFOTBOSSave(save);
 
     return r_strcmp == 0;
+}
+
+bool isFOTBOSSaveOpen(
+    FOTBOSSAVE* save
+)
+{
+    if (save == NULL)
+    {
+        return false;
+    }
+
+    return save->save != NULL;
 }
 
 void closeFOTBOSSave(
@@ -142,7 +170,70 @@ void closeFOTBOSSave(
 
 
 
+bool getFOTBOSSaveProp(
+    FOTBOSSAVE* save,
+    FOTBOSSAVE_PROPS prop,
+    void** destination
+)
+{
+    if (save == NULL || destination == NULL)
+    {
+        return false;
+    }
+
+    return false;
+}
+
+bool setFOTBOSSaveProp(
+    FOTBOSSAVE* save,
+    FOTBOSSAVE_PROPS prop,
+    void** value
+)
+{
+    if (save == NULL || value == NULL)
+    {
+        return false;
+    }
+
+    return false;
+}
+
+
+
 bool readFOTBOSSaveProp(
+    FOTBOSSAVE* save,
+    FOTBOSSAVE_PROPS prop,
+    void** destination
+)
+{
+    if (save == NULL || save->save == NULL)
+    {
+        return false;
+    }
+
+    bool result = true;
+
+    switch (prop)
+    {
+    case FOTBOSSAVE_PROPS_SAVE_SIGNATURE:
+        result = readFixedString(save->save, (char*)destination, FOTBOSSAVE_SIGNATURE_LENGTH, &save->propAddresses[prop], 0, false);
+        break;
+
+    case FOTBOSSAVE_PROPS_SAVE_NAME:
+    case FOTBOSSAVE_PROPS_PLAYER_NAME:
+    case FOTBOSSAVE_PROPS_PLAYER_LOCATION:
+    case FOTBOSSAVE_PROPS_GAME_DATE_TIME:
+        result = readCURSEDString(save->save, (char**)destination, &save->propAddresses[prop], 0, 2, false);
+        break;
+
+    default:
+        break;
+    }
+
+    return result;
+}
+
+bool writeFOTBOSSaveProp(
     FOTBOSSAVE* save,
     FOTBOSSAVE_PROPS prop,
     void** value
@@ -158,14 +249,14 @@ bool readFOTBOSSaveProp(
     switch (prop)
     {
     case FOTBOSSAVE_PROPS_SAVE_SIGNATURE:
-        result = readFixedString(save->save, (char*)value, FOTBOSSAVE_SIGNATURE_LENGTH, &save->propAddresses[prop], 0, false);
+        result = writeFixedString(save->save, (char*)value, FOTBOSSAVE_SIGNATURE_LENGTH, &save->propAddresses[prop], 0, false);
         break;
 
     case FOTBOSSAVE_PROPS_SAVE_NAME:
     case FOTBOSSAVE_PROPS_PLAYER_NAME:
     case FOTBOSSAVE_PROPS_PLAYER_LOCATION:
     case FOTBOSSAVE_PROPS_GAME_DATE_TIME:
-        result = readCURSEDString(save->save, (char**)value, &save->propAddresses[prop], 0, 2, false);
+        result = writeCURSEDString(save->save, (char**)value, &save->propAddresses[prop], 0, 2, false);
         break;
 
     default:
@@ -173,15 +264,6 @@ bool readFOTBOSSaveProp(
     }
 
     return result;
-}
-
-bool writeFOTBOSSaveProp(
-    FOTBOSSAVE* save,
-    FOTBOSSAVE_PROPS prop,
-    void* value
-)
-{
-    return false;
 }
 
 
@@ -217,7 +299,7 @@ bool printFOTBOSSaveProps(
     printf("\n");
 
     printf("Game Name       : %s\n", FOTBOSSAVE_GAME_NAME);
-    printf("Save Name       : %s\n", save->saveFileName);
+    printf("Save File Name  : %s\n", save->saveFileName);
 
     printf("\n");
 
@@ -239,13 +321,13 @@ bool printFOTBOSSavePropAddresses(
         return false;
     }
 
-    printf("******************************\n");
-    printf("* FOTBOSSAVE PROPS ADDRESSES *\n");
-    printf("******************************\n");
+    printf("*****************************\n");
+    printf("* FOTBOSSAVE PROP ADDRESSES *\n");
+    printf("*****************************\n");
 
     printf("\n");
 
-    printf("%-15s : %s\n", "Save Name", save->saveName);
+    printf("%-15s : %s\n", "Save File Name", save->saveName);
 
     printf("\n");
 
@@ -257,7 +339,7 @@ bool printFOTBOSSavePropAddresses(
         "Game Date Time",
     };
 
-    unsigned long* propAddresses[] = {
+    long unsigned int* propAddresses[FOTBOSSAVE_PROPS_COUNT] = {
         &save->propAddresses[FOTBOSSAVE_PROPS_SAVE_SIGNATURE],
         &save->propAddresses[FOTBOSSAVE_PROPS_SAVE_NAME],
         &save->propAddresses[FOTBOSSAVE_PROPS_PLAYER_NAME],
@@ -265,7 +347,7 @@ bool printFOTBOSSavePropAddresses(
         &save->propAddresses[FOTBOSSAVE_PROPS_GAME_DATE_TIME]
     };
 
-    for (unsigned long i = 0; i < FOTBOSSAVE_PROPS_COUNT - 1; i++)
+    for (long unsigned int i = 0; i < FOTBOSSAVE_PROPS_COUNT; i++)
     {
         printf("%-15s : %016lu %04lX\n", propNames[i], *propAddresses[i], *propAddresses[i]);
     }

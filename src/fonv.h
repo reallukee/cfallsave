@@ -25,6 +25,7 @@
 #define FONVSAVE_SIGNATURE          "FO3SAVEGAME"
 #define FONVSAVE_SIGNATURE_LENGTH   11
 #define FONVSAVE_PROPS_COUNT        11
+#define FONVSAVE_SAVE_STANDARD_EXT  ".fos"
 
 typedef enum FONVSAVE_PROPS
 {
@@ -65,10 +66,10 @@ typedef struct FONVSAVE
 
     unsigned int snapshotWidth;
     unsigned int snapshotHeight;
-    unsigned long snapshotLength;
+    long unsigned int snapshotLength;
     unsigned char* snapshot;
 
-    unsigned long propAddresses[FONVSAVE_PROPS_COUNT];
+    long unsigned int propAddresses[FONVSAVE_PROPS_COUNT];
 } FONVSAVE;
 
 #define FONVSAVE_PROPS_SIZE sizeof(FONVSAVE_PROPS)
@@ -81,12 +82,15 @@ CFALLSAVE_API FONVSAVE* readFONVSave(
 );
 
 CFALLSAVE_API bool writeFONVSave(
-    FONVSAVE* save,
-    char* saveName
+    FONVSAVE* save
 );
 
 CFALLSAVE_API bool isFONVSave(
     const char* saveName
+);
+
+CFALLSAVE_API bool isFONVSaveOpen(
+    FONVSAVE* save
 );
 
 CFALLSAVE_API void closeFONVSave(
@@ -95,16 +99,30 @@ CFALLSAVE_API void closeFONVSave(
 
 
 
-CFALLSAVE_API bool readFONVSaveProp(
+CFALLSAVE_API bool getFONVSaveProp(
+    FONVSAVE* save,
+    FONVSAVE_PROPS prop,
+    void** destination
+);
+
+CFALLSAVE_API bool setFONVSaveProp(
     FONVSAVE* save,
     FONVSAVE_PROPS prop,
     void** value
 );
 
+
+
+CFALLSAVE_API bool readFONVSaveProp(
+    FONVSAVE* save,
+    FONVSAVE_PROPS prop,
+    void** destination
+);
+
 CFALLSAVE_API bool writeFONVSaveProp(
     FONVSAVE* save,
     FONVSAVE_PROPS prop,
-    void* value
+    void** value
 );
 
 

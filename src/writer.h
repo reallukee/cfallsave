@@ -21,83 +21,83 @@
 
 #include "header.h"
 
-bool writeFixedString(
+CFALLSAVE_API bool writeFixedString(
     FILE* source,
     char* value,
-    unsigned long length,
-    unsigned long* address,
-    unsigned long skip,
+    long unsigned int length,
+    long unsigned int* address,
+    long unsigned int skip,
     bool updateAddress
 );
 
-bool writeString(
+CFALLSAVE_API bool writeString(
     FILE* source,
     char** value,
-    unsigned long* address,
-    unsigned long skipLength,
-    unsigned long skipString,
+    long unsigned int* address,
+    long unsigned int skipLength,
+    long unsigned int skipString,
     bool updateAddress
 );
 
-bool writeCURSEDString(
+CFALLSAVE_API bool writeCURSEDString(
     FILE* source,
     char** value,
-    unsigned long* address,
-    unsigned long skipLength,
-    unsigned long skipString,
+    long unsigned int* address,
+    long unsigned int skipLength,
+    long unsigned int skipString,
     bool updateAddress
 );
 
 
 
-bool writeUByte(
-    FILE* source,
-    unsigned char value,
-    unsigned long* address,
-    unsigned long skip,
-    bool updateAddress
-);
-
-bool writeUShort(
-    FILE* source,
-    unsigned short value,
-    unsigned long* address,
-    unsigned long skip,
-    bool updateAddress
-);
-
-bool writeUInt(
-    FILE* source,
-    unsigned int value,
-    unsigned long* address,
-    unsigned long skip,
-    bool updateAddress
-);
-
-bool writeULong(
-    FILE* source,
-    unsigned long value,
-    unsigned long* address,
-    unsigned long skip,
-    bool updateAddress
-);
-
-bool writeFloat(
-    FILE* source,
-    float value,
-    unsigned long* address,
-    unsigned long skip,
-    bool updateAddress
-);
-
-
-
-bool writeUByteArray(
+CFALLSAVE_API bool writeUByte(
     FILE* source,
     unsigned char* value,
-    unsigned long length,
-    unsigned long* address,
-    unsigned long skip,
+    long unsigned int* address,
+    long unsigned int skip,
+    bool updateAddress
+);
+
+CFALLSAVE_API bool writeUShort(
+    FILE* source,
+    short unsigned int* value,
+    long unsigned int* address,
+    long unsigned int skip,
+    bool updateAddress
+);
+
+CFALLSAVE_API bool writeUInt(
+    FILE* source,
+    unsigned int* value,
+    long unsigned int* address,
+    long unsigned int skip,
+    bool updateAddress
+);
+
+CFALLSAVE_API bool writeULong(
+    FILE* source,
+    long unsigned int* value,
+    long unsigned int* address,
+    long unsigned int skip,
+    bool updateAddress
+);
+
+CFALLSAVE_API bool writeFloat(
+    FILE* source,
+    float* value,
+    long unsigned int* address,
+    long unsigned int skip,
+    bool updateAddress
+);
+
+
+
+CFALLSAVE_API bool writeUByteArray(
+    FILE* source,
+    unsigned char* value,
+    long unsigned int length,
+    long unsigned int* address,
+    long unsigned int skip,
     bool updateAddress
 );
 

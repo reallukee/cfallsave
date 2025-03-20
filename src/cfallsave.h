@@ -21,15 +21,15 @@
 
 #include "header.h"
 
-#include "fo1.h"
-#include "fo2.h"
-#include "fotbos.h"
-#include "fo3.h"
-#include "fonv.h"
-#include "fo4.h"
-#include "fox.h"
+#include "fo1.h"    // Fallout 1 API
+#include "fo2.h"    // Fallout 2 API
+#include "fotbos.h" // Fallout Tactics: Brotherhood of Steel
+#include "fo3.h"    // Fallout 3 API
+#include "fonv.h"   // Fallout: New Vegas API
+#include "fo4.h"    // Fallout 4 API
+#include "fox.h"    // Fallout X
 
-#define CFALLSAVE_VERSION       "2_0_0"
-#define CFALLSAVE_MIN_VERSION   "2_0_0"
+#define CFALLSAVE_VERSION       "2.0.0"
+#define CFALLSAVE_MIN_VERSION   "2.0.0"
 
 #endif  // !CFALLSAVE_API_H

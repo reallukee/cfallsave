@@ -2,7 +2,7 @@
 #include "../../src/cplusplus/cfallsave.hpp"
 
 using namespace std;
-using namespace cfallsave;
+using namespace cfallsavepp;
 
 int main(int argc, char* argv[])
 {

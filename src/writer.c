@@ -21,46 +21,72 @@
 bool writeFixedString(
     FILE* source,
     char* value,
-    unsigned long length,
-    unsigned long* address,
-    unsigned long skip,
+    long unsigned int length,
+    long unsigned int* address,
+    long unsigned int skip,
     bool updateAddress
 )
 {
-    return false;
+    if (source == NULL || value == NULL || address == NULL)
+    {
+        return false;
+    }
+
+    int r_fseek = fseek(source, *address + skip, SEEK_SET);
+
+    if (r_fseek != 0)
+    {
+        return false;
+    }
+
+    int CHAR_SIZE = sizeof(char);
+
+    size_t r_fwrite = fwrite(value, CHAR_SIZE, length, source);
+
+    if (r_fwrite != length)
+    {
+        return false;
+    }
+
+    if (updateAddress)
+    {
+        *address += skip + length;
+    }
+
+    return true;
 }
 
 bool writeString(
     FILE* source,
     char** value,
-    unsigned long* address,
-    unsigned long skipLength,
-    unsigned long skipString,
+    long unsigned int* address,
+    long unsigned int skipLength,
+    long unsigned int skipString,
     bool updateAddress
 )
 {
-    return false;
+    return true;
 }
 
 bool writeCURSEDString(
     FILE* source,
     char** value,
-    unsigned long* address,
-    unsigned long skipLength,
-    unsigned long skipString,
+    long unsigned int* address,
+    long unsigned int skipLength,
+    long unsigned int skipString,
     bool updateAddress
 )
 {
-    return false;
+    return true;
 }
 
 
 
 bool writeUByte(
     FILE* source,
-    unsigned char value,
-    unsigned long* address,
-    unsigned long skip,
+    unsigned char* value,
+    long unsigned int* address,
+    long unsigned int skip,
     bool updateAddress
 )
 {
@@ -78,7 +104,7 @@ bool writeUByte(
 
     int UBYTE_SIZE = sizeof(unsigned char);
 
-    size_t r_fwrite = fwrite(&value, UBYTE_SIZE, 1, source);
+    size_t r_fwrite = fwrite(value, UBYTE_SIZE, 1, source);
 
     if (r_fwrite != 1)
     {
@@ -95,9 +121,9 @@ bool writeUByte(
 
 bool writeUShort(
     FILE* source,
-    unsigned short value,
-    unsigned long* address,
-    unsigned long skip,
+    short unsigned int* value,
+    long unsigned int* address,
+    long unsigned int skip,
     bool updateAddress
 )
 {
@@ -113,9 +139,9 @@ bool writeUShort(
         return false;
     }
 
-    int USHORT_SIZE = sizeof(unsigned short);
+    int USHORT_SIZE = sizeof(short unsigned int);
 
-    size_t r_fwrite = fwrite(&value, USHORT_SIZE, 1, source);
+    size_t r_fwrite = fwrite(value, USHORT_SIZE, 1, source);
 
     if (r_fwrite != 1)
     {
@@ -132,9 +158,9 @@ bool writeUShort(
 
 bool writeUInt(
     FILE* source,
-    unsigned int value,
-    unsigned long* address,
-    unsigned long skip,
+    unsigned int* value,
+    long unsigned int* address,
+    long unsigned int skip,
     bool updateAddress
 )
 {
@@ -152,7 +178,7 @@ bool writeUInt(
 
     int UINT_SIZE = sizeof(unsigned int);
 
-    size_t r_fwrite = fwrite(&value, UINT_SIZE, 1, source);
+    size_t r_fwrite = fwrite(value, UINT_SIZE, 1, source);
 
     if (r_fwrite != 1)
     {
@@ -169,9 +195,9 @@ bool writeUInt(
 
 bool writeULong(
     FILE* source,
-    unsigned long value,
-    unsigned long* address,
-    unsigned long skip,
+    long unsigned int* value,
+    long unsigned int* address,
+    long unsigned int skip,
     bool updateAddress
 )
 {
@@ -187,9 +213,9 @@ bool writeULong(
         return false;
     }
 
-    int ULONG_SIZE = sizeof(unsigned long);
+    int ULONG_SIZE = sizeof(long unsigned int);
 
-    size_t r_fwrite = fwrite(&value, ULONG_SIZE, 1, source);
+    size_t r_fwrite = fwrite(value, ULONG_SIZE, 1, source);
 
     if (r_fwrite != 1)
     {
@@ -206,9 +232,9 @@ bool writeULong(
 
 bool writeFloat(
     FILE* source,
-    float value,
-    unsigned long* address,
-    unsigned long skip,
+    float* value,
+    long unsigned int* address,
+    long unsigned int skip,
     bool updateAddress
 )
 {
@@ -226,7 +252,7 @@ bool writeFloat(
 
     int FLOAT_SIZE = sizeof(float);
 
-    size_t r_fwrite = fwrite(&value, FLOAT_SIZE, 1, source);
+    size_t r_fwrite = fwrite(value, FLOAT_SIZE, 1, source);
 
     if (r_fwrite != 1)
     {
@@ -246,9 +272,9 @@ bool writeFloat(
 bool writeUByteArray(
     FILE* source,
     unsigned char* value,
-    unsigned long length,
-    unsigned long* address,
-    unsigned long skip,
+    long unsigned int length,
+    long unsigned int* address,
+    long unsigned int skip,
     bool updateAddress
 )
 {
@@ -266,7 +292,7 @@ bool writeUByteArray(
 
     int UBYTE_SIZE = sizeof(unsigned char);
 
-    size_t r_fwrite = fwrite(&value, UBYTE_SIZE, length, source);
+    size_t r_fwrite = fwrite(value, UBYTE_SIZE, length, source);
 
     if (r_fwrite != length)
     {

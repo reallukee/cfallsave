@@ -29,7 +29,7 @@ int main(int argc, char* argv[])
 
     FO4SAVE* save = readFO4Save(saveName);
 
-    if (save == NULL)
+    if (!isFO4SaveOpen(save))
     {
         return -1;
     }

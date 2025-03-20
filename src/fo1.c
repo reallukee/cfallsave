@@ -24,6 +24,11 @@ FO1SAVE* readFO1Save(
     const char* saveName
 )
 {
+    if (saveName == NULL)
+    {
+        return NULL;
+    }
+
     FO1SAVE* save = (FO1SAVE*)malloc(FO1SAVE_SIZE);
 
     if (save == NULL)
@@ -51,7 +56,7 @@ FO1SAVE* readFO1Save(
 
     strcpy(save->saveFileName, saveName);
 
-    unsigned long address = 0;
+    long unsigned int address = 0;
     bool fail = false;
 
     save->propAddresses[FO1SAVE_PROPS_SAVE_SIGNATURE] = address;
@@ -74,23 +79,34 @@ FO1SAVE* readFO1Save(
 }
 
 bool writeFO1Save(
-    FO1SAVE* save,
-    char* saveName
+    FO1SAVE* save
 )
 {
-    return false;
+    if (save == NULL)
+    {
+        return false;
+    }
+
+    return true;
 }
 
 bool isFO1Save(
     const char* saveName
 )
 {
+    if (saveName == NULL)
+    {
+        return false;
+    }
+
     FO1SAVE* save = (FO1SAVE*)malloc(FO1SAVE_SIZE);
 
     if (save == NULL)
     {
         return false;
     }
+
+    memset(save, 0, FO1SAVE_SIZE);
 
     save->save = fopen(saveName, "r+b");
 
@@ -101,7 +117,7 @@ bool isFO1Save(
         return false;
     }
 
-    unsigned long address = 0;
+    long unsigned int address = 0;
 
     readFixedString(save->save, save->saveSignature, FO1SAVE_SIGNATURE_LENGTH, &address, 0, true);
 
@@ -110,6 +126,18 @@ bool isFO1Save(
     closeFO1Save(save);
 
     return r_strcmp == 0;
+}
+
+bool isFO1SaveOpen(
+    FO1SAVE* save
+)
+{
+    if (save == NULL)
+    {
+        return false;
+    }
+
+    return save->save != NULL;
 }
 
 void closeFO1Save(
@@ -131,7 +159,68 @@ void closeFO1Save(
 
 
 
+bool getFO1SaveProp(
+    FO1SAVE* save,
+    FO1SAVE_PROPS prop,
+    void** destination
+)
+{
+    if (save == NULL || destination == NULL)
+    {
+        return false;
+    }
+
+    return false;
+}
+
+bool setFO1SaveProp(
+    FO1SAVE* save,
+    FO1SAVE_PROPS prop,
+    void** value
+)
+{
+    if (save == NULL || value == NULL)
+    {
+        return false;
+    }
+
+    return false;
+}
+
+
+
 bool readFO1SaveProp(
+    FO1SAVE* save,
+    FO1SAVE_PROPS prop,
+    void** destination
+)
+{
+    if (save == NULL || save->save == NULL)
+    {
+        return false;
+    }
+
+    bool result = true;
+
+    switch (prop)
+    {
+    case FO1SAVE_PROPS_SAVE_SIGNATURE:
+        result = readFixedString(save->save, (char*)destination, FO1SAVE_SIGNATURE_LENGTH, &save->propAddresses[prop], 0, false);
+        break;
+
+    case FO1SAVE_PROPS_SAVE_NAME:
+    case FO1SAVE_PROPS_PLAYER_NAME:
+        result = readFixedString(save->save, (char*)destination, 32, &save->propAddresses[prop], 0, false);
+        break;
+
+    default:
+        break;
+    }
+
+    return result;
+}
+
+bool writeFO1SaveProp(
     FO1SAVE* save,
     FO1SAVE_PROPS prop,
     void** value
@@ -147,12 +236,12 @@ bool readFO1SaveProp(
     switch (prop)
     {
     case FO1SAVE_PROPS_SAVE_SIGNATURE:
-        result = readFixedString(save->save, (char*)value, FO1SAVE_SIGNATURE_LENGTH, &save->propAddresses[prop], 0, false);
+        result = writeFixedString(save->save, (char*)value, FO1SAVE_SIGNATURE_LENGTH, &save->propAddresses[prop], 0, false);
         break;
 
     case FO1SAVE_PROPS_SAVE_NAME:
     case FO1SAVE_PROPS_PLAYER_NAME:
-        result = readFixedString(save->save, (char*)value, 32, &save->propAddresses[prop], 0, false);
+        result = writeFixedString(save->save, (char*)value, 32, &save->propAddresses[prop], 0, false);
         break;
 
     default:
@@ -160,15 +249,6 @@ bool readFO1SaveProp(
     }
 
     return result;
-}
-
-bool writeFO1SaveProp(
-    FO1SAVE* save,
-    FO1SAVE_PROPS prop,
-    void* value
-)
-{
-    return false;
 }
 
 
@@ -204,7 +284,7 @@ bool printFO1SaveProps(
     printf("\n");
 
     printf("Game Name      : %s\n", FO1SAVE_GAME_NAME);
-    printf("Save Name      : %s\n", save->saveFileName);
+    printf("Save File Name : %s\n", save->saveFileName);
 
     printf("\n");
 
@@ -224,13 +304,13 @@ bool printFO1SavePropAddresses(
         return false;
     }
 
-    printf("***************************\n");
-    printf("* FO1SAVE PROPS ADDRESSES *\n");
-    printf("***************************\n");
+    printf("**************************\n");
+    printf("* FO1SAVE PROP ADDRESSES *\n");
+    printf("**************************\n");
 
     printf("\n");
 
-    printf("%-14s : %s\n", "Save Name", save->saveName);
+    printf("%-14s : %s\n", "Save File Name", save->saveName);
 
     printf("\n");
 
@@ -240,13 +320,13 @@ bool printFO1SavePropAddresses(
         "Player Name"
     };
 
-    unsigned long* propAddresses[] = {
+    long unsigned int* propAddresses[FO1SAVE_PROPS_COUNT] = {
         &save->propAddresses[FO1SAVE_PROPS_SAVE_SIGNATURE],
         &save->propAddresses[FO1SAVE_PROPS_SAVE_NAME],
         &save->propAddresses[FO1SAVE_PROPS_PLAYER_NAME]
     };
 
-    for (unsigned long i = 0; i < FO1SAVE_PROPS_COUNT - 1; i++)
+    for (long unsigned int i = 0; i < FO1SAVE_PROPS_COUNT; i++)
     {
         printf("%-14s : %016lu %04lX\n", propNames[i], *propAddresses[i], *propAddresses[i]);
     }

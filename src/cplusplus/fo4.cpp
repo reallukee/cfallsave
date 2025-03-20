@@ -18,11 +18,38 @@
 
 #include "fo4.hpp"
 
-namespace cfallsave
+namespace cfallsavepp
 {
+    FO4SAVE* FO4Save::getFO4SAVE()
+    {
+        return this->save;
+    }
+
+    void FO4Save::setFO4SAVE(FO4SAVE* save)
+    {
+        if (save == nullptr)
+        {
+            return;
+        }
+
+        if (this->save != nullptr)
+        {
+            closeFO4Save(this->save);
+        }
+
+        this->save = save;
+    }
+
+
+
     FO4Save::FO4Save()
     {
         return;
+    }
+
+    FO4Save::FO4Save(FO4SAVE* save)
+    {
+        this->save = save;
     }
 
     FO4Save::FO4Save(string saveName)
@@ -37,21 +64,38 @@ namespace cfallsave
 
 
 
-    void FO4Save::readSave(string saveName)
+    bool FO4Save::readSave(string saveName)
     {
         const char* c_saveName = saveName.c_str();
 
-        this->save = readFO4Save(c_saveName);
-
-        if (this->save == nullptr)
+        if (isFO4Save(c_saveName))
         {
-            return;
+            this->save = readFO4Save(c_saveName);
         }
+
+        return this->save != nullptr;
+    }
+
+    bool FO4Save::writeSave()
+    {
+        return writeFO4Save(this->save);
+    }
+
+    void FO4Save::closeSave()
+    {
+        return closeFO4Save(this->save);
+    }
+
+    bool FO4Save::isSave(string saveName)
+    {
+        const char* c_saveName = saveName.c_str();
+
+        return isFO4Save(c_saveName);
     }
 
     bool FO4Save::isOpen()
     {
-        return this->save != nullptr;
+        return isFO4SaveOpen(this->save);
     }
 
 
@@ -61,9 +105,41 @@ namespace cfallsave
         printFO4Save(this->save);
     }
 
+    void FO4Save::printSaveProps()
+    {
+        printFO4SaveProps(this->save);
+    }
+
+    void FO4Save::printSavePropAddresses()
+    {
+        printFO4SavePropAddresses(this->save);
+    }
+
     void FO4Save::printSaveSnapshot()
     {
         printFO4SaveSnapshot(this->save);
+    }
+
+
+
+    string FO4Save::getGameName()
+    {
+        if (this->save == nullptr)
+        {
+            return "";
+        }
+
+        return FO4SAVE_GAME_NAME;
+    }
+
+    string FO4Save::getSaveFileName()
+    {
+        if (this->save == nullptr || this->save->saveFileName == nullptr)
+        {
+            return "";
+        }
+
+        return save->saveFileName;
     }
 
 
@@ -102,7 +178,7 @@ namespace cfallsave
 
     string FO4Save::getPlayerName()
     {
-        if (this->save == nullptr)
+        if (this->save == nullptr || this->save->playerName == nullptr)
         {
             return "";
         }
@@ -122,7 +198,7 @@ namespace cfallsave
 
     string FO4Save::getPlayerLocation()
     {
-        if (this->save == nullptr)
+        if (this->save == nullptr || this->save->playerLocation == nullptr)
         {
             return "";
         }
@@ -132,7 +208,7 @@ namespace cfallsave
 
     string FO4Save::getPlayerPlaytime()
     {
-        if (this->save == nullptr)
+        if (this->save == nullptr || this->save->playerPlaytime == nullptr)
         {
             return "";
         }
@@ -142,7 +218,7 @@ namespace cfallsave
 
     string FO4Save::getPlayerRace()
     {
-        if (this->save == nullptr)
+        if (this->save == nullptr || this->save->playerRace == nullptr)
         {
             return "";
         }
@@ -150,7 +226,7 @@ namespace cfallsave
         return this->save->playerRace;
     }
 
-    unsigned short FO4Save::getPlayerSex()
+    short unsigned int FO4Save::getPlayerSex()
     {
         if (this->save == nullptr)
         {
@@ -202,9 +278,19 @@ namespace cfallsave
         return this->save->snapshotHeight;
     }
 
-    unsigned char* FO4Save::getSnapshot()
+    long unsigned int FO4Save::getSnapshotLength()
     {
         if (this->save == nullptr)
+        {
+            return 0;
+        }
+
+        return this->save->snapshotLength;
+    }
+
+    unsigned char* FO4Save::getSnapshot()
+    {
+        if (this->save == nullptr || this->save->snapshot == nullptr)
         {
             return nullptr;
         }

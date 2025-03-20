@@ -18,11 +18,38 @@
 
 #include "fotbos.hpp"
 
-namespace cfallsave
+namespace cfallsavepp
 {
+    FOTBOSSAVE* FOTBOSSave::getFOTBOSSAVE()
+    {
+        return this->save;
+    }
+
+    void FOTBOSSave::setFOTBOSSAVE(FOTBOSSAVE* save)
+    {
+        if (save == nullptr)
+        {
+            return;
+        }
+
+        if (this->save != nullptr)
+        {
+            closeFOTBOSSave(this->save);
+        }
+
+        this->save = save;
+    }
+
+
+
     FOTBOSSave::FOTBOSSave()
     {
         return;
+    }
+
+    FOTBOSSave::FOTBOSSave(FOTBOSSAVE* save)
+    {
+        this->save = save;
     }
 
     FOTBOSSave::FOTBOSSave(string saveName)
@@ -37,21 +64,38 @@ namespace cfallsave
 
 
 
-    void FOTBOSSave::readSave(string saveName)
+    bool FOTBOSSave::readSave(string saveName)
     {
         const char* c_saveName = saveName.c_str();
 
-        this->save = readFOTBOSSave(c_saveName);
-
-        if (this->save == nullptr)
+        if (isFOTBOSSave(c_saveName))
         {
-            return;
+            this->save = readFOTBOSSave(c_saveName);
         }
+
+        return this->save != nullptr;
+    }
+
+    bool FOTBOSSave::writeSave()
+    {
+        return writeFOTBOSSave(this->save);
+    }
+
+    void FOTBOSSave::closeSave()
+    {
+        return closeFOTBOSSave(this->save);
+    }
+
+    bool FOTBOSSave::isSave(string saveName)
+    {
+        const char* c_saveName = saveName.c_str();
+
+        return isFOTBOSSave(c_saveName);
     }
 
     bool FOTBOSSave::isOpen()
     {
-        return this->save != nullptr;
+        return isFOTBOSSaveOpen(this->save);
     }
 
 
@@ -59,6 +103,38 @@ namespace cfallsave
     void FOTBOSSave::printSave()
     {
         printFOTBOSSave(this->save);
+    }
+
+    void FOTBOSSave::printSaveProps()
+    {
+        printFOTBOSSaveProps(this->save);
+    }
+
+    void FOTBOSSave::printSavePropAddresses()
+    {
+        printFOTBOSSavePropAddresses(this->save);
+    }
+
+
+
+    string FOTBOSSave::getGameName()
+    {
+        if (this->save == nullptr)
+        {
+            return "";
+        }
+
+        return FOTBOSSAVE_GAME_NAME;
+    }
+
+    string FOTBOSSave::getSaveFileName()
+    {
+        if (this->save == nullptr || this->save->saveFileName == nullptr)
+        {
+            return "";
+        }
+
+        return save->saveFileName;
     }
 
 
@@ -75,7 +151,7 @@ namespace cfallsave
 
     string FOTBOSSave::getSaveName()
     {
-        if (this->save == nullptr)
+        if (this->save == nullptr || this->save->saveName == nullptr)
         {
             return "";
         }
@@ -87,7 +163,7 @@ namespace cfallsave
 
     string FOTBOSSave::getPlayerName()
     {
-        if (this->save == nullptr)
+        if (this->save == nullptr || this->save->playerName == nullptr)
         {
             return "";
         }
@@ -97,7 +173,7 @@ namespace cfallsave
 
     string FOTBOSSave::getPlayerLocation()
     {
-        if (this->save == nullptr)
+        if (this->save == nullptr || this->save->playerLocation == nullptr)
         {
             return "";
         }
@@ -107,7 +183,7 @@ namespace cfallsave
 
     string FOTBOSSave::getGameDateTime()
     {
-        if (this->save == nullptr)
+        if (this->save == nullptr || this->save->gameDateTime == nullptr)
         {
             return "";
         }

@@ -25,6 +25,7 @@
 #define FO3SAVE_SIGNATURE           "FO3SAVEGAME"
 #define FO3SAVE_SIGNATURE_LENGTH    11
 #define FO3SAVE_PROPS_COUNT         11
+#define FO3SAVE_SAVE_STANDARD_EXT   ".fos"
 
 typedef enum FO3SAVE_PROPS
 {
@@ -65,10 +66,10 @@ typedef struct FO3SAVE
 
     unsigned int snapshotWidth;
     unsigned int snapshotHeight;
-    unsigned long snapshotLength;
+    long unsigned int snapshotLength;
     unsigned char* snapshot;
 
-    unsigned long propAddresses[FO3SAVE_PROPS_COUNT];
+    long unsigned int propAddresses[FO3SAVE_PROPS_COUNT];
 } FO3SAVE;
 
 #define FO3SAVE_PROPS_SIZE  sizeof(FO3SAVE_PROPS)
@@ -81,12 +82,15 @@ CFALLSAVE_API FO3SAVE* readFO3Save(
 );
 
 CFALLSAVE_API bool writeFO3Save(
-    FO3SAVE* save,
-    char* saveName
+    FO3SAVE* save
 );
 
 CFALLSAVE_API bool isFO3Save(
     const char* saveName
+);
+
+CFALLSAVE_API bool isFO3SaveOpen(
+    FO3SAVE* save
 );
 
 CFALLSAVE_API void closeFO3Save(
@@ -95,16 +99,30 @@ CFALLSAVE_API void closeFO3Save(
 
 
 
-CFALLSAVE_API bool readFO3SaveProp(
+CFALLSAVE_API bool getFO3SaveProp(
+    FO3SAVE* save,
+    FO3SAVE_PROPS prop,
+    void** destination
+);
+
+CFALLSAVE_API bool setFO3SaveProp(
     FO3SAVE* save,
     FO3SAVE_PROPS prop,
     void** value
 );
 
+
+
+CFALLSAVE_API bool readFO3SaveProp(
+    FO3SAVE* save,
+    FO3SAVE_PROPS prop,
+    void** destination
+);
+
 CFALLSAVE_API bool writeFO3SaveProp(
     FO3SAVE* save,
     FO3SAVE_PROPS prop,
-    void* value
+    void** value
 );
 
 

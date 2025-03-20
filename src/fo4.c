@@ -24,6 +24,11 @@ FO4SAVE* readFO4Save(
     const char* saveName
 )
 {
+    if (saveName == NULL)
+    {
+        return NULL;
+    }
+
     FO4SAVE* save = (FO4SAVE*)malloc(FO4SAVE_SIZE);
 
     if (save == NULL)
@@ -51,7 +56,7 @@ FO4SAVE* readFO4Save(
 
     strcpy(save->saveFileName, saveName);
 
-    unsigned long address = 0;
+    long unsigned int address = 0;
     bool fail = false;
 
     save->propAddresses[FO4SAVE_PROPS_SAVE_SIGNATURE] = address;
@@ -125,23 +130,34 @@ FO4SAVE* readFO4Save(
 }
 
 bool writeFO4Save(
-    FO4SAVE* save,
-    char* saveName
+    FO4SAVE* save
 )
 {
-    return false;
+    if (save == NULL)
+    {
+        return false;
+    }
+
+    return true;
 }
 
 bool isFO4Save(
     const char* saveName
 )
 {
+    if (saveName == NULL)
+    {
+        return false;
+    }
+
     FO4SAVE* save = (FO4SAVE*)malloc(FO4SAVE_SIZE);
 
     if (save == NULL)
     {
         return false;
     }
+
+    memset(save, 0, FO4SAVE_SIZE);
 
     save->save = fopen(saveName, "r+b");
 
@@ -152,7 +168,7 @@ bool isFO4Save(
         return false;
     }
 
-    unsigned long address = 0;
+    long unsigned int address = 0;
 
     readFixedString(save->save, save->saveSignature, FO4SAVE_SIGNATURE_LENGTH, &address, 0, true);
 
@@ -161,6 +177,18 @@ bool isFO4Save(
     closeFO4Save(save);
 
     return r_strcmp == 0;
+}
+
+bool isFO4SaveOpen(
+    FO4SAVE* save
+)
+{
+    if (save == NULL)
+    {
+        return false;
+    }
+
+    return save->save != NULL;
 }
 
 void closeFO4Save(
@@ -188,7 +216,91 @@ void closeFO4Save(
 
 
 
+bool getFO4SaveProp(
+    FO4SAVE* save,
+    FO4SAVE_PROPS prop,
+    void** destination
+)
+{
+    if (save == NULL || destination == NULL)
+    {
+        return false;
+    }
+
+    return false;
+}
+
+bool setFO4SaveProp(
+    FO4SAVE* save,
+    FO4SAVE_PROPS prop,
+    void** value
+)
+{
+    if (save == NULL || value == NULL)
+    {
+        return false;
+    }
+
+    return false;
+}
+
+
+
 bool readFO4SaveProp(
+    FO4SAVE* save,
+    FO4SAVE_PROPS prop,
+    void** destination
+)
+{
+    if (save == NULL || save->save == NULL)
+    {
+        return false;
+    }
+
+    bool result = true;
+
+    switch (prop)
+    {
+    case FO4SAVE_PROPS_SAVE_SIGNATURE:
+        result = readFixedString(save->save, (char*)destination, FO4SAVE_SIGNATURE_LENGTH, &save->propAddresses[prop], 0, false);
+        break;
+
+    case FO4SAVE_PROPS_ENGINE_VERSION:
+    case FO4SAVE_PROPS_SAVE_NUMBER:
+    case FO4SAVE_PROPS_PLAYER_LEVEL:
+    case FO4SAVE_PROPS_SNAPSHOT_WIDTH:
+    case FO4SAVE_PROPS_SNAPSHOT_HEIGHT:
+        result = readUInt(save->save, (unsigned int*)destination, &save->propAddresses[prop], 0, false);
+        break;
+
+    case FO4SAVE_PROPS_PLAYER_NAME:
+    case FO4SAVE_PROPS_PLAYER_LOCATION:
+    case FO4SAVE_PROPS_PLAYER_PLAYTIME:
+    case FO4SAVE_PROPS_PLAYER_RACE:
+        result = readString(save->save, (char**)destination, &save->propAddresses[prop], 0, 0, false);
+        break;
+
+    case FO4SAVE_PROPS_PLAYER_SEX:
+        result = readUShort(save->save, (short unsigned int*)destination, &save->propAddresses[prop], 0, false);
+        break;
+
+    case FO4SAVE_PROPS_PLAYER_CURRENT_XP:
+    case FO4SAVE_PROPS_PLAYER_REQUIRED_XP:
+        result = readFloat(save->save, (float*)destination, &save->propAddresses[prop], 0, false);
+        break;
+
+    case FO4SAVE_PROPS_SNAPSHOT:
+        result = readUByteArray(save->save, (unsigned char*)destination, save->snapshotLength, &save->propAddresses[prop], 0, false);
+        break;
+
+    default:
+        break;
+    }
+
+    return result;
+}
+
+bool writeFO4SaveProp(
     FO4SAVE* save,
     FO4SAVE_PROPS prop,
     void** value
@@ -204,7 +316,7 @@ bool readFO4SaveProp(
     switch (prop)
     {
     case FO4SAVE_PROPS_SAVE_SIGNATURE:
-        result = readFixedString(save->save, (char*)value, FO4SAVE_SIGNATURE_LENGTH, &save->propAddresses[prop], 0, false);
+        result = writeFixedString(save->save, (char*)value, FO4SAVE_SIGNATURE_LENGTH, &save->propAddresses[prop], 0, false);
         break;
 
     case FO4SAVE_PROPS_ENGINE_VERSION:
@@ -212,27 +324,27 @@ bool readFO4SaveProp(
     case FO4SAVE_PROPS_PLAYER_LEVEL:
     case FO4SAVE_PROPS_SNAPSHOT_WIDTH:
     case FO4SAVE_PROPS_SNAPSHOT_HEIGHT:
-        result = readUInt(save->save, (unsigned int*)value, &save->propAddresses[prop], 0, false);
+        result = writeUInt(save->save, (unsigned int*)value, &save->propAddresses[prop], 0, false);
         break;
 
     case FO4SAVE_PROPS_PLAYER_NAME:
     case FO4SAVE_PROPS_PLAYER_LOCATION:
     case FO4SAVE_PROPS_PLAYER_PLAYTIME:
     case FO4SAVE_PROPS_PLAYER_RACE:
-        result = readString(save->save, (char**)value, &save->propAddresses[prop], 0, 0, false);
+        result = writeString(save->save, (char**)value, &save->propAddresses[prop], 0, 0, false);
         break;
 
     case FO4SAVE_PROPS_PLAYER_SEX:
-        result = readUShort(save->save, (unsigned short*)value, &save->propAddresses[prop], 0, false);
+        result = writeUShort(save->save, (short unsigned int*)value, &save->propAddresses[prop], 0, false);
         break;
 
     case FO4SAVE_PROPS_PLAYER_CURRENT_XP:
     case FO4SAVE_PROPS_PLAYER_REQUIRED_XP:
-        result = readFloat(save->save, (float*)value, &save->propAddresses[prop], 0, false);
+        result = writeFloat(save->save, (float*)value, &save->propAddresses[prop], 0, false);
         break;
 
     case FO4SAVE_PROPS_SNAPSHOT:
-        result = readUByteArray(save->save, (unsigned char*)value, save->snapshotLength, &save->propAddresses[prop], 0, false);
+        result = writeUByteArray(save->save, (unsigned char*)value, save->snapshotLength, &save->propAddresses[prop], 0, false);
         break;
 
     default:
@@ -240,15 +352,6 @@ bool readFO4SaveProp(
     }
 
     return result;
-}
-
-bool writeFO4SaveProp(
-    FO4SAVE* save,
-    FO4SAVE_PROPS prop,
-    void* value
-)
-{
-    return false;
 }
 
 
@@ -284,7 +387,7 @@ bool printFO4SaveProps(
     printf("\n");
 
     printf("Game Name          : %s\n", FO4SAVE_GAME_NAME);
-    printf("Save Name          : %s\n", save->saveFileName);
+    printf("Save File Name     : %s\n", save->saveFileName);
 
     printf("\n");
 
@@ -315,14 +418,14 @@ bool printFO4SavePropAddresses(
         return false;
     }
 
-    printf("***************************\n");
-    printf("* FO4SAVE PROPS ADDRESSES *\n");
-    printf("***************************\n");
+    printf("**************************\n");
+    printf("* FO4SAVE PROP ADDRESSES *\n");
+    printf("**************************\n");
 
     printf("\n");
 
     printf("%-18s : %s\n", "Game Name", FO4SAVE_GAME_NAME);
-    printf("%-18s : %s\n", "Save Name", save->saveFileName);
+    printf("%-18s : %s\n", "Save File Name", save->saveFileName);
 
     printf("\n");
 
@@ -342,7 +445,7 @@ bool printFO4SavePropAddresses(
         "Snapshot Height"
     };
 
-    unsigned long* propAddresses[] = {
+    long unsigned int* propAddresses[FO4SAVE_PROPS_COUNT - 1] = {
         &save->propAddresses[FO4SAVE_PROPS_SAVE_SIGNATURE],
         &save->propAddresses[FO4SAVE_PROPS_ENGINE_VERSION],
         &save->propAddresses[FO4SAVE_PROPS_SAVE_NUMBER],
@@ -358,7 +461,7 @@ bool printFO4SavePropAddresses(
         &save->propAddresses[FO4SAVE_PROPS_SNAPSHOT_HEIGHT]
     };
 
-    for (unsigned long i = 0; i < FO4SAVE_PROPS_COUNT - 1; i++)
+    for (long unsigned int i = 0; i < FO4SAVE_PROPS_COUNT - 1; i++)
     {
         printf("%-18s : %016lu %04lX\n", propNames[i], *propAddresses[i], *propAddresses[i]);
     }
@@ -375,7 +478,7 @@ bool printFO4SaveSnapshot(
         return false;
     }
 
-    for (unsigned long i = 0; i < save->snapshotLength; i += FO4SAVE_SNAPSHOT_COLOR_BYTES)
+    for (long unsigned int i = 0; i < save->snapshotLength; i += FO4SAVE_SNAPSHOT_COLOR_BYTES)
     {
         printf("R : %03u", save->snapshot[i + 0]);
         printf("G : %03u", save->snapshot[i + 1]);

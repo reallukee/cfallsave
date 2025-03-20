@@ -21,6 +21,14 @@
 
 #define CFALLSAVEPP_LIBRARY
 
+// #ifdef CFALLSAVE_LIBRARY
+//     #undef CFALLSAVE_LIBRARY
+// #endif // CFALLSAVE_LIBRARY
+
+// #ifdef CFALLSAVE_API
+//     #undef CFALLSAVE_API
+// #endif // CFALLSAVE_API
+
 #if defined(_WIN32) || defined(_WIN64)
     #ifdef CFALLSAVEPP_LIBRARY
         #define CFALLSAVEPP_API __declspec(dllexport)

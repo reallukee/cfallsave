@@ -1,4 +1,4 @@
-TARGET  = cfallsave.test
+TARGET  = test
 CC      = gcc
 CFLAGS  = -Wall -Wextra -fPIC
 LDFLAGS = -L../bin -lcfallsave -Wl,-rpath,../../bin

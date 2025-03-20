@@ -25,8 +25,15 @@
 
 using namespace std;
 
-namespace cfallsave
+namespace cfallsavepp
 {
+    enum class CFALLSAVEPP_API FO2SaveProps
+    {
+        SaveSignature   = 0,
+        SaveName        = 1,
+        PlayerName      = 2
+    };
+
     class CFALLSAVEPP_API FO2Save
     {
 
@@ -36,14 +43,30 @@ namespace cfallsave
 
     public:
 
+        FO2SAVE* getFO2SAVE();
+        void setFO2SAVE(FO2SAVE* save);
+
+
+
         FO2Save();
+        FO2Save(FO2SAVE* save);
         FO2Save(string saveName);
         ~FO2Save();
 
-        void readSave(string saveName);
+        bool readSave(string saveName);
+        bool writeSave();
+        void closeSave();
+        static bool isSave(string saveName);
         bool isOpen();
 
         void printSave();
+        void printSaveProps();
+        void printSavePropAddresses();
+
+
+
+        string getGameName();
+        string getSaveFileName();
 
         string getSaveSignature();
         string getSaveName();

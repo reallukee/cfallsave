@@ -11,7 +11,7 @@ int main(int argc, char* argv[])
 
     FOTBOSSAVE* save = readFOTBOSSave(saveName);
 
-    if (save == NULL)
+    if (!isFOTBOSSaveOpen(save))
     {
         return -1;
     }

@@ -23,12 +23,24 @@
 
 #if defined(_WIN32) || defined(_WIN64)
     #ifdef CFALLSAVE_LIBRARY
-        #define CFALLSAVE_API __declspec(dllexport)
+        #ifdef __cplusplus
+            #define CFALLSAVE_API  extern "C" __declspec(dllexport)
+        #else
+            #define CFALLSAVE_API __declspec(dllexport)
+        #endif // __cplusplus
     #else
-        #define CFALLSAVE_API __declspec(dllimport)
+        #ifdef __cplusplus
+            #define CFALLSAVE_API extern "C" __declspec(dllimport)
+        #else
+            #define CFALLSAVE_API __declspec(dllimport)
+        #endif // __cplusplus
     #endif // CFALLSAVE_LIBRARY
 #else
-    #define CFALLSAVE_API
+    #ifdef __cplusplus
+        #define CFALLSAVE_API extern "C"
+    #else
+        #define CFALLSAVE_API
+    #endif // __cplusplus
 #endif // _WIN32 || _WIN64
 
 #endif // !CFALLSAVE_EXPORT_H

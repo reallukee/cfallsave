@@ -18,11 +18,38 @@
 
 #include "fo1.hpp"
 
-namespace cfallsave
+namespace cfallsavepp
 {
+    FO1SAVE* FO1Save::getFO1SAVE()
+    {
+        return this->save;
+    }
+
+    void FO1Save::setFO1SAVE(FO1SAVE* save)
+    {
+        if (save == nullptr)
+        {
+            return;
+        }
+
+        if (this->save != nullptr)
+        {
+            closeFO1Save(this->save);
+        }
+
+        this->save = save;
+    }
+
+
+
     FO1Save::FO1Save()
     {
         return;
+    }
+
+    FO1Save::FO1Save(FO1SAVE* save)
+    {
+        this->save = save;
     }
 
     FO1Save::FO1Save(string saveName)
@@ -37,21 +64,38 @@ namespace cfallsave
 
 
 
-    void FO1Save::readSave(string saveName)
+    bool FO1Save::readSave(string saveName)
     {
         const char* c_saveName = saveName.c_str();
 
-        this->save = readFO1Save(c_saveName);
-
-        if (this->save == nullptr)
+        if (isFO1Save(c_saveName))
         {
-            return;
+            this->save = readFO1Save(c_saveName);
         }
+
+        return this->save != nullptr;
+    }
+
+    bool FO1Save::writeSave()
+    {
+        return writeFO1Save(this->save);
+    }
+
+    void FO1Save::closeSave()
+    {
+        return closeFO1Save(this->save);
+    }
+
+    bool FO1Save::isSave(string saveName)
+    {
+        const char* c_saveName = saveName.c_str();
+
+        return isFO1Save(c_saveName);
     }
 
     bool FO1Save::isOpen()
     {
-        return this->save != nullptr;
+        return isFO1SaveOpen(this->save);
     }
 
 
@@ -59,6 +103,38 @@ namespace cfallsave
     void FO1Save::printSave()
     {
         printFO1Save(this->save);
+    }
+
+    void FO1Save::printSaveProps()
+    {
+        printFO1SaveProps(this->save);
+    }
+
+    void FO1Save::printSavePropAddresses()
+    {
+        printFO1SavePropAddresses(this->save);
+    }
+
+
+
+    string FO1Save::getGameName()
+    {
+        if (this->save == nullptr)
+        {
+            return "";
+        }
+
+        return FO1SAVE_GAME_NAME;
+    }
+
+    string FO1Save::getSaveFileName()
+    {
+        if (this->save == nullptr || this->save->saveFileName == nullptr)
+        {
+            return "";
+        }
+
+        return save->saveFileName;
     }
 
 

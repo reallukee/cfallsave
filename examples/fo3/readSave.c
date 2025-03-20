@@ -11,7 +11,7 @@ int main(int argc, char* argv[])
 
     FO3SAVE* save = readFO3Save(saveName);
 
-    if (save == NULL)
+    if (!isFO3SaveOpen(save))
     {
         return -1;
     }

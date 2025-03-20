@@ -18,11 +18,38 @@
 
 #include "fonv.hpp"
 
-namespace cfallsave
+namespace cfallsavepp
 {
+    FONVSAVE* FONVSave::getFONVSAVE()
+    {
+        return this->save;
+    }
+
+    void FONVSave::setFONVSAVE(FONVSAVE* save)
+    {
+        if (save == nullptr)
+        {
+            return;
+        }
+
+        if (this->save != nullptr)
+        {
+            closeFONVSave(this->save);
+        }
+
+        this->save = save;
+    }
+
+
+
     FONVSave::FONVSave()
     {
         return;
+    }
+
+    FONVSave::FONVSave(FONVSAVE* save)
+    {
+        this->save = save;
     }
 
     FONVSave::FONVSave(string saveName)
@@ -37,21 +64,38 @@ namespace cfallsave
 
 
 
-    void FONVSave::readSave(string saveName)
+    bool FONVSave::readSave(string saveName)
     {
         const char* c_saveName = saveName.c_str();
 
-        this->save = readFONVSave(c_saveName);
-
-        if (this->save == nullptr)
+        if (isFONVSave(c_saveName))
         {
-            return;
+            this->save = readFONVSave(c_saveName);
         }
+
+        return this->save != nullptr;
+    }
+
+    bool FONVSave::writeSave()
+    {
+        return writeFONVSave(this->save);
+    }
+
+    void FONVSave::closeSave()
+    {
+        return closeFONVSave(this->save);
+    }
+
+    bool FONVSave::isSave(string saveName)
+    {
+        const char* c_saveName = saveName.c_str();
+
+        return isFONVSave(c_saveName);
     }
 
     bool FONVSave::isOpen()
     {
-        return this->save != nullptr;
+        return isFONVSaveOpen(this->save);
     }
 
 
@@ -61,9 +105,41 @@ namespace cfallsave
         printFONVSave(this->save);
     }
 
+    void FONVSave::printSaveProps()
+    {
+        printFONVSaveProps(this->save);
+    }
+
+    void FONVSave::printSavePropAddresses()
+    {
+        printFONVSavePropAddresses(this->save);
+    }
+
     void FONVSave::printSaveSnapshot()
     {
         printFONVSaveSnapshot(this->save);
+    }
+
+
+
+    string FONVSave::getGameName()
+    {
+        if (this->save == nullptr)
+        {
+            return "";
+        }
+
+        return FONVSAVE_GAME_NAME;
+    }
+
+    string FONVSave::getSaveFileName()
+    {
+        if (this->save == nullptr || this->save->saveFileName == nullptr)
+        {
+            return "";
+        }
+
+        return save->saveFileName;
     }
 
 
@@ -102,7 +178,7 @@ namespace cfallsave
 
     string FONVSave::getPlayerName()
     {
-        if (this->save == nullptr)
+        if (this->save == nullptr || this->save->playerName == nullptr)
         {
             return "";
         }
@@ -122,7 +198,7 @@ namespace cfallsave
 
     string FONVSave::getPlayerTitle()
     {
-        if (this->save == nullptr)
+        if (this->save == nullptr || this->save->playerTitle == nullptr)
         {
             return "";
         }
@@ -132,7 +208,7 @@ namespace cfallsave
 
     string FONVSave::getPlayerLocation()
     {
-        if (this->save == nullptr)
+        if (this->save == nullptr || this->save->playerLocation == nullptr)
         {
             return "";
         }
@@ -142,7 +218,7 @@ namespace cfallsave
 
     string FONVSave::getPlayerPlaytime()
     {
-        if (this->save == nullptr)
+        if (this->save == nullptr || this->save->playerPlaytime == nullptr)
         {
             return "";
         }
@@ -172,9 +248,19 @@ namespace cfallsave
         return this->save->snapshotHeight;
     }
 
-    unsigned char* FONVSave::getSnapshot()
+    long unsigned int FONVSave::getSnapshotLength()
     {
         if (this->save == nullptr)
+        {
+            return 0;
+        }
+
+        return this->save->snapshotLength;
+    }
+
+    unsigned char* FONVSave::getSnapshot()
+    {
+        if (this->save == nullptr || this->save->snapshot == nullptr)
         {
             return nullptr;
         }

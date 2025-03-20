@@ -1,7 +1,7 @@
-TARGET   = cfallsave++.test
+TARGET   = test++
 CXX      = g++
 CXXFLAGS = -Wall -Wextra -fPIC
-LDFLAGS  = -L../bin/cfallsave++ -lcfallsave++ -Wl,-rpath,../../bin/cfallsave++
+LDFLAGS  = -L../bin/cfallsave++ -lcfallsave++ -Wl,-rpath,../../../bin
 
 SRC_DIR = ./src/cplusplus
 OBJ_DIR = obj/test++

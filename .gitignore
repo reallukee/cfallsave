@@ -3,12 +3,17 @@
 
 *.vcxproj.user
 
-# Binary
+# Binary (Linux)
 *.bin
 *.so
 *.a
 *.o
-*.opp
+
+# Binary (Windows)
+*.exe
+*.dll
+*.lib
+*.obj
 
 # Fallout
 *.dat

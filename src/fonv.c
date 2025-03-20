@@ -24,6 +24,11 @@ FONVSAVE* readFONVSave(
     const char* saveName
 )
 {
+    if (saveName == NULL)
+    {
+        return NULL;
+    }
+
     FONVSAVE* save = (FONVSAVE*)malloc(FONVSAVE_SIZE);
 
     if (save == NULL)
@@ -51,7 +56,7 @@ FONVSAVE* readFONVSave(
 
     strcpy(save->saveFileName, saveName);
 
-    unsigned long address = 0;
+    long unsigned int address = 0;
     bool fail = false;
 
     save->propAddresses[FONVSAVE_PROPS_SAVE_SIGNATURE] = address;
@@ -116,23 +121,34 @@ FONVSAVE* readFONVSave(
 }
 
 bool writeFONVSave(
-    FONVSAVE* save,
-    char* saveName
+    FONVSAVE* save
 )
 {
-    return false;
+    if (save == NULL)
+    {
+        return false;
+    }
+
+    return true;
 }
 
 bool isFONVSave(
     const char* saveName
 )
 {
+    if (saveName == NULL)
+    {
+        return false;
+    }
+
     FONVSAVE* save = (FONVSAVE*)malloc(FONVSAVE_SIZE);
 
     if (save == NULL)
     {
         return false;
     }
+
+    memset(save, 0, FONVSAVE_SIZE);
 
     save->save = fopen(saveName, "r+b");
 
@@ -143,7 +159,7 @@ bool isFONVSave(
         return false;
     }
 
-    unsigned long address = 0;
+    long unsigned int address = 0;
 
     readFixedString(save->save, save->saveSignature, FONVSAVE_SIGNATURE_LENGTH, &address, 0, true);
 
@@ -171,13 +187,25 @@ bool isFONVSave(
     return nv != '|';
 }
 
+bool isFONVSaveOpen(
+    FONVSAVE* save
+)
+{
+    if (save == NULL)
+    {
+        return false;
+    }
+
+    return save->save != NULL;
+}
+
 void closeFONVSave(
     FONVSAVE* save
 )
 {
     if (save != NULL)
     {
-        if (save != NULL)
+        if (save->save != NULL)
         {
             fclose(save->save);
         }
@@ -196,7 +224,82 @@ void closeFONVSave(
 
 
 
+bool getFONVSaveProp(
+    FONVSAVE* save,
+    FONVSAVE_PROPS prop,
+    void** destination
+)
+{
+    if (save == NULL || destination == NULL)
+    {
+        return false;
+    }
+
+    return false;
+}
+
+bool setFONVSaveProp(
+    FONVSAVE* save,
+    FONVSAVE_PROPS prop,
+    void** value
+)
+{
+    if (save == NULL || value == NULL)
+    {
+        return false;
+    }
+
+    return false;
+}
+
+
+
 bool readFONVSaveProp(
+    FONVSAVE* save,
+    FONVSAVE_PROPS prop,
+    void** destination
+)
+{
+    if (save == NULL || save->save == NULL)
+    {
+        return false;
+    }
+
+    bool result = true;
+
+    switch (prop)
+    {
+    case FONVSAVE_PROPS_SAVE_SIGNATURE:
+        result = readFixedString(save->save, (char*)destination, FONVSAVE_SIGNATURE_LENGTH, &save->propAddresses[prop], 0, false);
+        break;
+
+    case FONVSAVE_PROPS_ENGINE_VERSION:
+    case FONVSAVE_PROPS_SAVE_NUMBER:
+    case FONVSAVE_PROPS_PLAYER_LEVEL:
+    case FONVSAVE_PROPS_SNAPSHOT_WIDTH:
+    case FONVSAVE_PROPS_SNAPSHOT_HEIGHT:
+        result = readUInt(save->save, (unsigned int*)destination, &save->propAddresses[prop], 0, false);
+        break;
+
+    case FONVSAVE_PROPS_PLAYER_NAME:
+    case FONVSAVE_PROPS_PLAYER_TITLE:
+    case FONVSAVE_PROPS_PLAYER_LOCATION:
+    case FONVSAVE_PROPS_PLAYER_PLAYTIME:
+        result = readString(save->save, (char**)destination, &save->propAddresses[prop], 0, 1, false);
+        break;
+
+    case FONVSAVE_PROPS_SNAPHOST:
+        result = readUByteArray(save->save, (unsigned char*)destination, save->snapshotLength, &save->propAddresses[prop], 0, false);
+        break;
+
+    default:
+        break;
+    }
+
+    return result;
+}
+
+bool writeFONVSaveProp(
     FONVSAVE* save,
     FONVSAVE_PROPS prop,
     void** value
@@ -211,8 +314,8 @@ bool readFONVSaveProp(
 
     switch (prop)
     {
-    case FONVSAVE_PROPS_SAVE_SIGNATURE:
-        result = readFixedString(save->save, (char*)value, FONVSAVE_SIGNATURE_LENGTH, &save->propAddresses[prop], 0, false);
+        case FONVSAVE_PROPS_SAVE_SIGNATURE:
+        result = writeFixedString(save->save, (char*)value, FONVSAVE_SIGNATURE_LENGTH, &save->propAddresses[prop], 0, false);
         break;
 
     case FONVSAVE_PROPS_ENGINE_VERSION:
@@ -220,18 +323,18 @@ bool readFONVSaveProp(
     case FONVSAVE_PROPS_PLAYER_LEVEL:
     case FONVSAVE_PROPS_SNAPSHOT_WIDTH:
     case FONVSAVE_PROPS_SNAPSHOT_HEIGHT:
-        result = readUInt(save->save, (unsigned int*)value, &save->propAddresses[prop], 0, false);
+        result = writeUInt(save->save, (unsigned int*)value, &save->propAddresses[prop], 0, false);
         break;
 
     case FONVSAVE_PROPS_PLAYER_NAME:
     case FONVSAVE_PROPS_PLAYER_TITLE:
     case FONVSAVE_PROPS_PLAYER_LOCATION:
     case FONVSAVE_PROPS_PLAYER_PLAYTIME:
-        result = readString(save->save, (char**)value, &save->propAddresses[prop], 0, 1, false);
+        result = writeString(save->save, (char**)value, &save->propAddresses[prop], 0, 1, false);
         break;
 
     case FONVSAVE_PROPS_SNAPHOST:
-        result = readUByteArray(save->save, (unsigned char*)value, save->snapshotLength, &save->propAddresses[prop], 0, false);
+        result = writeUByteArray(save->save, (unsigned char*)value, save->snapshotLength, &save->propAddresses[prop], 0, false);
         break;
 
     default:
@@ -239,15 +342,6 @@ bool readFONVSaveProp(
     }
 
     return result;
-}
-
-bool writeFONVSaveProp(
-    FONVSAVE* save,
-    FONVSAVE_PROPS prop,
-    void* value
-)
-{
-    return false;
 }
 
 
@@ -283,7 +377,7 @@ bool printFONVSaveProps(
     printf("\n");
 
     printf("Game Name       : %s\n", FONVSAVE_GAME_NAME);
-    printf("Save Name       : %s\n", save->saveFileName);
+    printf("Save File Name  : %s\n", save->saveFileName);
 
     printf("\n");
 
@@ -311,14 +405,14 @@ bool printFONVSavePropAddresses(
         return false;
     }
 
-    printf("****************************\n");
-    printf("* FONVSAVE PROPS ADDRESSES *\n");
-    printf("****************************\n");
+    printf("***************************\n");
+    printf("* FONVSAVE PROP ADDRESSES *\n");
+    printf("***************************\n");
 
     printf("\n");
 
     printf("%-15s : %s\n", "Game Name", FONVSAVE_GAME_NAME);
-    printf("%-15s : %s\n", "Save Name", save->saveFileName);
+    printf("%-15s : %s\n", "Save File Name", save->saveFileName);
 
     printf("\n");
 
@@ -335,7 +429,7 @@ bool printFONVSavePropAddresses(
         "Snapshot Height"
     };
 
-    unsigned long* propAddresses[] = {
+    long unsigned int* propAddresses[FONVSAVE_PROPS_COUNT - 1] = {
         &save->propAddresses[FONVSAVE_PROPS_SAVE_SIGNATURE],
         &save->propAddresses[FONVSAVE_PROPS_ENGINE_VERSION],
         &save->propAddresses[FONVSAVE_PROPS_SAVE_NUMBER],
@@ -348,7 +442,7 @@ bool printFONVSavePropAddresses(
         &save->propAddresses[FONVSAVE_PROPS_SNAPSHOT_HEIGHT]
     };
 
-    for (unsigned long i = 0; i < FONVSAVE_PROPS_COUNT - 1; i++)
+    for (long unsigned int i = 0; i < FONVSAVE_PROPS_COUNT - 1; i++)
     {
         printf("%-15s : %016lu %04lX\n", propNames[i], *propAddresses[i], *propAddresses[i]);
     }
@@ -365,7 +459,7 @@ bool printFONVSaveSnapshot(
         return false;
     }
 
-    for (unsigned long i = 0; i < save->snapshotLength; i += FONVSAVE_SNAPSHOT_COLOR_BYTES)
+    for (long unsigned int i = 0; i < save->snapshotLength; i += FONVSAVE_SNAPSHOT_COLOR_BYTES)
     {
         printf("R : %03u", save->snapshot[i + 0]);
         printf("G : %03u", save->snapshot[i + 1]);

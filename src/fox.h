@@ -38,8 +38,6 @@ typedef enum FOXSAVE_TYPE
     FOXSAVE_TYPE_FO4
 } FOXSAVE_TYPE;
 
-
-
 typedef struct FOXSAVE
 {
     FOXSAVE_TYPE saveType;
@@ -47,7 +45,8 @@ typedef struct FOXSAVE
     void* save;
 } FOXSAVE;
 
-#define FOXSAVE_SIZE sizeof(FOXSAVE)
+#define FOXSAVE_TYPE_SIZE   sizeof(FOXSAVE_TYPE)
+#define FOXSAVE_SIZE        sizeof(FOXSAVE)
 
 
 
@@ -55,12 +54,34 @@ CFALLSAVE_API FOXSAVE* readFOXSave(
     const char* saveName
 );
 
-CFALLSAVE_API void printFOXSave(
+CFALLSAVE_API bool writeFOXSave(
+    FOXSAVE* save
+);
+
+CFALLSAVE_API bool isFOXSaveOpen(
     FOXSAVE* save
 );
 
 CFALLSAVE_API void closeFOXSave(
     FOXSAVE* save
 );
+
+
+
+CFALLSAVE_API bool printFOXSave(
+    FOXSAVE* save
+);
+
+// CFALLSAVE_API bool printFOXSaveProps(
+//     FOXSAVE* save
+// );
+
+// CFALLSAVE_API bool printFOXSavePropAddresses(
+//     FOXSAVE* save
+// );
+
+// CFALLSAVE_API bool printFOXSaveSnapshot(
+//     FOXSAVE* save
+// );
 
 #endif // !CFALLSAVE_FOX_H

@@ -25,6 +25,7 @@
 #define FO4SAVE_SIGNATURE           "FO4_SAVEGAME"
 #define FO4SAVE_SIGNATURE_LENGTH    12
 #define FO4SAVE_PROPS_COUNT         14
+#define FO4SAVE_SAVE_STANDARD_EXT   ".fos"
 
 typedef enum FO4SAVE_PROPS
 {
@@ -65,16 +66,16 @@ typedef struct FO4SAVE
     char* playerLocation;
     char* playerPlaytime;
     char* playerRace;
-    unsigned short playerSex;
+    short unsigned int playerSex;
     float playerCurrentXp;
     float playerRequiredXp;
 
     unsigned int snapshotWidth;
     unsigned int snapshotHeight;
-    unsigned long snapshotLength;
+    long unsigned int snapshotLength;
     unsigned char* snapshot;
 
-    unsigned long propAddresses[FO4SAVE_PROPS_COUNT];
+    long unsigned int propAddresses[FO4SAVE_PROPS_COUNT];
 } FO4SAVE;
 
 #define FO4SAVE_PROPS_SIZE  sizeof(FO4SAVE_FIELDS)
@@ -87,12 +88,15 @@ CFALLSAVE_API FO4SAVE* readFO4Save(
 );
 
 CFALLSAVE_API bool writeFO4Save(
-    FO4SAVE* save,
-    char* saveName
+    FO4SAVE* save
 );
 
 CFALLSAVE_API bool isFO4Save(
     const char* saveName
+);
+
+CFALLSAVE_API bool isFO4SaveOpen(
+    FO4SAVE* save
 );
 
 CFALLSAVE_API void closeFO4Save(
@@ -101,16 +105,30 @@ CFALLSAVE_API void closeFO4Save(
 
 
 
-CFALLSAVE_API bool readFO4SaveProp(
+CFALLSAVE_API bool getFO4SaveProp(
+    FO4SAVE* save,
+    FO4SAVE_PROPS prop,
+    void** destination
+);
+
+CFALLSAVE_API bool setFO4SaveProp(
     FO4SAVE* save,
     FO4SAVE_PROPS prop,
     void** value
 );
 
+
+
+CFALLSAVE_API bool readFO4SaveProp(
+    FO4SAVE* save,
+    FO4SAVE_PROPS prop,
+    void** destination
+);
+
 CFALLSAVE_API bool writeFO4SaveProp(
     FO4SAVE* save,
     FO4SAVE_PROPS prop,
-    void* value
+    void** value
 );
 
 

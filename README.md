@@ -6,7 +6,7 @@
 
 ![CFallSave License](https://img.shields.io/github/license/reallukee/cfallsave?style=flat&label=License)
 
-A C/C++ Library to Read Fallout Save Files
+☢️ A C/C++ Library to Read Fallout Save Files
 
 </div>
 
@@ -41,12 +41,12 @@ int main(int argc, char* argv[])
 }
 ```
 
-```c++
+```cpp
 #include <iostream>
 #include "cfallsave.hpp"
 
 using namespace std;
-using namespace cfallsave;
+using namespace cfallsavepp;
 
 int main(int argc, char* argv[])
 {
@@ -90,16 +90,26 @@ int main(int argc, char* argv[])
 
 ## 1. Requirements
 
-> *Optional requirement*<br />
-> Example: "*git*"
+- [Linux Requirements](#linux-requirements)
+- [Windows Requirements](#windows-requirements)
 
-* [*git*]()
-* [g++]()
-* [gcc]()
-* [make]()
-* [*Visual Studio 2022*]()
+
+
+### Linux Requirements
+
+* gcc
+* g++
+* make
+
+### Windows Requirements
+
+* [Visual Studio 2022]()
     * Desktop development with C++
-* [*Visual Studio Build Tools*]()
+
+OR
+
+* [Build Tools for Visual Studio 2022]()
+    * Desktop development with C++
 
 
 
@@ -116,7 +126,7 @@ git clone https://github.com/reallukee/cfallsave.git
 
 ### Using `GitHub`
 
-> [Download]()
+> [Download](https://github.com/reallukee/cfallsave/archive/refs/heads/main.zip)
 
 
 
@@ -124,6 +134,8 @@ git clone https://github.com/reallukee/cfallsave.git
 
 * [Linux](#linux)
 * [Windows](#windows)
+
+
 
 ### Linux
 
@@ -140,6 +152,14 @@ make -f cfallsave++.makefile
 ```
 
 ### Windows
+
+```batch
+:: Visual Studio 2022
+call "%ProgramFiles%\Microsoft Visual Studio\2022\Community\Common7\Tools\vsdevcmd"
+
+:: Build Tools for Visual Studio 2022
+call "%ProgramFiles% (x86)\Microsoft Visual Studio\2022\BuildTools\Common7\Tools\vsdevcmd"
+```
 
 ```batch
 cd cfallsave\windows

@@ -222,3 +222,96 @@ bool printFOXSave(
         return false;
     }
 }
+
+bool printFOXSaveProps(
+    FOXSAVE* save
+)
+{
+    if (save->save == NULL)
+    {
+        return false;
+    }
+
+    switch (save->saveType)
+    {
+    case FOXSAVE_TYPE_FO1:
+        return printFO1SaveProps((FO1SAVE*)save->save);
+
+    case FOXSAVE_TYPE_FO2:
+        return printFO2SaveProps((FO2SAVE*)save->save);
+
+    case FOXSAVE_TYPE_FOTBOS:
+        return printFOTBOSSaveProps((FOTBOSSAVE*)save->save);
+
+    case FOXSAVE_TYPE_FO3:
+        return printFO3SaveProps((FO3SAVE*)save->save);
+
+    case FOXSAVE_TYPE_FONV:
+        return printFONVSaveProps((FONVSAVE*)save->save);
+
+    case FOXSAVE_TYPE_FO4:
+        return printFO4SaveProps((FO4SAVE*)save->save);
+
+    default:
+        return false;
+    }
+}
+
+bool printFOXSavePropAddresses(
+    FOXSAVE* save
+)
+{
+    if (save->save == NULL)
+    {
+        return false;
+    }
+
+    switch (save->saveType)
+    {
+    case FOXSAVE_TYPE_FO1:
+        return printFO1SavePropAddresses((FO1SAVE*)save->save);
+
+    case FOXSAVE_TYPE_FO2:
+        return printFO2SavePropAddresses((FO2SAVE*)save->save);
+
+    case FOXSAVE_TYPE_FOTBOS:
+        return printFOTBOSSavePropAddresses((FOTBOSSAVE*)save->save);
+
+    case FOXSAVE_TYPE_FO3:
+        return printFO3SavePropAddresses((FO3SAVE*)save->save);
+
+    case FOXSAVE_TYPE_FONV:
+        return printFONVSavePropAddresses((FONVSAVE*)save->save);
+
+    case FOXSAVE_TYPE_FO4:
+        return printFO4SavePropAddresses((FO4SAVE*)save->save);
+
+    default:
+        return false;
+    }
+}
+
+bool printFOXSaveSnapshot(
+    FOXSAVE* save
+)
+{
+    if (save->save == NULL)
+    {
+        return false;
+    }
+
+    switch (save->saveType)
+    {
+    case FOXSAVE_TYPE_FO3:
+        return printFO3SaveSnapshot((FO3SAVE*)save->save);
+
+    case FOXSAVE_TYPE_FONV:
+        return printFONVSaveSnapshot((FONVSAVE*)save->save);
+
+    case FOXSAVE_TYPE_FO4:
+        return printFO4SaveSnapshot((FO4SAVE*)save->save);
+
+    default:
+        return false;
+    }
+}

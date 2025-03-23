@@ -2,41 +2,365 @@
 
 ![Fallout 3 Logo 192x192](../assets/fo3/fo3_logo_192x192.png)
 
-# Fallout 3 API
+# *Fallout 3* C API
 
 [Back to Documentation](../DOCS.md)
-
-| Headers                             | Sources                             |
-| :---------------------------------: | :---------------------------------: |
-| [fo3.h](../src/fo3.h)               | [fo3.c](../src/fo3.c)               |
-| [fo3.hpp](../src/cplusplus/fo3.hpp) | [fo3.cpp](../src/cplusplus/fo3.cpp) |
 
 </div>
 
 
 
+<br />
+
+> [!TIP]
+> Looking for *Fallout 3* C++ API?<br />
+> Click [here](./api_cplusplus_fo3.md)!
+
+
+
 # Summary
 
+* [Code](#code)
 * [Functions](#functions)
 * [Structures](#structures)
 * [Enums](#enums)
 * [Macros](#macros)
-* [Classes](#classes)
+
+
+
+# Code
+
+> Headers: [`fo3.h`](../src/fo3.h)
+
+> Sources: [`fo3.c`](../src/fo3.c)
 
 
 
 # Functions
 
-* `FO3SAVE* readFO3Save(const char* saveName)`
-* `bool writeFO3Save(FO3SAVE* save, char* saveName)`
-* `bool isFO3Save(const char* saveName)`
-* `void closeFO3Save(FO3SAVE* save)`
-* `bool readFO3SaveProp(FO3SAVE* save, FO3SAVE_PROPS prop, void** value)`
-* `bool writeFO3SaveProp(FO3SAVE* save, FO3SAVE_PROPS prop, void* value)`
-* `bool printFO3Save(FO3SAVE* save)`
-* `bool printFO3SaveProps(FO3SAVE* save)`
-* `bool printFO3SavePropAddresses(FO3SAVE* save)`
-* `bool printFO3SaveSnapshot(FO3SAVE* save)`
+> ![NOTE]
+> This section is not yet complete
+
+* [`readFO3Save`](#readfo3save)
+* [`writeFO3Save`](#writefo3save)
+* [`isFO3Save`](#isfo3save)
+* [`isFO3SaveOpen`](#isfo3saveopen)
+* [`closeFO3Save`](#closefo3save)
+* [`getFO3SaveProp`](#getfo3saveprop)
+* [`setFO3SaveProp`](#setfo3saveprop)
+* [`readFO3SaveProp`](#readfo3saveprop)
+* [`writeFO3SaveProp`](#writefo3saveprop)
+* [`printFO3Save`](#printfo3save)
+* [`printFO3SaveProps`](#printfo3saveprops)
+* [`printFO3SavePropAddresses`](#printfo3savepropaddresses)
+* [`printFO3SaveSnapshot`](#printfo3savesnapshot)
+
+
+
+## `readFO3Save`
+
+**Params**
+
+* `const char*` `saveName`
+
+**Returns**
+
+[`FO3SAVE*`](#fo3save) or `NULL`
+
+**Examples**
+
+```c
+FO3SAVE* save = readFO3Save("fo3.fos");
+```
+
+
+## `writeFO3Save`
+
+> [!CAUTION]
+> Experimental function!
+
+**Params**
+
+* [`FO3SAVE*`](#fo3save) `save`
+
+**Returns**
+
+`bool`
+
+**Examples**
+
+```c
+FO3SAVE* save = readFO3Save("fo3.fos");
+
+bool result = writeFO3Save(save);
+```
+
+
+
+## `isFO3Save`
+
+**Params**
+
+* `const char*` `saveName`
+
+**Returns**
+
+`bool`
+
+**Examples**
+
+```c
+bool result = isFO3Save("fo3.fos");
+
+if (result) {
+    printf("FO3 Save\n");
+}
+```
+
+
+
+## `isFO3SaveOpen`
+
+**Params**
+
+* [`FO3SAVE*`](#fo3save) `save`
+
+**Returns**
+
+`bool`
+
+**Examples**
+
+```c
+FO3SAVE* save = readFO3Save("fo3.fos");
+
+bool result = isFO3SaveOpen(save);
+
+if (result) {
+    printf("FO3 Save is Open\n");
+}
+```
+
+
+
+## `closeFO3Save`
+
+**Params**
+
+* [`FO3SAVE*`](#fo3save) `save`
+
+**Returns**
+
+`void`
+
+**Examples**
+
+```c
+FO3SAVE* save = readFO3Save("fo3.fos");
+
+closeFO3Save(save);
+```
+
+
+
+## `getFO3SaveProp`
+
+> [!WARNING]
+> This function is not yet implemented
+
+**Params**
+
+* [`FO3SAVE*`](#fo3save) `save`
+* [`FO3SAVE_PROPS`](#fo3save_props) `prop`
+* `void**` `destination`
+
+**Returns**
+
+`bool`
+
+**Examples**
+
+```c
+FO3SAVE* save = readFO3Save("fo3.fos");
+
+int engineVersion = 0;
+
+bool result = getFO3SaveProp(save, FO3SAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
+
+if (result) {
+    printf("Property: %u\n", engineVersion);
+}
+```
+
+
+
+## `setFO3SaveProp`
+
+> [!WARNING]
+> This function is not yet implemented
+
+**Params**
+
+* [`FO3SAVE*`](#fo3save) `save`
+* [`FO3SAVE_PROPS`](#fo3save_props) `prop`
+* `void**` `value`
+
+**Returns**
+
+`bool`
+
+**Examples**
+
+```c
+FO3SAVE* save = readFO3Save("fo3.fos");
+
+int engineVersion = 0;
+
+bool result = setFO3SaveProp(save, FO3SAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
+
+if (result) {
+    printf("Property: %u\n", engineVersion);
+}
+```
+
+
+
+## `readFO3SaveProp`
+
+**Params**
+
+* [`FO3SAVE*`](#fo3save) `save`
+* [`FO3SAVE_PROPS`](#fo3save_props) `prop`
+* `void**` `destination`
+
+**Returns**
+
+`bool`
+
+**Examples**
+
+```c
+FO3SAVE* save = readFO3Save("fo3.fos");
+
+int engineVersion = 0;
+
+bool result = readFO3SaveProp(save, FO3SAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
+
+if (result) {
+    printf("Property: %u\n", engineVersion);
+}
+```
+
+
+
+## `writeFO3SaveProp`
+
+> [!CAUTION]
+> Experimental function!
+
+**Params**
+
+* [`FO3SAVE*`](#fo3save) `save`
+* [`FO3SAVE_PROPS`](#fo3save_props) `prop`
+* `void**` `value`
+
+**Returns**
+
+`bool`
+
+**Examples**
+
+```c
+FO3SAVE* save = readFO3Save("fo3.fos");
+
+int engineVersion = 0;
+
+bool result = writeFO3SaveProp(save, FO3SAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
+
+if (result) {
+    printf("Property: %u\n", engineVersion);
+}
+```
+
+
+
+## `printFO3Save`
+
+**Params**
+
+* [`FO3SAVE*`](#fo3save) `save`
+
+**Returns**
+
+`bool`
+
+**Examples**
+
+```c
+FO3SAVE* save = readFO3Save("fo3.fos");
+
+printFO3Save(save);
+```
+
+
+
+## `printFO3SaveProps`
+
+**Params**
+
+* [`FO3SAVE*`](#fo3save) `save`
+
+**Returns**
+
+`bool`
+
+**Examples**
+
+```c
+FO3SAVE* save = readFO3Save("fo3.fos");
+
+printFO3SaveProps(save);
+```
+
+
+
+## `printFO3SavePropAddresses`
+
+**Params**
+
+* [`FO3SAVE*`](#fo3save) `save`
+
+**Returns**
+
+`bool`
+
+**Examples**
+
+```c
+FO3SAVE* save = readFO3Save("fo3.fos");
+
+printFO3SavePropAddresses(save);
+```
+
+
+
+## `printFO3SaveSnapshot`
+
+**Params**
+
+* [`FO3SAVE*`](#fo3save) `save`
+
+**Returns**
+
+`bool`
+
+**Examples**
+
+```c
+FO3SAVE* save = readFO3Save("fo3.fos");
+
+printFO3SaveSnapshot(save);
+```
 
 
 
@@ -56,9 +380,9 @@
 * `char* playerPlaytime`
 * `unsigned int snapshotWidth`
 * `unsigned int snapshotHeight`
-* `unsigned long snapshotLength`
+* `long unsigned int snapshotLength`
 * `unsigned char* snapshot`
-* `unsigned long propAddresses[FO3SAVE_PROPS_COUNT]`
+* `long unsigned int propAddresses[FO3SAVE_PROPS_COUNT]`
 
 
 
@@ -68,55 +392,28 @@
 
 | Field                           | Value |
 | :------------------------------ | :---: |
-| `FO3SAVE_PROPS_SAVE_SIGNATURE`  | 0     |
-| `FO3SAVE_PROPS_ENGINE_VERSION`  | 1     |
-| `FO3SAVE_PROPS_SAVE_NUMBER`     | 2     |
-| `FO3SAVE_PROPS_PLAYER_NAME`     | 3     |
-| `FO3SAVE_PROPS_PLAYER_LEVEL`    | 4     |
-| `FO3SAVE_PROPS_PLAYER_TITLE`    | 5     |
-| `FO3SAVE_PROPS_PLAYER_LOCATION` | 6     |
-| `FO3SAVE_PROPS_PLAYER_PLAYTIME` | 7     |
-| `FO3SAVE_PROPS_SNAPSHOT_WIDTH`  | 8     |
-| `FO3SAVE_PROPS_SNAPSHOT_HEIGHT` | 9     |
-| `FO3SAVE_PROPS_SNAPHOST`        | 10    |
+| `FO3SAVE_PROPS_SAVE_SIGNATURE`  | `0`   |
+| `FO3SAVE_PROPS_ENGINE_VERSION`  | `1`   |
+| `FO3SAVE_PROPS_SAVE_NUMBER`     | `2`   |
+| `FO3SAVE_PROPS_PLAYER_NAME`     | `3`   |
+| `FO3SAVE_PROPS_PLAYER_LEVEL`    | `4`   |
+| `FO3SAVE_PROPS_PLAYER_TITLE`    | `5`   |
+| `FO3SAVE_PROPS_PLAYER_LOCATION` | `6`   |
+| `FO3SAVE_PROPS_PLAYER_PLAYTIME` | `7`   |
+| `FO3SAVE_PROPS_SNAPSHOT_WIDTH`  | `8`   |
+| `FO3SAVE_PROPS_SNAPSHOT_HEIGHT` | `9`   |
+| `FO3SAVE_PROPS_SNAPSHOT`        | `10`  |
 
 
 
 # Macros
 
-| Macro                      | Value         |
-| :------------------------- | :------------ |
-| `FO3SAVE_GAME_NAME`        | "Fallout 3"   |
-| `FO3SAVE_SIGNATURE`        | "FO3SAVEGAME" |
-| `FO3SAVE_SIGNATURE_LENGTH` | 11            |
-| `FO3SAVE_PROPS_COUNT`      | 11            |
-| `FO3SAVE_PROPS_SIZE`       | ?             |
-| `FO3SAVE_SIZE`             | ?             |
-
-
-
-# Classes
-
-> [!IMPORTANT]
-> Only for C++
-
-## `FO3Save`
-
-* `FO3Save()`
-* `FO3Save(string saveName)`
-* `~FO3Save()`
-* `void readSave(string saveName)`
-* `bool isOpen()`
-* `void printSave()`
-* `void printSaveSnapshot()`
-* `string getSaveSignature()`
-* `unsigned getEngineVersion()`
-* `unsigned getSaveNumber()`
-* `string getPlayerName()`
-* `unsigned getPlayerLevel()`
-* `string getPlayerTitle()`
-* `string getPlayerLocation()`
-* `string getPlayerPlaytime()`
-* `unsigned getSnapshotWidth()`
-* `unsigned getSnapshotHeight()`
-* `unsigned char* getSnapshot()`
+| Macro                       | Value                   |
+| :-------------------------- | :---------------------- |
+| `FO3SAVE_GAME_NAME`         | `Fallout 3`             |
+| `FO3SAVE_SIGNATURE`         | `FO3SAVEGAME`           |
+| `FO3SAVE_SIGNATURE_LENGTH`  | `11`                    |
+| `FO3SAVE_PROPS_COUNT`       | `11`                    |
+| `FO3SAVE_SAVE_STANDARD_EXT` | `.fos`                  |
+| `FO3SAVE_PROPS_SIZE`        | `sizeof(FO3SAVE_PROPS)` |
+| `FO3SAVE_SIZE`              | `sizeof(FO3SAVE)`       |

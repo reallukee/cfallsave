@@ -33,7 +33,7 @@ CFallSave ToDo
 - [ ] Read/Write Number
 - [ ] Read/Write Array
 - [x] Read Property
-- [ ] Write Property
+- [x] Write Property
 - [ ] Get Property
 - [ ] Set Property
 - [ ] Not Generic Read Property

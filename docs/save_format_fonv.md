@@ -2,7 +2,7 @@
 
 ![Fallout: New Vegas Logo 192x192](../assets/fonv/fonv_logo_192x192.png)
 
-# Fallout: New Vegas Save Format
+# *Fallout: New Vegas* Save Format
 
 [Back to Documentation](../DOCS.md)
 
@@ -21,33 +21,38 @@
 # Save File
 
 > [!NOTE]
-> Fallout: New Vegas Save Format IS VERY CLOSE to Fallout 3 Save Format
+> *Fallout: New Vegas* Save Format IS VERY CLOSE to *Fallout 3* Save Format
 
-| Property         | Save Type            | CFAllSave Type |
-| :--------------- | :------------------- | :------------- |
-| Save Signature   | char[12]             | char[12]       |
-| Engine Version ? | unsigned             | unsigned       |
-| Snapshot Width   | unsigned             | unsigned       |
-| Snapshot Height  | unsigned             | unsigned       |
-| Save Number      | unsigned             | unsigned       |
-| Player Name      | short + '\|' + char* | char*          |
-| Player Level     | unsigned             | unsigned       |
-| Player Title     | short + '\|' + char* | char*          |
-| Player Location  | short + '\|' + char* | char*          |
-| Player Playtime  | short + '\|' + char* | char*          |
-| Snapshot         | unsigned char*       | unsigned char* |
+| Property           | Save Type                           | CFAllSave Type   |
+| :----------------- | :---------------------------------- | :--------------- |
+| `Save Signature`   | `char[12]`                          | `char[12]`       |
+| `Engine Version` ? | `unsigned int`                      | `unsigned int`   |
+| `Snapshot Width`   | `unsigned int`                      | `unsigned int`   |
+| `Snapshot Height`  | `unsigned int`                      | `unsigned int`   |
+| `Save Number`      | `unsigned int`                      | `unsigned int`   |
+| `Player Name`      | `short unsigned int + '\|' + char*` | `char*`          |
+| `Player Level`     | `unsigned int`                      | `unsigned int`   |
+| `Player Title`     | `short unsigned int + '\|' + char*` | `char*`          |
+| `Player Location`  | `short unsigned int + '\|' + char*` | `char*`          |
+| `Player Playtime`  | `short unsigned int + '\|' + char*` | `char*`          |
+| `Snapshot`         | `unsigned char*`                    | `unsigned char*` |
+
+## Snapshot
+
+RGB
 
 
 
 # Data Structure
 
-> Source: [fonv.h](../src/fonv.h)
+> Headers: [`fonv.h`](../src/fonv.h)
 
 ```c
 #define FONVSAVE_GAME_NAME          "Fallout: New Vegas"
 #define FONVSAVE_SIGNATURE          "FO3SAVEGAME"
 #define FONVSAVE_SIGNATURE_LENGTH   11
 #define FONVSAVE_PROPS_COUNT        11
+#define FONVSAVE_SAVE_STANDARD_EXT  ".fos"
 
 typedef enum FONVSAVE_PROPS
 {
@@ -61,7 +66,7 @@ typedef enum FONVSAVE_PROPS
     FONVSAVE_PROPS_PLAYER_PLAYTIME  = 7,
     FONVSAVE_PROPS_SNAPSHOT_WIDTH   = 8,
     FONVSAVE_PROPS_SNAPSHOT_HEIGHT  = 9,
-    FONVSAVE_PROPS_SNAPHOST         = 10
+    FONVSAVE_PROPS_SNAPSHOT         = 10
 } FONVSAVE_PROPS;
 
 #define FONVSAVE_MAX_SNAPSHOT_WIDTH     512
@@ -88,29 +93,32 @@ typedef struct FONVSAVE
 
     unsigned int snapshotWidth;
     unsigned int snapshotHeight;
-    unsigned long snapshotLength;
+    long unsigned int snapshotLength;
     unsigned char* snapshot;
 
-    unsigned long propAddresses[FONVSAVE_PROPS_COUNT];
+    long unsigned int propAddresses[FONVSAVE_PROPS_COUNT];
 } FONVSAVE;
+
+#define FONVSAVE_PROPS_SIZE sizeof(FONVSAVE_PROPS)
+#define FONVSAVE_SIZE       sizeof(FONVSAVE)
 ```
 
 
 
 # Data Types
 
-## char[n]
+## `char[n]`
 
 `char[n] = '\n'`
 
-## short + '|' + char*
+## `short unsigned int + '|' + char*`
 
 ```binary
 0C 00   7C   4A 6F 68 6E 20 46 61 6C 6C 6F 75 74
 ```
 
-| Bytes                               | Type      | Value        |
-| :---------------------------------- | :-------- | :----------- |
-| 0C 00                               | Length    | 12           |
-| 7C                                  | Separator | \|           |
-| 4A 6F 68 6E 20 46 61 6C 6C 6F 75 74 | Value     | John Fallout |
+| Bytes                                 | Type      | Value          |
+| :------------------------------------ | :-------- | :------------- |
+| `0C 00`                               | Length    | `12`           |
+| `7C`                                  | Separator | `\|`           |
+| `4A 6F 68 6E 20 46 61 6C 6C 6F 75 74` | Value     | `John Fallout` |

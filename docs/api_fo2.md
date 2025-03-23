@@ -2,40 +2,344 @@
 
 ![Fallout 2 Logo 192x192](../assets/fo2/fo2_logo_192x192.png)
 
-# Fallout 2 API
+# *Fallout 2* C API
 
 [Back to Documentation](../DOCS.md)
-
-| Headers                             | Sources                             |
-| :---------------------------------: | :---------------------------------: |
-| [fo2.h](../src/fo2.h)               | [fo2.c](../src/fo2.c)               |
-| [fo2.hpp](../src/cplusplus/fo2.hpp) | [fo2.cpp](../src/cplusplus/fo2.cpp) |
 
 </div>
 
 
 
+<br />
+
+> [!TIP]
+> Looking for *Fallout 2* C++ API?<br />
+> Click [here](./api_cplusplus_fo2.md)!
+
+
+
 # Summary
 
+* [Code](#code)
 * [Functions](#functions)
 * [Structures](#structures)
 * [Enums](#enums)
 * [Macros](#macros)
-* [Classes](#classes)
+
+
+
+# Code
+
+> Headers: [`fo2.h`](../src/fo2.h)
+
+> Sources: [`fo2.c`](../src/fo2.c)
 
 
 
 # Functions
 
-* `FO2SAVE* readFO2Save(const char* saveName)`
-* `bool writeFO2Save(FO2SAVE* save, char* saveName)`
-* `bool isFO2Save(const char* saveName)`
-* `void closeFO2Save(FO2SAVE* save)`
-* `bool readFO2SaveProp(FO2SAVE* save, FO2SAVE_PROPS prop, void** value)`
-* `bool writeFO2SaveProp(FO2SAVE* save, FO2SAVE_PROPS prop, void* value)`
-* `bool printFO2Save(FO2SAVE* save)`
-* `bool printFO2SaveProps(FO2SAVE* save)`
-* `bool printFO2SavePropAddresses(FO2SAVE* save)`
+> ![NOTE]
+> This section is not yet complete
+
+* [`readFO2Save`](#readfo2save)
+* [`writeFO2Save`](#writefo2save)
+* [`isFO2Save`](#isfo2save)
+* [`isFO2SaveOpen`](#isfo2saveopen)
+* [`closeFO2Save`](#closefo2save)
+* [`getFO2SaveProp`](#getfo2saveprop)
+* [`setFO2SaveProp`](#setfo2saveprop)
+* [`readFO2SaveProp`](#readfo2saveprop)
+* [`writeFO2SaveProp`](#writefo2saveprop)
+* [`printFO2Save`](#printfo2save)
+* [`printFO2SaveProps`](#printfo2saveprops)
+* [`printFO2SavePropAddresses`](#printfo2savepropaddresses)
+
+
+
+## `readFO2Save`
+
+**Params**
+
+* `const char*` `saveName`
+
+**Returns**
+
+[`FO2SAVE*`](#fo2save) or `NULL`
+
+**Examples**
+
+```c
+FO2SAVE* save = readFO2Save("fo2.dat");
+```
+
+
+## `writeFO2Save`
+
+> [!CAUTION]
+> Experimental function!
+
+**Params**
+
+* [`FO2SAVE*`](#fo2save) `save`
+
+**Returns**
+
+`bool`
+
+**Examples**
+
+```c
+FO2SAVE* save = readFO2Save("fo2.dat");
+
+bool result = writeFO2Save(save);
+```
+
+
+
+## `isFO2Save`
+
+**Params**
+
+* `const char*` `saveName`
+
+**Returns**
+
+`bool`
+
+**Examples**
+
+```c
+bool result = isFO2Save("fo2.dat");
+
+if (result) {
+    printf("FO2 Save\n");
+}
+```
+
+
+
+## `isFO2SaveOpen`
+
+**Params**
+
+* [`FO2SAVE*`](#fo2save) `save`
+
+**Returns**
+
+`bool`
+
+**Examples**
+
+```c
+FO2SAVE* save = readFO2Save("fo2.dat");
+
+bool result = isFO2SaveOpen(save);
+
+if (result) {
+    printf("FO2 Save is Open\n");
+}
+```
+
+
+
+## `closeFO2Save`
+
+**Params**
+
+* [`FO2SAVE*`](#fo2save) `save`
+
+**Returns**
+
+`void`
+
+**Examples**
+
+```c
+FO2SAVE* save = readFO2Save("fo2.dat");
+
+closeFO2Save(save);
+```
+
+
+
+## `getFO2SaveProp`
+
+> [!WARNING]
+> This function is not yet implemented
+
+**Params**
+
+* [`FO2SAVE*`](#fo2save) `save`
+* [`FO2SAVE_PROPS`](#fo2save_props) `prop`
+* `void**` `destination`
+
+**Returns**
+
+`bool`
+
+**Examples**
+
+```c
+FO2SAVE* save = readFO2Save("fo2.dat");
+
+int engineVersion = 0;
+
+bool result = getFO2SaveProp(save, FO2SAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
+
+if (result) {
+    printf("Property: %u\n", engineVersion);
+}
+```
+
+
+
+## `setFO2SaveProp`
+
+> [!WARNING]
+> This function is not yet implemented
+
+**Params**
+
+* [`FO2SAVE*`](#fo2save) `save`
+* [`FO2SAVE_PROPS`](#fo2save_props) `prop`
+* `void**` `value`
+
+**Returns**
+
+`bool`
+
+**Examples**
+
+```c
+FO2SAVE* save = readFO2Save("fo2.dat");
+
+int engineVersion = 0;
+
+bool result = setFO2SaveProp(save, FO2SAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
+
+if (result) {
+    printf("Property: %u\n", engineVersion);
+}
+```
+
+
+
+## `readFO2SaveProp`
+
+**Params**
+
+* [`FO2SAVE*`](#fo2save) `save`
+* [`FO2SAVE_PROPS`](#fo2save_props) `prop`
+* `void**` `destination`
+
+**Returns**
+
+`bool`
+
+**Examples**
+
+```c
+FO2SAVE* save = readFO2Save("fo2.dat");
+
+int engineVersion = 0;
+
+bool result = readFO2SaveProp(save, FO2SAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
+
+if (result) {
+    printf("Property: %u\n", engineVersion);
+}
+```
+
+
+
+## `writeFO2SaveProp`
+
+> [!CAUTION]
+> Experimental function!
+
+**Params**
+
+* [`FO2SAVE*`](#fo2save) `save`
+* [`FO2SAVE_PROPS`](#fo2save_props) `prop`
+* `void**` `value`
+
+**Returns**
+
+`bool`
+
+**Examples**
+
+```c
+FO2SAVE* save = readFO2Save("fo2.dat");
+
+int engineVersion = 0;
+
+bool result = writeFO2SaveProp(save, FO2SAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
+
+if (result) {
+    printf("Property: %u\n", engineVersion);
+}
+```
+
+
+
+## `printFO2Save`
+
+**Params**
+
+* [`FO2SAVE*`](#fo2save) `save`
+
+**Returns**
+
+`bool`
+
+**Examples**
+
+```c
+FO2SAVE* save = readFO2Save("fo2.dat");
+
+printFO2Save(save);
+```
+
+
+
+## `printFO2SaveProps`
+
+**Params**
+
+* [`FO2SAVE*`](#fo2save) `save`
+
+**Returns**
+
+`bool`
+
+**Examples**
+
+```c
+FO2SAVE* save = readFO2Save("fo2.dat");
+
+printFO2SaveProps(save);
+```
+
+
+
+## `printFO2SavePropAddresses`
+
+**Params**
+
+* [`FO2SAVE*`](#fo2save) `save`
+
+**Returns**
+
+`bool`
+
+**Examples**
+
+```c
+FO2SAVE* save = readFO2Save("fo2.dat");
+
+printFO2SavePropAddresses(save);
+```
 
 
 
@@ -48,7 +352,7 @@
 * `char saveSignature[FO2SAVE_SIGNATURE_LENGTH + 1]`
 * `char saveName[32]`
 * `char playerName[32]`
-* `unsigned long propAddresses[FO2SAVE_PROPS_COUNT]`
+* `long unsigned int propAddresses[FO2SAVE_PROPS_COUNT]`
 
 
 
@@ -58,39 +362,20 @@
 
 | Field                          | Value |
 | :----------------------------- | :---: |
-| `FO2SAVE_PROPS_SAVE_SIGNATURE` | 0     |
-| `FO2SAVE_PROPS_SAVE_NAME`      | 1     |
-| `FO2SAVE_PROPS_PLAYER_NAME`    | 2     |
+| `FO2SAVE_PROPS_SAVE_SIGNATURE` | `0`   |
+| `FO2SAVE_PROPS_SAVE_NAME`      | `1`   |
+| `FO2SAVE_PROPS_PLAYER_NAME`    | `2`   |
 
 
 
 # Macros
 
-| Macro                      | Value               |
-| :------------------------- | :------------------ |
-| `FO2SAVE_GAME_NAME`        | "Fallout 2"         |
-| `FO2SAVE_SIGNATURE`        | "FALLOUT SAVE FILE" |
-| `FO2SAVE_SIGNATURE_LENGTH` | 17                  |
-| `FO2SAVE_PROPS_COUNT`      | 3                   |
-| `FO2SAVE_PROPS_SIZE`       | ?                   |
-| `FO2SAVE_SIZE`             | ?                   |
-
-
-
-
-# Classes
-
-> [!IMPORTANT]
-> Only for C++
-
-## `FO2Save`
-
-* `FO2Save()`
-* `FO2Save(string saveName)`
-* `~FO2Save()`
-* `void readSave(string saveName)`
-* `bool isOpen()`
-* `void printSave()`
-* `string getSaveSignature()`
-* `string getSaveName()`
-* `string getPlayerName()`
+| Macro                       | Value                   |
+| :-------------------------- | :---------------------- |
+| `FO2SAVE_GAME_NAME`         | `Fallout 2`             |
+| `FO2SAVE_SIGNATURE`         | `FALLOUT SAVE FILE`     |
+| `FO2SAVE_SIGNATURE_LENGTH`  | `17`                    |
+| `FO2SAVE_PROPS_COUNT`       | `3`                     |
+| `FO2SAVE_SAVE_STANDARD_EXT` | `.dat`                  |
+| `FO2SAVE_PROPS_SIZE`        | `sizeof(FO2SAVE_PROPS)` |
+| `FO2SAVE_SIZE`              | `sizeof(FO2SAVE)`       |

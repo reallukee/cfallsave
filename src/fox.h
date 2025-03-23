@@ -72,16 +72,16 @@ CFALLSAVE_API bool printFOXSave(
     FOXSAVE* save
 );
 
-// CFALLSAVE_API bool printFOXSaveProps(
-//     FOXSAVE* save
-// );
+CFALLSAVE_API bool printFOXSaveProps(
+    FOXSAVE* save
+);
 
-// CFALLSAVE_API bool printFOXSavePropAddresses(
-//     FOXSAVE* save
-// );
+CFALLSAVE_API bool printFOXSavePropAddresses(
+    FOXSAVE* save
+);
 
-// CFALLSAVE_API bool printFOXSaveSnapshot(
-//     FOXSAVE* save
-// );
+CFALLSAVE_API bool printFOXSaveSnapshot(
+    FOXSAVE* save
+);
 
 #endif // !CFALLSAVE_FOX_H

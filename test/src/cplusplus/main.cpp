@@ -38,7 +38,7 @@ void help()
 {
     printf("********************\n");
     printf("* CFallSave++ Test *\n");
-    printf("*      v%s      *\n", CFALLSAVEPP_VERSION);
+    printf("*      v%s      *\n", CFALLSAVEPP_VERSION_S);
     printf("********************\n");
 }
 

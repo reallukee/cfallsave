@@ -107,7 +107,7 @@ FONVSAVE* readFONVSave(
         return NULL;
     }
 
-    save->propAddresses[FONVSAVE_PROPS_SNAPHOST] = address + 1;
+    save->propAddresses[FONVSAVE_PROPS_SNAPSHOT] = address + 1;
     fail |= !readUByteArray(save->save, save->snapshot, save->snapshotLength, &address, 0, true);
 
     if (fail)
@@ -288,7 +288,7 @@ bool readFONVSaveProp(
         result = readString(save->save, (char**)destination, &save->propAddresses[prop], 0, 1, false);
         break;
 
-    case FONVSAVE_PROPS_SNAPHOST:
+    case FONVSAVE_PROPS_SNAPSHOT:
         result = readUByteArray(save->save, (unsigned char*)destination, save->snapshotLength, &save->propAddresses[prop], 0, false);
         break;
 
@@ -333,7 +333,7 @@ bool writeFONVSaveProp(
         result = writeString(save->save, (char**)value, &save->propAddresses[prop], 0, 1, false);
         break;
 
-    case FONVSAVE_PROPS_SNAPHOST:
+    case FONVSAVE_PROPS_SNAPSHOT:
         result = writeUByteArray(save->save, (unsigned char*)value, save->snapshotLength, &save->propAddresses[prop], 0, false);
         break;
 

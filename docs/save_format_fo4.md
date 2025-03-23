@@ -2,7 +2,7 @@
 
 ![Fallout 4 Logo 192x192](../assets/fo4/fo4_logo_192x192.png)
 
-# Fallout 4 Save Format
+# *Fallout 4* Save Format
 
 [Back to Documentation](../DOCS.md)
 
@@ -20,34 +20,39 @@
 
 # Save File
 
-| Property           | Save Type      | CFAllSave Type |
-| :----------------- | :------------- | :------------- |
-| Save Signature     | char[13]       | char[13]       |
-| Engine Version     | unsigned       | unsigned       |
-| Save Number        | unsigned       | unsigned       |
-| Player Name        | short + char*  | char*          |
-| Player Level       | unsigned       | unsigned       |
-| Player Location    | short + char*  | char*          |
-| Player Playtime    | short + char*  | char*          |
-| Player Race        | short + char*  | char*          |
-| Player Sex         | unsigned short | unsigned short |
-| Player Current Xp  | float          | float          |
-| Player Required Xp | float          | float          |
-| Snapshot Width     | unsigned       | unsigned       |
-| Snapshot Height    | unsigned       | unsigned       |
-| Snapshot           | unsigned char* | unsigned char* |
+| Property             | Save Type            | CFAllSave Type       |
+| :------------------- | :------------------- | :------------------- |
+| `Save Signature`     | `char[13]`           | `char[13]`           |
+| `Engine Version`     | `unsigned int`       | `unsigned int`       |
+| `Save Number`        | `unsigned int`       | `unsigned int`       |
+| `Player Name`        | `short + char*`      | `char*`              |
+| `Player Level`       | `unsigned int`       | `unsigned int`       |
+| `Player Location`    | `short + char*`      | `char*`              |
+| `Player Playtime`    | `short + char*`      | `char*`              |
+| `Player Race`        | `short + char*`      | `char*`              |
+| `Player Sex`         | `short unsigned int` | `short unsigned int` |
+| `Player Current Xp`  | `float`              | `float`              |
+| `Player Required Xp` | `float`              | `float`              |
+| `Snapshot Width`     | `unsigned int`       | `unsigned int`       |
+| `Snapshot Height`    | `unsigned int`       | `unsigned int`       |
+| `Snapshot`           | `unsigned char*`     | `unsigned char*`     |
+
+## Snapshot
+
+RGBA
 
 
 
 # Data Structure
 
-> Source: [fo4.h](../src/fo4.h)
+> Headers: [`fo4.h`](../src/fo4.h)
 
 ```c
 #define FO4SAVE_GAME_NAME           "Fallout 4"
 #define FO4SAVE_SIGNATURE           "FO4_SAVEGAME"
 #define FO4SAVE_SIGNATURE_LENGTH    12
 #define FO4SAVE_PROPS_COUNT         14
+#define FO4SAVE_SAVE_STANDARD_EXT   ".fos"
 
 typedef enum FO4SAVE_PROPS
 {
@@ -88,34 +93,37 @@ typedef struct FO4SAVE
     char* playerLocation;
     char* playerPlaytime;
     char* playerRace;
-    unsigned short playerSex;
+    short unsigned int playerSex;
     float playerCurrentXp;
     float playerRequiredXp;
 
     unsigned int snapshotWidth;
     unsigned int snapshotHeight;
-    unsigned long snapshotLength;
+    long unsigned int snapshotLength;
     unsigned char* snapshot;
 
-    unsigned long propAddresses[FO4SAVE_PROPS_COUNT];
+    long unsigned int propAddresses[FO4SAVE_PROPS_COUNT];
 } FO4SAVE;
+
+#define FO4SAVE_PROPS_SIZE  sizeof(FO4SAVE_FIELDS)
+#define FO4SAVE_SIZE        sizeof(FO4SAVE)
 ```
 
 
 
 # Data Types
 
-## char[n]
+## `char[n]`
 
 `char[n] = '\n'`
 
-## short + char*
+## `short + char*`
 
 ```binary
 0C 00   4A 6F 68 6E 20 46 61 6C 6C 6F 75 74
 ```
 
-| Bytes                               | Type   | Value        |
-| :---------------------------------- | :----- | :----------- |
-| 0C 00                               | Length | 12           |
-| 4A 6F 68 6E 20 46 61 6C 6C 6F 75 74 | Value  | John Fallout |
+| Bytes                                 | Type   | Value          |
+| :------------------------------------ | :----- | :------------- |
+| `0C 00`                               | Length | `12`           |
+| `4A 6F 68 6E 20 46 61 6C 6C 6F 75 74` | Value  | `John Fallout` |

@@ -67,6 +67,8 @@ int main(int argc, char* argv[])
 > View the [Documentation](./DOCS.md)
 
 * [APIs](./DOCS.md#apis)
+  * [C APIs (CFallSave)](./DOCS.md#c-apis-cfallsave)
+  * [C++ APIs (CFallSave++)](./DOCS.md#c-apis-cfallsave-1)
 * [Save Formats](./DOCS.md#save-formats)
 
 
@@ -97,26 +99,26 @@ int main(int argc, char* argv[])
 
 ### Linux Requirements
 
-* gcc
-* g++
-* make
+* *gcc*
+* *g++*
+* *make*
 
 ### Windows Requirements
 
-* [Visual Studio 2022]()
-    * Desktop development with C++
+* [*Visual Studio 2022*]()
+    * *Desktop development with C++*
 
 OR
 
-* [Build Tools for Visual Studio 2022]()
-    * Desktop development with C++
+* [*Build Tools for Visual Studio 2022*]()
+    * *Desktop development with C++*
 
 
 
 ## 2. Get the source
 
-* Using [`git`](#using-git)
-* Using [`GitHub`](#using-github)
+* Using [git](#using-git)
+* Using [GitHub](#using-github)
 
 ### Using `git`
 
@@ -153,23 +155,23 @@ make -f cfallsave++.makefile
 
 ### Windows
 
-```batch
-:: Visual Studio 2022
+```cmd
+rem Visual Studio 2022
 call "%ProgramFiles%\Microsoft Visual Studio\2022\Community\Common7\Tools\vsdevcmd"
 
-:: Build Tools for Visual Studio 2022
+rem Build Tools for Visual Studio 2022
 call "%ProgramFiles% (x86)\Microsoft Visual Studio\2022\BuildTools\Common7\Tools\vsdevcmd"
 ```
 
-```batch
+```cmd
 cd cfallsave\windows
 ```
 
-```batch
-:: CFallSave
+```cmd
+rem CFallSave
 msbuild ./cfallsave -p:Configuration=Release -p:Platform=x64
 
-:: CFallSave++
+rem CFallSave++
 msbuild ./cfallsave++ -p:Configuration=Release -p:Platform=x64
 ```
 

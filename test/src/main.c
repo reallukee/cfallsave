@@ -34,7 +34,7 @@ void help()
 {
     printf("******************\n");
     printf("* CFallSave Test *\n");
-    printf("*     v%s     *\n", CFALLSAVE_VERSION);
+    printf("*     v%s     *\n", CFALLSAVE_VERSION_S);
     printf("******************\n");
 }
 

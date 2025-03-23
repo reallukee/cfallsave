@@ -2,7 +2,7 @@
 
 ![Fallout 1 Logo 192x192](../assets/fo1/fo1_logo_192x192.png)
 
-# Fallout 1 Save Format
+# *Fallout 1* Save Format
 
 [Back to Documentation](../DOCS.md)
 
@@ -14,31 +14,33 @@
 
 * [Save File](#save-file)
 * [Data Structure](#data-structure)
+* [Data Types](#data-types)
 
 
 
 # Save File
 
 > [!NOTE]
-> Fallout 1 Format IS VERY CLOSE to Fallout 2 Save Format
+> *Fallout 1* Format IS VERY CLOSE to *Fallout 2* Save Format
 
-| Property       | Save Type | CFAllSave Type |
-| :------------- | :-------- | :------------- |
-| Save Signature | char[18]  | char[18]       |
-| Player Name    | char[32]  | char[32]       |
-| Save Name      | char[32]  | char[32]       |
+| Property         | Save Type  | CFAllSave Type |
+| :--------------- | :--------: | :------------: |
+| `Save Signature` | `char[18]` | `char[18]`     |
+| `Player Name`    | `char[32]` | `char[32]`     |
+| `Save Name`      | `char[32]` | `char[32]`     |
 
 
 
 # Data Structure
 
-> Source: [fo1.h](../src/fo1.h)
+> Headers: [`fo1.h`](../src/fo1.h)
 
 ```c
 #define FO1SAVE_GAME_NAME           "Fallout 1"
 #define FO1SAVE_SIGNATURE           "FALLOUT SAVE FILE"
 #define FO1SAVE_SIGNATURE_LENGTH    17
 #define FO1SAVE_PROPS_COUNT         3
+#define FO1SAVE_SAVE_STANDARD_EXT   ".dat"
 
 typedef enum FO1SAVE_PROPS
 {
@@ -58,6 +60,17 @@ typedef struct FO1SAVE
 
     char playerName[32];
 
-    unsigned long propAddresses[FO1SAVE_PROPS_COUNT];
+    long unsigned int propAddresses[FO1SAVE_PROPS_COUNT];
 } FO1SAVE;
+
+#define FO1SAVE_PROPS_SIZE  sizeof(FO1SAVE_PROPS)
+#define FO1SAVE_SIZE        sizeof(FO1SAVE)
 ```
+
+
+
+# Data Types
+
+## `char[n]`
+
+`char[n] = '\n'`

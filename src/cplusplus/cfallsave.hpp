@@ -27,9 +27,12 @@
 #include "fo3.hpp"      // Fallout 3 API
 #include "fonv.hpp"     // Fallout: New Vegas API
 #include "fo4.hpp"      // Fallout 4 API
+
 #include "fox.hpp"      // Fallout X
 
-#define CFALLSAVEPP_VERSION     "2.0.0"
-#define CFALLSAVEPP_MIN_VERSION "2.0.0"
+#define CFALLSAVEPP_VERSION         200
+#define CFALLSAVEPP_MIN_VERSION     200
+#define CFALLSAVEPP_VERSION_S       "2.0.0"
+#define CFALLSAVEPP_MIN_VERSION_S   "2.0.0"
 
 #endif // !CFALLSAVEPP_API_HPP

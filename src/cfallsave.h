@@ -27,9 +27,12 @@
 #include "fo3.h"    // Fallout 3 API
 #include "fonv.h"   // Fallout: New Vegas API
 #include "fo4.h"    // Fallout 4 API
+
 #include "fox.h"    // Fallout X
 
-#define CFALLSAVE_VERSION       "2.0.0"
-#define CFALLSAVE_MIN_VERSION   "2.0.0"
+#define CFALLSAVE_VERSION       200
+#define CFALLSAVE_MIN_VERSION   200
+#define CFALLSAVE_VERSION_S     "2.0.0"
+#define CFALLSAVE_MIN_VERSION_S "2.0.0"
 
 #endif  // !CFALLSAVE_API_H

@@ -74,10 +74,11 @@ FO4SAVE* save = readFO4Save("fo4.fos");
 ```
 
 
+
 ## `writeFO4Save`
 
-> [!CAUTION]
-> Experimental function!
+> [!WARNING]
+> This function is not yet implemented!
 
 **Params**
 
@@ -165,9 +166,6 @@ closeFO4Save(save);
 
 ## `getFO4SaveProp`
 
-> [!WARNING]
-> This function is not yet implemented
-
 **Params**
 
 * [`FO4SAVE*`](#fo4save) `save`
@@ -195,9 +193,6 @@ if (result) {
 
 
 ## `setFO4SaveProp`
-
-> [!WARNING]
-> This function is not yet implemented
 
 **Params**
 
@@ -414,12 +409,18 @@ printFO4SaveSnapshot(save);
 
 # Macros
 
-| Macro                       | Value                   |
-| :-------------------------- | :---------------------- |
-| `FO4SAVE_GAME_NAME`         | `Fallout 4`             |
-| `FO4SAVE_SIGNATURE`         | `FO4_SAVEGAME`          |
-| `FO4SAVE_SIGNATURE_LENGTH`  | `12`                    |
-| `FO4SAVE_PROPS_COUNT`       | `14`                    |
-| `FO4SAVE_SAVE_STANDARD_EXT` | `.fos`                  |
-| `FO4SAVE_PROPS_SIZE`        | `sizeof(FO4SAVE_PROPS)` |
-| `FO4SAVE_SIZE`              | `sizeof(FO4SAVE)`       |
+| Macro                          | Value                   |
+| :----------------------------- | :---------------------- |
+| `FO4SAVE_GAME_NAME`            | `Fallout 4`             |
+| `FO4SAVE_SIGNATURE`            | `FO4_SAVEGAME`          |
+| `FO4SAVE_SIGNATURE_LENGTH`     | `12`                    |
+| `FO4SAVE_PROPS_COUNT`          | `14`                    |
+| `FO4SAVE_SAVE_STANDARD_EXT`    | `.fos`                  |
+| `FO4SAVE_MAX_SNAPSHOT_WIDTH`   | `640`                   |
+| `FO4SAVE_MAX_SNAPSHOT_HEIGHT`  | `384`                   |
+| `FO4SAVE_MAX_SNAPSHOT_LENGTH`  | `983040`                |
+| `FO4SAVE_SNAPSHOT_COLOR_BYTES` | `4`                     |
+| `FO4SAVE_PLAYER_SEX_MALE`      | `0`                     |
+| `FO4SAVE_PLAYER_SEX_FEMALE`    | `1`                     |
+| `FO4SAVE_PROPS_SIZE`           | `sizeof(FO4SAVE_PROPS)` |
+| `FO4SAVE_SIZE`                 | `sizeof(FO4SAVE)`       |

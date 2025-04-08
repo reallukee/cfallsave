@@ -83,18 +83,5 @@
     <ClInclude Include="..\..\src\writer.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="resource.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="cfallsave.rc">
-      <Filter>File di risorse</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\assets\cfallsave_logo_48x48.ico">
-      <Filter>File di risorse</Filter>
-    </Image>
   </ItemGroup>
 </Project>

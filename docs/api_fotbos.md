@@ -73,10 +73,11 @@ FOTBOSSAVE* save = readFOTBOSSave("fotbos.sav");
 ```
 
 
+
 ## `writeFOTBOSSave`
 
-> [!CAUTION]
-> Experimental function!
+> [!WARNING]
+> This function is not yet implemented!
 
 **Params**
 
@@ -164,9 +165,6 @@ closeFOTBOSSave(save);
 
 ## `getFOTBOSSaveProp`
 
-> [!WARNING]
-> This function is not yet implemented
-
 **Params**
 
 * [`FOTBOSSAVE*`](#fotbossave) `save`
@@ -194,9 +192,6 @@ if (result) {
 
 
 ## `setFOTBOSSaveProp`
-
-> [!WARNING]
-> This function is not yet implemented
 
 **Params**
 

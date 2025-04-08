@@ -3,7 +3,7 @@
  * CFallSave
  * ---------
  *
- * A C/C++ Library to Read Fallout Save Files
+ * A C/C++ Library to Read and Write Fallout Save Files
  *
  * File Name   : fotbos.c
  *
@@ -181,6 +181,32 @@ bool getFOTBOSSaveProp(
         return false;
     }
 
+    switch (prop)
+    {
+    case FOTBOSSAVE_PROPS_SAVE_SIGNATURE:
+        strcpy((char*)destination, save->saveSignature);
+        break;
+
+    case FOTBOSSAVE_PROPS_SAVE_NAME:
+        *destination = strdup(save->saveName);
+        break;
+
+    case FOTBOSSAVE_PROPS_PLAYER_NAME:
+        *destination = strdup(save->playerName);
+        break;
+
+    case FOTBOSSAVE_PROPS_PLAYER_LOCATION:
+        *destination = strdup(save->playerLocation);
+        break;
+
+    case FOTBOSSAVE_PROPS_GAME_DATE_TIME:
+        *destination = strdup(save->gameDateTime);
+        break;
+
+    default:
+        break;
+    }
+
     return false;
 }
 
@@ -193,6 +219,32 @@ bool setFOTBOSSaveProp(
     if (save == NULL || value == NULL)
     {
         return false;
+    }
+
+    switch (prop)
+    {
+    case FOTBOSSAVE_PROPS_SAVE_SIGNATURE:
+        strcpy(save->saveSignature, (char*)value);
+        break;
+
+    case FOTBOSSAVE_PROPS_SAVE_NAME:
+        save->saveName = strdup(*(char**)value);
+        break;
+
+    case FOTBOSSAVE_PROPS_PLAYER_NAME:
+        save->playerName = strdup(*(char**)value);
+        break;
+
+    case FOTBOSSAVE_PROPS_PLAYER_LOCATION:
+        save->playerLocation = strdup(*(char**)value);
+        break;
+
+    case FOTBOSSAVE_PROPS_GAME_DATE_TIME:
+        save->gameDateTime = strdup(*(char**)value);
+        break;
+
+    default:
+        break;
     }
 
     return false;

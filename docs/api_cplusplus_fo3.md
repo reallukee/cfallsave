@@ -148,11 +148,11 @@ savepp->setFO3SAVE(save);
 
 * `void`
 
-OR
+    Or
 
 * [`FO3SAVE*`](./api_fo3.md#fo3save) `save`
 
-OR
+    Or
 
 * `string` `saveName`
 

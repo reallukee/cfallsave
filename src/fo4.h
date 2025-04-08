@@ -3,7 +3,7 @@
  * CFallSave
  * ---------
  *
- * A C/C++ Library to Read Fallout Save Files
+ * A C/C++ Library to Read and Write Fallout Save Files
  *
  * File Name   : fo4.h
  *
@@ -50,6 +50,9 @@ typedef enum FO4SAVE_PROPS
 #define FO4SAVE_MAX_SNAPSHOT_LENGTH     983040
 
 #define FO4SAVE_SNAPSHOT_COLOR_BYTES    4
+
+#define FO4SAVE_PLAYER_SEX_MALE         0
+#define FO4SAVE_PLAYER_SEX_FEMALE       1
 
 typedef struct FO4SAVE
 {

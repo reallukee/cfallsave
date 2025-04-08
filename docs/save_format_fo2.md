@@ -20,6 +20,8 @@
 
 # Save File
 
+Extension: `.dat`
+
 > [!NOTE]
 > *Fallout 2* Format IS VERY CLOSE to *Fallout 1* Save Format
 

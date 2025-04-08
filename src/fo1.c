@@ -3,7 +3,7 @@
  * CFallSave
  * ---------
  *
- * A C/C++ Library to Read Fallout Save Files
+ * A C/C++ Library to Read and Write Fallout Save Files
  *
  * File Name   : fo1.c
  *
@@ -170,6 +170,24 @@ bool getFO1SaveProp(
         return false;
     }
 
+    switch (prop)
+    {
+    case FO1SAVE_PROPS_SAVE_SIGNATURE:
+        strcpy((char*)destination, save->saveSignature);
+        break;
+
+    case FO1SAVE_PROPS_SAVE_NAME:
+        strcpy((char*)destination, save->saveName);
+        break;
+
+    case FO1SAVE_PROPS_PLAYER_NAME:
+        strcpy((char*)destination, save->playerName);
+        break;
+
+    default:
+        break;
+    }
+
     return false;
 }
 
@@ -182,6 +200,24 @@ bool setFO1SaveProp(
     if (save == NULL || value == NULL)
     {
         return false;
+    }
+
+    switch (prop)
+    {
+    case FO1SAVE_PROPS_SAVE_SIGNATURE:
+        strcpy(save->saveSignature, (char*)value);
+        break;
+
+    case FO1SAVE_PROPS_SAVE_NAME:
+        strcpy(save->saveName, (char*)value);
+        break;
+
+    case FO1SAVE_PROPS_PLAYER_NAME:
+        strcpy(save->playerName, (char*)value);
+        break;
+
+    default:
+        break;
     }
 
     return false;

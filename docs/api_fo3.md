@@ -74,10 +74,11 @@ FO3SAVE* save = readFO3Save("fo3.fos");
 ```
 
 
+
 ## `writeFO3Save`
 
-> [!CAUTION]
-> Experimental function!
+> [!WARNING]
+> This function is not yet implemented!
 
 **Params**
 
@@ -165,9 +166,6 @@ closeFO3Save(save);
 
 ## `getFO3SaveProp`
 
-> [!WARNING]
-> This function is not yet implemented
-
 **Params**
 
 * [`FO3SAVE*`](#fo3save) `save`
@@ -195,9 +193,6 @@ if (result) {
 
 
 ## `setFO3SaveProp`
-
-> [!WARNING]
-> This function is not yet implemented
 
 **Params**
 
@@ -408,12 +403,18 @@ printFO3SaveSnapshot(save);
 
 # Macros
 
-| Macro                       | Value                   |
-| :-------------------------- | :---------------------- |
-| `FO3SAVE_GAME_NAME`         | `Fallout 3`             |
-| `FO3SAVE_SIGNATURE`         | `FO3SAVEGAME`           |
-| `FO3SAVE_SIGNATURE_LENGTH`  | `11`                    |
-| `FO3SAVE_PROPS_COUNT`       | `11`                    |
-| `FO3SAVE_SAVE_STANDARD_EXT` | `.fos`                  |
-| `FO3SAVE_PROPS_SIZE`        | `sizeof(FO3SAVE_PROPS)` |
-| `FO3SAVE_SIZE`              | `sizeof(FO3SAVE)`       |
+| Macro                          | Value                   |
+| :----------------------------- | :---------------------- |
+| `FO3SAVE_GAME_NAME`            | `Fallout 3`             |
+| `FO3SAVE_SIGNATURE`            | `FO3SAVEGAME`           |
+| `FO3SAVE_SIGNATURE_LENGTH`     | `11`                    |
+| `FO3SAVE_PROPS_COUNT`          | `11`                    |
+| `FO3SAVE_SAVE_STANDARD_EXT`    | `.fos`                  |
+| `FO3SAVE_MAX_SNAPSHOT_WIDTH`   | `512`                   |
+| `FO3SAVE_MAX_SNAPSHOT_HEIGHT`  | `288`                   |
+| `FO3SAVE_MAX_SNAPSHOT_LENGTH`  | `442368`                |
+| `FO3SAVE_SNAPSHOT_COLOR_BYTES` | `3`                     |
+| `FO3SAVE_PLAYER_SEX_MALE`      | `0`                     |
+| `FO3SAVE_PLAYER_SEX_FEMALE`    | `1`                     |
+| `FO3SAVE_PROPS_SIZE`           | `sizeof(FO3SAVE_PROPS)` |
+| `FO3SAVE_SIZE`                 | `sizeof(FO3SAVE)`       |

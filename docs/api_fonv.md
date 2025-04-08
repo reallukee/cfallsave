@@ -74,10 +74,11 @@ FONVSAVE* save = readFONVSave("fonv.fos");
 ```
 
 
+
 ## `writeFONVSave`
 
-> [!CAUTION]
-> Experimental function!
+> [!WARNING]
+> This function is not yet implemented!
 
 **Params**
 
@@ -165,9 +166,6 @@ closeFONVSave(save);
 
 ## `getFONVSaveProp`
 
-> [!WARNING]
-> This function is not yet implemented
-
 **Params**
 
 * [`FONVSAVE*`](#fonvsave) `save`
@@ -195,9 +193,6 @@ if (result) {
 
 
 ## `setFONVSaveProp`
-
-> [!WARNING]
-> This function is not yet implemented
 
 **Params**
 
@@ -408,12 +403,18 @@ printFONVSaveSnapshot(save);
 
 # Macros
 
-| Macro                        | Value                    |
-| :--------------------------- | :----------------------- |
-| `FONVSAVE_GAME_NAME`         | `Fallout: New Vegas`     |
-| `FONVSAVE_SIGNATURE`         | `FO3SAVEGAME`            |
-| `FONVSAVE_SIGNATURE_LENGTH`  | `11`                     |
-| `FONVSAVE_PROPS_COUNT`       | `11`                     |
-| `FONVSAVE_SAVE_STANDARD_EXT` | `.fos`                   |
-| `FONVSAVE_PROPS_SIZE`        | `sizeof(FONVSAVE_PROPS)` |
-| `FONVSAVE_SIZE`              | `sizeof(FONVSAVE)`       |
+| Macro                           | Value                    |
+| :------------------------------ | :----------------------- |
+| `FONVSAVE_GAME_NAME`            | `Fallout: New Vegas`     |
+| `FONVSAVE_SIGNATURE`            | `FO3SAVEGAME`            |
+| `FONVSAVE_SIGNATURE_LENGTH`     | `11`                     |
+| `FONVSAVE_PROPS_COUNT`          | `11`                     |
+| `FONVSAVE_SAVE_STANDARD_EXT`    | `.fos`                   |
+| `FONVSAVE_MAX_SNAPSHOT_WIDTH`   | `512`                    |
+| `FONVSAVE_MAX_SNAPSHOT_HEIGHT`  | `288`                    |
+| `FONVSAVE_MAX_SNAPSHOT_LENGTH`  | `442368`                 |
+| `FONVSAVE_SNAPSHOT_COLOR_BYTES` | `3`                      |
+| `FONVSAVE_PLAYER_SEX_MALE`      | `0`                      |
+| `FONVSAVE_PLAYER_SEX_FEMALE`    | `1`                      |
+| `FONVSAVE_PROPS_SIZE`           | `sizeof(FONVSAVE_PROPS)` |
+| `FONVSAVE_SIZE`                 | `sizeof(FONVSAVE)`       |

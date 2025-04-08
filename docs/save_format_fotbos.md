@@ -20,6 +20,8 @@
 
 # Save File
 
+Extension: `.sav`
+
 | Property          | Save Type                     | CFAllSave Type |
 | :---------------- | :---------------------------- | :------------- |
 | `Save Signature`  | `char[8]`                     | `char[8]`      |

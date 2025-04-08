@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include "../../src/cfallsave.h"
 
 void commandLineArgs(int argc, char* argv[]);
@@ -36,6 +37,10 @@ void help()
     printf("* CFallSave Test *\n");
     printf("*     v%s     *\n", CFALLSAVE_VERSION_S);
     printf("******************\n");
+
+    printf("\n");
+
+    printf(" * read <Fallout 4 Save>");
 }
 
 bool readSave(char* saveName)

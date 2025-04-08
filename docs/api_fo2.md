@@ -73,10 +73,11 @@ FO2SAVE* save = readFO2Save("fo2.dat");
 ```
 
 
+
 ## `writeFO2Save`
 
-> [!CAUTION]
-> Experimental function!
+> [!WARNING]
+> This function is not yet implemented!
 
 **Params**
 
@@ -164,9 +165,6 @@ closeFO2Save(save);
 
 ## `getFO2SaveProp`
 
-> [!WARNING]
-> This function is not yet implemented
-
 **Params**
 
 * [`FO2SAVE*`](#fo2save) `save`
@@ -194,9 +192,6 @@ if (result) {
 
 
 ## `setFO2SaveProp`
-
-> [!WARNING]
-> This function is not yet implemented
 
 **Params**
 

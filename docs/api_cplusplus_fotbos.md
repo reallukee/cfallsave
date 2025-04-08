@@ -134,11 +134,11 @@ savepp->setFOTBOSSAVE(save);
 
 * `void`
 
-OR
+    Or
 
 * [`FOTBOSSAVE*`](./api_fotbos.md#fotbossave) `save`
 
-OR
+    Or
 
 * `string` `saveName`
 

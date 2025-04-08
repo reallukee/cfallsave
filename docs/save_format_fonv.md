@@ -20,6 +20,8 @@
 
 # Save File
 
+Extension: `.fos`
+
 > [!NOTE]
 > *Fallout: New Vegas* Save Format IS VERY CLOSE to *Fallout 3* Save Format
 
@@ -74,6 +76,9 @@ typedef enum FONVSAVE_PROPS
 #define FONVSAVE_MAX_SNAPSHOT_LENGTH    442368
 
 #define FONVSAVE_SNAPSHOT_COLOR_BYTES   3
+
+#define FONVSAVE_PLAYER_SEX_MALE        0
+#define FONVSAVE_PLAYER_SEX_FEMALE      1
 
 typedef struct FONVSAVE
 {

@@ -3,7 +3,7 @@
  * CFallSave
  * ---------
  *
- * A C/C++ Library to Read Fallout Save Files
+ * A C/C++ Library to Read and Write Fallout Save Files
  *
  * File Name   : cfallsave.h
  *
@@ -18,8 +18,6 @@
 
 #ifndef CFALLSAVE_API_H
 #define CFALLSAVE_API_H
-
-#include "header.h"
 
 #include "fo1.h"    // Fallout 1 API
 #include "fo2.h"    // Fallout 2 API

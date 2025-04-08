@@ -5,19 +5,19 @@
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
-    <Filter Include="File di risorse">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
     <Filter Include="File di intestazione">
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
+    <Filter Include="File di risorse">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
     <Filter Include="File di intestazione\CFallSave">
-      <UniqueIdentifier>{fb97edc9-3a08-4896-b6fb-c87c774a6394}</UniqueIdentifier>
+      <UniqueIdentifier>{573da1e1-27d6-41ce-9c6e-628c2e0eb0a0}</UniqueIdentifier>
     </Filter>
     <Filter Include="File di origine\CFallSave">
-      <UniqueIdentifier>{e891ba0b-0639-4195-bb7e-b7b0bbfeb145}</UniqueIdentifier>
+      <UniqueIdentifier>{354fae23-5f87-4d89-b368-77f46a928cb8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -143,18 +143,5 @@
     <ClInclude Include="..\..\src\writer.h">
       <Filter>File di intestazione\CFallSave</Filter>
     </ClInclude>
-    <ClInclude Include="resource.hpp">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ResourceCompile Include="cfallsave++.rc">
-      <Filter>File di risorse</Filter>
-    </ResourceCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Image Include="..\..\assets\cfallsave++_logo_48x48.ico">
-      <Filter>File di risorse</Filter>
-    </Image>
   </ItemGroup>
 </Project>

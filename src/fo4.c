@@ -3,7 +3,7 @@
  * CFallSave
  * ---------
  *
- * A C/C++ Library to Read Fallout Save Files
+ * A C/C++ Library to Read and Write Fallout Save Files
  *
  * File Name   : fo4.c
  *
@@ -227,6 +227,67 @@ bool getFO4SaveProp(
         return false;
     }
 
+    switch (prop)
+    {
+    case FO4SAVE_PROPS_SAVE_SIGNATURE:
+        strcpy((char*)destination, save->saveSignature);
+        break;
+
+    case FO4SAVE_PROPS_ENGINE_VERSION:
+        *(unsigned int*)destination = save->engineVersion;
+        break;
+
+    case FO4SAVE_PROPS_SAVE_NUMBER:
+        *(unsigned int*)destination = save->saveNumber;
+        break;
+
+    case FO4SAVE_PROPS_PLAYER_NAME:
+        *destination = strdup(save->playerName);
+        break;
+
+    case FO4SAVE_PROPS_PLAYER_LEVEL:
+        *(unsigned int*)destination = save->playerLevel;
+        break;
+
+    case FO4SAVE_PROPS_PLAYER_LOCATION:
+        *destination = strdup(save->playerLocation);
+        break;
+
+    case FO4SAVE_PROPS_PLAYER_PLAYTIME:
+        *destination = strdup(save->playerPlaytime);
+        break;
+
+    case FO4SAVE_PROPS_PLAYER_RACE:
+        *destination = strdup(save->playerRace);
+        break;
+
+    case FO4SAVE_PROPS_PLAYER_SEX:
+        *(short unsigned int*)destination = save->playerSex;
+        break;
+
+    case FO4SAVE_PROPS_PLAYER_CURRENT_XP:
+        *(float*)destination = save->playerCurrentXp;
+        break;
+
+    case FO4SAVE_PROPS_PLAYER_REQUIRED_XP:
+        *(float*)destination = save->playerRequiredXp;
+        break;
+
+    case FO4SAVE_PROPS_SNAPSHOT_WIDTH:
+        *(unsigned int*)destination = save->snapshotWidth;
+        break;
+
+    case FO4SAVE_PROPS_SNAPSHOT_HEIGHT:
+        *(unsigned int*)destination = save->snapshotHeight;
+        break;
+
+    case FO4SAVE_PROPS_SNAPSHOT:
+        break;
+
+    default:
+        break;
+    }
+
     return false;
 }
 
@@ -239,6 +300,67 @@ bool setFO4SaveProp(
     if (save == NULL || value == NULL)
     {
         return false;
+    }
+
+    switch (prop)
+    {
+    case FO4SAVE_PROPS_SAVE_SIGNATURE:
+        strcpy(save->saveSignature, (char*)value);
+        break;
+
+    case FO4SAVE_PROPS_ENGINE_VERSION:
+        save->engineVersion = *(unsigned int*)value;
+        break;
+
+    case FO4SAVE_PROPS_SAVE_NUMBER:
+        save->saveNumber = *(unsigned int*)value;
+        break;
+
+    case FO4SAVE_PROPS_PLAYER_NAME:
+        save->playerName = strdup(*(char**)value);
+        break;
+
+    case FO4SAVE_PROPS_PLAYER_LEVEL:
+        save->playerLevel = *(unsigned int*)value;
+        break;
+
+    case FO4SAVE_PROPS_PLAYER_LOCATION:
+        save->playerLocation = strdup(*(char**)value);
+        break;
+
+    case FO4SAVE_PROPS_PLAYER_PLAYTIME:
+        save->playerPlaytime = strdup(*(char**)value);
+        break;
+
+    case FO4SAVE_PROPS_PLAYER_RACE:
+        save->playerRace = strdup(*(char**)value);
+        break;
+
+    case FO4SAVE_PROPS_PLAYER_SEX:
+        save->playerSex = *(short unsigned int*)value;
+        break;
+
+    case FO4SAVE_PROPS_PLAYER_CURRENT_XP:
+        save->playerCurrentXp = *(float*)value;
+        break;
+
+    case FO4SAVE_PROPS_PLAYER_REQUIRED_XP:
+        save->playerRequiredXp = *(float*)value;
+        break;
+
+    case FO4SAVE_PROPS_SNAPSHOT_WIDTH:
+        save->snapshotWidth = *(unsigned int*)value;
+        break;
+
+    case FO4SAVE_PROPS_SNAPSHOT_HEIGHT:
+        save->snapshotHeight = *(unsigned int*)value;
+        break;
+
+    case FO4SAVE_PROPS_SNAPSHOT:
+        break;
+
+    default:
+        break;
     }
 
     return false;

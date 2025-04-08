@@ -10,6 +10,13 @@ CFallSave ToDo
 
 
 
+# Summary
+
+* [Features](#features)
+* [Ideas](#ideas)
+
+
+
 # Features
 
 - [x] Common Reader
@@ -30,13 +37,20 @@ CFallSave ToDo
 - [ ] More support for *Fallout: New Vegas*
 - [ ] More support for *Fallout 4*
 - [ ] More support for *Fallout Tactics: Brotherhood of Steel*
-- [ ] Read/Write Number
-- [ ] Read/Write Array
 - [x] Read Property
 - [x] Write Property
-- [ ] Get Property
-- [ ] Set Property
+- [x] Get Property
+- [x] Set Property
+- [ ] Reader Documentation
+- [ ] Writer Documentation
+
+
+
+# Ideas
+
 - [ ] Not Generic Read Property
 - [ ] Not Generic Write Property
 - [ ] Not Generic Get Property
 - [ ] Not Generic Set Property
+- [ ] Reader C++ Wrapper
+- [ ] Writer C++ Wrapper

@@ -3,7 +3,7 @@
  * CFallSave++
  * -----------
  *
- * A C/C++ Library to Read Fallout Save Files
+ * A C/C++ Library to Read and Write Fallout Save Files
  *
  * File Name   : fotbos.cpp
  *

@@ -1,7 +1,9 @@
 # Visual Studio
 .vs/
+ipch/
 
 *.vcxproj.user
+*.aps
 
 # Binary (Linux)
 *.bin
@@ -14,6 +16,8 @@
 *.dll
 *.lib
 *.obj
+*.pdb
+*.exp
 
 # Fallout
 *.dat
@@ -21,8 +25,11 @@
 *.fos
 
 # Compilation
-bin/
-obj/
+[Bb]in/
+[Oo]bj/
+
+# Repository
+*.temp.*
 
 # Windows
 [Dd]esktop.ini

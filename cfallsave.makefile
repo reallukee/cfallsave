@@ -4,7 +4,7 @@ CFLAGS  = -Wall -Wextra -fPIC
 LDFLAGS = -shared
 
 SRC_DIR = ./src
-OBJ_DIR = obj
+OBJ_DIR = obj/cfallsave
 BIN_DIR = bin
 
 EXCLUDED_HEADERS = cfallsave.h
@@ -30,7 +30,8 @@ $(OBJ_DIR) $(BIN_DIR):
 	mkdir -p $@
 
 clean:
-	rm -rf $(OBJECTS)
+	rm -rf $(OBJ_DIR)
+	rm $(BIN_DIR)/lib$(TARGET).so
 
 full-clean:
 	rm -rf $(OBJ_DIR) $(BIN_DIR)

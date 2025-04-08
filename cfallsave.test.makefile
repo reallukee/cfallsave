@@ -1,10 +1,10 @@
-TARGET  = cfallsave
+TARGET  = cfallsave.test
 CC      = gcc
 CFLAGS  = -Wall -Wextra
 LDFLAGS =
 
 SRC_DIR = ./src
-OBJ_DIR = obj
+OBJ_DIR = obj/cfallsave.test
 BIN_DIR = bin
 
 EXCLUDED_HEADERS =
@@ -30,7 +30,8 @@ $(OBJ_DIR) $(BIN_DIR):
 	mkdir -p $@
 
 clean:
-	rm -rf $(OBJECTS)
+	rm -rf $(OBJ_DIR)
+	rm $(BIN_DIR)/$(TARGET).bin
 
 full-clean:
 	rm -rf $(OBJ_DIR) $(BIN_DIR)

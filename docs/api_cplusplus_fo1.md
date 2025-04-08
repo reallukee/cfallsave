@@ -130,11 +130,11 @@ savepp->setFO1SAVE(save);
 
 * `void`
 
-OR
+    Or
 
 * [`FO1SAVE*`](./api_fo1.md#fo1save) `save`
 
-OR
+    Or
 
 * `string` `saveName`
 

@@ -73,10 +73,11 @@ FO1SAVE* save = readFO1Save("fo1.dat");
 ```
 
 
+
 ## `writeFO1Save`
 
-> [!CAUTION]
-> Experimental function!
+> [!WARNING]
+> This function is not yet implemented!
 
 **Params**
 
@@ -164,9 +165,6 @@ closeFO1Save(save);
 
 ## `getFO1SaveProp`
 
-> [!WARNING]
-> This function is not yet implemented
-
 **Params**
 
 * [`FO1SAVE*`](#fo1save) `save`
@@ -194,9 +192,6 @@ if (result) {
 
 
 ## `setFO1SaveProp`
-
-> [!WARNING]
-> This function is not yet implemented
 
 **Params**
 

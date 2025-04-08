@@ -154,11 +154,11 @@ savepp->setFO4SAVE(save);
 
 * `void`
 
-OR
+    Or
 
 * [`FO4SAVE*`](./api_fo4.md#fo4save) `save`
 
-OR
+    Or
 
 * `string` `saveName`
 

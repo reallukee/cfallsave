@@ -148,11 +148,11 @@ savepp->setFONVSAVE(save);
 
 * `void`
 
-OR
+    Or
 
 * [`FONVSAVE*`](./api_fonv.md#fonvsave) `save`
 
-OR
+    Or
 
 * `string` `saveName`
 

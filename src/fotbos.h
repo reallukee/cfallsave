@@ -25,7 +25,7 @@
 #define FOTBOSSAVE_SIGNATURE            "<saveh>"
 #define FOTBOSSAVE_SIGNATURE_LENGTH     7
 #define FOTBOSSAVE_PROPS_COUNT          5
-#define FOTBOSSAVE_SAVE_STANDARD_EXT    ".sav"
+#define FOTBOSSAVE_STANDARD_EXT         ".sav"
 
 typedef enum FOTBOSSAVE_PROPS
 {
@@ -118,5 +118,9 @@ CFALLSAVE_API bool printFOTBOSSaveProps(
 CFALLSAVE_API bool printFOTBOSSavePropAddresses(
     FOTBOSSAVE* save
 );
+
+
+
+CFALLSAVE_API bool createFOTBOSSampleSave();
 
 #endif // !CFALLSAVE_FOTBOS_H

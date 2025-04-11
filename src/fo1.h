@@ -25,7 +25,7 @@
 #define FO1SAVE_SIGNATURE           "FALLOUT SAVE FILE"
 #define FO1SAVE_SIGNATURE_LENGTH    17
 #define FO1SAVE_PROPS_COUNT         3
-#define FO1SAVE_SAVE_STANDARD_EXT   ".dat"
+#define FO1SAVE_STANDARD_EXT        ".dat"
 
 typedef enum FO1SAVE_PROPS
 {
@@ -34,6 +34,8 @@ typedef enum FO1SAVE_PROPS
     FO1SAVE_PROPS_PLAYER_NAME       = 2
 } FO1SAVE_PROPS;
 
+#define FO1SAVE_STRING_SIZE 32
+
 typedef struct FO1SAVE
 {
     FILE* save;
@@ -41,9 +43,9 @@ typedef struct FO1SAVE
     char* saveFileName;
 
     char saveSignature[FO1SAVE_SIGNATURE_LENGTH + 1];
-    char saveName[32];
+    char saveName[FO1SAVE_STRING_SIZE + 1];
 
-    char playerName[32];
+    char playerName[FO1SAVE_STRING_SIZE + 1];
 
     long unsigned int propAddresses[FO1SAVE_PROPS_COUNT];
 } FO1SAVE;
@@ -114,5 +116,9 @@ CFALLSAVE_API bool printFO1SaveProps(
 CFALLSAVE_API bool printFO1SavePropAddresses(
     FO1SAVE* save
 );
+
+
+
+CFALLSAVE_API bool createFO1SampleSave();
 
 #endif  // !CFALLSAVE_FO1_H

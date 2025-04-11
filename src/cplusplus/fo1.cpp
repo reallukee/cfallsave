@@ -20,24 +20,70 @@
 
 namespace cfallsavepp
 {
-    FO1SAVE* FO1Save::getFO1SAVE()
+    string FO1Save::getFixedStringProp(FO1SAVE_PROPS prop)
     {
-        return this->save;
+        switch (prop)
+        {
+        case FO1SAVE_PROPS_SAVE_SIGNATURE:
+        {
+            char c_value[FO1SAVE_SIGNATURE_LENGTH + 1];
+
+            getFO1SaveProp(this->save, prop, (void**)&c_value);
+
+            return c_value;
+        }
+
+        case FO1SAVE_PROPS_SAVE_NAME:
+        case FO1SAVE_PROPS_PLAYER_NAME:
+        {
+            char c_value[FO1SAVE_STRING_SIZE];
+
+            getFO1SaveProp(this->save, prop, (void**)&c_value);
+
+            return c_value;
+        }
+
+        default:
+            return "";
+        }
     }
 
-    void FO1Save::setFO1SAVE(FO1SAVE* save)
+
+
+    void FO1Save::setFixedStringProp(FO1SAVE_PROPS prop, string value)
     {
-        if (save == nullptr)
+        switch (prop)
         {
-            return;
+        case FO1SAVE_PROPS_SAVE_SIGNATURE:
+        {
+            char c_value[FO1SAVE_SIGNATURE_LENGTH + 1];
+
+            strcpy(c_value, value.c_str());
+
+            c_value[FO1SAVE_SIGNATURE_LENGTH] = '\0';
+
+            setFO1SaveProp(this->save, prop, (void**)&c_value);
+
+            break;
         }
 
-        if (this->save != nullptr)
+        case FO1SAVE_PROPS_SAVE_NAME:
+        case FO1SAVE_PROPS_PLAYER_NAME:
         {
-            closeFO1Save(this->save);
+            char c_value[FO1SAVE_STRING_SIZE + 1];
+
+            strcpy(c_value, value.c_str());
+
+            c_value[FO1SAVE_STRING_SIZE] = '\0';
+
+            setFO1SaveProp(this->save, prop, (void**)&c_value);
+
+            break;
         }
 
-        this->save = save;
+        default:
+            break;
+        }
     }
 
 
@@ -54,7 +100,7 @@ namespace cfallsavepp
 
     FO1Save::FO1Save(string saveName)
     {
-        readSave(saveName);
+        read(saveName);
     }
 
     FO1Save::~FO1Save()
@@ -64,7 +110,7 @@ namespace cfallsavepp
 
 
 
-    bool FO1Save::readSave(string saveName)
+    bool FO1Save::read(string saveName)
     {
         const char* c_saveName = saveName.c_str();
 
@@ -76,12 +122,12 @@ namespace cfallsavepp
         return this->save != nullptr;
     }
 
-    bool FO1Save::writeSave()
+    bool FO1Save::write()
     {
         return writeFO1Save(this->save);
     }
 
-    void FO1Save::closeSave()
+    void FO1Save::close()
     {
         return closeFO1Save(this->save);
     }
@@ -100,19 +146,48 @@ namespace cfallsavepp
 
 
 
-    void FO1Save::printSave()
+    void FO1Save::print()
     {
         printFO1Save(this->save);
     }
 
-    void FO1Save::printSaveProps()
+    void FO1Save::printProps()
     {
         printFO1SaveProps(this->save);
     }
 
-    void FO1Save::printSavePropAddresses()
+    void FO1Save::printPropAddresses()
     {
         printFO1SavePropAddresses(this->save);
+    }
+
+
+
+    bool FO1Save::createSampleSave()
+    {
+        return createFO1SampleSave();
+    }
+
+
+
+    FO1SAVE* FO1Save::getFO1SAVE()
+    {
+        return this->save;
+    }
+
+    void FO1Save::setFO1SAVE(FO1SAVE* save)
+    {
+        if (save == nullptr)
+        {
+            return;
+        }
+
+        if (this->save != nullptr)
+        {
+            closeFO1Save(this->save);
+        }
+
+        this->save = save;
     }
 
 
@@ -141,33 +216,33 @@ namespace cfallsavepp
 
     string FO1Save::getSaveSignature()
     {
-        if (this->save == nullptr)
-        {
-            return "";
-        }
+        return getFixedStringProp(FO1SAVE_PROPS_SAVE_SIGNATURE);
+    }
 
-        return this->save->saveSignature;
+    void FO1Save::setSaveSignature(string value)
+    {
+        setFixedStringProp(FO1SAVE_PROPS_SAVE_SIGNATURE, value);
     }
 
     string FO1Save::getSaveName()
     {
-        if (this->save == nullptr)
-        {
-            return "";
-        }
+        return getFixedStringProp(FO1SAVE_PROPS_SAVE_NAME);
+    }
 
-        return this->save->saveName;
+    void FO1Save::setSaveName(string value)
+    {
+        setFixedStringProp(FO1SAVE_PROPS_SAVE_NAME, value);
     }
 
 
 
     string FO1Save::getPlayerName()
     {
-        if (this->save == nullptr)
-        {
-            return "";
-        }
+        return getFixedStringProp(FO1SAVE_PROPS_PLAYER_NAME);
+    }
 
-        return this->save->playerName;
+    void FO1Save::setPlayerName(string value)
+    {
+        setFixedStringProp(FO1SAVE_PROPS_PLAYER_NAME, value);
     }
 }

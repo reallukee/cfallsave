@@ -1,29 +1,43 @@
-TARGET  = cfallsave.test
-CC      = gcc
-CFLAGS  = -Wall -Wextra
-LDFLAGS =
+TARGET     = cfallsave.test
+TARGET_EXT = .bin
+CC         = gcc
+CFLAGS     = -Wall -Wextra
+LDFLAGS    =
+
+C_SOURCE_EXT = .c
+C_HEADER_EXT = .h
+C_OBJECT_EXT = .o
 
 SRC_DIR = ./src
-OBJ_DIR = obj/cfallsave.test
+OBJ_DIR = obj/$(TARGET)
 BIN_DIR = bin
 
-EXCLUDED_HEADERS =
-EXCLUDED_SOURCES =
+EXCLUDED_HEADERS = fox.h
+EXCLUDED_SOURCES = fox.c
 
-ALL_SOURCES = $(notdir $(wildcard $(SRC_DIR)/*.c))
-ALL_HEADERS = $(notdir $(wildcard $(SRC_DIR)/*.h))
+ALL_SOURCES = $(notdir $(wildcard $(SRC_DIR)/*$(C_SOURCE_EXT)))
+ALL_HEADERS = $(notdir $(wildcard $(SRC_DIR)/*$(C_HEADER_EXT)))
 
 SOURCES = $(filter-out $(EXCLUDED_SOURCES), $(ALL_SOURCES))
 HEADERS = $(filter-out $(EXCLUDED_HEADERS), $(ALL_HEADERS))
 
-OBJECTS = $(patsubst %.c, $(OBJ_DIR)/%.o, $(SOURCES))
+OBJECTS = $(patsubst %$(C_SOURCE_EXT), $(OBJ_DIR)/%$(C_OBJECT_EXT), $(SOURCES))
 
-all: $(BIN_DIR)/$(TARGET).bin
+.PHONY: help build rebuild clean full-clean default
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
+default: help
+
+help:
+	@echo "help       : No description needed"
+	@echo "build      : Build project"
+	@echo "rebuild    : Rebuild project (clean + build)"
+	@echo "clean      : Clean output files"
+	@echo "full-clean : Clean ALL output files"
+
+$(OBJ_DIR)/%$(C_OBJECT_EXT): $(SRC_DIR)/%$(C_SOURCE_EXT) | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(BIN_DIR)/$(TARGET).bin: $(OBJECTS) | $(BIN_DIR)
+$(BIN_DIR)/$(TARGET)$(TARGET_EXT): $(OBJECTS) | $(BIN_DIR)
 	$(CC) $(LDFLAGS) -o $@ $(OBJECTS)
 
 $(OBJ_DIR) $(BIN_DIR):
@@ -31,11 +45,11 @@ $(OBJ_DIR) $(BIN_DIR):
 
 clean:
 	rm -rf $(OBJ_DIR)
-	rm $(BIN_DIR)/$(TARGET).bin
+	rm -f $(BIN_DIR)/$(TARGET)$(TARGET_EXT)
 
 full-clean:
 	rm -rf $(OBJ_DIR) $(BIN_DIR)
 
-build: all
+build: $(BIN_DIR)/$(TARGET)$(TARGET_EXT)
 
-rebuild: clean all
+rebuild: clean build

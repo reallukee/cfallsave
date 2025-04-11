@@ -29,14 +29,14 @@ FOTBOSSAVE* readFOTBOSSave(
         return NULL;
     }
 
-    FOTBOSSAVE* save = (FOTBOSSAVE*)malloc(FOTBOSSAVE_SIZE);
+    FOTBOSSAVE* save = (FOTBOSSAVE*)calloc(1, FOTBOSSAVE_SIZE);
 
     if (save == NULL)
     {
         return NULL;
     }
 
-    save->save = fopen(saveName, "r+w+b");
+    save->save = fopen(saveName, "rb+");
 
     if (save->save == NULL)
     {
@@ -45,7 +45,7 @@ FOTBOSSAVE* readFOTBOSSave(
         return NULL;
     }
 
-    save->saveFileName = (char*)malloc(strlen(saveName) + 1);
+    save->saveFileName = strdup(saveName);
 
     if (save->saveFileName == NULL)
     {
@@ -53,8 +53,6 @@ FOTBOSSAVE* readFOTBOSSave(
 
         return NULL;
     }
-
-    strcpy(save->saveFileName, saveName);
 
     long unsigned int address = 0;
     bool fail = false;
@@ -105,16 +103,14 @@ bool isFOTBOSSave(
         return false;
     }
 
-    FOTBOSSAVE* save = (FOTBOSSAVE*)malloc(FOTBOSSAVE_SIZE);
+    FOTBOSSAVE* save = (FOTBOSSAVE*)calloc(1, FOTBOSSAVE_SIZE);
 
     if (save == NULL)
     {
         return false;
     }
 
-    memset(save, 0, FOTBOSSAVE_SIZE);
-
-    save->save = fopen(saveName, "r+b");
+    save->save = fopen(saveName, "rb+");
 
     if (save->save == NULL)
     {
@@ -324,6 +320,19 @@ bool printFOTBOSSave(
     FOTBOSSAVE* save
 )
 {
+    if (save == NULL)
+    {
+        printf("**************\n");
+        printf("* FOTBOSSAVE *\n");
+        printf("**************\n");
+
+        printf("\n");
+
+        printf("/!\\ SAVE NOT OPEN /!\\\n");
+
+        return false;
+    }
+
     bool fail = false;
 
     fail |= printFOTBOSSaveProps(save);
@@ -339,16 +348,18 @@ bool printFOTBOSSaveProps(
     FOTBOSSAVE* save
 )
 {
-    if (save == NULL)
-    {
-        return false;
-    }
-
     printf("********************\n");
     printf("* FOTBOSSAVE PROPS *\n");
     printf("********************\n");
 
     printf("\n");
+
+    if (save == NULL)
+    {
+        printf("/!\\ SAVE NOT OPEN /!\\\n");
+
+        return false;
+    }
 
     printf("Game Name       : %s\n", FOTBOSSAVE_GAME_NAME);
     printf("Save File Name  : %s\n", save->saveFileName);
@@ -368,16 +379,18 @@ bool printFOTBOSSavePropAddresses(
     FOTBOSSAVE* save
 )
 {
-    if (save == NULL)
-    {
-        return false;
-    }
-
     printf("*****************************\n");
     printf("* FOTBOSSAVE PROP ADDRESSES *\n");
     printf("*****************************\n");
 
     printf("\n");
+
+    if (save == NULL)
+    {
+        printf("/!\\ SAVE NOT OPEN /!\\\n");
+
+        return false;
+    }
 
     printf("%-15s : %s\n", "Save File Name", save->saveName);
 
@@ -403,6 +416,61 @@ bool printFOTBOSSavePropAddresses(
     {
         printf("%-15s : %016lu %04lX\n", propNames[i], *propAddresses[i], *propAddresses[i]);
     }
+
+    return true;
+}
+
+
+
+bool createFOTBOSSampleSave()
+{
+    FILE* save = fopen("fotbos.sav", "wb");
+
+    if (save == NULL)
+    {
+        return false;
+    }
+
+    unsigned char* emptyBuffer = (unsigned char*)calloc(64, 1);
+
+    if (emptyBuffer == NULL)
+    {
+        return false;
+    }
+
+    fwrite(FOTBOSSAVE_SIGNATURE, 1, FOTBOSSAVE_SIGNATURE_LENGTH, save);
+
+    fwrite(emptyBuffer, 8, sizeof(*emptyBuffer), save);
+
+    short unsigned int saveNameLength = 13;
+    char saveName[] = "N\0e\0w\0 \0S\0a\0v\0e\0 \0G\0a\0m\0e\0";
+    fwrite(&saveNameLength, sizeof(saveNameLength), 1, save);
+    fwrite(emptyBuffer, 2, sizeof(*emptyBuffer), save);
+    fwrite(saveName, sizeof(*saveName), saveNameLength * 2, save);
+
+    short unsigned int playerNameLength = 12;
+    char playerName[] = "J\0o\0h\0n\0 \0F\0a\0l\0l\0o\0u\0t\0";
+    fwrite(&playerNameLength, sizeof(playerNameLength), 1, save);
+    fwrite(emptyBuffer, 2, sizeof(*emptyBuffer), save);
+    fwrite(playerName, sizeof(*playerName), playerNameLength * 2, save);
+
+    short unsigned int playerLocationLength = 12;
+    char playerLocation[] = "B\0r\0a\0h\0m\0i\0n\0 \0W\0o\0o\0d\0";
+    fwrite(&playerLocationLength, sizeof(playerLocationLength), 1, save);
+    fwrite(emptyBuffer, 2, sizeof(*emptyBuffer), save);
+    fwrite(playerLocation, sizeof(*playerLocation), playerLocationLength * 2, save);
+
+    short unsigned int gameDateTimeLength = 3;
+    char gameDateTime[] = "J\0a\0n\0";
+    fwrite(&gameDateTimeLength, sizeof(gameDateTimeLength), 1, save);
+    fwrite(emptyBuffer, 2, sizeof(*emptyBuffer), save);
+    fwrite(gameDateTime, sizeof(*gameDateTime), gameDateTimeLength * 2, save);
+
+    fflush(save);
+
+    fclose(save);
+
+    free(emptyBuffer);
 
     return true;
 }

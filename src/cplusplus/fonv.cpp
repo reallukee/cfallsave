@@ -20,24 +20,72 @@
 
 namespace cfallsavepp
 {
-    FONVSAVE* FONVSave::getFONVSAVE()
+    string FONVSave::getFixedStringProp(FONVSAVE_PROPS prop)
     {
-        return this->save;
+        char c_value[FONVSAVE_SIGNATURE_LENGTH + 1];
+
+        getFONVSaveProp(this->save, prop, (void**)&c_value);
+
+        return c_value;
     }
 
-    void FONVSave::setFONVSAVE(FONVSAVE* save)
+    unsigned int FONVSave::getUIntProp(FONVSAVE_PROPS prop)
     {
-        if (save == nullptr)
-        {
-            return;
-        }
+        unsigned int c_value;
 
-        if (this->save != nullptr)
-        {
-            closeFONVSave(this->save);
-        }
+        getFONVSaveProp(this->save, prop, (void**)&c_value);
 
-        this->save = save;
+        return c_value;
+    }
+
+    string FONVSave::getStringProp(FONVSAVE_PROPS prop)
+    {
+        char* c_value = NULL;
+
+        getFONVSaveProp(this->save, prop, (void**)&c_value);
+
+        string value = c_value;
+
+        free(c_value);
+
+        return value;
+    }
+
+    unsigned char* FONVSave::getUByteArrayProp(FONVSAVE_PROPS prop)
+    {
+        return NULL;
+    }
+
+
+
+    void FONVSave::setFixedStringProp(FONVSAVE_PROPS prop, string value)
+    {
+        char c_value[FONVSAVE_SIGNATURE_LENGTH + 1];
+
+        strcpy(c_value, value.c_str());
+
+        c_value[FONVSAVE_SIGNATURE_LENGTH] = '\0';
+
+        setFONVSaveProp(this->save, prop, (void**)&c_value);
+    }
+
+    void FONVSave::setUIntProp(FONVSAVE_PROPS prop, unsigned int value)
+    {
+        unsigned int c_value = value;
+
+        setFONVSaveProp(this->save, prop, (void**)&c_value);
+    }
+
+    void FONVSave::setStringProp(FONVSAVE_PROPS prop, string value)
+    {
+        const char* c_value = value.c_str();
+
+        setFONVSaveProp(this->save, prop, (void**)&c_value);
+    }
+
+    void FONVSave::setUByteArrayProp(FONVSAVE_PROPS prop, unsigned char* value)
+    {
+        return;
     }
 
 
@@ -54,7 +102,7 @@ namespace cfallsavepp
 
     FONVSave::FONVSave(string saveName)
     {
-        readSave(saveName);
+        read(saveName);
     }
 
     FONVSave::~FONVSave()
@@ -64,7 +112,7 @@ namespace cfallsavepp
 
 
 
-    bool FONVSave::readSave(string saveName)
+    bool FONVSave::read(string saveName)
     {
         const char* c_saveName = saveName.c_str();
 
@@ -76,12 +124,12 @@ namespace cfallsavepp
         return this->save != nullptr;
     }
 
-    bool FONVSave::writeSave()
+    bool FONVSave::write()
     {
         return writeFONVSave(this->save);
     }
 
-    void FONVSave::closeSave()
+    void FONVSave::close()
     {
         return closeFONVSave(this->save);
     }
@@ -100,24 +148,53 @@ namespace cfallsavepp
 
 
 
-    void FONVSave::printSave()
+    void FONVSave::print()
     {
         printFONVSave(this->save);
     }
 
-    void FONVSave::printSaveProps()
+    void FONVSave::printProps()
     {
         printFONVSaveProps(this->save);
     }
 
-    void FONVSave::printSavePropAddresses()
+    void FONVSave::printPropAddresses()
     {
         printFONVSavePropAddresses(this->save);
     }
 
-    void FONVSave::printSaveSnapshot()
+    void FONVSave::printSnapshot()
     {
         printFONVSaveSnapshot(this->save);
+    }
+
+
+
+    bool FONVSave::createSampleSave()
+    {
+        return createFONVSampleSave();
+    }
+
+
+
+    FONVSAVE* FONVSave::getFONVSAVE()
+    {
+        return this->save;
+    }
+
+    void FONVSave::setFONVSAVE(FONVSAVE* save)
+    {
+        if (save == nullptr)
+        {
+            return;
+        }
+
+        if (this->save != nullptr)
+        {
+            closeFONVSave(this->save);
+        }
+
+        this->save = save;
     }
 
 
@@ -146,106 +223,106 @@ namespace cfallsavepp
 
     string FONVSave::getSaveSignature()
     {
-        if (this->save == nullptr)
-        {
-            return "";
-        }
+        return getFixedStringProp(FONVSAVE_PROPS_SAVE_SIGNATURE);
+    }
 
-        return this->save->saveSignature;
+    void FONVSave::setSaveSignature(string value)
+    {
+        setFixedStringProp(FONVSAVE_PROPS_SAVE_SIGNATURE, value);
     }
 
     unsigned int FONVSave::getEngineVersion()
     {
-        if (this->save == nullptr)
-        {
-            return 0;
-        }
+        return getUIntProp(FONVSAVE_PROPS_ENGINE_VERSION);
+    }
 
-        return this->save->engineVersion;
+    void FONVSave::setEngineVersion(unsigned int value)
+    {
+        setUIntProp(FONVSAVE_PROPS_ENGINE_VERSION, value);
     }
 
     unsigned int FONVSave::getSaveNumber()
     {
-        if (this->save == nullptr)
-        {
-            return 0;
-        }
+        return getUIntProp(FONVSAVE_PROPS_SAVE_NUMBER);
+    }
 
-        return this->save->saveNumber;
+    void FONVSave::setSaveNumber(unsigned int value)
+    {
+        setUIntProp(FONVSAVE_PROPS_SAVE_NUMBER, value);
     }
 
 
 
     string FONVSave::getPlayerName()
     {
-        if (this->save == nullptr || this->save->playerName == nullptr)
-        {
-            return "";
-        }
+        return getStringProp(FONVSAVE_PROPS_PLAYER_NAME);
+    }
 
-        return this->save->playerName;
+    void FONVSave::setPlayerName(string value)
+    {
+        setStringProp(FONVSAVE_PROPS_PLAYER_NAME, value);
     }
 
     unsigned int FONVSave::getPlayerLevel()
     {
-        if (this->save == nullptr)
-        {
-            return 0;
-        }
+        return getUIntProp(FONVSAVE_PROPS_PLAYER_LEVEL);
+    }
 
-        return this->save->playerLevel;
+    void FONVSave::setPlayerLevel(unsigned int value)
+    {
+        setUIntProp(FONVSAVE_PROPS_PLAYER_LEVEL, value);
     }
 
     string FONVSave::getPlayerTitle()
     {
-        if (this->save == nullptr || this->save->playerTitle == nullptr)
-        {
-            return "";
-        }
+        return getStringProp(FONVSAVE_PROPS_PLAYER_TITLE);
+    }
 
-        return this->save->playerTitle;
+    void FONVSave::setPlayerTitle(string value)
+    {
+        setStringProp(FONVSAVE_PROPS_PLAYER_TITLE, value);
     }
 
     string FONVSave::getPlayerLocation()
     {
-        if (this->save == nullptr || this->save->playerLocation == nullptr)
-        {
-            return "";
-        }
+        return getStringProp(FONVSAVE_PROPS_PLAYER_LOCATION);
+    }
 
-        return this->save->playerLocation;
+    void FONVSave::setPlayerLocation(string value)
+    {
+        setStringProp(FONVSAVE_PROPS_PLAYER_LOCATION, value);
     }
 
     string FONVSave::getPlayerPlaytime()
     {
-        if (this->save == nullptr || this->save->playerPlaytime == nullptr)
-        {
-            return "";
-        }
+        return getStringProp(FONVSAVE_PROPS_PLAYER_PLAYTIME);
+    }
 
-        return this->save->playerPlaytime;
+    void FONVSave::setPlayerPlaytime(string value)
+    {
+        setStringProp(FONVSAVE_PROPS_PLAYER_PLAYTIME, value);
     }
 
 
 
     unsigned int FONVSave::getSnapshotWidth()
     {
-        if (this->save == nullptr)
-        {
-            return 0;
-        }
+        return getUIntProp(FONVSAVE_PROPS_SNAPSHOT_WIDTH);
+    }
 
-        return this->save->snapshotWidth;
+    void FONVSave::setSnapshotWidth(unsigned int value)
+    {
+        setUIntProp(FONVSAVE_PROPS_SNAPSHOT_WIDTH, value);
     }
 
     unsigned int FONVSave::getSnapshotHeight()
     {
-        if (this->save == nullptr)
-        {
-            return 0;
-        }
+        return getUIntProp(FONVSAVE_PROPS_SNAPSHOT_HEIGHT);
+    }
 
-        return this->save->snapshotHeight;
+    void FONVSave::setSnapshotHeight(unsigned int value)
+    {
+        setUIntProp(FONVSAVE_PROPS_SNAPSHOT_HEIGHT, value);
     }
 
     long unsigned int FONVSave::getSnapshotLength()
@@ -260,11 +337,11 @@ namespace cfallsavepp
 
     unsigned char* FONVSave::getSnapshot()
     {
-        if (this->save == nullptr || this->save->snapshot == nullptr)
-        {
-            return nullptr;
-        }
+        return getUByteArrayProp(FONVSAVE_PROPS_SNAPSHOT);
+    }
 
-        return this->save->snapshot;
+    void FONVSave::setSnapshot(unsigned char* value)
+    {
+        setUByteArrayProp(FONVSAVE_PROPS_SNAPSHOT, value);
     }
 }

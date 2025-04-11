@@ -10,6 +10,12 @@
 
 </div>
 
+<br />
+
+> [!IMPORTANT]
+> Currently in development!<br />
+> Nothing is final and/or complete!
+
 
 
 # Summary
@@ -36,15 +42,15 @@ Save File Name     : fo4.fos
 
 Save Signature     : FO4_SAVEGAME
 Engine Version     : 15
-Save Number        : 134
+Save Number        : 100
 Player Name        : John Fallout
-Player Level       : 168
+Player Level       : 150
 Player Location    : Commonwealth
-Player Playtime    : 6g.16h.28m.6 giorni.16 ore.28 minuti
+Player Playtime    : 7g.00h.00m.7 giorni.00 ore.00 minuti
 Player Race        : HumanRace
 Player Sex         : 0
-Player Current Xp  : 5225.000000
-Player Required Xp : 12725.000000
+Player Current Xp  : 7500.000000
+Player Required Xp : 0.000000
 Snapshot Width     : 640
 Snapshot Height    : 384
 Snapshot Length    : 983040
@@ -60,15 +66,15 @@ Save Signature     : 0000000000000000 0000
 Engine Version     : 0000000000000016 0010
 Save Number        : 0000000000000020 0014
 Player Name        : 0000000000000024 0018
-Player Level       : 0000000000000035 0023
-Player Location    : 0000000000000039 0027
-Player Playtime    : 0000000000000053 0035
-Player Race        : 0000000000000089 0059
-Player Sex         : 0000000000000100 0064
-Player Current Xp  : 0000000000000102 0066
-Player Required Xp : 0000000000000106 006A
-Snapshot Width     : 0000000000000118 0076
-Snapshot Height    : 0000000000000122 007A
+Player Level       : 0000000000000038 0026
+Player Location    : 0000000000000042 002A
+Player Playtime    : 0000000000000056 0038
+Player Race        : 0000000000000094 005E
+Player Sex         : 0000000000000105 0069
+Player Current Xp  : 0000000000000107 006B
+Player Required Xp : 0000000000000111 006F
+Snapshot Width     : 0000000000000123 007B
+Snapshot Height    : 0000000000000127 007F
 ```
 
 
@@ -175,10 +181,10 @@ git clone https://github.com/reallukee/cfallsave.git
 
     ```bash
     # CFallSave
-    make -f cfallsave.makefile
+    make -f cfallsave.makefile build
 
     # CFallSave++
-    make -f cfallsave++.makefile
+    make -f cfallsave++.makefile build
     ```
 
 3. View output

@@ -48,7 +48,7 @@ bool readFixedString(
         return false;
     }
 
-    destination[length + 1] = '\0';
+    destination[length] = '\0';
 
     if (updateAddress)
     {
@@ -133,18 +133,18 @@ bool readCURSEDString(
         *address += 2;
     }
 
-    char* cursedPropery = (char*)malloc(length * 2 + 1);
+    char* cursedProperty = (char*)malloc(length * 2 + 1);
 
-    if (cursedPropery == NULL)
+    if (cursedProperty == NULL)
     {
         return false;
     }
 
-    bool r_readFixedString = readFixedString(source, cursedPropery, length * 2, address, skipString, false);
+    bool r_readFixedString = readFixedString(source, cursedProperty, length * 2, address, skipString, updateAddress);
 
     if (!r_readFixedString)
     {
-        free(cursedPropery);
+        free(cursedProperty);
 
         return false;
     }
@@ -158,19 +158,19 @@ bool readCURSEDString(
 
     if (*destination == NULL)
     {
-        free(cursedPropery);
+        free(cursedProperty);
 
         return false;
     }
 
     for (int i = 0, j = 0; i < length * 2 && j < length; i += 2, j++)
     {
-        (*destination)[j] = cursedPropery[i];
+        (*destination)[j] = cursedProperty[i];
     }
 
     (*destination)[length] = '\0';
 
-    free(cursedPropery);
+    free(cursedProperty);
 
     if (!updateAddress)
     {

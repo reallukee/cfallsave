@@ -20,24 +20,104 @@
 
 namespace cfallsavepp
 {
-    FO4SAVE* FO4Save::getFO4SAVE()
+    string FO4Save::getFixedStringProp(FO4SAVE_PROPS prop)
     {
-        return this->save;
+        char c_value[FO4SAVE_SIGNATURE_LENGTH + 1];
+
+        getFO4SaveProp(this->save, prop, (void**)&c_value);
+
+        return c_value;
     }
 
-    void FO4Save::setFO4SAVE(FO4SAVE* save)
+    unsigned int FO4Save::getUIntProp(FO4SAVE_PROPS prop)
     {
-        if (save == nullptr)
-        {
-            return;
-        }
+        unsigned int c_value;
 
-        if (this->save != nullptr)
-        {
-            closeFO4Save(this->save);
-        }
+        getFO4SaveProp(this->save, prop, (void**)&c_value);
 
-        this->save = save;
+        return c_value;
+    }
+
+    string FO4Save::getStringProp(FO4SAVE_PROPS prop)
+    {
+        char* c_value = NULL;
+
+        getFO4SaveProp(this->save, prop, (void**)&c_value);
+
+        string value = c_value;
+
+        free(c_value);
+
+        return value;
+    }
+
+    short unsigned int FO4Save::getUShortProp(FO4SAVE_PROPS prop)
+    {
+        short unsigned int c_value;
+
+        getFO4SaveProp(this->save, prop, (void**)&c_value);
+
+        return c_value;
+    }
+
+    float FO4Save::getFloatProp(FO4SAVE_PROPS prop)
+    {
+        float c_value;
+
+        getFO4SaveProp(this->save, prop, (void**)&c_value);
+
+        return c_value;
+    }
+
+    unsigned char* FO4Save::getUByteArrayProp(FO4SAVE_PROPS prop)
+    {
+        return NULL;
+    }
+
+
+
+    void FO4Save::setFixedStringProp(FO4SAVE_PROPS prop, string value)
+    {
+        char c_value[FO4SAVE_SIGNATURE_LENGTH + 1];
+
+        strcpy(c_value, value.c_str());
+
+        c_value[FO4SAVE_SIGNATURE_LENGTH] = '\0';
+
+        setFO4SaveProp(this->save, prop, (void**)&c_value);
+    }
+
+    void FO4Save::setUIntProp(FO4SAVE_PROPS prop, unsigned int value)
+    {
+        unsigned int c_value = value;
+
+        setFO4SaveProp(this->save, prop, (void**)&c_value);
+    }
+
+    void FO4Save::setStringProp(FO4SAVE_PROPS prop, string value)
+    {
+        const char* c_value = value.c_str();
+
+        setFO4SaveProp(this->save, prop, (void**)&c_value);
+    }
+
+    void FO4Save::setUShortProp(FO4SAVE_PROPS prop, short unsigned int value)
+    {
+        short unsigned int c_value = value;
+
+        setFO4SaveProp(this->save, prop, (void**)&c_value);
+    }
+
+    void FO4Save::setFloatProp(FO4SAVE_PROPS prop, float value)
+    {
+        float c_value = value;
+
+        setFO4SaveProp(this->save, prop, (void**)&c_value);
+    }
+
+    void FO4Save::setUByteArrayProp(FO4SAVE_PROPS prop, unsigned char* value)
+    {
+        return;
     }
 
 
@@ -54,7 +134,7 @@ namespace cfallsavepp
 
     FO4Save::FO4Save(string saveName)
     {
-        readSave(saveName);
+        read(saveName);
     }
 
     FO4Save::~FO4Save()
@@ -64,7 +144,7 @@ namespace cfallsavepp
 
 
 
-    bool FO4Save::readSave(string saveName)
+    bool FO4Save::read(string saveName)
     {
         const char* c_saveName = saveName.c_str();
 
@@ -76,12 +156,12 @@ namespace cfallsavepp
         return this->save != nullptr;
     }
 
-    bool FO4Save::writeSave()
+    bool FO4Save::write()
     {
         return writeFO4Save(this->save);
     }
 
-    void FO4Save::closeSave()
+    void FO4Save::close()
     {
         return closeFO4Save(this->save);
     }
@@ -100,24 +180,53 @@ namespace cfallsavepp
 
 
 
-    void FO4Save::printSave()
+    void FO4Save::print()
     {
         printFO4Save(this->save);
     }
 
-    void FO4Save::printSaveProps()
+    void FO4Save::printProps()
     {
         printFO4SaveProps(this->save);
     }
 
-    void FO4Save::printSavePropAddresses()
+    void FO4Save::printPropAddresses()
     {
         printFO4SavePropAddresses(this->save);
     }
 
-    void FO4Save::printSaveSnapshot()
+    void FO4Save::printSnapshot()
     {
         printFO4SaveSnapshot(this->save);
+    }
+
+
+
+    bool FO4Save::createSampleSave()
+    {
+        return createFO4SampleSave();
+    }
+
+
+
+    FO4SAVE* FO4Save::getFO4SAVE()
+    {
+        return this->save;
+    }
+
+    void FO4Save::setFO4SAVE(FO4SAVE* save)
+    {
+        if (save == nullptr)
+        {
+            return;
+        }
+
+        if (this->save != nullptr)
+        {
+            closeFO4Save(this->save);
+        }
+
+        this->save = save;
     }
 
 
@@ -146,136 +255,136 @@ namespace cfallsavepp
 
     string FO4Save::getSaveSignature()
     {
-        if (this->save == nullptr)
-        {
-            return "";
-        }
+        return getFixedStringProp(FO4SAVE_PROPS_SAVE_SIGNATURE);
+    }
 
-        return this->save->saveSignature;
+    void FO4Save::setSaveSignature(string value)
+    {
+        setFixedStringProp(FO4SAVE_PROPS_SAVE_SIGNATURE, value);
     }
 
     unsigned int FO4Save::getEngineVersion()
     {
-        if (this->save == nullptr)
-        {
-            return 0;
-        }
+        return getUIntProp(FO4SAVE_PROPS_ENGINE_VERSION);
+    }
 
-        return this->save->engineVersion;
+    void FO4Save::setEngineVersion(unsigned int value)
+    {
+        setUIntProp(FO4SAVE_PROPS_ENGINE_VERSION, value);
     }
 
     unsigned int FO4Save::getSaveNumber()
     {
-        if (this->save == nullptr)
-        {
-            return 0;
-        }
+        return getUIntProp(FO4SAVE_PROPS_SAVE_NUMBER);
+    }
 
-        return this->save->saveNumber;
+    void FO4Save::setSaveNumber(unsigned int value)
+    {
+        setUIntProp(FO4SAVE_PROPS_SAVE_NUMBER, value);
     }
 
 
 
     string FO4Save::getPlayerName()
     {
-        if (this->save == nullptr || this->save->playerName == nullptr)
-        {
-            return "";
-        }
+        return getStringProp(FO4SAVE_PROPS_PLAYER_NAME);
+    }
 
-        return this->save->playerName;
+    void FO4Save::setPlayerName(string value)
+    {
+        setStringProp(FO4SAVE_PROPS_PLAYER_NAME, value);
     }
 
     unsigned int FO4Save::getPlayerLevel()
     {
-        if (this->save == nullptr)
-        {
-            return 0;
-        }
+        return getUIntProp(FO4SAVE_PROPS_PLAYER_LEVEL);
+    }
 
-        return this->save->playerLevel;
+    void FO4Save::setPlayerLevel(unsigned int value)
+    {
+        setUIntProp(FO4SAVE_PROPS_PLAYER_LEVEL, value);
     }
 
     string FO4Save::getPlayerLocation()
     {
-        if (this->save == nullptr || this->save->playerLocation == nullptr)
-        {
-            return "";
-        }
+        return getStringProp(FO4SAVE_PROPS_PLAYER_LOCATION);
+    }
 
-        return this->save->playerLocation;
+    void FO4Save::setPlayerLocation(string value)
+    {
+        setStringProp(FO4SAVE_PROPS_PLAYER_LOCATION, value);
     }
 
     string FO4Save::getPlayerPlaytime()
     {
-        if (this->save == nullptr || this->save->playerPlaytime == nullptr)
-        {
-            return "";
-        }
+        return getStringProp(FO4SAVE_PROPS_PLAYER_PLAYTIME);
+    }
 
-        return this->save->playerPlaytime;
+    void FO4Save::setPlayerPlaytime(string value)
+    {
+        setStringProp(FO4SAVE_PROPS_PLAYER_PLAYTIME, value);
     }
 
     string FO4Save::getPlayerRace()
     {
-        if (this->save == nullptr || this->save->playerRace == nullptr)
-        {
-            return "";
-        }
+        return getStringProp(FO4SAVE_PROPS_PLAYER_RACE);
+    }
 
-        return this->save->playerRace;
+    void FO4Save::setPlayerRace(string value)
+    {
+        setStringProp(FO4SAVE_PROPS_PLAYER_RACE, value);
     }
 
     short unsigned int FO4Save::getPlayerSex()
     {
-        if (this->save == nullptr)
-        {
-            return 0;
-        }
+        return getUShortProp(FO4SAVE_PROPS_PLAYER_SEX);
+    }
 
-        return this->save->playerSex;
+    void FO4Save::setPlayerSex(short unsigned int value)
+    {
+        setUShortProp(FO4SAVE_PROPS_PLAYER_SEX, value);
     }
 
     float FO4Save::getPlayerCurrentXp()
     {
-        if (this->save == nullptr)
-        {
-            return 0;
-        }
+        return getFloatProp(FO4SAVE_PROPS_PLAYER_CURRENT_XP);
+    }
 
-        return this->save->playerCurrentXp;
+    void FO4Save::setPlayerCurrentXp(float value)
+    {
+        setFloatProp(FO4SAVE_PROPS_PLAYER_CURRENT_XP, value);
     }
 
     float FO4Save::getPlayerRequiredXp()
     {
-        if (this->save == nullptr)
-        {
-            return 0;
-        }
+        return getFloatProp(FO4SAVE_PROPS_PLAYER_REQUIRED_XP);
+    }
 
-        return this->save->playerRequiredXp;
+    void FO4Save::setPlayerRequiredXp(float value)
+    {
+        setFloatProp(FO4SAVE_PROPS_PLAYER_REQUIRED_XP, value);
     }
 
 
 
     unsigned int FO4Save::getSnapshotWidth()
     {
-        if (this->save == nullptr)
-        {
-            return 0;
-        }
+        return getUIntProp(FO4SAVE_PROPS_SNAPSHOT_WIDTH);
+    }
 
-        return this->save->snapshotWidth;
+    void FO4Save::setSnapshotWidth(unsigned int value)
+    {
+        setUIntProp(FO4SAVE_PROPS_SNAPSHOT_WIDTH, value);
     }
 
     unsigned int FO4Save::getSnapshotHeight()
     {
-        if (this->save == nullptr)
-        {
-            return 0;
-        }
+        return getUIntProp(FO4SAVE_PROPS_SNAPSHOT_HEIGHT);
+    }
 
-        return this->save->snapshotHeight;
+    void FO4Save::setSnapshotHeight(unsigned int value)
+    {
+        setUIntProp(FO4SAVE_PROPS_SNAPSHOT_HEIGHT, value);
     }
 
     long unsigned int FO4Save::getSnapshotLength()
@@ -290,11 +399,11 @@ namespace cfallsavepp
 
     unsigned char* FO4Save::getSnapshot()
     {
-        if (this->save == nullptr || this->save->snapshot == nullptr)
-        {
-            return nullptr;
-        }
+        return getUByteArrayProp(FO4SAVE_PROPS_SNAPSHOT);
+    }
 
-        return this->save->snapshot;
+    void FO4Save::setSnapshot(unsigned char* value)
+    {
+        setUByteArrayProp(FO4SAVE_PROPS_SNAPSHOT, value);
     }
 }

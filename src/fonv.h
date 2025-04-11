@@ -25,7 +25,7 @@
 #define FONVSAVE_SIGNATURE          "FO3SAVEGAME"
 #define FONVSAVE_SIGNATURE_LENGTH   11
 #define FONVSAVE_PROPS_COUNT        11
-#define FONVSAVE_SAVE_STANDARD_EXT  ".fos"
+#define FONVSAVE_STANDARD_EXT       ".fos"
 
 typedef enum FONVSAVE_PROPS
 {
@@ -47,6 +47,7 @@ typedef enum FONVSAVE_PROPS
 #define FONVSAVE_MAX_SNAPSHOT_LENGTH    442368
 
 #define FONVSAVE_SNAPSHOT_COLOR_BYTES   3
+#define FONVSAVE_SNAPSHOT_FORMAT        "RGB"
 
 #define FONVSAVE_PLAYER_SEX_MALE        0
 #define FONVSAVE_PLAYER_SEX_FEMALE      1
@@ -145,5 +146,9 @@ CFALLSAVE_API bool printFONVSavePropAddresses(
 CFALLSAVE_API bool printFONVSaveSnapshot(
     FONVSAVE* save
 );
+
+
+
+CFALLSAVE_API bool createFONVSampleSave();
 
 #endif // !CFALLSAVE_FONV_H

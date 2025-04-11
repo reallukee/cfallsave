@@ -20,24 +20,72 @@
 
 namespace cfallsavepp
 {
-    FO3SAVE* FO3Save::getFO3SAVE()
+    string FO3Save::getFixedStringProp(FO3SAVE_PROPS prop)
     {
-        return this->save;
+        char c_value[FO3SAVE_SIGNATURE_LENGTH + 1];
+
+        getFO3SaveProp(this->save, prop, (void**)&c_value);
+
+        return c_value;
     }
 
-    void FO3Save::setFO3SAVE(FO3SAVE* save)
+    unsigned int FO3Save::getUIntProp(FO3SAVE_PROPS prop)
     {
-        if (save == nullptr)
-        {
-            return;
-        }
+        unsigned int c_value;
 
-        if (this->save != nullptr)
-        {
-            closeFO3Save(this->save);
-        }
+        getFO3SaveProp(this->save, prop, (void**)&c_value);
 
-        this->save = save;
+        return c_value;
+    }
+
+    string FO3Save::getStringProp(FO3SAVE_PROPS prop)
+    {
+        char* c_value = NULL;
+
+        getFO3SaveProp(this->save, prop, (void**)&c_value);
+
+        string value = c_value;
+
+        free(c_value);
+
+        return value;
+    }
+
+    unsigned char* FO3Save::getUByteArrayProp(FO3SAVE_PROPS prop)
+    {
+        return NULL;
+    }
+
+
+
+    void FO3Save::setFixedStringProp(FO3SAVE_PROPS prop, string value)
+    {
+        char c_value[FO3SAVE_SIGNATURE_LENGTH + 1];
+
+        strcpy(c_value, value.c_str());
+
+        c_value[FO3SAVE_SIGNATURE_LENGTH] = '\0';
+
+        setFO3SaveProp(this->save, prop, (void**)&c_value);
+    }
+
+    void FO3Save::setUIntProp(FO3SAVE_PROPS prop, unsigned int value)
+    {
+        unsigned int c_value = value;
+
+        setFO3SaveProp(this->save, prop, (void**)&c_value);
+    }
+
+    void FO3Save::setStringProp(FO3SAVE_PROPS prop, string value)
+    {
+        const char* c_value = value.c_str();
+
+        setFO3SaveProp(this->save, prop, (void**)&c_value);
+    }
+
+    void FO3Save::setUByteArrayProp(FO3SAVE_PROPS prop, unsigned char* value)
+    {
+        return;
     }
 
 
@@ -54,7 +102,7 @@ namespace cfallsavepp
 
     FO3Save::FO3Save(string saveName)
     {
-        readSave(saveName);
+        read(saveName);
     }
 
     FO3Save::~FO3Save()
@@ -64,7 +112,7 @@ namespace cfallsavepp
 
 
 
-    bool FO3Save::readSave(string saveName)
+    bool FO3Save::read(string saveName)
     {
         const char* c_saveName = saveName.c_str();
 
@@ -76,12 +124,12 @@ namespace cfallsavepp
         return this->save != nullptr;
     }
 
-    bool FO3Save::writeSave()
+    bool FO3Save::write()
     {
         return writeFO3Save(this->save);
     }
 
-    void FO3Save::closeSave()
+    void FO3Save::close()
     {
         return closeFO3Save(this->save);
     }
@@ -100,24 +148,53 @@ namespace cfallsavepp
 
 
 
-    void FO3Save::printSave()
+    void FO3Save::print()
     {
         printFO3Save(this->save);
     }
 
-    void FO3Save::printSaveProps()
+    void FO3Save::printProps()
     {
         printFO3SaveProps(this->save);
     }
 
-    void FO3Save::printSavePropAddresses()
+    void FO3Save::printPropAddresses()
     {
         printFO3SavePropAddresses(this->save);
     }
 
-    void FO3Save::printSaveSnapshot()
+    void FO3Save::printSnapshot()
     {
         printFO3SaveSnapshot(this->save);
+    }
+
+
+
+    bool FO3Save::createSampleSave()
+    {
+        return createFO3SampleSave();
+    }
+
+
+
+    FO3SAVE* FO3Save::getFO3SAVE()
+    {
+        return this->save;
+    }
+
+    void FO3Save::setFO3SAVE(FO3SAVE* save)
+    {
+        if (save == nullptr)
+        {
+            return;
+        }
+
+        if (this->save != nullptr)
+        {
+            closeFO3Save(this->save);
+        }
+
+        this->save = save;
     }
 
 
@@ -146,106 +223,106 @@ namespace cfallsavepp
 
     string FO3Save::getSaveSignature()
     {
-        if (this->save == nullptr)
-        {
-            return "";
-        }
+        return getFixedStringProp(FO3SAVE_PROPS_SAVE_SIGNATURE);
+    }
 
-        return this->save->saveSignature;
+    void FO3Save::setSaveSignature(string value)
+    {
+        setFixedStringProp(FO3SAVE_PROPS_SAVE_SIGNATURE, value);
     }
 
     unsigned int FO3Save::getEngineVersion()
     {
-        if (this->save == nullptr)
-        {
-            return 0;
-        }
+        return getUIntProp(FO3SAVE_PROPS_ENGINE_VERSION);
+    }
 
-        return this->save->engineVersion;
+    void FO3Save::setEngineVersion(unsigned int value)
+    {
+        setUIntProp(FO3SAVE_PROPS_ENGINE_VERSION, value);
     }
 
     unsigned int FO3Save::getSaveNumber()
     {
-        if (this->save == nullptr)
-        {
-            return 0;
-        }
+        return getUIntProp(FO3SAVE_PROPS_SAVE_NUMBER);
+    }
 
-        return this->save->saveNumber;
+    void FO3Save::setSaveNumber(unsigned int value)
+    {
+        setUIntProp(FO3SAVE_PROPS_SAVE_NUMBER, value);
     }
 
 
 
     string FO3Save::getPlayerName()
     {
-        if (this->save == nullptr || this->save->playerName == nullptr)
-        {
-            return "";
-        }
+        return getStringProp(FO3SAVE_PROPS_PLAYER_NAME);
+    }
 
-        return this->save->playerName;
+    void FO3Save::setPlayerName(string value)
+    {
+        setStringProp(FO3SAVE_PROPS_PLAYER_NAME, value);
     }
 
     unsigned int FO3Save::getPlayerLevel()
     {
-        if (this->save == nullptr)
-        {
-            return 0;
-        }
+        return getUIntProp(FO3SAVE_PROPS_PLAYER_LEVEL);
+    }
 
-        return this->save->playerLevel;
+    void FO3Save::setPlayerLevel(unsigned int value)
+    {
+        setUIntProp(FO3SAVE_PROPS_PLAYER_LEVEL, value);
     }
 
     string FO3Save::getPlayerTitle()
     {
-        if (this->save == nullptr || this->save->playerTitle == nullptr)
-        {
-            return "";
-        }
+        return getStringProp(FO3SAVE_PROPS_PLAYER_TITLE);
+    }
 
-        return this->save->playerTitle;
+    void FO3Save::setPlayerTitle(string value)
+    {
+        setStringProp(FO3SAVE_PROPS_PLAYER_TITLE, value);
     }
 
     string FO3Save::getPlayerLocation()
     {
-        if (this->save == nullptr || this->save->playerLocation == nullptr)
-        {
-            return "";
-        }
+        return getStringProp(FO3SAVE_PROPS_PLAYER_LOCATION);
+    }
 
-        return this->save->playerLocation;
+    void FO3Save::setPlayerLocation(string value)
+    {
+        setStringProp(FO3SAVE_PROPS_PLAYER_LOCATION, value);
     }
 
     string FO3Save::getPlayerPlaytime()
     {
-        if (this->save == nullptr || this->save->playerPlaytime == nullptr)
-        {
-            return "";
-        }
+        return getStringProp(FO3SAVE_PROPS_PLAYER_PLAYTIME);
+    }
 
-        return this->save->playerPlaytime;
+    void FO3Save::setPlayerPlaytime(string value)
+    {
+        setStringProp(FO3SAVE_PROPS_PLAYER_PLAYTIME, value);
     }
 
 
 
     unsigned int FO3Save::getSnapshotWidth()
     {
-        if (this->save == nullptr)
-        {
-            return 0;
-        }
+        return getUIntProp(FO3SAVE_PROPS_SNAPSHOT_WIDTH);
+    }
 
-        return this->save->snapshotWidth;
+    void FO3Save::setSnapshotWidth(unsigned int value)
+    {
+        setUIntProp(FO3SAVE_PROPS_SNAPSHOT_WIDTH, value);
     }
 
     unsigned int FO3Save::getSnapshotHeight()
     {
-        if (this->save == nullptr)
-        {
-            return 0;
-        }
+        return getUIntProp(FO3SAVE_PROPS_SNAPSHOT_HEIGHT);
+    }
 
-        return this->save->snapshotHeight;
+    void FO3Save::setSnapshotHeight(unsigned int value)
+    {
+        setUIntProp(FO3SAVE_PROPS_SNAPSHOT_HEIGHT, value);
     }
 
     long unsigned int FO3Save::getSnapshotLength()
@@ -260,11 +337,11 @@ namespace cfallsavepp
 
     unsigned char* FO3Save::getSnapshot()
     {
-        if (this->save == nullptr || this->save->snapshot == nullptr)
-        {
-            return nullptr;
-        }
+        return getUByteArrayProp(FO3SAVE_PROPS_SNAPSHOT);
+    }
 
-        return this->save->snapshot;
+    void FO3Save::setSnapshot(unsigned char* value)
+    {
+        setUByteArrayProp(FO3SAVE_PROPS_SNAPSHOT, value);
     }
 }

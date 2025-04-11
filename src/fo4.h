@@ -25,7 +25,7 @@
 #define FO4SAVE_SIGNATURE           "FO4_SAVEGAME"
 #define FO4SAVE_SIGNATURE_LENGTH    12
 #define FO4SAVE_PROPS_COUNT         14
-#define FO4SAVE_SAVE_STANDARD_EXT   ".fos"
+#define FO4SAVE_STANDARD_EXT        ".fos"
 
 typedef enum FO4SAVE_PROPS
 {
@@ -50,6 +50,7 @@ typedef enum FO4SAVE_PROPS
 #define FO4SAVE_MAX_SNAPSHOT_LENGTH     983040
 
 #define FO4SAVE_SNAPSHOT_COLOR_BYTES    4
+#define FO4SAVE_SNAPSHOT_FORMAT         "RGBA"
 
 #define FO4SAVE_PLAYER_SEX_MALE         0
 #define FO4SAVE_PLAYER_SEX_FEMALE       1
@@ -151,5 +152,9 @@ CFALLSAVE_API bool printFO4SavePropAddresses(
 CFALLSAVE_API bool printFO4SaveSnapshot(
     FO4SAVE* save
 );
+
+
+
+CFALLSAVE_API bool createFO4SampleSave();
 
 #endif  // !CFALLSAVE_FO4_H

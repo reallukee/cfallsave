@@ -20,24 +20,46 @@
 
 namespace cfallsavepp
 {
-    FOTBOSSAVE* FOTBOSSave::getFOTBOSSAVE()
+    string FOTBOSSave::getFixedStringProp(FOTBOSSAVE_PROPS prop)
     {
-        return this->save;
+        char c_value[FOTBOSSAVE_SIGNATURE_LENGTH + 1];
+
+        getFOTBOSSaveProp(this->save, prop, (void**)&c_value);
+
+        return c_value;
     }
 
-    void FOTBOSSave::setFOTBOSSAVE(FOTBOSSAVE* save)
+    string FOTBOSSave::getStringProp(FOTBOSSAVE_PROPS prop)
     {
-        if (save == nullptr)
-        {
-            return;
-        }
+        char* c_value = NULL;
 
-        if (this->save != nullptr)
-        {
-            closeFOTBOSSave(this->save);
-        }
+        getFOTBOSSaveProp(this->save, prop, (void**)&c_value);
 
-        this->save = save;
+        string value = c_value;
+
+        free(c_value);
+
+        return value;
+    }
+
+
+
+    void FOTBOSSave::setFixedStringProp(FOTBOSSAVE_PROPS prop, string value)
+    {
+        char c_value[FOTBOSSAVE_SIGNATURE_LENGTH + 1];
+
+        strcpy(c_value, value.c_str());
+
+        c_value[FOTBOSSAVE_SIGNATURE_LENGTH] = '\0';
+
+        setFOTBOSSaveProp(this->save, prop, (void**)&c_value);
+    }
+
+    void FOTBOSSave::setStringProp(FOTBOSSAVE_PROPS prop, string value)
+    {
+        const char* c_value = value.c_str();
+
+        setFOTBOSSaveProp(this->save, prop, (void**)&c_value);
     }
 
 
@@ -54,7 +76,7 @@ namespace cfallsavepp
 
     FOTBOSSave::FOTBOSSave(string saveName)
     {
-        readSave(saveName);
+        read(saveName);
     }
 
     FOTBOSSave::~FOTBOSSave()
@@ -64,7 +86,7 @@ namespace cfallsavepp
 
 
 
-    bool FOTBOSSave::readSave(string saveName)
+    bool FOTBOSSave::read(string saveName)
     {
         const char* c_saveName = saveName.c_str();
 
@@ -76,12 +98,12 @@ namespace cfallsavepp
         return this->save != nullptr;
     }
 
-    bool FOTBOSSave::writeSave()
+    bool FOTBOSSave::write()
     {
         return writeFOTBOSSave(this->save);
     }
 
-    void FOTBOSSave::closeSave()
+    void FOTBOSSave::close()
     {
         return closeFOTBOSSave(this->save);
     }
@@ -100,19 +122,48 @@ namespace cfallsavepp
 
 
 
-    void FOTBOSSave::printSave()
+    void FOTBOSSave::print()
     {
         printFOTBOSSave(this->save);
     }
 
-    void FOTBOSSave::printSaveProps()
+    void FOTBOSSave::printProps()
     {
         printFOTBOSSaveProps(this->save);
     }
 
-    void FOTBOSSave::printSavePropAddresses()
+    void FOTBOSSave::printPropAddresses()
     {
         printFOTBOSSavePropAddresses(this->save);
+    }
+
+
+
+    bool FOTBOSSave::createSampleSave()
+    {
+        return createFOTBOSSampleSave();
+    }
+
+
+
+    FOTBOSSAVE* FOTBOSSave::getFOTBOSSAVE()
+    {
+        return this->save;
+    }
+
+    void FOTBOSSave::setFOTBOSSAVE(FOTBOSSAVE* save)
+    {
+        if (save == nullptr)
+        {
+            return;
+        }
+
+        if (this->save != nullptr)
+        {
+            closeFOTBOSSave(this->save);
+        }
+
+        this->save = save;
     }
 
 
@@ -141,53 +192,53 @@ namespace cfallsavepp
 
     string FOTBOSSave::getSaveSignature()
     {
-        if (this->save == nullptr)
-        {
-            return "";
-        }
+        return getFixedStringProp(FOTBOSSAVE_PROPS_SAVE_SIGNATURE);
+    }
 
-        return this->save->saveSignature;
+    void FOTBOSSave::setSaveSignature(string value)
+    {
+        setFixedStringProp(FOTBOSSAVE_PROPS_SAVE_SIGNATURE, value);
     }
 
     string FOTBOSSave::getSaveName()
     {
-        if (this->save == nullptr || this->save->saveName == nullptr)
-        {
-            return "";
-        }
+        return getStringProp(FOTBOSSAVE_PROPS_SAVE_NAME);
+    }
 
-        return this->save->saveName;
+    void FOTBOSSave::setSaveName(string value)
+    {
+        setStringProp(FOTBOSSAVE_PROPS_SAVE_NAME, value);
     }
 
 
 
     string FOTBOSSave::getPlayerName()
     {
-        if (this->save == nullptr || this->save->playerName == nullptr)
-        {
-            return "";
-        }
+        return getStringProp(FOTBOSSAVE_PROPS_PLAYER_NAME);
+    }
 
-        return this->save->playerName;
+    void FOTBOSSave::setPlayerName(string value)
+    {
+        setStringProp(FOTBOSSAVE_PROPS_PLAYER_NAME, value);
     }
 
     string FOTBOSSave::getPlayerLocation()
     {
-        if (this->save == nullptr || this->save->playerLocation == nullptr)
-        {
-            return "";
-        }
+        return getStringProp(FOTBOSSAVE_PROPS_PLAYER_LOCATION);
+    }
 
-        return this->save->playerLocation;
+    void FOTBOSSave::setPlayerLocation(string value)
+    {
+        setStringProp(FOTBOSSAVE_PROPS_PLAYER_LOCATION, value);
     }
 
     string FOTBOSSave::getGameDateTime()
     {
-        if (this->save == nullptr || this->save->gameDateTime == nullptr)
-        {
-            return "";
-        }
+        return getStringProp(FOTBOSSAVE_PROPS_GAME_DATE_TIME);
+    }
 
-        return this->save->gameDateTime;
+    void FOTBOSSave::setGameDateTime(string value)
+    {
+        setStringProp(FOTBOSSAVE_PROPS_GAME_DATE_TIME, value);
     }
 }

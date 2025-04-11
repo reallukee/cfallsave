@@ -29,14 +29,14 @@ FO2SAVE* readFO2Save(
         return NULL;
     }
 
-    FO2SAVE* save = (FO2SAVE*)malloc(FO2SAVE_SIZE);
+    FO2SAVE* save = (FO2SAVE*)calloc(1, FO2SAVE_SIZE);
 
     if (save == NULL)
     {
         return NULL;
     }
 
-    save->save = fopen(saveName, "r+w+b");
+    save->save = fopen(saveName, "rb+");
 
     if (save->save == NULL)
     {
@@ -45,7 +45,7 @@ FO2SAVE* readFO2Save(
         return NULL;
     }
 
-    save->saveFileName = (char*)malloc(strlen(saveName) + 1);
+    save->saveFileName = strdup(saveName);
 
     if (save->saveFileName == NULL)
     {
@@ -53,8 +53,6 @@ FO2SAVE* readFO2Save(
 
         return NULL;
     }
-
-    strcpy(save->saveFileName, saveName);
 
     long unsigned int address = 0;
     bool fail = false;
@@ -99,16 +97,14 @@ bool isFO2Save(
         return false;
     }
 
-    FO2SAVE* save = (FO2SAVE*)malloc(FO2SAVE_SIZE);
+    FO2SAVE* save = (FO2SAVE*)calloc(1, FO2SAVE_SIZE);
 
     if (save == NULL)
     {
         return false;
     }
 
-    memset(save, 0, FO2SAVE_SIZE);
-
-    save->save = fopen(saveName, "r+b");
+    save->save = fopen(saveName, "rb+");
 
     if (save->save == NULL)
     {
@@ -293,6 +289,19 @@ bool printFO2Save(
     FO2SAVE* save
 )
 {
+    if (save == NULL)
+    {
+        printf("***********\n");
+        printf("* FO2SAVE *\n");
+        printf("***********\n");
+
+        printf("\n");
+
+        printf("/!\\ SAVE NOT OPEN /!\\\n");
+
+        return false;
+    }
+
     bool fail = false;
 
     fail |= printFO2SaveProps(save);
@@ -308,16 +317,18 @@ bool printFO2SaveProps(
     FO2SAVE* save
 )
 {
-    if (save == NULL)
-    {
-        return false;
-    }
-
     printf("*****************\n");
     printf("* FO2SAVE PROPS *\n");
     printf("*****************\n");
 
     printf("\n");
+
+    if (save == NULL)
+    {
+        printf("/!\\ SAVE NOT OPEN /!\\\n");
+
+        return false;
+    }
 
     printf("Game Name      : %s\n", FO2SAVE_GAME_NAME);
     printf("Save File Name : %s\n", save->saveFileName);
@@ -335,16 +346,18 @@ bool printFO2SavePropAddresses(
     FO2SAVE* save
 )
 {
-    if (save == NULL)
-    {
-        return false;
-    }
-
     printf("**************************\n");
     printf("* FO2SAVE PROP ADDRESSES *\n");
     printf("**************************\n");
 
     printf("\n");
+
+    if (save == NULL)
+    {
+        printf("/!\\ SAVE NOT OPEN /!\\\n");
+
+        return false;
+    }
 
     printf("%-14s : %s\n", "Save File Name", save->saveName);
 
@@ -366,6 +379,38 @@ bool printFO2SavePropAddresses(
     {
         printf("%-14s : %016lu %04lX\n", propNames[i], *propAddresses[i], *propAddresses[i]);
     }
+
+    return true;
+}
+
+
+
+bool createFO2SampleSave()
+{
+    FILE* save = fopen("fo2.dat", "wb");
+
+    if (save == NULL)
+    {
+        return false;
+    }
+
+    unsigned char* emptyBuffer = (unsigned char*)calloc(64, 1);
+
+    fwrite(FO2SAVE_SIGNATURE, 1, FO2SAVE_SIGNATURE_LENGTH, save);
+
+    fwrite(emptyBuffer, 12, sizeof(*emptyBuffer), save);
+
+    char playerName[FO2SAVE_STRING_SIZE] = "John Fallout";
+    fwrite(playerName, sizeof(*playerName), FO2SAVE_STRING_SIZE, save);
+
+    char saveName[FO2SAVE_STRING_SIZE] = "Save 1";
+    fwrite(saveName, sizeof(*saveName), FO2SAVE_STRING_SIZE, save);
+
+    fflush(save);
+
+    fclose(save);
+
+    free(emptyBuffer);
 
     return true;
 }

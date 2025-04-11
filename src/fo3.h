@@ -25,7 +25,7 @@
 #define FO3SAVE_SIGNATURE           "FO3SAVEGAME"
 #define FO3SAVE_SIGNATURE_LENGTH    11
 #define FO3SAVE_PROPS_COUNT         11
-#define FO3SAVE_SAVE_STANDARD_EXT   ".fos"
+#define FO3SAVE_STANDARD_EXT        ".fos"
 
 typedef enum FO3SAVE_PROPS
 {
@@ -47,6 +47,7 @@ typedef enum FO3SAVE_PROPS
 #define FO3SAVE_MAX_SNAPSHOT_LENGTH     442368
 
 #define FO3SAVE_SNAPSHOT_COLOR_BYTES    3
+#define FO3SAVE_SNAPSHOT_FORMAT         "RGB"
 
 #define FO3SAVE_PLAYER_SEX_MALE         0
 #define FO3SAVE_PLAYER_SEX_FEMALE       1
@@ -145,5 +146,9 @@ CFALLSAVE_API bool printFO3SavePropAddresses(
 CFALLSAVE_API bool printFO3SaveSnapshot(
     FO3SAVE* save
 );
+
+
+
+CFALLSAVE_API bool createFO3SampleSave();
 
 #endif // !CFALLSAVE_FO3_H

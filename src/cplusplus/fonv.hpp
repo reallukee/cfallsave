@@ -49,48 +49,71 @@ namespace cfallsavepp
 
         FONVSAVE* save = nullptr;
 
+        string getFixedStringProp(FONVSAVE_PROPS prop);
+        unsigned int getUIntProp(FONVSAVE_PROPS prop);
+        string getStringProp(FONVSAVE_PROPS prop);
+        unsigned char* getUByteArrayProp(FONVSAVE_PROPS prop);
+
+        void setFixedStringProp(FONVSAVE_PROPS prop, string value);
+        void setUIntProp(FONVSAVE_PROPS prop, unsigned int value);
+        void setStringProp(FONVSAVE_PROPS prop, string value);
+        void setUByteArrayProp(FONVSAVE_PROPS prop, unsigned char* value);
+
     public:
-
-        FONVSAVE* getFONVSAVE();
-        void setFONVSAVE(FONVSAVE* save);
-
-
 
         FONVSave();
         FONVSave(FONVSAVE* save);
         FONVSave(string saveName);
         ~FONVSave();
 
-        bool readSave(string saveName);
-        bool writeSave();
-        void closeSave();
+
+
+        bool read(string saveName);
+        bool write();
+        void close();
         static bool isSave(string saveName);
         bool isOpen();
 
-        void printSave();
-        void printSaveProps();
-        void printSavePropAddresses();
-        void printSaveSnapshot();
+        void print();
+        void printProps();
+        void printPropAddresses();
+        void printSnapshot();
+
+        static bool createSampleSave();
 
 
+
+        FONVSAVE* getFONVSAVE();
+        void setFONVSAVE(FONVSAVE* save);
 
         string getGameName();
         string getSaveFileName();
 
         string getSaveSignature();
+        void setSaveSignature(string value);
         unsigned int getEngineVersion();
+        void setEngineVersion(unsigned int value);
         unsigned int getSaveNumber();
+        void setSaveNumber(unsigned int value);
 
         string getPlayerName();
+        void setPlayerName(string value);
         unsigned int getPlayerLevel();
+        void setPlayerLevel(unsigned int value);
         string getPlayerTitle();
+        void setPlayerTitle(string value);
         string getPlayerLocation();
+        void setPlayerLocation(string value);
         string getPlayerPlaytime();
+        void setPlayerPlaytime(string value);
 
         unsigned int getSnapshotWidth();
+        void setSnapshotWidth(unsigned int value);
         unsigned int getSnapshotHeight();
+        void setSnapshotHeight(unsigned int value);
         long unsigned int getSnapshotLength();
         unsigned char* getSnapshot();
+        void setSnapshot(unsigned char* value);
 
     };
 }

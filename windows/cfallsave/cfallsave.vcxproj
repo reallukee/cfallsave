@@ -25,7 +25,12 @@
     <ClCompile Include="..\..\src\fo4.c" />
     <ClCompile Include="..\..\src\fonv.c" />
     <ClCompile Include="..\..\src\fotbos.c" />
-    <ClCompile Include="..\..\src\fox.c" />
+    <ClCompile Include="..\..\src\fox.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="..\..\src\main.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -49,7 +54,12 @@
     <ClInclude Include="..\..\src\fo4.h" />
     <ClInclude Include="..\..\src\fonv.h" />
     <ClInclude Include="..\..\src\fotbos.h" />
-    <ClInclude Include="..\..\src\fox.h" />
+    <ClInclude Include="..\..\src\fox.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="..\..\src\header.h" />
     <ClInclude Include="..\..\src\reader.h" />
     <ClInclude Include="..\..\src\writer.h" />

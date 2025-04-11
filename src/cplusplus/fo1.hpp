@@ -41,37 +41,46 @@ namespace cfallsavepp
 
         FO1SAVE* save = nullptr;
 
+        string getFixedStringProp(FO1SAVE_PROPS prop);
+
+        void setFixedStringProp(FO1SAVE_PROPS prop, string value);
+
     public:
-
-        FO1SAVE* getFO1SAVE();
-        void setFO1SAVE(FO1SAVE* save);
-
-
 
         FO1Save();
         FO1Save(FO1SAVE* save);
         FO1Save(string saveName);
         ~FO1Save();
 
-        bool readSave(string saveName);
-        bool writeSave();
-        void closeSave();
+
+
+        bool read(string saveName);
+        bool write();
+        void close();
         static bool isSave(string saveName);
         bool isOpen();
 
-        void printSave();
-        void printSaveProps();
-        void printSavePropAddresses();
+        void print();
+        void printProps();
+        void printPropAddresses();
+
+        static bool createSampleSave();
 
 
+
+        FO1SAVE* getFO1SAVE();
+        void setFO1SAVE(FO1SAVE* save);
 
         string getGameName();
         string getSaveFileName();
 
         string getSaveSignature();
+        void setSaveSignature(string value);
         string getSaveName();
+        void setSaveName(string value);
 
         string getPlayerName();
+        void setPlayerName(string value);
 
     };
 }

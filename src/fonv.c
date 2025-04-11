@@ -29,14 +29,14 @@ FONVSAVE* readFONVSave(
         return NULL;
     }
 
-    FONVSAVE* save = (FONVSAVE*)malloc(FONVSAVE_SIZE);
+    FONVSAVE* save = (FONVSAVE*)calloc(1, FONVSAVE_SIZE);
 
     if (save == NULL)
     {
         return NULL;
     }
 
-    save->save = fopen(saveName, "r+w+b");
+    save->save = fopen(saveName, "rb+");
 
     if (save->save == NULL)
     {
@@ -45,7 +45,7 @@ FONVSAVE* readFONVSave(
         return NULL;
     }
 
-    save->saveFileName = (char*)malloc(strlen(saveName) + 1);
+    save->saveFileName = strdup(saveName);
 
     if (save->saveFileName == NULL)
     {
@@ -53,8 +53,6 @@ FONVSAVE* readFONVSave(
 
         return NULL;
     }
-
-    strcpy(save->saveFileName, saveName);
 
     long unsigned int address = 0;
     bool fail = false;
@@ -141,16 +139,14 @@ bool isFONVSave(
         return false;
     }
 
-    FONVSAVE* save = (FONVSAVE*)malloc(FONVSAVE_SIZE);
+    FONVSAVE* save = (FONVSAVE*)calloc(1, FONVSAVE_SIZE);
 
     if (save == NULL)
     {
         return false;
     }
 
-    memset(save, 0, FONVSAVE_SIZE);
-
-    save->save = fopen(saveName, "r+b");
+    save->save = fopen(saveName, "rb+");
 
     if (save->save == NULL)
     {
@@ -448,6 +444,19 @@ bool printFONVSave(
     FONVSAVE* save
 )
 {
+    if (save == NULL)
+    {
+        printf("************\n");
+        printf("* FONVSAVE *\n");
+        printf("************\n");
+
+        printf("\n");
+
+        printf("/!\\ SAVE NOT OPEN /!\\\n");
+
+        return false;
+    }
+
     bool fail = false;
 
     fail |= printFONVSaveProps(save);
@@ -463,16 +472,18 @@ bool printFONVSaveProps(
     FONVSAVE* save
 )
 {
-    if (save == NULL)
-    {
-        return false;
-    }
-
     printf("******************\n");
     printf("* FONVSAVE PROPS *\n");
     printf("******************\n");
 
     printf("\n");
+
+    if (save == NULL)
+    {
+        printf("/!\\ SAVE NOT OPEN /!\\\n");
+
+        return false;
+    }
 
     printf("Game Name       : %s\n", FONVSAVE_GAME_NAME);
     printf("Save File Name  : %s\n", save->saveFileName);
@@ -498,16 +509,18 @@ bool printFONVSavePropAddresses(
     FONVSAVE* save
 )
 {
-    if (save == NULL)
-    {
-        return false;
-    }
-
     printf("***************************\n");
     printf("* FONVSAVE PROP ADDRESSES *\n");
     printf("***************************\n");
 
     printf("\n");
+
+    if (save == NULL)
+    {
+        printf("/!\\ SAVE NOT OPEN /!\\\n");
+
+        return false;
+    }
 
     printf("%-15s : %s\n", "Game Name", FONVSAVE_GAME_NAME);
     printf("%-15s : %s\n", "Save File Name", save->saveFileName);
@@ -552,8 +565,16 @@ bool printFONVSaveSnapshot(
     FONVSAVE* save
 )
 {
+    printf("*********************\n");
+    printf("* FONVSAVE SANPSHOT *\n");
+    printf("*********************\n");
+
+    printf("\n");
+
     if (save == NULL)
     {
+        printf("/!\\ SAVE NOT OPEN /!\\\n");
+
         return false;
     }
 
@@ -572,6 +593,105 @@ bool printFONVSaveSnapshot(
             printf("  ");
         }
     }
+
+    return true;
+}
+
+
+
+bool createFONVSampleSave()
+{
+    FILE* save = fopen("fonv.fos", "wb");
+
+    if (save == NULL)
+    {
+        return false;
+    }
+
+    unsigned char* emptyBuffer = (unsigned char*)calloc(64, 1);
+
+    if (emptyBuffer == NULL)
+    {
+        return false;
+    }
+
+    char separator = '|';
+
+    fwrite(FONVSAVE_SIGNATURE, 1, FONVSAVE_SIGNATURE_LENGTH, save);
+
+    fwrite(emptyBuffer, 4, sizeof(*emptyBuffer), save);
+
+    unsigned int engineVersion = 48;
+    fwrite(&engineVersion, sizeof(engineVersion), 1, save);
+
+    fwrite(&separator, 1, sizeof(separator), save);
+
+    fwrite(emptyBuffer, 64, sizeof(*emptyBuffer), save);
+
+    fwrite(&separator, 1, sizeof(separator), save);
+
+    unsigned int snapshotWidth = FONVSAVE_MAX_SNAPSHOT_WIDTH;
+    fwrite(&snapshotWidth, sizeof(snapshotWidth), 1, save);
+
+    fwrite(&separator, 1, sizeof(separator), save);
+
+    unsigned int snapshotHeight = FONVSAVE_MAX_SNAPSHOT_HEIGHT;
+    fwrite(&snapshotHeight, sizeof(snapshotHeight), 1, save);
+
+    fwrite(&separator, 1, sizeof(separator), save);
+
+    unsigned int saveNumber = 100;
+    fwrite(&saveNumber, sizeof(saveNumber), 1, save);
+
+    fwrite(&separator, 1, sizeof(separator), save);
+
+    short unsigned int playerNameLength = 12;
+    char playerName[] = "John Fallout";
+    fwrite(&playerNameLength, sizeof(playerNameLength), 1, save);
+    fwrite(&separator, 1, sizeof(separator), save);
+    fwrite(playerName, sizeof(*playerName), playerNameLength, save);
+
+    fwrite(&separator, 1, sizeof(separator), save);
+
+    short unsigned int playerTitleLength = 6;
+    char playerTitle[] = "Messia";
+    fwrite(&playerTitleLength, sizeof(playerTitleLength), 1, save);
+    fwrite(&separator, 1, sizeof(separator), save);
+    fwrite(playerTitle, sizeof(*playerTitle), playerTitleLength, save);
+
+    fwrite(&separator, 1, sizeof(separator), save);
+
+    unsigned int playerLevel = 30;
+    fwrite(&playerLevel, sizeof(playerLevel), 1, save);
+
+    fwrite(&separator, 1, sizeof(separator), save);
+
+    short unsigned int playerLocationLength = 30;
+    char playerLocation[] = "La Zona contaminata del Mojave";
+    fwrite(&playerLocationLength, sizeof(playerLocationLength), 1, save);
+    fwrite(&separator, 1, sizeof(separator), save);
+    fwrite(playerLocation, sizeof(*playerLocation), playerLocationLength, save);
+
+    fwrite(&separator, 1, sizeof(separator), save);
+
+    short unsigned int playerPlaytimeLength = 9;
+    char playerPlaytime[] = "090.00.00";
+    fwrite(&playerPlaytimeLength, sizeof(playerPlaytimeLength), 1, save);
+    fwrite(&separator, 1, sizeof(separator), save);
+    fwrite(playerPlaytime, sizeof(*playerPlaytime), playerPlaytimeLength, save);
+
+    fwrite(&separator, 1, sizeof(separator), save);
+
+    unsigned long snapshotLength = FONVSAVE_MAX_SNAPSHOT_LENGTH;
+    unsigned char* snapshot = (unsigned char*)calloc(snapshotLength, 1);
+    fwrite(snapshot, sizeof(*snapshot), snapshotLength, save);
+    free(snapshot);
+
+    fflush(save);
+
+    fclose(save);
+
+    free(emptyBuffer);
 
     return true;
 }

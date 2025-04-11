@@ -24,9 +24,21 @@ using namespace cfallsavepp;
 
 int main(int argc, char* argv[])
 {
-    FO4Save* save = new FO4Save("fo4.fos");
+    string saveName = "fo4.fos";
 
-    save->printSave();
+    if (!FO4Save::isSave(saveName))
+    {
+        return 1;
+    }
+
+    FO4Save* save = new FO4Save(saveName);
+
+    if (!save->isOpen())
+    {
+        return 1;
+    }
+
+    save->print();
 
     delete save;
 

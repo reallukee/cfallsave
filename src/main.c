@@ -16,6 +16,7 @@
  * License     : MIT
  */
 
+#include <stdio.h>
 #include "cfallsave.h"
 
 int main(int argc, char* argv[])
@@ -24,14 +25,14 @@ int main(int argc, char* argv[])
 
     if (!isFO4Save(saveName))
     {
-        return -1;
+        return 1;
     }
 
     FO4SAVE* save = readFO4Save(saveName);
 
     if (!isFO4SaveOpen(save))
     {
-        return -1;
+        return 1;
     }
 
     printFO4Save(save);

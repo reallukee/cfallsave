@@ -1,8 +1,8 @@
 TARGET     = cfallsave
-TARGET_EXT = .so
+TARGET_EXT = .bin
 CC         = gcc
-CFLAGS     = -Wall -Wextra -fPIC
-LDFLAGS    = -shared
+CFLAGS     = -Wall -Wextra
+LDFLAGS    =
 
 C_SOURCE_EXT = .c
 C_HEADER_EXT = .h
@@ -12,8 +12,8 @@ SRC_DIR = src
 OBJ_DIR = obj/$(TARGET)
 BIN_DIR = bin
 
-EXCLUDED_HEADERS = cfallsave.h fox.h
-EXCLUDED_SOURCES = main.c fox.c
+EXCLUDED_HEADERS = fox.h
+EXCLUDED_SOURCES = fox.c
 
 ALL_SOURCES = $(notdir $(wildcard $(SRC_DIR)/*$(C_SOURCE_EXT)))
 ALL_HEADERS = $(notdir $(wildcard $(SRC_DIR)/*$(C_HEADER_EXT)))
@@ -37,7 +37,7 @@ help:
 $(OBJ_DIR)/%$(C_OBJECT_EXT): $(SRC_DIR)/%$(C_SOURCE_EXT) | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(BIN_DIR)/lib$(TARGET)$(TARGET_EXT): $(OBJECTS) | $(BIN_DIR)
+$(BIN_DIR)/$(TARGET)$(TARGET_EXT): $(OBJECTS) | $(BIN_DIR)
 	$(CC) $(LDFLAGS) -o $@ $(OBJECTS)
 
 $(OBJ_DIR) $(BIN_DIR):
@@ -45,11 +45,11 @@ $(OBJ_DIR) $(BIN_DIR):
 
 clean:
 	rm -rf $(OBJ_DIR)
-	rm -f $(BIN_DIR)/lib$(TARGET)$(TARGET_EXT)
+	rm -f $(BIN_DIR)/$(TARGET)$(TARGET_EXT)
 
 full-clean:
 	rm -rf $(OBJ_DIR) $(BIN_DIR)
 
-build: $(BIN_DIR)/lib$(TARGET)$(TARGET_EXT)
+build: $(BIN_DIR)/$(TARGET)$(TARGET_EXT)
 
 rebuild: clean build

@@ -1,14 +1,14 @@
 TARGET     = test++
 TARGET_EXT = .bin
-CXX        = g++
+CXX        = clang++
 CXXFLAGS   = -Wall -Wextra -fPIC
-LDFLAGS    = -L../bin -lcfallsave++ -Wl,-rpath,.
+LDFLAGS    = -L../bin -lcfallsave++ -Wl,-rpath,@executable_path
 
 CPP_SOURCE_EXT = .cpp
 CPP_HEADER_EXT = .hpp
 CPP_OBJECT_EXT = .o
 
-SRC_DIR = src/cplusplus
+SRC_DIR = ../../test/src/cplusplus
 OBJ_DIR = ../obj/$(TARGET)
 BIN_DIR = ../bin
 

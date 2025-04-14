@@ -1,8 +1,8 @@
 TARGET     = cfallsave++
-TARGET_EXT = .so
-CXX        = g++
+TARGET_EXT = .dylib
+CXX        = clang++
 CXXFLAGS   = -Wall -Wextra -fPIC
-LDFLAGS    = -shared
+LDFLAGS    = -dynamiclib -install_name @executable_path/lib$(TARGET)$(TARGET_EXT)
 
 C_SOURCE_EXT = .c
 C_HEADER_EXT = .h
@@ -11,7 +11,7 @@ CPP_SOURCE_EXT = .cpp
 CPP_HEADER_EXT = .hpp
 CPP_OBJECT_EXT = .o
 
-SRC_DIR = src
+SRC_DIR = ../src
 OBJ_DIR = obj/$(TARGET)
 BIN_DIR = bin
 

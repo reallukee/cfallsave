@@ -8,7 +8,7 @@ C_SOURCE_EXT = .c
 C_HEADER_EXT = .h
 C_OBJECT_EXT = .o
 
-SRC_DIR = ./src
+SRC_DIR = src
 OBJ_DIR = ../obj/$(TARGET)
 BIN_DIR = ../bin
 

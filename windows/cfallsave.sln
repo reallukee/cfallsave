@@ -7,9 +7,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cfallsave", "cfallsave\cfal
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cfallsave++", "cfallsave++\cfallsave++.vcxproj", "{0D4005C1-5709-429C-8BCF-095B402EC591}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cfallsave.test", "cfallsave.test\cfallsave.test.vcxproj", "{C3B09F29-DDA2-4E0E-BC41-3E8D76F31738}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cfallsave.dev", "cfallsave.dev\cfallsave.dev.vcxproj", "{C3B09F29-DDA2-4E0E-BC41-3E8D76F31738}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cfallsave++.test", "cfallsave++.test\cfallsave++.test.vcxproj", "{33F3A571-35D4-4724-A5DB-E239E67810FE}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "cfallsave++.dev", "cfallsave++.dev\cfallsave++.dev.vcxproj", "{33F3A571-35D4-4724-A5DB-E239E67810FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

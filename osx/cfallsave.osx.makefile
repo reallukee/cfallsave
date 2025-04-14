@@ -1,14 +1,14 @@
 TARGET     = cfallsave
-TARGET_EXT = .so
-CC         = gcc
+TARGET_EXT = .dylib
+CC         = clang
 CFLAGS     = -Wall -Wextra -fPIC
-LDFLAGS    = -shared
+LDFLAGS    = -dynamiclib -install_name @executable_path/lib$(TARGET)$(TARGET_EXT)
 
 C_SOURCE_EXT = .c
 C_HEADER_EXT = .h
 C_OBJECT_EXT = .o
 
-SRC_DIR = src
+SRC_DIR = ../src
 OBJ_DIR = obj/$(TARGET)
 BIN_DIR = bin
 

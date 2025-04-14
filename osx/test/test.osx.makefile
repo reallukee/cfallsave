@@ -1,19 +1,19 @@
-TARGET     = cfallsave.test
+TARGET     = test
 TARGET_EXT = .bin
-CC         = gcc
-CFLAGS     = -Wall -Wextra
-LDFLAGS    =
+CC         = clang
+CFLAGS     = -Wall -Wextra -fPIC
+LDFLAGS    = -L../bin -lcfallsave -Wl,-rpath,@executable_path
 
 C_SOURCE_EXT = .c
 C_HEADER_EXT = .h
 C_OBJECT_EXT = .o
 
-SRC_DIR = ./src
-OBJ_DIR = obj/$(TARGET)
-BIN_DIR = bin
+SRC_DIR = ../../test/src
+OBJ_DIR = ../obj/$(TARGET)
+BIN_DIR = ../bin
 
-EXCLUDED_HEADERS = fox.h
-EXCLUDED_SOURCES = fox.c
+EXCLUDED_HEADERS =
+EXCLUDED_SOURCES =
 
 ALL_SOURCES = $(notdir $(wildcard $(SRC_DIR)/*$(C_SOURCE_EXT)))
 ALL_HEADERS = $(notdir $(wildcard $(SRC_DIR)/*$(C_HEADER_EXT)))
@@ -38,7 +38,7 @@ $(OBJ_DIR)/%$(C_OBJECT_EXT): $(SRC_DIR)/%$(C_SOURCE_EXT) | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(BIN_DIR)/$(TARGET)$(TARGET_EXT): $(OBJECTS) | $(BIN_DIR)
-	$(CC) $(LDFLAGS) -o $@ $(OBJECTS)
+	$(CC) $(OBJECTS) -o $@ $(LDFLAGS)
 
 $(OBJ_DIR) $(BIN_DIR):
 	mkdir -p $@

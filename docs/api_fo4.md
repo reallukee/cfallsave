@@ -2,7 +2,7 @@
 
 ![Fallout 4 Logo 192x192](../assets/fo4/fo4_logo_192x192.png)
 
-# *Fallout 4* C API
+# *Fallout 4*<br /> C API
 
 [Back to Documentation](../DOCS.md)
 
@@ -54,6 +54,7 @@
 * [`printFO4SaveProps`](#printfo4saveprops)
 * [`printFO4SavePropAddresses`](#printfo4savepropaddresses)
 * [`printFO4SaveSnapshot`](#printfo4savesnapshot)
+* [`createFO4SampleSave`](#createfo4samplesave)
 
 
 
@@ -359,6 +360,16 @@ printFO4SaveSnapshot(save);
 
 
 
+## `createFO4SampleSave`
+
+`void`
+
+**Returns**
+
+`bool`
+
+
+
 # Structures
 
 ## `FO4SAVE`
@@ -415,11 +426,12 @@ printFO4SaveSnapshot(save);
 | `FO4SAVE_SIGNATURE`            | `FO4_SAVEGAME`          |
 | `FO4SAVE_SIGNATURE_LENGTH`     | `12`                    |
 | `FO4SAVE_PROPS_COUNT`          | `14`                    |
-| `FO4SAVE_SAVE_STANDARD_EXT`    | `.fos`                  |
+| `FO4SAVE_STANDARD_EXT`         | `.fos`                  |
 | `FO4SAVE_MAX_SNAPSHOT_WIDTH`   | `640`                   |
 | `FO4SAVE_MAX_SNAPSHOT_HEIGHT`  | `384`                   |
 | `FO4SAVE_MAX_SNAPSHOT_LENGTH`  | `983040`                |
 | `FO4SAVE_SNAPSHOT_COLOR_BYTES` | `4`                     |
+| `FO4SAVE_SNAPSHOT_FORMAT`      | `RGBA`                  |
 | `FO4SAVE_PLAYER_SEX_MALE`      | `0`                     |
 | `FO4SAVE_PLAYER_SEX_FEMALE`    | `1`                     |
 | `FO4SAVE_PROPS_SIZE`           | `sizeof(FO4SAVE_PROPS)` |

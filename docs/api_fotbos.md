@@ -2,7 +2,7 @@
 
 ![Fallout Tactics: Brotherhood of Steel Logo 192x192](../assets/fotbos/fotbos_logo_192x192.png)
 
-# *Fallout Tactics: Brotherhood of Steel* C API
+# *Fallout Tactics: Brotherhood of Steel*<br /> C API
 
 [Back to Documentation](../DOCS.md)
 
@@ -53,6 +53,7 @@
 * [`printFOTBOSSave`](#printfotbossave)
 * [`printFOTBOSSaveProps`](#printfotbossaveprops)
 * [`printFOTBOSSavePropAddresses`](#printfotbossavepropaddresses)
+* [`createFOTBOSSampleSave`](#createfotbossamplesave)
 
 
 
@@ -338,6 +339,16 @@ printFOTBOSSavePropAddresses(save);
 
 
 
+## `createFOTBOSSampleSave`
+
+`void`
+
+**Returns**
+
+`bool`
+
+
+
 # Structures
 
 ## `FOTBOSSAVE`
@@ -375,6 +386,6 @@ printFOTBOSSavePropAddresses(save);
 | `FOTBOSSAVE_SIGNATURE`         | `<saveh>`                               |
 | `FOTBOSSAVE_SIGNATURE_LENGTH`  | `7`                                     |
 | `FOTBOSSAVE_PROPS_COUNT`       | `5`                                     |
-| `FOTBOSSAVE_SAVE_STANDARD_EXT` | `.sav`                                  |
+| `FOTBOSSAVE_STANDARD_EXT`      | `.sav`                                  |
 | `FOTBOSSAVE_PROPS_SIZE`        | `sizeof(FOTBOSSAVE_PROPS)`              |
 | `FOTBOSSAVE_SIZE`              | `sizeof(FOTBOSSAVE)`                    |

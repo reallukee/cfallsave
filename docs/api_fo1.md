@@ -2,7 +2,7 @@
 
 ![Fallout 1 Logo 192x192](../assets/fo1/fo1_logo_192x192.png)
 
-# *Fallout 1* C API
+# *Fallout 1*<br /> C API
 
 [Back to Documentation](../DOCS.md)
 
@@ -53,6 +53,7 @@
 * [`printFO1Save`](#printfo1save)
 * [`printFO1SaveProps`](#printfo1saveprops)
 * [`printFO1SavePropAddresses`](#printfo1savepropaddresses)
+* [`createFO1SampleSave`](#createfo1samplesave)
 
 
 
@@ -338,6 +339,16 @@ printFO1SavePropAddresses(save);
 
 
 
+## `createFO1SampleSave`
+
+`void`
+
+**Returns**
+
+`bool`
+
+
+
 # Structures
 
 ## `FO1SAVE`
@@ -345,8 +356,8 @@ printFO1SavePropAddresses(save);
 * `FILE* save`
 * `char* saveFileName`
 * `char saveSignature[FO1SAVE_SIGNATURE_LENGTH + 1]`
-* `char saveName[32]`
-* `char playerName[32]`
+* `char saveName[FO1SAVE_STRING_SIZE + 1]`
+* `char playerName[FO1SAVE_STRING_SIZE + 1]`
 * `long unsigned int propAddresses[FO1SAVE_PROPS_COUNT]`
 
 
@@ -371,6 +382,7 @@ printFO1SavePropAddresses(save);
 | `FO1SAVE_SIGNATURE`         | `FALLOUT SAVE FILE`     |
 | `FO1SAVE_SIGNATURE_LENGTH`  | `17`                    |
 | `FO1SAVE_PROPS_COUNT`       | `3`                     |
-| `FO1SAVE_SAVE_STANDARD_EXT` | `.dat`                  |
+| `FO1SAVE_STANDARD_EXT`      | `.dat`                  |
+| `FO1SAVE_STRING_SIZE`       | `32`                    |
 | `FO1SAVE_PROPS_SIZE`        | `sizeof(FO1SAVE_PROPS)` |
 | `FO1SAVE_SIZE`              | `sizeof(FO1SAVE)`       |

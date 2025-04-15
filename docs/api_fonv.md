@@ -2,7 +2,7 @@
 
 ![Fallout: New Vegas Logo 192x192](../assets/fonv/fonv_logo_192x192.png)
 
-# *Fallout: New Vegas* C API
+# *Fallout: New Vegas*<br /> C API
 
 [Back to Documentation](../DOCS.md)
 
@@ -54,6 +54,7 @@
 * [`printFONVSaveProps`](#printfonvsaveprops)
 * [`printFONVSavePropAddresses`](#printfonvsavepropaddresses)
 * [`printFONVSaveSnapshot`](#printfonvsavesnapshot)
+* [`createFONVSampleSave`](#createfonvsamplesave)
 
 
 
@@ -359,6 +360,16 @@ printFONVSaveSnapshot(save);
 
 
 
+## `createFONVSampleSave`
+
+`void`
+
+**Returns**
+
+`bool`
+
+
+
 # Structures
 
 ## `FONVSAVE`
@@ -409,11 +420,12 @@ printFONVSaveSnapshot(save);
 | `FONVSAVE_SIGNATURE`            | `FO3SAVEGAME`            |
 | `FONVSAVE_SIGNATURE_LENGTH`     | `11`                     |
 | `FONVSAVE_PROPS_COUNT`          | `11`                     |
-| `FONVSAVE_SAVE_STANDARD_EXT`    | `.fos`                   |
+| `FONVSAVE_STANDARD_EXT`         | `.fos`                   |
 | `FONVSAVE_MAX_SNAPSHOT_WIDTH`   | `512`                    |
 | `FONVSAVE_MAX_SNAPSHOT_HEIGHT`  | `288`                    |
 | `FONVSAVE_MAX_SNAPSHOT_LENGTH`  | `442368`                 |
 | `FONVSAVE_SNAPSHOT_COLOR_BYTES` | `3`                      |
+| `FONVSAVE_SNAPSHOT_FORMAT`      | `RGB`                    |
 | `FONVSAVE_PLAYER_SEX_MALE`      | `0`                      |
 | `FONVSAVE_PLAYER_SEX_FEMALE`    | `1`                      |
 | `FONVSAVE_PROPS_SIZE`           | `sizeof(FONVSAVE_PROPS)` |

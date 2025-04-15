@@ -2,7 +2,7 @@
 
 ![Fallout 3 Logo 192x192](../assets/fo3/fo3_logo_192x192.png)
 
-# *Fallout 3* Save Format
+# *Fallout 3*<br /> Save Format
 
 [Back to Documentation](../DOCS.md)
 
@@ -27,7 +27,7 @@ Extension: `.fos`
 
 | Property           | Save Type                           | CFAllSave Type   |
 | :----------------- | :---------------------------------- | :--------------- |
-| `Save Signature`   | `char[12]`                          | `char[12]`       |
+| `Save Signature`   | `char[11]`                          | `char[12]`       |
 | `Engine Version` ? | `unsigned int`                      | `unsigned int`   |
 | `Snapshot Width`   | `unsigned int`                      | `unsigned int`   |
 | `Snapshot Height`  | `unsigned int`                      | `unsigned int`   |
@@ -54,7 +54,7 @@ RGB
 #define FO3SAVE_SIGNATURE           "FO3SAVEGAME"
 #define FO3SAVE_SIGNATURE_LENGTH    11
 #define FO3SAVE_PROPS_COUNT         11
-#define FO3SAVE_SAVE_STANDARD_EXT   ".fos"
+#define FO3SAVE_STANDARD_EXT        ".fos"
 
 typedef enum FO3SAVE_PROPS
 {
@@ -76,6 +76,7 @@ typedef enum FO3SAVE_PROPS
 #define FO3SAVE_MAX_SNAPSHOT_LENGTH     442368
 
 #define FO3SAVE_SNAPSHOT_COLOR_BYTES    3
+#define FO3SAVE_SNAPSHOT_FORMAT         "RGB"
 
 #define FO3SAVE_PLAYER_SEX_MALE         0
 #define FO3SAVE_PLAYER_SEX_FEMALE       1

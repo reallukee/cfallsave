@@ -2,7 +2,7 @@
 
 ![Fallout 3 Logo 192x192](../assets/fo3/fo3_logo_192x192.png)
 
-# *Fallout 3* C API
+# *Fallout 3*<br /> C API
 
 [Back to Documentation](../DOCS.md)
 
@@ -54,6 +54,7 @@
 * [`printFO3SaveProps`](#printfo3saveprops)
 * [`printFO3SavePropAddresses`](#printfo3savepropaddresses)
 * [`printFO3SaveSnapshot`](#printfo3savesnapshot)
+* [`createFO3SampleSave`](#createfo3samplesave)
 
 
 
@@ -359,6 +360,16 @@ printFO3SaveSnapshot(save);
 
 
 
+## `createFO3SampleSave`
+
+`void`
+
+**Returns**
+
+`bool`
+
+
+
 # Structures
 
 ## `FO3SAVE`
@@ -409,11 +420,12 @@ printFO3SaveSnapshot(save);
 | `FO3SAVE_SIGNATURE`            | `FO3SAVEGAME`           |
 | `FO3SAVE_SIGNATURE_LENGTH`     | `11`                    |
 | `FO3SAVE_PROPS_COUNT`          | `11`                    |
-| `FO3SAVE_SAVE_STANDARD_EXT`    | `.fos`                  |
+| `FO3SAVE_STANDARD_EXT`         | `.fos`                  |
 | `FO3SAVE_MAX_SNAPSHOT_WIDTH`   | `512`                   |
 | `FO3SAVE_MAX_SNAPSHOT_HEIGHT`  | `288`                   |
 | `FO3SAVE_MAX_SNAPSHOT_LENGTH`  | `442368`                |
 | `FO3SAVE_SNAPSHOT_COLOR_BYTES` | `3`                     |
+| `FO3SAVE_SNAPSHOT_FORMAT`      | `RGB`                   |
 | `FO3SAVE_PLAYER_SEX_MALE`      | `0`                     |
 | `FO3SAVE_PLAYER_SEX_FEMALE`    | `1`                     |
 | `FO3SAVE_PROPS_SIZE`           | `sizeof(FO3SAVE_PROPS)` |

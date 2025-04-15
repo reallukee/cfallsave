@@ -2,7 +2,7 @@
 
 ![Fallout Tactics: Brotherhood of Steel Logo 192x192](../assets/fotbos/fotbos_logo_192x192.png)
 
-# *Fallout Tactics: Brotherhood of Steel* Save Format
+# *Fallout Tactics: Brotherhood of Steel*<br /> Save Format
 
 [Back to Documentation](../DOCS.md)
 
@@ -24,7 +24,7 @@ Extension: `.sav`
 
 | Property          | Save Type                     | CFAllSave Type |
 | :---------------- | :---------------------------- | :------------- |
-| `Save Signature`  | `char[8]`                     | `char[8]`      |
+| `Save Signature`  | `char[7]`                     | `char[8]`      |
 | `Save Name`       | `short + "0x20 0x20" + char*` | `char*`        |
 | `Player Name`     | `short + "0x20 0x20" + char*` | `char*`        |
 | `Player Location` | `short + "0x20 0x20" + char*` | `char*`        |
@@ -41,7 +41,7 @@ Extension: `.sav`
 #define FOTBOSSAVE_SIGNATURE            "<saveh>"
 #define FOTBOSSAVE_SIGNATURE_LENGTH     7
 #define FOTBOSSAVE_PROPS_COUNT          5
-#define FOTBOSSAVE_SAVE_STANDARD_EXT    ".sav"
+#define FOTBOSSAVE_STANDARD_EXT         ".sav"
 
 typedef enum FOTBOSSAVE_PROPS
 {

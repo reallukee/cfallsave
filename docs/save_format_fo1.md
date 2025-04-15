@@ -2,7 +2,7 @@
 
 ![Fallout 1 Logo 192x192](../assets/fo1/fo1_logo_192x192.png)
 
-# *Fallout 1* Save Format
+# *Fallout 1*<br /> Save Format
 
 [Back to Documentation](../DOCS.md)
 
@@ -27,9 +27,9 @@ Extension: `.dat`
 
 | Property         | Save Type  | CFAllSave Type |
 | :--------------- | :--------: | :------------: |
-| `Save Signature` | `char[18]` | `char[18]`     |
-| `Player Name`    | `char[32]` | `char[32]`     |
-| `Save Name`      | `char[32]` | `char[32]`     |
+| `Save Signature` | `char[17]` | `char[18]`     |
+| `Player Name`    | `char[32]` | `char[33]`     |
+| `Save Name`      | `char[32]` | `char[33]`     |
 
 
 
@@ -42,7 +42,7 @@ Extension: `.dat`
 #define FO1SAVE_SIGNATURE           "FALLOUT SAVE FILE"
 #define FO1SAVE_SIGNATURE_LENGTH    17
 #define FO1SAVE_PROPS_COUNT         3
-#define FO1SAVE_SAVE_STANDARD_EXT   ".dat"
+#define FO1SAVE_STANDARD_EXT        ".dat"
 
 typedef enum FO1SAVE_PROPS
 {
@@ -51,6 +51,8 @@ typedef enum FO1SAVE_PROPS
     FO1SAVE_PROPS_PLAYER_NAME       = 2
 } FO1SAVE_PROPS;
 
+#define FO1SAVE_STRING_SIZE 32
+
 typedef struct FO1SAVE
 {
     FILE* save;
@@ -58,9 +60,9 @@ typedef struct FO1SAVE
     char* saveFileName;
 
     char saveSignature[FO1SAVE_SIGNATURE_LENGTH + 1];
-    char saveName[32];
+    char saveName[FO1SAVE_STRING_SIZE + 1];
 
-    char playerName[32];
+    char playerName[FO1SAVE_STRING_SIZE + 1];
 
     long unsigned int propAddresses[FO1SAVE_PROPS_COUNT];
 } FO1SAVE;

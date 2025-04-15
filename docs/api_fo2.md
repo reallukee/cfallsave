@@ -2,7 +2,7 @@
 
 ![Fallout 2 Logo 192x192](../assets/fo2/fo2_logo_192x192.png)
 
-# *Fallout 2* C API
+# *Fallout 2*<br /> C API
 
 [Back to Documentation](../DOCS.md)
 
@@ -53,6 +53,7 @@
 * [`printFO2Save`](#printfo2save)
 * [`printFO2SaveProps`](#printfo2saveprops)
 * [`printFO2SavePropAddresses`](#printfo2savepropaddresses)
+* [`createFO2SampleSave`](#createfo2samplesave)
 
 
 
@@ -338,6 +339,16 @@ printFO2SavePropAddresses(save);
 
 
 
+## `createFO2SampleSave`
+
+`void`
+
+**Returns**
+
+`bool`
+
+
+
 # Structures
 
 ## `FO2SAVE`
@@ -345,8 +356,8 @@ printFO2SavePropAddresses(save);
 * `FILE* save`
 * `char* saveFileName`
 * `char saveSignature[FO2SAVE_SIGNATURE_LENGTH + 1]`
-* `char saveName[32]`
-* `char playerName[32]`
+* `char saveName[FO2SAVE_STRING_SIZE + 1]`
+* `char playerName[FO2SAVE_STRING_SIZE + 1]`
 * `long unsigned int propAddresses[FO2SAVE_PROPS_COUNT]`
 
 
@@ -371,6 +382,7 @@ printFO2SavePropAddresses(save);
 | `FO2SAVE_SIGNATURE`         | `FALLOUT SAVE FILE`     |
 | `FO2SAVE_SIGNATURE_LENGTH`  | `17`                    |
 | `FO2SAVE_PROPS_COUNT`       | `3`                     |
-| `FO2SAVE_SAVE_STANDARD_EXT` | `.dat`                  |
+| `FO2SAVE_STANDARD_EXT`      | `.dat`                  |
+| `FO2SAVE_STRING_SIZE`       | `32`                    |
 | `FO2SAVE_PROPS_SIZE`        | `sizeof(FO2SAVE_PROPS)` |
 | `FO2SAVE_SIZE`              | `sizeof(FO2SAVE)`       |

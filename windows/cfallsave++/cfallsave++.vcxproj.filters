@@ -1,6 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="File di intestazione">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
+    </Filter>
     <Filter Include="File di origine">
       <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
       <Extensions>cpp;c;cc;cxx;c++;cppm;ixx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
@@ -9,72 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="File di intestazione">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
     <Filter Include="File di intestazione\CFallSave">
       <UniqueIdentifier>{fb97edc9-3a08-4896-b6fb-c87c774a6394}</UniqueIdentifier>
     </Filter>
     <Filter Include="File di origine\CFallSave">
       <UniqueIdentifier>{e891ba0b-0639-4195-bb7e-b7b0bbfeb145}</UniqueIdentifier>
     </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\..\src\cplusplus\fo1.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\cplusplus\fo2.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\cplusplus\fo3.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\cplusplus\fo4.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\cplusplus\fonv.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\cplusplus\fotbos.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\cplusplus\fox.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\cplusplus\main.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fo1.c">
-      <Filter>File di origine\CFallSave</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fo2.c">
-      <Filter>File di origine\CFallSave</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fo3.c">
-      <Filter>File di origine\CFallSave</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fo4.c">
-      <Filter>File di origine\CFallSave</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fonv.c">
-      <Filter>File di origine\CFallSave</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fotbos.c">
-      <Filter>File di origine\CFallSave</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fox.c">
-      <Filter>File di origine\CFallSave</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\main.c">
-      <Filter>File di origine\CFallSave</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\reader.c">
-      <Filter>File di origine\CFallSave</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\writer.c">
-      <Filter>File di origine\CFallSave</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\src\cplusplus\cfallsave.hpp">
@@ -148,12 +92,86 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\cplusplus\fo1.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\cplusplus\fo2.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\cplusplus\fo3.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\cplusplus\fo4.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\cplusplus\fonv.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\cplusplus\fotbos.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\cplusplus\fox.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\cplusplus\main.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fo1.c">
+      <Filter>File di origine\CFallSave</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fo2.c">
+      <Filter>File di origine\CFallSave</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fo3.c">
+      <Filter>File di origine\CFallSave</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fo4.c">
+      <Filter>File di origine\CFallSave</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fonv.c">
+      <Filter>File di origine\CFallSave</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fotbos.c">
+      <Filter>File di origine\CFallSave</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fox.c">
+      <Filter>File di origine\CFallSave</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\main.c">
+      <Filter>File di origine\CFallSave</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reader.c">
+      <Filter>File di origine\CFallSave</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\writer.c">
+      <Filter>File di origine\CFallSave</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
     <ResourceCompile Include="cfallsave++.rc">
       <Filter>File di risorse</Filter>
     </ResourceCompile>
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\assets\cfallsave++_logo_48x48.ico">
+    <Image Include="..\..\assets\cfallsave++_logo.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="..\..\assets\fo1\fo1_logo.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="..\..\assets\fo2\fo2_logo.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="..\..\assets\fotbos\fotbos_logo.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="..\..\assets\fo3\fo3_logo.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="..\..\assets\fonv\fonv_logo.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="..\..\assets\fo4\fo4_logo.ico">
       <Filter>File di risorse</Filter>
     </Image>
   </ItemGroup>

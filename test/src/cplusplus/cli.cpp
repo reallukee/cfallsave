@@ -6,7 +6,9 @@ void commandLineArgs(int argc, char* argv[])
 {
     if (argc == 1)
     {
-        return help();
+        help();
+
+        return;
     }
 
     if (strcmp(argv[1], "help") == 0 && argc > 1)

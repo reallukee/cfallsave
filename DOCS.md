@@ -1,6 +1,6 @@
 <div align="center">
 
-![Docs Logo 192x192](./assets/docs/docs_logo_192x192.gif)
+![Documentation Logo 192x192](./assets/docs/docs_logo_192x192.gif)
 
 # Documentation
 
@@ -29,16 +29,13 @@ CFallSave Documentation
 
 # Summary
 
-* [APIs](#apis)
-  * [C APIs (CFallSave)](#c-apis-cfallsave)
-  * [C++ APIs (CFallSave++)](#c-apis-cfallsave-1)
+* [C APIs (CFallSave)](#c-apis-cfallsave)
+* [C++ APIs (CFallSave++)](#c-apis-cfallsave-1)
 * [Save Formats](#save-formats)
 
 
 
-# APIs
-
-## C APIs (CFallSave)
+# C APIs (CFallSave)
 
 * [CFallSave API](./docs/cfallsave.md)
 * [*Fallout 1* C API](./docs/api_fo1.md)
@@ -50,7 +47,7 @@ CFallSave Documentation
 
 
 
-## C++ APIs (CFallSave++)
+# C++ APIs (CFallSave++)
 
 * [CFallSave++ API](./docs/cfallsave++.md)
 * [*Fallout 1* C++ API](./docs/api_cplusplus_fo1.md)

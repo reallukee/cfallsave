@@ -1,0 +1,18 @@
+[*]
+end_of_line = crlf
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+
+[*.md]
+indent_style = space
+indent_size = 2
+
+[*.rc]
+trim_trailing_whitespace = false
+
+[resource.h]
+trim_trailing_whitespace = false
+
+[resource.hxx]
+trim_trailing_whitespace = false

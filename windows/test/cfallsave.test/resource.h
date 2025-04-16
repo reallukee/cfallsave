@@ -1,6 +1,6 @@
 //{{NO_DEPENDENCIES}}
 // File di inclusione generato con Microsoft Visual C++.
-// Utilizzato da cfallsave++.rc
+// Utilizzato da cfallsave.test.rc
 //
 #define IDI_ICON1                       101
 #define IDI_ICON2                       102

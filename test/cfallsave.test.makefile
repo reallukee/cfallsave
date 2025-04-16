@@ -1,27 +1,28 @@
-TARGET     = test++
+TARGET     = cfallsave.test
 TARGET_EXT = .bin
-CXX        = g++
-CXXFLAGS   = -Wall -Wextra -fPIC
-LDFLAGS    = -L../bin -lcfallsave++ -Wl,-rpath,.
+LIB_TARGET = cfallsave
+CC         = gcc
+CFLAGS     = -Wall -Wextra -fPIC
+LDFLAGS    = -L../bin -l$(LIB_TARGET) -Wl,-rpath,.
 
-CPP_SOURCE_EXT = .cpp
-CPP_HEADER_EXT = .hpp
-CPP_OBJECT_EXT = .o
+C_SOURCE_EXT = .c
+C_HEADER_EXT = .h
+C_OBJECT_EXT = .o
 
-SRC_DIR = src/cplusplus
+SRC_DIR = src
 OBJ_DIR = ../obj/$(TARGET)
 BIN_DIR = ../bin
 
 EXCLUDED_HEADERS =
 EXCLUDED_SOURCES =
 
-ALL_SOURCES = $(notdir $(wildcard $(SRC_DIR)/*$(CPP_SOURCE_EXT)))
-ALL_HEADERS = $(notdir $(wildcard $(SRC_DIR)/*$(CPP_HEADER_EXT)))
+ALL_SOURCES = $(notdir $(wildcard $(SRC_DIR)/*$(C_SOURCE_EXT)))
+ALL_HEADERS = $(notdir $(wildcard $(SRC_DIR)/*$(C_HEADER_EXT)))
 
 SOURCES = $(filter-out $(EXCLUDED_SOURCES), $(ALL_SOURCES))
 HEADERS = $(filter-out $(EXCLUDED_HEADERS), $(ALL_HEADERS))
 
-OBJECTS = $(patsubst %$(CPP_SOURCE_EXT), $(OBJ_DIR)/%$(CPP_OBJECT_EXT), $(SOURCES))
+OBJECTS = $(patsubst %$(C_SOURCE_EXT), $(OBJ_DIR)/%$(C_OBJECT_EXT), $(SOURCES))
 
 .PHONY: help build rebuild clean full-clean default
 
@@ -34,11 +35,11 @@ help:
 	@echo "clean      : Clean output files"
 	@echo "full-clean : Clean ALL output files"
 
-$(OBJ_DIR)/%$(CPP_OBJECT_EXT): $(SRC_DIR)/%$(CPP_SOURCE_EXT) | $(OBJ_DIR)
-	$(CXX) $(CXXFLAGS) -c $< -o $@
+$(OBJ_DIR)/%$(C_OBJECT_EXT): $(SRC_DIR)/%$(C_SOURCE_EXT) | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(BIN_DIR)/$(TARGET)$(TARGET_EXT): $(OBJECTS) | $(BIN_DIR)
-	$(CXX) $(OBJECTS) -o $@ $(LDFLAGS)
+	$(CC) $(OBJECTS) -o $@ $(LDFLAGS)
 
 $(OBJ_DIR) $(BIN_DIR):
 	mkdir -p $@

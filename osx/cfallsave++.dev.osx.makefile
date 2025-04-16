@@ -1,6 +1,6 @@
 TARGET     = cfallsave++
 TARGET_EXT = .bin
-CXX        = g++
+CXX        = clang++
 CXXFLAGS   = -Wall -Wextra
 LDFLAGS    =
 
@@ -11,7 +11,7 @@ CPP_SOURCE_EXT = .cpp
 CPP_HEADER_EXT = .hpp
 CPP_OBJECT_EXT = .o
 
-SRC_DIR = src
+SRC_DIR = ../src
 OBJ_DIR = obj/$(TARGET).dev
 BIN_DIR = bin
 

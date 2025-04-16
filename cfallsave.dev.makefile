@@ -9,7 +9,7 @@ C_HEADER_EXT = .h
 C_OBJECT_EXT = .o
 
 SRC_DIR = src
-OBJ_DIR = obj/$(TARGET)
+OBJ_DIR = obj/$(TARGET).dev
 BIN_DIR = bin
 
 EXCLUDED_HEADERS = fox.h

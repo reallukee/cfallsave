@@ -19,46 +19,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\cplusplus\fo1.cpp" />
-    <ClCompile Include="..\..\src\cplusplus\fo2.cpp" />
-    <ClCompile Include="..\..\src\cplusplus\fo3.cpp" />
-    <ClCompile Include="..\..\src\cplusplus\fo4.cpp" />
-    <ClCompile Include="..\..\src\cplusplus\fonv.cpp" />
-    <ClCompile Include="..\..\src\cplusplus\fotbos.cpp" />
-    <ClCompile Include="..\..\src\cplusplus\fox.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\src\cplusplus\main.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fo1.c" />
-    <ClCompile Include="..\..\src\fo2.c" />
-    <ClCompile Include="..\..\src\fo3.c" />
-    <ClCompile Include="..\..\src\fo4.c" />
-    <ClCompile Include="..\..\src\fonv.c" />
-    <ClCompile Include="..\..\src\fotbos.c" />
-    <ClCompile Include="..\..\src\fox.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\src\main.c">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\src\reader.c" />
-    <ClCompile Include="..\..\src\writer.c" />
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="..\..\src\cplusplus\cfallsave.hpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -104,10 +64,56 @@
     <ClInclude Include="resource.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\cplusplus\fo1.cpp" />
+    <ClCompile Include="..\..\src\cplusplus\fo2.cpp" />
+    <ClCompile Include="..\..\src\cplusplus\fo3.cpp" />
+    <ClCompile Include="..\..\src\cplusplus\fo4.cpp" />
+    <ClCompile Include="..\..\src\cplusplus\fonv.cpp" />
+    <ClCompile Include="..\..\src\cplusplus\fotbos.cpp" />
+    <ClCompile Include="..\..\src\cplusplus\fox.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\cplusplus\main.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fo1.c" />
+    <ClCompile Include="..\..\src\fo2.c" />
+    <ClCompile Include="..\..\src\fo3.c" />
+    <ClCompile Include="..\..\src\fo4.c" />
+    <ClCompile Include="..\..\src\fonv.c" />
+    <ClCompile Include="..\..\src\fotbos.c" />
+    <ClCompile Include="..\..\src\fox.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\main.c">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\reader.c" />
+    <ClCompile Include="..\..\src\writer.c" />
+  </ItemGroup>
+  <ItemGroup>
     <ResourceCompile Include="cfallsave++.rc" />
   </ItemGroup>
   <ItemGroup>
-    <Image Include="..\..\assets\cfallsave++_logo_48x48.ico" />
+    <Image Include="..\..\assets\cfallsave++_logo.ico" />
+    <Image Include="..\..\assets\fo1\fo1_logo.ico" />
+    <Image Include="..\..\assets\fo2\fo2_logo.ico" />
+    <Image Include="..\..\assets\fotbos\fotbos_logo.ico" />
+    <Image Include="..\..\assets\fo3\fo3_logo.ico" />
+    <Image Include="..\..\assets\fonv\fonv_logo.ico" />
+    <Image Include="..\..\assets\fo4\fo4_logo.ico" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -162,24 +168,24 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)obj\cfallsave++\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)-d-x86</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)obj\cfallsave++\$(Platform)\$(Configuration)\</IntDir>
     <TargetName>$(ProjectName)-x86</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)obj\cfallsave++\$(Platform)\$(Configuration)\</IntDir>
-    <TargetName>$(ProjectName)-d-x64</TargetName>
+    <TargetName>$(ProjectName)-d</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
+    <OutDir>$(SolutionDir)bin\</OutDir>
     <IntDir>$(SolutionDir)obj\cfallsave++\$(Platform)\$(Configuration)\</IntDir>
-    <TargetName>$(ProjectName)-x64</TargetName>
+    <TargetName>$(ProjectName)</TargetName>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

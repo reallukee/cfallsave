@@ -4,17 +4,11 @@
 
 # CFallSave
 
-![CFallSave License](https://img.shields.io/github/license/reallukee/cfallsave?style=flat&label=License)
+![CFallSave License](https://img.shields.io/github/license/reallukee/cfallsave)
 
 ☢️ A C/C++ Library to Read and Write Fallout Save Files
 
 </div>
-
-<br />
-
-> [!IMPORTANT]
-> Currently in development!<br />
-> Nothing is final and/or complete!
 
 
 
@@ -22,8 +16,10 @@
 
 * [Introduction](#introduction)
 * [Organization](#organization)
-* [Documentation](#documentation)
-* [Examples](#examples)
+* [🔗 Documentation](./DOCS.md)
+* [🔗 Examples](./EXAMPLES.md)
+* [🔗 Changelog](./CHANGELOG.md)
+* [🔗 ToDo](./TODO.md)
 * [Starting](#starting)
 * [Author](#author)
 * [License](#license)
@@ -81,37 +77,21 @@ Snapshot Height    : 0000000000000127 007F
 
 # Organization
 
-* `.github` GitHub settings
 * `.vscode` Visual Studio Code settings
 * `assets` Project assets
 * `docs` Documentation
 * `examples` Examples
-* `src` Source code
+* `osx` macOS build files
+* `src` Sources
 * `test` Test
-* `windows` Visual Studio 2022 projects
-
-
-
-# [Documentation](./DOCS.md)
-
-* [APIs](./DOCS.md#apis)
-  * [C APIs (CFallSave)](./DOCS.md#c-apis-cfallsave)
-  * [C++ APIs (CFallSave++)](./DOCS.md#c-apis-cfallsave-1)
-* [Save Formats](./DOCS.md#save-formats)
-
-
-
-# [Examples](./EXAMPLES.md)
-
-* [CFallSave](./EXAMPLES.md#cfallsave)
-* [CFallSave++](./EXAMPLES.md#cfallsave-1)
+* `windows` Windows build files
 
 
 
 # Starting
 
 * [Requirements](#1-requirements)
-* [Get the source](#2-get-the-source)
+* [Sources](#2-sources)
 * [Building](#3-building)
 
 
@@ -120,6 +100,7 @@ Snapshot Height    : 0000000000000127 007F
 
 - [Linux Requirements](#linux-requirements)
 - [Windows Requirements](#windows-requirements)
+- [macOS Requirements](#macos-requirements)
 
 
 
@@ -134,14 +115,23 @@ Snapshot Height    : 0000000000000127 007F
 
 ### Windows Requirements
 
-* [*Visual Studio 2022*]()
+* *git*
+* [*Visual Studio 2022*](https://aka.ms/vs/17/release/vs_Community.exe)
     * *Desktop development with C++*
-* [*Build Tools for Visual Studio 2022*]()
+* [*Build Tools for Visual Studio 2022*](https://aka.ms/vs/17/release/vs_BuildTools.exe)
     * *Desktop development with C++*
 
 
 
-## 2. Get the source
+### macOS Requirements
+
+* *git*
+* *clang*
+* *make*
+
+
+
+## 2. Sources
 
 * Using [git](#using-git)
 * Using [GitHub](#using-github)
@@ -150,7 +140,7 @@ Snapshot Height    : 0000000000000127 007F
 
 ### Using `git`
 
-```git
+```terminal
 git clone https://github.com/reallukee/cfallsave.git
 ```
 
@@ -158,7 +148,7 @@ git clone https://github.com/reallukee/cfallsave.git
 
 ### Using `GitHub`
 
-> [Download](https://github.com/reallukee/cfallsave/archive/refs/heads/main.zip)
+> [Download from GitHub](https://github.com/reallukee/cfallsave/archive/refs/heads/main.zip)
 
 
 
@@ -166,6 +156,7 @@ git clone https://github.com/reallukee/cfallsave.git
 
 * [Linux Building](#linux-building)
 * [Windows Building](#windows-building)
+* [macOS Building](#macos-building)
 
 
 
@@ -217,18 +208,44 @@ git clone https://github.com/reallukee/cfallsave.git
 
     ```cmd
     REM CFallSave
-    msbuild ./cfallsave -p:Configuration=Release -p:Platform=x86
-    msbuild ./cfallsave -p:Configuration=Release -p:Platform=x64
+    msbuild ./cfallsave.vcxproj -p:Configuration=Release -p:Platform=Win32
+    msbuild ./cfallsave.vcxproj -p:Configuration=Release -p:Platform=x64
 
     REM CFallSave++
-    msbuild ./cfallsave++ -p:Configuration=Release -p:Platform=x86
-    msbuild ./cfallsave++ -p:Configuration=Release -p:Platform=x64
+    msbuild ./cfallsave++.vcxproj -p:Configuration=Release -p:Platform=Win32
+    msbuild ./cfallsave++.vcxproj -p:Configuration=Release -p:Platform=x64
     ```
 
 4. View output
 
     ```cmd
     DIR bin
+    ```
+
+
+
+### macOS Building
+
+1. Enter repository
+
+    ```bash
+    cd cfallsave/osx/
+    ```
+
+2. Build using *make*
+
+    ```bash
+    # CFallSave
+    make -f cfallsave.osx.makefile build
+
+    # CFallSave++
+    make -f cfallsave++.osx.makefile build
+    ```
+
+3. View output
+
+    ```bash
+    ls bin/
     ```
 
 

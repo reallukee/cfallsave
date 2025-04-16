@@ -1,8 +1,9 @@
-TARGET     = test
+TARGET     = cfallsave.test
 TARGET_EXT = .bin
+LIB_TARGET = cfallsave
 CC         = clang
 CFLAGS     = -Wall -Wextra -fPIC
-LDFLAGS    = -L../bin -lcfallsave -Wl,-rpath,@executable_path
+LDFLAGS    = -L../bin -l$(LIB_TARGET) -Wl,-rpath,@executable_path
 
 C_SOURCE_EXT = .c
 C_HEADER_EXT = .h

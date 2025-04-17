@@ -8,7 +8,12 @@
  * File Name   : writer.c
  *
  * Title       : WRITER SOURCE
- * Description : Writer Source
+ * Description : Questo file contiene le implementazioni
+ *               dei metodi definiti nell'intestazioni
+ *               "writer.h".
+ *               Questi metodi permettono la manipolazione
+ *               in scrittura dei dati presenti all'interno
+ *               di un file binario.
  *
  * Author      : Luca Pollicino
  *               (https://github.com/reallukee)
@@ -19,7 +24,7 @@
 #include "writer.h"
 
 bool writeFixedString(
-    FILE* source,
+    FILE* destination,
     char* value,
     long unsigned int length,
     long unsigned int* address,
@@ -27,12 +32,12 @@ bool writeFixedString(
     bool updateAddress
 )
 {
-    if (source == NULL || value == NULL || address == NULL)
+    if (destination == NULL || value == NULL || address == NULL)
     {
         return false;
     }
 
-    int r_fseek = fseek(source, *address + skip, SEEK_SET);
+    int r_fseek = fseek(destination, *address + skip, SEEK_SET);
 
     if (r_fseek != 0)
     {
@@ -41,7 +46,7 @@ bool writeFixedString(
 
     int CHAR_SIZE = sizeof(char);
 
-    size_t r_fwrite = fwrite(value, CHAR_SIZE, length, source);
+    size_t r_fwrite = fwrite(value, CHAR_SIZE, length, destination);
 
     if (r_fwrite != length)
     {
@@ -57,7 +62,7 @@ bool writeFixedString(
 }
 
 bool writeString(
-    FILE* source,
+    FILE* destination,
     char** value,
     long unsigned int* address,
     long unsigned int skipLength,
@@ -65,11 +70,42 @@ bool writeString(
     bool updateAddress
 )
 {
+    if (destination == NULL || value == NULL || address == NULL)
+    {
+        return false;
+    }
+
+    short unsigned int length = (short unsigned int)strlen(*value);
+
+    bool r_writeUShort = writeUShort(destination, &length, address, skipLength, updateAddress);
+
+    if (!r_writeUShort)
+    {
+        return false;
+    }
+
+    if (!updateAddress)
+    {
+        *address += 2;
+    }
+
+    bool r_writeFixedString = writeFixedString(destination, *value, length, address, skipString, updateAddress);
+
+    if (!r_writeFixedString)
+    {
+        return false;
+    }
+
+    if (!updateAddress)
+    {
+        *address -= 2;
+    }
+
     return true;
 }
 
 bool writeCURSEDString(
-    FILE* source,
+    FILE* destination,
     char** value,
     long unsigned int* address,
     long unsigned int skipLength,
@@ -77,25 +113,74 @@ bool writeCURSEDString(
     bool updateAddress
 )
 {
+    if (destination == NULL || value == NULL || address == NULL)
+    {
+        return false;
+    }
+
+    short unsigned int length = (short unsigned int)strlen(*value);
+
+    bool r_writeUShort = writeUShort(destination, &length, address, skipLength, updateAddress);
+
+    if (!r_writeUShort)
+    {
+        return false;
+    }
+
+    if (!updateAddress)
+    {
+        *address += 2;
+    }
+
+    char* cursedValue = (char*)malloc(length * 2);
+
+    if (cursedValue == NULL)
+    {
+        return false;
+    }
+
+    for (int i = 0, j = 0; i < length && j < length * 2; i++, j += 2)
+    {
+        cursedValue[j] = (*value)[i];
+
+        cursedValue[j + 1] = '\0';
+    }
+
+    bool r_writeFixedString = writeFixedString(destination, cursedValue, length * 2, address, skipString, updateAddress);
+
+    if (!r_writeFixedString)
+    {
+        free(cursedValue);
+
+        return false;
+    }
+
+    free(cursedValue);
+
+    if (!updateAddress)
+    {
+        *address -= 2;
+    }
+
     return true;
 }
 
 
 
 bool writeUByte(
-    FILE* source,
+    FILE* destination,
     unsigned char* value,
     long unsigned int* address,
     long unsigned int skip,
     bool updateAddress
 )
 {
-    if (source == NULL || address == NULL)
+    if (destination == NULL || value == NULL || address == NULL)
     {
         return false;
     }
 
-    int r_fseek = fseek(source, *address + skip, SEEK_SET);
+    int r_fseek = fseek(destination, *address + skip, SEEK_SET);
 
     if (r_fseek != 0)
     {
@@ -104,7 +189,7 @@ bool writeUByte(
 
     int UBYTE_SIZE = sizeof(unsigned char);
 
-    size_t r_fwrite = fwrite(value, UBYTE_SIZE, 1, source);
+    size_t r_fwrite = fwrite(value, UBYTE_SIZE, 1, destination);
 
     if (r_fwrite != 1)
     {
@@ -120,19 +205,19 @@ bool writeUByte(
 }
 
 bool writeUShort(
-    FILE* source,
+    FILE* destination,
     short unsigned int* value,
     long unsigned int* address,
     long unsigned int skip,
     bool updateAddress
 )
 {
-    if (source == NULL || address == NULL)
+    if (destination == NULL || value == NULL || address == NULL)
     {
         return false;
     }
 
-    int r_fseek = fseek(source, *address + skip, SEEK_SET);
+    int r_fseek = fseek(destination, *address + skip, SEEK_SET);
 
     if (r_fseek != 0)
     {
@@ -141,7 +226,7 @@ bool writeUShort(
 
     int USHORT_SIZE = sizeof(short unsigned int);
 
-    size_t r_fwrite = fwrite(value, USHORT_SIZE, 1, source);
+    size_t r_fwrite = fwrite(value, USHORT_SIZE, 1, destination);
 
     if (r_fwrite != 1)
     {
@@ -157,19 +242,19 @@ bool writeUShort(
 }
 
 bool writeUInt(
-    FILE* source,
+    FILE* destination,
     unsigned int* value,
     long unsigned int* address,
     long unsigned int skip,
     bool updateAddress
 )
 {
-    if (source == NULL || address == NULL)
+    if (destination == NULL || value == NULL || address == NULL)
     {
         return false;
     }
 
-    int r_fseek = fseek(source, *address + skip, SEEK_SET);
+    int r_fseek = fseek(destination, *address + skip, SEEK_SET);
 
     if (r_fseek != 0)
     {
@@ -178,7 +263,7 @@ bool writeUInt(
 
     int UINT_SIZE = sizeof(unsigned int);
 
-    size_t r_fwrite = fwrite(value, UINT_SIZE, 1, source);
+    size_t r_fwrite = fwrite(value, UINT_SIZE, 1, destination);
 
     if (r_fwrite != 1)
     {
@@ -194,19 +279,19 @@ bool writeUInt(
 }
 
 bool writeULong(
-    FILE* source,
+    FILE* destination,
     long unsigned int* value,
     long unsigned int* address,
     long unsigned int skip,
     bool updateAddress
 )
 {
-    if (source == NULL || address == NULL)
+    if (destination == NULL || value == NULL || address == NULL)
     {
         return false;
     }
 
-    int r_fseek = fseek(source, *address + skip, SEEK_SET);
+    int r_fseek = fseek(destination, *address + skip, SEEK_SET);
 
     if (r_fseek != 0)
     {
@@ -215,7 +300,7 @@ bool writeULong(
 
     int ULONG_SIZE = sizeof(long unsigned int);
 
-    size_t r_fwrite = fwrite(value, ULONG_SIZE, 1, source);
+    size_t r_fwrite = fwrite(value, ULONG_SIZE, 1, destination);
 
     if (r_fwrite != 1)
     {
@@ -231,19 +316,19 @@ bool writeULong(
 }
 
 bool writeFloat(
-    FILE* source,
+    FILE* destination,
     float* value,
     long unsigned int* address,
     long unsigned int skip,
     bool updateAddress
 )
 {
-    if (source == NULL || address == NULL)
+    if (destination == NULL || value == NULL || address == NULL)
     {
         return false;
     }
 
-    int r_fseek = fseek(source, *address + skip, SEEK_SET);
+    int r_fseek = fseek(destination, *address + skip, SEEK_SET);
 
     if (r_fseek != 0)
     {
@@ -252,7 +337,7 @@ bool writeFloat(
 
     int FLOAT_SIZE = sizeof(float);
 
-    size_t r_fwrite = fwrite(value, FLOAT_SIZE, 1, source);
+    size_t r_fwrite = fwrite(value, FLOAT_SIZE, 1, destination);
 
     if (r_fwrite != 1)
     {
@@ -270,7 +355,7 @@ bool writeFloat(
 
 
 bool writeUByteArray(
-    FILE* source,
+    FILE* destination,
     unsigned char* value,
     long unsigned int length,
     long unsigned int* address,
@@ -278,12 +363,12 @@ bool writeUByteArray(
     bool updateAddress
 )
 {
-    if (source == NULL || value == NULL || address == NULL)
+    if (destination == NULL || value == NULL || address == NULL)
     {
         return false;
     }
 
-    int r_fseek = fseek(source, *address + skip, SEEK_SET);
+    int r_fseek = fseek(destination, *address + skip, SEEK_SET);
 
     if (r_fseek != 0)
     {
@@ -292,7 +377,7 @@ bool writeUByteArray(
 
     int UBYTE_SIZE = sizeof(unsigned char);
 
-    size_t r_fwrite = fwrite(value, UBYTE_SIZE, length, source);
+    size_t r_fwrite = fwrite(value, UBYTE_SIZE, length, destination);
 
     if (r_fwrite != length)
     {

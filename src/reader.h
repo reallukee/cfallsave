@@ -8,7 +8,12 @@
  * File Name   : reader.h
  *
  * Title       : READER HEADER
- * Description : Reader Header
+ * Description : Questo file contiene le definizioni dei
+ *               metodi che permettono la manipolazione
+ *               in lettura dei dati presenti all'interno
+ *               di un file binario.
+ *               Le implementazioni sono all'interno del
+ *               file sorgente "reader.c".
  *
  * Author      : Luca Pollicino
  *               (https://github.com/reallukee)
@@ -21,27 +26,27 @@
 
 #include "header.h"
 
-CFALLSAVE_API bool readFixedString(
+bool readFixedString(
     FILE* source,
-    char* destination,
+    char* value,
     long unsigned int length,
     long unsigned int* address,
     long unsigned int skip,
     bool updateAddress
 );
 
-CFALLSAVE_API bool readString(
+bool readString(
     FILE* source,
-    char** destination,
+    char** value,
     long unsigned int* address,
     long unsigned int skipLength,
     long unsigned int skipString,
     bool updateAddress
 );
 
-CFALLSAVE_API bool readCURSEDString(
+bool readCURSEDString(
     FILE* source,
-    char** destination,
+    char** value,
     long unsigned int* address,
     long unsigned int skipLength,
     long unsigned int skipString,
@@ -50,41 +55,41 @@ CFALLSAVE_API bool readCURSEDString(
 
 
 
-CFALLSAVE_API bool readUByte(
+bool readUByte(
     FILE* source,
-    unsigned char* destination,
+    unsigned char* value,
     long unsigned int* address,
     long unsigned int skip,
     bool updateAddress
 );
 
-CFALLSAVE_API bool readUShort(
+bool readUShort(
     FILE* source,
-    short unsigned int* destination,
+    short unsigned int* value,
     long unsigned int* address,
     long unsigned int skip,
     bool updateAddress
 );
 
-CFALLSAVE_API bool readUInt(
+bool readUInt(
     FILE* source,
-    unsigned int* destination,
+    unsigned int* value,
     long unsigned int* address,
     long unsigned int skip,
     bool updateAddress
 );
 
-CFALLSAVE_API bool readULong(
+bool readULong(
     FILE* source,
-    long unsigned int* destination,
+    long unsigned int* value,
     long unsigned int* address,
     long unsigned int skip,
     bool updateAddress
 );
 
-CFALLSAVE_API bool readFloat(
+bool readFloat(
     FILE* source,
-    float* destination,
+    float* value,
     long unsigned int* address,
     long unsigned int skip,
     bool updateAddress
@@ -92,9 +97,9 @@ CFALLSAVE_API bool readFloat(
 
 
 
-CFALLSAVE_API bool readUByteArray(
+bool readUByteArray(
     FILE* source,
-    unsigned char* destination,
+    unsigned char* value,
     long unsigned int length,
     long unsigned int* address,
     long unsigned int skip,

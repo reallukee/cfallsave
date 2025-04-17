@@ -16,13 +16,14 @@
 
 * [Introduction](#introduction)
 * [Organization](#organization)
+* [Releases](#releases)
+* [Starting](#starting)
+* [Author](#author)
+* [License](#license)
 * [🔗 Documentation](./DOCS.md)
 * [🔗 Examples](./EXAMPLES.md)
 * [🔗 Changelog](./CHANGELOG.md)
 * [🔗 ToDo](./TODO.md)
-* [Starting](#starting)
-* [Author](#author)
-* [License](#license)
 
 
 
@@ -77,14 +78,26 @@ Snapshot Height    : 0000000000000127 007F
 
 # Organization
 
+* `.github` GitHub settings
 * `.vscode` Visual Studio Code settings
 * `assets` Project assets
 * `docs` Documentation
 * `examples` Examples
 * `osx` macOS build files
-* `src` Sources
-* `test` Test
+  * `test` macOS test build files
+* `playground` Test files
+* `src` C sources
+  * `cplusplus` C++ sources
+* `test` C test sources
+  * `cplusplus` C++ test sources
 * `windows` Windows build files
+  * `test` Windows test build files
+
+
+
+# Releases
+
+> Zzz... Zzz... Zzz...
 
 
 
@@ -207,13 +220,15 @@ git clone https://github.com/reallukee/cfallsave.git
 3. Build using `msbuild`
 
     ```cmd
-    REM CFallSave
-    msbuild ./cfallsave.vcxproj -p:Configuration=Release -p:Platform=Win32
-    msbuild ./cfallsave.vcxproj -p:Configuration=Release -p:Platform=x64
+    REM CFallSave x86
+    msbuild cfallsave.sln /p:Configuration=Release /p:Platform=x86 /t:cfallsave
+    REM CFallSave x64
+    msbuild cfallsave.sln /p:Configuration=Release /p:Platform=x64 /t:cfallsave
 
-    REM CFallSave++
-    msbuild ./cfallsave++.vcxproj -p:Configuration=Release -p:Platform=Win32
-    msbuild ./cfallsave++.vcxproj -p:Configuration=Release -p:Platform=x64
+    REM CFallSave++ x86
+    msbuild cfallsave.sln /p:Configuration=Release /p:Platform=x86 /t:cfallsave++
+    REM CFallSave++ x64
+    msbuild cfallsave.sln /p:Configuration=Release /p:Platform=x64 /t:cfallsave++
     ```
 
 4. View output

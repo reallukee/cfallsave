@@ -16,10 +16,8 @@
  * License     : MIT
  */
 
-#include <iostream>
 #include "cfallsave.hpp"
 
-using namespace std;
 using namespace cfallsavepp;
 
 int main(int argc, char* argv[])

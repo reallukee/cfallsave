@@ -8,7 +8,12 @@
  * File Name   : writer.c
  *
  * Title       : WRITER HEADER
- * Description : Writer Header
+ * Description : Questo file contiene le definizioni dei
+ *               metodi che permettono la manipolazione
+ *               in scrittura dei dati presenti all'interno
+ *               di un file binario.
+ *               Le implementazioni sono all'interno del
+ *               file sorgente "writer.c".
  *
  * Author      : Luca Pollicino
  *               (https://github.com/reallukee)
@@ -21,8 +26,8 @@
 
 #include "header.h"
 
-CFALLSAVE_API bool writeFixedString(
-    FILE* source,
+bool writeFixedString(
+    FILE* destination,
     char* value,
     long unsigned int length,
     long unsigned int* address,
@@ -30,8 +35,8 @@ CFALLSAVE_API bool writeFixedString(
     bool updateAddress
 );
 
-CFALLSAVE_API bool writeString(
-    FILE* source,
+bool writeString(
+    FILE* destination,
     char** value,
     long unsigned int* address,
     long unsigned int skipLength,
@@ -39,8 +44,8 @@ CFALLSAVE_API bool writeString(
     bool updateAddress
 );
 
-CFALLSAVE_API bool writeCURSEDString(
-    FILE* source,
+bool writeCURSEDString(
+    FILE* destination,
     char** value,
     long unsigned int* address,
     long unsigned int skipLength,
@@ -50,40 +55,40 @@ CFALLSAVE_API bool writeCURSEDString(
 
 
 
-CFALLSAVE_API bool writeUByte(
-    FILE* source,
+bool writeUByte(
+    FILE* destination,
     unsigned char* value,
     long unsigned int* address,
     long unsigned int skip,
     bool updateAddress
 );
 
-CFALLSAVE_API bool writeUShort(
-    FILE* source,
+bool writeUShort(
+    FILE* destination,
     short unsigned int* value,
     long unsigned int* address,
     long unsigned int skip,
     bool updateAddress
 );
 
-CFALLSAVE_API bool writeUInt(
-    FILE* source,
+bool writeUInt(
+    FILE* destination,
     unsigned int* value,
     long unsigned int* address,
     long unsigned int skip,
     bool updateAddress
 );
 
-CFALLSAVE_API bool writeULong(
-    FILE* source,
+bool writeULong(
+    FILE* destination,
     long unsigned int* value,
     long unsigned int* address,
     long unsigned int skip,
     bool updateAddress
 );
 
-CFALLSAVE_API bool writeFloat(
-    FILE* source,
+bool writeFloat(
+    FILE* destination,
     float* value,
     long unsigned int* address,
     long unsigned int skip,
@@ -92,8 +97,8 @@ CFALLSAVE_API bool writeFloat(
 
 
 
-CFALLSAVE_API bool writeUByteArray(
-    FILE* source,
+bool writeUByteArray(
+    FILE* destination,
     unsigned char* value,
     long unsigned int length,
     long unsigned int* address,

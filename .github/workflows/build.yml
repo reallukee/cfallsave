@@ -1,1 +1,182 @@
-# Build
+name: Build
+
+on:
+  push:
+    branches:
+      - "main"
+    paths:
+      - "**/*.c"
+      - "**/*.cpp"
+      - "**/*.h"
+      - "**/*.hpp"
+      - "**/*.makefile"
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Linux environment
+        run: sudo apt-get install gcc g++ make
+
+      - name: Compile CFallSave for Linux
+        run: |
+          make -f cfallsave.makefile build
+          make -f cfallsave.dev.makefile build
+
+      - name: Compile CFallSave Test for Linux
+        run: |
+          cd test/
+          make -f cfallsave.test.makefile build
+
+      - name: Compile CFallSave++ for Linux
+        run: |
+          make -f cfallsave++.makefile build
+          make -f cfallsave++.dev.makefile build
+
+      - name: Compile CFallSave++ Test for Linux
+        run: |
+          cd test/
+          make -f cfallsave++.test.makefile build
+
+      - name: Verify Linux builds
+        run: |
+          cd bin/
+
+          outputs=(
+            "libcfallsave.so"
+            "cfallsave.bin"
+            "cfallsave.test.bin"
+            "libcfallsave++.so"
+            "cfallsave++.bin"
+            "cfallsave++.test.bin"
+          )
+
+          for output in "${outputs[@]}"; do
+            if [ ! -f "$output" ]; then
+              echo "$output build for Linux failed"
+              exit 1
+            fi
+          done
+
+          echo "Linux builds completed successfully"
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Windows environment
+        uses: microsoft/setup-msbuild@v1
+
+      - name: Compile CFallSave for Windows
+        run: |
+          cd windows
+          msbuild cfallsave.sln /p:Configuration=Release /p:Platform=x86 /t:cfallsave
+          msbuild cfallsave.sln /p:Configuration=Release /p:Platform=x64 /t:cfallsave
+          msbuild cfallsave.sln /p:Configuration=Release /p:Platform=x86 /t:cfallsave_dev
+          msbuild cfallsave.sln /p:Configuration=Release /p:Platform=x64 /t:cfallsave_dev
+
+      - name: Compile CFallSave Test for Windows
+        run: |
+          cd windows
+          msbuild cfallsave.sln /p:Configuration=Release /p:Platform=x86 /t:test\cfallsave_test
+          msbuild cfallsave.sln /p:Configuration=Release /p:Platform=x64 /t:test\cfallsave_test
+
+      - name: Compile CFallSave++ for Windows
+        run: |
+          cd windows
+          msbuild cfallsave.sln /p:Configuration=Release /p:Platform=x86 /t:cfallsave++
+          msbuild cfallsave.sln /p:Configuration=Release /p:Platform=x64 /t:cfallsave++
+          msbuild cfallsave.sln /p:Configuration=Release /p:Platform=x86 /t:cfallsave++_dev
+          msbuild cfallsave.sln /p:Configuration=Release /p:Platform=x64 /t:cfallsave++_dev
+
+      - name: Compile CFallSave++ Test for Windows
+        run: |
+          cd windows
+          msbuild cfallsave.sln /p:Configuration=Release /p:Platform=x86 /t:test\cfallsave++_test
+          msbuild cfallsave.sln /p:Configuration=Release /p:Platform=x64 /t:test\cfallsave++_test
+
+      - name: Verify if the build is successful (Windows)
+        run: |
+          cd windows\bin
+
+          $outputs = @(
+              "cfallsave.dll",
+              "cfallsave-x86.dll",
+              "cfallsave.dev.exe",
+              "cfallsave.dev-x86.exe",
+              "cfallsave.test.exe",
+              "cfallsave.test-x86.exe",
+              "cfallsave++.dll",
+              "cfallsave++-x86.dll",
+              "cfallsave++.dev.exe",
+              "cfallsave++.dev-x86.exe",
+              "cfallsave++.test.exe",
+              "cfallsave++.test-x86.exe"
+          )
+
+          foreach ($output in $outputs) {
+              if (-not (Test-Path "$output")) {
+                  Write-Host "$output build for Windows failed"
+                  exit 1
+              }
+          }
+
+          Write-Host "Windows builds completed successfully"
+
+  macos:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up macOS environment
+        run: sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+
+      - name: Compile CFallSave for macOS
+        run: |
+          cd osx/
+          make -f cfallsave.osx.makefile build
+          make -f cfallsave.dev.osx.makefile build
+
+      - name: Compile CFallSave Test for macOS
+        run: |
+          cd osx/test/
+          make -f cfallsave.test.osx.makefile build
+
+      - name: Compile CFallSave++ for macOS
+        run: |
+          cd osx/
+          make -f cfallsave++.osx.makefile build
+          make -f cfallsave++.dev.osx.makefile build
+
+      - name: Compile CFallSave++ Test for macOS
+        run: |
+          cd osx/test/
+          make -f cfallsave++.test.osx.makefile build
+
+      - name: Verify macOS builds
+        run: |
+          cd osx/bin/
+
+          outputs=(
+            "libcfallsave.dylib"
+            "cfallsave.bin"
+            "cfallsave.test.bin"
+            "libcfallsave++.dylib"
+            "cfallsave++.bin"
+            "cfallsave++.test.bin"
+          )
+
+          for output in "${outputs[@]}"; do
+            if [ ! -f "$output" ]; then
+              echo "$output build for macOS failed"
+              exit 1
+            fi
+          done
+
+          echo "macOS builds completed successfully"

@@ -8,7 +8,12 @@
  * File Name   : reader.c
  *
  * Title       : READER SOURCE
- * Description : Reader Source
+ * Description : Questo file contiene le implementazioni
+ *               dei metodi definiti nell'intestazioni
+ *               "reader.h".
+ *               Questi metodi permettono la manipolazione
+ *               in lettura dei dati presenti all'interno
+ *               di un file binario.
  *
  * Author      : Luca Pollicino
  *               (https://github.com/reallukee)
@@ -20,14 +25,14 @@
 
 bool readFixedString(
     FILE* source,
-    char* destination,
+    char* value,
     long unsigned int length,
     long unsigned int* address,
     long unsigned int skip,
     bool updateAddress
 )
 {
-    if (source == NULL || destination == NULL || address == NULL)
+    if (source == NULL || value == NULL || address == NULL)
     {
         return false;
     }
@@ -41,14 +46,14 @@ bool readFixedString(
 
     int CHAR_SIZE = sizeof(char);
 
-    size_t r_fread = fread(destination, CHAR_SIZE, length, source);
+    size_t r_fread = fread(value, CHAR_SIZE, length, source);
 
     if (r_fread != length)
     {
         return false;
     }
 
-    destination[length] = '\0';
+    value[length] = '\0';
 
     if (updateAddress)
     {
@@ -60,13 +65,18 @@ bool readFixedString(
 
 bool readString(
     FILE* source,
-    char** destination,
+    char** value,
     long unsigned int* address,
     long unsigned int skipLength,
     long unsigned int skipString,
     bool updateAddress
 )
 {
+    if (source == NULL || value == NULL || address == NULL)
+    {
+        return false;
+    }
+
     short unsigned int length = 0;
 
     bool r_readUShort = readUShort(source, &length, address, skipLength, updateAddress);
@@ -81,23 +91,23 @@ bool readString(
         *address += 2;
     }
 
-    if (*destination != NULL)
+    if (*value != NULL)
     {
-        free(*destination);
+        free(*value);
     }
 
-    *destination = (char*)malloc(length + 1);
+    *value = (char*)malloc(length + 1);
 
-    if (*destination == NULL)
+    if (*value == NULL)
     {
         return false;
     }
 
-    bool r_readFixedString = readFixedString(source, *destination, length, address, skipString, updateAddress);
+    bool r_readFixedString = readFixedString(source, *value, length, address, skipString, updateAddress);
 
     if (!r_readFixedString)
     {
-        free(*destination);
+        free(*value);
 
         return false;
     }
@@ -112,13 +122,18 @@ bool readString(
 
 bool readCURSEDString(
     FILE* source,
-    char** destination,
+    char** value,
     long unsigned int* address,
     long unsigned int skipLength,
     long unsigned int skipString,
     bool updateAddress
 )
 {
+    if (source == NULL || value == NULL || address == NULL)
+    {
+        return false;
+    }
+
     short unsigned int length = 0;
 
     bool r_readUShort = readUShort(source, &length, address, skipLength, updateAddress);
@@ -133,44 +148,44 @@ bool readCURSEDString(
         *address += 2;
     }
 
-    char* cursedProperty = (char*)malloc(length * 2 + 1);
+    char* cursedValue = (char*)malloc(length * 2);
 
-    if (cursedProperty == NULL)
+    if (cursedValue == NULL)
     {
         return false;
     }
 
-    bool r_readFixedString = readFixedString(source, cursedProperty, length * 2, address, skipString, updateAddress);
+    bool r_readFixedString = readFixedString(source, cursedValue, length * 2, address, skipString, updateAddress);
 
     if (!r_readFixedString)
     {
-        free(cursedProperty);
+        free(cursedValue);
 
         return false;
     }
 
-    if (*destination != NULL)
+    if (*value != NULL)
     {
-        free(*destination);
+        free(*value);
     }
 
-    *destination = (char*)malloc(length + 1);
+    *value = (char*)malloc(length + 1);
 
-    if (*destination == NULL)
+    if (*value == NULL)
     {
-        free(cursedProperty);
+        free(cursedValue);
 
         return false;
     }
 
     for (int i = 0, j = 0; i < length * 2 && j < length; i += 2, j++)
     {
-        (*destination)[j] = cursedProperty[i];
+        (*value)[j] = cursedValue[i];
     }
 
-    (*destination)[length] = '\0';
+    (*value)[length] = '\0';
 
-    free(cursedProperty);
+    free(cursedValue);
 
     if (!updateAddress)
     {
@@ -184,13 +199,13 @@ bool readCURSEDString(
 
 bool readUByte(
     FILE* source,
-    unsigned char* destination,
+    unsigned char* value,
     long unsigned int* address,
     long unsigned int skip,
     bool updateAddress
 )
 {
-    if (source == NULL || destination == NULL || address == NULL)
+    if (source == NULL || value == NULL || address == NULL)
     {
         return false;
     }
@@ -204,7 +219,7 @@ bool readUByte(
 
     int UBYTE_SIZE = sizeof(unsigned char);
 
-    size_t r_fread = fread(destination, UBYTE_SIZE, 1, source);
+    size_t r_fread = fread(value, UBYTE_SIZE, 1, source);
 
     if (r_fread != 1)
     {
@@ -221,13 +236,13 @@ bool readUByte(
 
 bool readUShort(
     FILE* source,
-    short unsigned int* destination,
+    short unsigned int* value,
     long unsigned int* address,
     long unsigned int skip,
     bool updateAddress
 )
 {
-    if (source == NULL || destination == NULL || address == NULL)
+    if (source == NULL || value == NULL || address == NULL)
     {
         return false;
     }
@@ -241,7 +256,7 @@ bool readUShort(
 
     int USHORT_SIZE = sizeof(short unsigned int);
 
-    size_t r_fread = fread(destination, USHORT_SIZE, 1, source);
+    size_t r_fread = fread(value, USHORT_SIZE, 1, source);
 
     if (r_fread != 1)
     {
@@ -258,13 +273,13 @@ bool readUShort(
 
 bool readUInt(
     FILE* source,
-    unsigned int* destination,
+    unsigned int* value,
     long unsigned int* address,
     long unsigned int skip,
     bool updateAddress
 )
 {
-    if (source == NULL || destination == NULL || address == NULL)
+    if (source == NULL || value == NULL || address == NULL)
     {
         return false;
     }
@@ -278,7 +293,7 @@ bool readUInt(
 
     int UINT_SIZE = sizeof(unsigned int);
 
-    size_t r_fread = fread(destination, UINT_SIZE, 1, source);
+    size_t r_fread = fread(value, UINT_SIZE, 1, source);
 
     if (r_fread != 1)
     {
@@ -295,13 +310,13 @@ bool readUInt(
 
 bool readULong(
     FILE* source,
-    long unsigned int* destination,
+    long unsigned int* value,
     long unsigned int* address,
     long unsigned int skip,
     bool updateAddress
 )
 {
-    if (source == NULL || destination == NULL || address == NULL)
+    if (source == NULL || value == NULL || address == NULL)
     {
         return false;
     }
@@ -315,7 +330,7 @@ bool readULong(
 
     int ULONG_SIZE = sizeof(long unsigned int);
 
-    size_t r_fread = fread(destination, ULONG_SIZE, 1, source);
+    size_t r_fread = fread(value, ULONG_SIZE, 1, source);
 
     if (r_fread != 1)
     {
@@ -332,13 +347,13 @@ bool readULong(
 
 bool readFloat(
     FILE* source,
-    float* destination,
+    float* value,
     long unsigned int* address,
     long unsigned int skip,
     bool updateAddress
 )
 {
-    if (source == NULL || destination == NULL || address == NULL)
+    if (source == NULL || value == NULL || address == NULL)
     {
         return false;
     }
@@ -352,7 +367,7 @@ bool readFloat(
 
     int FLOAT_SIZE = sizeof(float);
 
-    size_t r_fread = fread(destination, FLOAT_SIZE, 1, source);
+    size_t r_fread = fread(value, FLOAT_SIZE, 1, source);
 
     if (r_fread != 1)
     {
@@ -371,14 +386,14 @@ bool readFloat(
 
 bool readUByteArray(
     FILE* source,
-    unsigned char* destination,
+    unsigned char* value,
     long unsigned int length,
     long unsigned int* address,
     long unsigned int skip,
     bool updateAddress
 )
 {
-    if (source == NULL || destination == NULL || address == NULL)
+    if (source == NULL || value == NULL || address == NULL)
     {
         return false;
     }
@@ -392,7 +407,7 @@ bool readUByteArray(
 
     int UBYTE_SIZE = sizeof(unsigned char);
 
-    size_t r_fread = fread(destination, UBYTE_SIZE, length, source);
+    size_t r_fread = fread(value, UBYTE_SIZE, length, source);
 
     if (r_fread != length)
     {

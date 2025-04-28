@@ -17,7 +17,7 @@ BIN_DIR = bin
 
 EXCLUDED_HEADERS     = cfallsave.h fox.h
 EXCLUDED_SOURCES     = main.c fox.c
-EXCLUDED_CPP_HEADERS = cfallsave.hpp fox.hpp
+EXCLUDED_CPP_HEADERS = cfallsavepp.hpp fox.hpp
 EXCLUDED_CPP_SOURCES = main.cpp fox.cpp
 
 ALL_SOURCES     = $(notdir $(wildcard $(SRC_DIR)/*${C_SOURCE_EXT}))

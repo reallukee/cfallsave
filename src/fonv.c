@@ -122,10 +122,45 @@ bool writeFONVSave(
     FONVSAVE* save
 )
 {
-    if (save == NULL)
+    if (save == NULL || save->save == NULL)
     {
         return false;
     }
+
+    long unsigned int address = 0;
+    bool fail = false;
+
+    save->propAddresses[FONVSAVE_PROPS_SAVE_SIGNATURE] = address;
+    fail |= !writeFixedString(save->save, save->saveSignature, FONVSAVE_SIGNATURE_LENGTH, &address, 0, true);
+
+    save->propAddresses[FONVSAVE_PROPS_ENGINE_VERSION] = address + 4;
+    fail |= !writeUInt(save->save, &save->engineVersion, &address, 4, true);
+
+    save->propAddresses[FONVSAVE_PROPS_SNAPSHOT_WIDTH] = address + 66;
+    fail |= !writeUInt(save->save, &save->snapshotWidth, &address, 66, true);
+
+    save->propAddresses[FONVSAVE_PROPS_SNAPSHOT_HEIGHT] = address + 1;
+    fail |= !writeUInt(save->save, &save->snapshotHeight, &address, 1, true);
+
+    save->propAddresses[FONVSAVE_PROPS_SAVE_NUMBER] = address + 1;
+    fail |= !writeUInt(save->save, &save->saveNumber, &address, 1, true);
+
+    save->propAddresses[FONVSAVE_PROPS_PLAYER_NAME] = address + 1;
+    fail |= !writeString(save->save, &save->playerName, &address, 1, 1, true);
+
+    save->propAddresses[FONVSAVE_PROPS_PLAYER_TITLE] = address + 1;
+    fail |= !writeString(save->save, &save->playerTitle, &address, 1, 1, true);
+
+    save->propAddresses[FONVSAVE_PROPS_PLAYER_LEVEL] = address + 1;
+    fail |= !writeUInt(save->save, &save->playerLevel, &address, 1, true);
+
+    save->propAddresses[FONVSAVE_PROPS_PLAYER_LOCATION] = address + 1;
+    fail |= !writeString(save->save, &save->playerLocation, &address, 1, 1, true);
+
+    save->propAddresses[FONVSAVE_PROPS_PLAYER_PLAYTIME] = address + 1;
+    fail |= !writeString(save->save, &save->playerPlaytime, &address, 1, 1, true);
+
+    fflush(save->save);
 
     return true;
 }

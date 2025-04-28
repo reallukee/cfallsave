@@ -5,7 +5,7 @@
  *
  * A C/C++ Library to Read and Write Fallout Save Files
  *
- * File Name   : cfallsave.hpp
+ * File Name   : cfallsavepp.hpp
  *
  * Title       : CFALLSAVE++ API
  * Description : CFallSave++ API

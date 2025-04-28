@@ -9,7 +9,7 @@
  *
  * Title       : WRITER SOURCE
  * Description : Questo file contiene le implementazioni
- *               dei metodi definiti nell'intestazioni
+ *               dei metodi definiti nell'intestazione
  *               "writer.h".
  *               Questi metodi permettono la manipolazione
  *               in scrittura dei dati presenti all'interno

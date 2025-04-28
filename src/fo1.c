@@ -61,10 +61,10 @@ FO1SAVE* readFO1Save(
     fail |= !readFixedString(save->save, save->saveSignature, FO1SAVE_SIGNATURE_LENGTH, &address, 0, true);
 
     save->propAddresses[FO1SAVE_PROPS_PLAYER_NAME] = address + 12;
-    fail |= !readFixedString(save->save, save->playerName, 32, &address, 12, true);
+    fail |= !readFixedString(save->save, save->playerName, FO1SAVE_STRING_SIZE, &address, 12, true);
 
     save->propAddresses[FO1SAVE_PROPS_SAVE_NAME] = address;
-    fail |= !readFixedString(save->save, save->saveName, 32, &address, 0, true);
+    fail |= !readFixedString(save->save, save->saveName, FO1SAVE_STRING_SIZE, &address, 0, true);
 
     if (fail)
     {
@@ -80,10 +80,24 @@ bool writeFO1Save(
     FO1SAVE* save
 )
 {
-    if (save == NULL)
+    if (save == NULL || save->save == NULL)
     {
         return false;
     }
+
+    long unsigned int address = 0;
+    bool fail = false;
+
+    save->propAddresses[FO1SAVE_PROPS_SAVE_SIGNATURE] = address;
+    fail |= !writeFixedString(save->save, save->saveSignature, FO1SAVE_SIGNATURE_LENGTH, &address, 0, true);
+
+    save->propAddresses[FO1SAVE_PROPS_PLAYER_NAME] = address + 12;
+    fail |= !writeFixedString(save->save, save->playerName, FO1SAVE_STRING_SIZE, &address, 12, true);
+
+    save->propAddresses[FO1SAVE_PROPS_SAVE_NAME] = address;
+    fail |= !writeFixedString(save->save, save->saveName, FO1SAVE_STRING_SIZE, &address, 0, true);
+
+    fflush(save->save);
 
     return true;
 }
@@ -242,7 +256,7 @@ bool readFO1SaveProp(
 
     case FO1SAVE_PROPS_SAVE_NAME:
     case FO1SAVE_PROPS_PLAYER_NAME:
-        result = readFixedString(save->save, (char*)destination, 32, &save->propAddresses[prop], 0, false);
+        result = readFixedString(save->save, (char*)destination, FO1SAVE_STRING_SIZE, &save->propAddresses[prop], 0, false);
         break;
 
     default:
@@ -273,7 +287,7 @@ bool writeFO1SaveProp(
 
     case FO1SAVE_PROPS_SAVE_NAME:
     case FO1SAVE_PROPS_PLAYER_NAME:
-        result = writeFixedString(save->save, (char*)value, 32, &save->propAddresses[prop], 0, false);
+        result = writeFixedString(save->save, (char*)value, FO1SAVE_STRING_SIZE, &save->propAddresses[prop], 0, false);
         break;
 
     default:

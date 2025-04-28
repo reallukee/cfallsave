@@ -38,9 +38,6 @@
 
 # Functions
 
-> ![NOTE]
-> This section is not yet complete
-
 * [`readFO4Save`](#readfo4save)
 * [`writeFO4Save`](#writefo4save)
 * [`isFO4Save`](#isfo4save)
@@ -78,8 +75,8 @@ FO4SAVE* save = readFO4Save("fo4.fos");
 
 ## `writeFO4Save`
 
-> [!WARNING]
-> This function is not yet implemented!
+> [!CAUTION]
+> Experimental function!
 
 **Params**
 

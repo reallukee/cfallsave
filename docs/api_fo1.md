@@ -38,9 +38,6 @@
 
 # Functions
 
-> ![NOTE]
-> This section is not yet complete
-
 * [`readFO1Save`](#readfo1save)
 * [`writeFO1Save`](#writefo1save)
 * [`isFO1Save`](#isfo1save)
@@ -77,8 +74,8 @@ FO1SAVE* save = readFO1Save("fo1.dat");
 
 ## `writeFO1Save`
 
-> [!WARNING]
-> This function is not yet implemented!
+> [!CAUTION]
+> Experimental function!
 
 **Params**
 

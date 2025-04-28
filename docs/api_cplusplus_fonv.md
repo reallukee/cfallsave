@@ -2,7 +2,7 @@
 
 ![Fallout: New Vegas Logo 192x192](../assets/fonv/fonv_logo_192x192.png)
 
-# *Fallout: New Vegas* C++ API
+# *Fallout: New Vegas*<br /> C++ API
 
 [Back to Documentation](../DOCS.md)
 
@@ -70,75 +70,56 @@
 
 ## `FONVSave`
 
-- [`getFONVSave`](#fonvsavegetfonvsave)
-- [`setFONVSave`](#fonvsavesetfonvsave)
+### Constructors
+
 - [`FONVSave`](#fonvsavefonvsave)
+
+### Destructors
+
 - [`~FONVSave`](#fonvsavefonvsave-1)
-- [`readSave`](#fonvsavereadsave)
-- [`writeSave`](#fonvsavewritesave)
-- [`closeSave`](#fonvsaveclosesave)
+
+### Methods
+
+- [`read`](#fonvsaveread)
+- [`write`](#fonvsavewrite)
+- [`close`](#fonvsaveclose)
 - [`isSave` (*static*)](#fonvsaveissave-static)
 - [`isOpen`](#fonvsaveisopen)
-- [`printSave`](#fonvsaveprintsave)
-- [`printSaveProps`](#fonvsaveprintsaveprops)
-- [`printSavePropAddresses`](#fonvsaveprintsavepropaddresses)
-- [`printSaveSnapshot`](#fonvsaveprintsavesnapshot)
+- [`print`](#fonvsaveprint)
+- [`printProps`](#fonvsaveprintprops)
+- [`printPropAddresses`](#fonvsaveprintpropaddresses)
+- [`printSnapshot`](#fonvsaveprintsnapshot)
+- [`createSampleSave` (*static*)](#fonvsavecreatesamplesave-static)
+
+### Properties
+
+- [`getFONVSave`](#fonvsavegetfonvsave)
+- [`setFONVSave`](#fonvsavesetfonvsave)
 - [`getGameName`](#fonvsavegetgamename)
 - [`getSaveFileName`](#fonvsavegetsavefilename)
 - [`getSaveSignature`](#fonvsavegetsavesignature)
+- [`setSaveSignature`](#fonvsavesetsavesignature)
 - [`getEngineVersion`](#fonvsavegetengineversion)
+- [`setEngineVersion`](#fonvsavesetengineversion)
 - [`getSaveNumber`](#fonvsavegetsavenumber)
+- [`setSaveNumber`](#fonvsavesetsavenumber)
 - [`getPlayerName`](#fonvsavegetplayername)
+- [`setPlayerName`](#fonvsavesetplayername)
 - [`getPlayerLevel`](#fonvsavegetplayerlevel)
+- [`setPlayerLevel`](#fonvsavesetplayerlevel)
 - [`getPlayerTitle`](#fonvsavegetplayertitle)
+- [`setPlayerTitle`](#fonvsavesetplayertitle)
 - [`getPlayerLocation`](#fonvsavegetplayerlocation)
+- [`setPlayerLocation`](#fonvsavesetplayerlocation)
 - [`getPlayerPlaytime`](#fonvsavegetplayerplaytime)
+- [`setPlayerPlaytime`](#fonvsavesetplayerplaytime)
 - [`getSnapshotWidth`](#fonvsavegetsnapshotwidth)
+- [`setSnapshotWidth`](#fonvsavesetsnapshotwidth)
 - [`getSnapshotHeight`](#fonvsavegetsnapshotheight)
+- [`setSnapshotHeight`](#fonvsavesetsnapshotheight)
 - [`getSnapshotLength`](#fonvsavegetsnapshotlength)
 - [`getSnapshot`](#fonvsavegetsnapshot)
-
-
-
-## `FONVSave::getFONVSAVE`
-
-**Params**
-
-* `void`
-
-**Returns**
-
-[`FONVSAVE*`](./api_fonv.md#fonvsave) or `NULL`
-
-**Examples**
-
-```cpp
-FONVSave* savepp = new FONVSave("fonv.fos");
-
-FONVSAVE* save = savepp->getFONVSAVE();
-```
-
-
-
-## `FONVSave::setFONVSAVE`
-
-**Params**
-
-[`FONVSAVE*`](./api_fonv.md#fonvsave) `save`
-
-**Returns**
-
-`void`
-
-**Examples**
-
-```cpp
-FONVSave* savepp = new FONVSave();
-
-FONVSAVE* save = readFONVSave("fonv.fos");
-
-savepp->setFONVSAVE(save);
-```
+- [`setSnapshot`](#fonvsavesetsnapshot)
 
 
 
@@ -198,7 +179,7 @@ delete savepp;
 
 
 
-## `FONVSave::readSave`
+## `FONVSave::read`
 
 **Params**
 
@@ -213,7 +194,7 @@ delete savepp;
 ```cpp
 FONVSave* savepp = new FONVSave();
 
-bool result = savepp->readSave("fonv.fos");
+bool result = savepp->read("fonv.fos");
 
 if (result) {
     printf("FONV Save File Read\n");
@@ -222,7 +203,7 @@ if (result) {
 
 
 
-## `FONVSave::writeSave`
+## `FONVSave::write`
 
 **Params**
 
@@ -237,7 +218,7 @@ if (result) {
 ```cpp
 FONVSave* savepp = new FONVSave("fonv.fos");
 
-bool result = savepp->writeSave();
+bool result = savepp->write();
 
 if (result) {
     printf("FONV Save File Written\n");
@@ -246,7 +227,7 @@ if (result) {
 
 
 
-## `FONVSave::closeSave`
+## `FONVSave::close`
 
 **Params**
 
@@ -261,7 +242,7 @@ if (result) {
 ```cpp
 FONVSave* savepp = new FONVSave("fonv.fos");
 
-savepp->closeSave();
+savepp->close();
 ```
 
 
@@ -312,7 +293,7 @@ if (result) {
 
 
 
-## `FONVSave::printSave`
+## `FONVSave::print`
 
 **Params**
 
@@ -327,12 +308,12 @@ if (result) {
 ```cpp
 FONVSave* savepp = new FONVSave("fonv.fos");
 
-savepp->printSave();
+savepp->print();
 ```
 
 
 
-## `FONVSave::printSaveProps`
+## `FONVSave::printProps`
 
 **Params**
 
@@ -347,12 +328,12 @@ savepp->printSave();
 ```cpp
 FONVSave* savepp = new FONVSave("fonv.fos");
 
-savepp->printSaveProps();
+savepp->printProps();
 ```
 
 
 
-## `FONVSave::printSavePropAddresses`
+## `FONVSave::printPropAddresses`
 
 **Params**
 
@@ -367,12 +348,12 @@ savepp->printSaveProps();
 ```cpp
 FONVSave* savepp = new FONVSave("fonv.fos");
 
-savepp->printSavePropAddresses();
+savepp->printPropAddresses();
 ```
 
 
 
-## `FONVSave::printSaveSnapshot`
+## `FONVSave::printSnapshot`
 
 **Params**
 
@@ -387,7 +368,59 @@ savepp->printSavePropAddresses();
 ```cpp
 FONVSave* savepp = new FONVSave("fonv.fos");
 
-savepp->printSaveSnapshot();
+savepp->printSnapshot();
+```
+
+
+
+## `FONVSave::createSampleSave` (*static*)
+
+**Params**
+
+* `void`
+
+**Returns**
+
+`bool`
+
+
+
+## `FONVSave::getFONVSAVE`
+
+**Params**
+
+* `void`
+
+**Returns**
+
+[`FONVSAVE*`](./api_fonv.md#fonvsave) or `NULL`
+
+**Examples**
+
+```cpp
+FONVSave* savepp = new FONVSave("fonv.fos");
+
+FONVSAVE* save = savepp->getFONVSAVE();
+```
+
+## `FONVSave::setFONVSAVE`
+
+**Params**
+
+[`FONVSAVE*`](./api_fonv.md#fonvsave) `save`
+
+**Returns**
+
+`void`
+
+**Examples**
+
+```cpp
+FONVSave* savepp = new FONVSave();
+
+FONVSAVE* save = readFONVSave("fonv.fos");
+
+savepp->setFONVSAVE(save);
 ```
 
 
@@ -426,6 +459,16 @@ savepp->printSaveSnapshot();
 
 `string`
 
+## `FONVSave::setSaveSignature`
+
+**Params**
+
+* `string`
+
+**Returns**
+
+`void`
+
 
 
 ## `FONVSave::getEngineVersion`
@@ -437,6 +480,16 @@ savepp->printSaveSnapshot();
 **Returns**
 
 `unsigned int`
+
+## `FONVSave::setEngineVersion`
+
+**Params**
+
+* `unsigned int`
+
+**Returns**
+
+`void`
 
 
 
@@ -450,6 +503,16 @@ savepp->printSaveSnapshot();
 
 `unsigned int`
 
+## `FONVSave::setSaveNumber`
+
+**Params**
+
+* `unsigned int`
+
+**Returns**
+
+`void`
+
 
 
 ## `FONVSave::getPlayerName`
@@ -462,6 +525,15 @@ savepp->printSaveSnapshot();
 
 `string`
 
+## `FONVSave::setPlayerName`
+
+**Params**
+
+* `string`
+
+**Returns**
+
+`void`
 
 
 
@@ -475,6 +547,16 @@ savepp->printSaveSnapshot();
 
 `unsigned int`
 
+## `FONVSave::setPlayerLevel`
+
+**Params**
+
+* `unsigned int`
+
+**Returns**
+
+`void`
+
 
 
 ## `FONVSave::getPlayerTitle`
@@ -486,6 +568,16 @@ savepp->printSaveSnapshot();
 **Returns**
 
 `string`
+
+## `FONVSave::setPlayerTitle`
+
+**Params**
+
+* `string`
+
+**Returns**
+
+`void`
 
 
 
@@ -499,6 +591,16 @@ savepp->printSaveSnapshot();
 
 `string`
 
+## `FONVSave::setPlayerLocation`
+
+**Params**
+
+* `string`
+
+**Returns**
+
+`void`
+
 
 
 ## `FONVSave::getPlayerPlaytime`
@@ -510,6 +612,16 @@ savepp->printSaveSnapshot();
 **Returns**
 
 `string`
+
+## `FONVSave::setPlayerPlaytime`
+
+**Params**
+
+* `string`
+
+**Returns**
+
+`void`
 
 
 
@@ -523,6 +635,16 @@ savepp->printSaveSnapshot();
 
 `unsigned int`
 
+## `FONVSave::setSnapshotWidth`
+
+**Params**
+
+* `unsigned int`
+
+**Returns**
+
+`void`
+
 
 
 ## `FONVSave::getSnapshotHeight`
@@ -534,6 +656,16 @@ savepp->printSaveSnapshot();
 **Returns**
 
 `unsigned int`
+
+## `FONVSave::setSnapshotHeight`
+
+**Params**
+
+* `unsigned int`
+
+**Returns**
+
+`void`
 
 
 
@@ -558,3 +690,13 @@ savepp->printSaveSnapshot();
 **Returns**
 
 `unsigned char*`
+
+## `FONVSave::setSnapshot`
+
+**Params**
+
+* `unsigned char*`
+
+**Returns**
+
+`void`

@@ -2,7 +2,7 @@
 
 ![Fallout 2 Logo 192x192](../assets/fo2/fo2_logo_192x192.png)
 
-# *Fallout 2* C++ API
+# *Fallout 2*<br /> C++ API
 
 [Back to Documentation](../DOCS.md)
 
@@ -62,65 +62,38 @@
 
 ## `FO2Save`
 
-- [`getFO2Save`](#fo2savegetfo2save)
-- [`setFO2Save`](#fo2savesetfo2save)
+### Constructors
+
 - [`FO2Save`](#fo2savefo2save)
+
+### Destructors
+
 - [`~FO2Save`](#fo2savefo2save-1)
-- [`readSave`](#fo2savereadsave)
-- [`writeSave`](#fo2savewritesave)
-- [`closeSave`](#fo2saveclosesave)
+
+### Methods
+
+- [`read`](#fo2saveread)
+- [`write`](#fo2savewrite)
+- [`close`](#fo2saveclose)
 - [`isSave` (*static*)](#fo2saveissave-static)
 - [`isOpen`](#fo2saveisopen)
-- [`printSave`](#fo2saveprintsave)
-- [`printSaveProps`](#fo2saveprintsaveprops)
-- [`printSavePropAddresses`](#fo2saveprintsavepropaddresses)
+- [`print`](#fo2saveprint)
+- [`printProps`](#fo2saveprintprops)
+- [`printPropAddresses`](#fo2saveprintpropaddresses)
+- [`createSampleSave` (*static*)](#fo2savecreatesamplesave-static)
+
+### Properties
+
+- [`getFO2Save`](#fo2savegetfo2save)
+- [`setFO2Save`](#fo2savesetfo2save)
 - [`getGameName`](#fo2savegetgamename)
 - [`getSaveFileName`](#fo2savegetsavefilename)
 - [`getSaveSignature`](#fo2savegetsavesignature)
+- [`setSaveSignature`](#fo2savesetsavesignature)
 - [`getSaveName`](#fo2savegetsavename)
+- [`setSaveName`](#fo2savesetsavename)
 - [`getPlayerName`](#fo2savegetplayername)
-
-
-
-## `FO2Save::getFO2SAVE`
-
-**Params**
-
-* `void`
-
-**Returns**
-
-[`FO2SAVE*`](./api_fo2.md#fo2save) or `NULL`
-
-**Examples**
-
-```cpp
-FO2Save* savepp = new FO2Save("fo2.dat");
-
-FO2SAVE* save = savepp->getFO2SAVE();
-```
-
-
-
-## `FO2Save::setFO2SAVE`
-
-**Params**
-
-[`FO2SAVE*`](./api_fo2.md#fo2save) `save`
-
-**Returns**
-
-`void`
-
-**Examples**
-
-```cpp
-FO2Save* savepp = new FO2Save();
-
-FO2SAVE* save = readFO2Save("fo2.dat");
-
-savepp->setFO2SAVE(save);
-```
+- [`setPlayerName`](#fo2savesetplayername)
 
 
 
@@ -180,7 +153,7 @@ delete savepp;
 
 
 
-## `FO2Save::readSave`
+## `FO2Save::read`
 
 **Params**
 
@@ -195,7 +168,7 @@ delete savepp;
 ```cpp
 FO2Save* savepp = new FO2Save();
 
-bool result = savepp->readSave("fo2.dat");
+bool result = savepp->read("fo2.dat");
 
 if (result) {
     printf("FO2 Save File Read\n");
@@ -204,7 +177,7 @@ if (result) {
 
 
 
-## `FO2Save::writeSave`
+## `FO2Save::write`
 
 **Params**
 
@@ -219,7 +192,7 @@ if (result) {
 ```cpp
 FO2Save* savepp = new FO2Save("fo2.dat");
 
-bool result = savepp->writeSave();
+bool result = savepp->write();
 
 if (result) {
     printf("FO2 Save File Written\n");
@@ -228,7 +201,7 @@ if (result) {
 
 
 
-## `FO2Save::closeSave`
+## `FO2Save::close`
 
 **Params**
 
@@ -243,7 +216,7 @@ if (result) {
 ```cpp
 FO2Save* savepp = new FO2Save("fo2.dat");
 
-savepp->closeSave();
+savepp->close();
 ```
 
 
@@ -294,7 +267,7 @@ if (result) {
 
 
 
-## `FO2Save::printSave`
+## `FO2Save::print`
 
 **Params**
 
@@ -309,12 +282,12 @@ if (result) {
 ```cpp
 FO2Save* savepp = new FO2Save("fo2.dat");
 
-savepp->printSave();
+savepp->print();
 ```
 
 
 
-## `FO2Save::printSaveProps`
+## `FO2Save::printProps`
 
 **Params**
 
@@ -329,12 +302,12 @@ savepp->printSave();
 ```cpp
 FO2Save* savepp = new FO2Save("fo2.dat");
 
-savepp->printSaveProps();
+savepp->printProps();
 ```
 
 
 
-## `FO2Save::printSavePropAddresses`
+## `FO2Save::printPropAddresses`
 
 **Params**
 
@@ -349,7 +322,59 @@ savepp->printSaveProps();
 ```cpp
 FO2Save* savepp = new FO2Save("fo2.dat");
 
-savepp->printSavePropAddresses();
+savepp->printPropAddresses();
+```
+
+
+
+## `FO2Save::createSampleSave` (*static*)
+
+**Params**
+
+* `void`
+
+**Returns**
+
+`bool`
+
+
+
+## `FO2Save::getFO2SAVE`
+
+**Params**
+
+* `void`
+
+**Returns**
+
+[`FO2SAVE*`](./api_fo2.md#fo2save) or `NULL`
+
+**Examples**
+
+```cpp
+FO2Save* savepp = new FO2Save("fo2.dat");
+
+FO2SAVE* save = savepp->getFO2SAVE();
+```
+
+## `FO2Save::setFO2SAVE`
+
+**Params**
+
+[`FO2SAVE*`](./api_fo2.md#fo2save) `save`
+
+**Returns**
+
+`void`
+
+**Examples**
+
+```cpp
+FO2Save* savepp = new FO2Save();
+
+FO2SAVE* save = readFO2Save("fo2.dat");
+
+savepp->setFO2SAVE(save);
 ```
 
 
@@ -388,6 +413,16 @@ savepp->printSavePropAddresses();
 
 `string`
 
+## `FO2Save::setSaveSignature`
+
+**Params**
+
+* `string`
+
+**Returns**
+
+`void`
+
 
 
 ## `FO2Save::getSaveName`
@@ -400,6 +435,16 @@ savepp->printSavePropAddresses();
 
 `string`
 
+## `FO2Save::setSaveName`
+
+**Params**
+
+* `string`
+
+**Returns**
+
+`void`
+
 
 
 ## `FO2Save::getPlayerName`
@@ -411,3 +456,13 @@ savepp->printSavePropAddresses();
 **Returns**
 
 `string`
+
+## `FO2Save::setPlayerName`
+
+**Params**
+
+* `string`
+
+**Returns**
+
+`void`

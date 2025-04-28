@@ -29,6 +29,68 @@
 
 # Introduction
 
+### Using C
+
+```c
+#include <cfallsave.h>
+
+int main(int argc, char* argv[])
+{
+    char* saveName = "fo4.fos";
+
+    if (!isFO4Save(saveName))
+    {
+        return 1;
+    }
+
+    FO4SAVE* save = readFO4Save(saveName);
+
+    if (!isFO4SaveOpen(save))
+    {
+        return 1;
+    }
+
+    printFO4Save(save);
+
+    closeFO4Save(save);
+
+    return 0;
+}
+```
+
+### Using C++
+
+```cpp
+#include <cfallsavepp.hpp>
+
+using namespace cfallsavepp;
+
+int main(int argc, char* argv[])
+{
+    string saveName = "fo4.fos";
+
+    if (!FO4Save::isSave(saveName))
+    {
+        return 1;
+    }
+
+    FO4Save* save = new FO4Save(saveName);
+
+    if (!save->isOpen())
+    {
+        return 1;
+    }
+
+    save->print();
+
+    delete save;
+
+    return 0;
+}
+```
+
+### Output
+
 ```
 *****************
 * FO4SAVE PROPS *

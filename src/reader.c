@@ -9,7 +9,7 @@
  *
  * Title       : READER SOURCE
  * Description : Questo file contiene le implementazioni
- *               dei metodi definiti nell'intestazioni
+ *               dei metodi definiti nell'intestazione
  *               "reader.h".
  *               Questi metodi permettono la manipolazione
  *               in lettura dei dati presenti all'interno

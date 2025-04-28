@@ -38,9 +38,6 @@
 
 # Functions
 
-> ![NOTE]
-> This section is not yet complete
-
 * [`readFONVSave`](#readfonvsave)
 * [`writeFONVSave`](#writefonvsave)
 * [`isFONVSave`](#isfonvsave)
@@ -78,8 +75,8 @@ FONVSAVE* save = readFONVSave("fonv.fos");
 
 ## `writeFONVSave`
 
-> [!WARNING]
-> This function is not yet implemented!
+> [!CAUTION]
+> Experimental function!
 
 **Params**
 

@@ -2,7 +2,7 @@
 
 ![Fallout Tactics: Brotherhood of Steel Logo 192x192](../assets/fotbos/fotbos_logo_192x192.png)
 
-# *Fallout Tactics: Brotherhood of Steel* C++ API
+# *Fallout Tactics: Brotherhood of Steel*<br /> C++ API
 
 [Back to Documentation](../DOCS.md)
 
@@ -55,8 +55,8 @@
 | `SaveSignature`  | `0`   |
 | `SaveName`       | `1`   |
 | `PlayerName`     | `2`   |
-| `PlayerLocation` | `4`   |
-| `GameDateTime`   | `3`   |
+| `PlayerLocation` | `3`   |
+| `GameDateTime`   | `4`   |
 
 
 
@@ -64,67 +64,42 @@
 
 ## `FOTBOSSave`
 
-- [`getFOTBOSSave`](#fotbossavegetfotbossave)
-- [`setFOTBOSSave`](#fotbossavesetfotbossave)
+### Constructors
+
 - [`FOTBOSSave`](#fotbossavefotbossave)
+
+### Destructors
+
 - [`~FOTBOSSave`](#fotbossavefotbossave-1)
-- [`readSave`](#fotbossavereadsave)
-- [`writeSave`](#fotbossavewritesave)
-- [`closeSave`](#fotbossaveclosesave)
+
+### Methods
+
+- [`read`](#fotbossaveread)
+- [`write`](#fotbossavewrite)
+- [`close`](#fotbossaveclose)
 - [`isSave` (*static*)](#fotbossaveissave-static)
 - [`isOpen`](#fotbossaveisopen)
-- [`printSave`](#fotbossaveprintsave)
-- [`printSaveProps`](#fotbossaveprintsaveprops)
-- [`printSavePropAddresses`](#fotbossaveprintsavepropaddresses)
+- [`print`](#fotbossaveprint)
+- [`printProps`](#fotbossaveprintprops)
+- [`printPropAddresses`](#fotbossaveprintpropaddresses)
+- [`createSampleSave` (*static*)](#fotbossavecreatesamplesave-static)
+
+### Properties
+
+- [`getFOTBOSSave`](#fotbossavegetfotbossave)
+- [`setFOTBOSSave`](#fotbossavesetfotbossave)
 - [`getGameName`](#fotbossavegetgamename)
 - [`getSaveFileName`](#fotbossavegetsavefilename)
 - [`getSaveSignature`](#fotbossavegetsavesignature)
+- [`setSaveSignature`](#fotbossavesetsavesignature)
 - [`getSaveName`](#fotbossavegetsavename)
+- [`setSaveName`](#fotbossavesetsavename)
 - [`getPlayerName`](#fotbossavegetplayername)
+- [`setPlayerName`](#fotbossavesetplayername)
 - [`getPlayerLocation`](#fotbossavegetplayerlocation)
+- [`setPlayerLocation`](#fotbossavesetplayerlocation)
 - [`getGameDateTime`](#fotbossavegetgamedatetime)
-
-
-
-## `FOTBOSSave::getFOTBOSSAVE`
-
-**Params**
-
-* `void`
-
-**Returns**
-
-[`FOTBOSSAVE*`](./api_fotbos.md#fotbossave) or `NULL`
-
-**Examples**
-
-```cpp
-FOTBOSSave* savepp = new FOTBOSSave("fotbos.sav");
-
-FOTBOSSAVE* save = savepp->getFOTBOSSAVE();
-```
-
-
-
-## `FOTBOSSave::setFOTBOSSAVE`
-
-**Params**
-
-[`FOTBOSSAVE*`](./api_fotbos.md#fotbossave) `save`
-
-**Returns**
-
-`void`
-
-**Examples**
-
-```cpp
-FOTBOSSave* savepp = new FOTBOSSave();
-
-FOTBOSSAVE* save = readFOTBOSSave("fotbos.sav");
-
-savepp->setFOTBOSSAVE(save);
-```
+- [`setGameDateTime`](#fotbossavesetgamedatetime)
 
 
 
@@ -184,7 +159,7 @@ delete savepp;
 
 
 
-## `FOTBOSSave::readSave`
+## `FOTBOSSave::read`
 
 **Params**
 
@@ -199,7 +174,7 @@ delete savepp;
 ```cpp
 FOTBOSSave* savepp = new FOTBOSSave();
 
-bool result = savepp->readSave("fotbos.sav");
+bool result = savepp->read("fotbos.sav");
 
 if (result) {
     printf("FOTBOS Save File Read\n");
@@ -208,7 +183,7 @@ if (result) {
 
 
 
-## `FOTBOSSave::writeSave`
+## `FOTBOSSave::write`
 
 **Params**
 
@@ -223,7 +198,7 @@ if (result) {
 ```cpp
 FOTBOSSave* savepp = new FOTBOSSave("fotbos.sav");
 
-bool result = savepp->writeSave();
+bool result = savepp->write();
 
 if (result) {
     printf("FOTBOS Save File Written\n");
@@ -232,7 +207,7 @@ if (result) {
 
 
 
-## `FOTBOSSave::closeSave`
+## `FOTBOSSave::close`
 
 **Params**
 
@@ -247,7 +222,7 @@ if (result) {
 ```cpp
 FOTBOSSave* savepp = new FOTBOSSave("fotbos.sav");
 
-savepp->closeSave();
+savepp->close();
 ```
 
 
@@ -298,7 +273,7 @@ if (result) {
 
 
 
-## `FOTBOSSave::printSave`
+## `FOTBOSSave::print`
 
 **Params**
 
@@ -313,12 +288,12 @@ if (result) {
 ```cpp
 FOTBOSSave* savepp = new FOTBOSSave("fotbos.sav");
 
-savepp->printSave();
+savepp->print();
 ```
 
 
 
-## `FOTBOSSave::printSaveProps`
+## `FOTBOSSave::printProps`
 
 **Params**
 
@@ -333,12 +308,12 @@ savepp->printSave();
 ```cpp
 FOTBOSSave* savepp = new FOTBOSSave("fotbos.sav");
 
-savepp->printSaveProps();
+savepp->printProps();
 ```
 
 
 
-## `FOTBOSSave::printSavePropAddresses`
+## `FOTBOSSave::printPropAddresses`
 
 **Params**
 
@@ -353,7 +328,59 @@ savepp->printSaveProps();
 ```cpp
 FOTBOSSave* savepp = new FOTBOSSave("fotbos.sav");
 
-savepp->printSavePropAddresses();
+savepp->printPropAddresses();
+```
+
+
+
+## `FOTBOSSave::createSampleSave` (*static*)
+
+**Params**
+
+* `void`
+
+**Returns**
+
+`bool`
+
+
+
+## `FOTBOSSave::getFOTBOSSAVE`
+
+**Params**
+
+* `void`
+
+**Returns**
+
+[`FOTBOSSAVE*`](./api_fotbos.md#fotbossave) or `NULL`
+
+**Examples**
+
+```cpp
+FOTBOSSave* savepp = new FOTBOSSave("fotbos.sav");
+
+FOTBOSSAVE* save = savepp->getFOTBOSSAVE();
+```
+
+## `FOTBOSSave::setFOTBOSSAVE`
+
+**Params**
+
+[`FOTBOSSAVE*`](./api_fotbos.md#fotbossave) `save`
+
+**Returns**
+
+`void`
+
+**Examples**
+
+```cpp
+FOTBOSSave* savepp = new FOTBOSSave();
+
+FOTBOSSAVE* save = readFOTBOSSave("fotbos.sav");
+
+savepp->setFOTBOSSAVE(save);
 ```
 
 
@@ -392,6 +419,16 @@ savepp->printSavePropAddresses();
 
 `string`
 
+## `FOTBOSSave::setSaveSignature`
+
+**Params**
+
+* `string`
+
+**Returns**
+
+`void`
+
 
 
 ## `FOTBOSSave::getSaveName`
@@ -403,6 +440,16 @@ savepp->printSavePropAddresses();
 **Returns**
 
 `string`
+
+## `FOTBOSSave::setSaveName`
+
+**Params**
+
+* `string`
+
+**Returns**
+
+`void`
 
 
 
@@ -416,6 +463,16 @@ savepp->printSavePropAddresses();
 
 `string`
 
+## `FOTBOSSave::setPlayerName`
+
+**Params**
+
+* `string`
+
+**Returns**
+
+`void`
+
 
 
 ## `FOTBOSSave::getPlayerLocation`
@@ -428,6 +485,16 @@ savepp->printSavePropAddresses();
 
 `string`
 
+## `FOTBOSSave::setPlayerLocation`
+
+**Params**
+
+* `string`
+
+**Returns**
+
+`void`
+
 
 
 ## `FOTBOSSave::getGameDateTime`
@@ -439,3 +506,13 @@ savepp->printSavePropAddresses();
 **Returns**
 
 `string`
+
+## `FOTBOSSave::setGameDateTime`
+
+**Params**
+
+* `string`
+
+**Returns**
+
+`void`

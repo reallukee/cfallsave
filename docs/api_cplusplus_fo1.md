@@ -2,7 +2,7 @@
 
 ![Fallout 1 Logo 192x192](../assets/fo1/fo1_logo_192x192.png)
 
-# *Fallout 1* C++ API
+# *Fallout 1*<br /> C++ API
 
 [Back to Documentation](../DOCS.md)
 
@@ -62,65 +62,38 @@
 
 ## `FO1Save`
 
-- [`getFO1Save`](#fo1savegetfo1save)
-- [`setFO1Save`](#fo1savesetfo1save)
+### Constructors
+
 - [`FO1Save`](#fo1savefo1save)
+
+### Destructors
+
 - [`~FO1Save`](#fo1savefo1save-1)
-- [`readSave`](#fo1savereadsave)
-- [`writeSave`](#fo1savewritesave)
-- [`closeSave`](#fo1saveclosesave)
+
+### Methods
+
+- [`read`](#fo1saveread)
+- [`write`](#fo1savewrite)
+- [`close`](#fo1saveclose)
 - [`isSave` (*static*)](#fo1saveissave-static)
 - [`isOpen`](#fo1saveisopen)
-- [`printSave`](#fo1saveprintsave)
-- [`printSaveProps`](#fo1saveprintsaveprops)
-- [`printSavePropAddresses`](#fo1saveprintsavepropaddresses)
+- [`print`](#fo1saveprint)
+- [`printProps`](#fo1saveprintprops)
+- [`printPropAddresses`](#fo1saveprintpropaddresses)
+- [`createSampleSave` (*static*)](#fo1savecreatesamplesave-static)
+
+### Properties
+
+- [`getFO1Save`](#fo1savegetfo1save)
+- [`setFO1Save`](#fo1savesetfo1save)
 - [`getGameName`](#fo1savegetgamename)
 - [`getSaveFileName`](#fo1savegetsavefilename)
 - [`getSaveSignature`](#fo1savegetsavesignature)
+- [`setSaveSignature`](#fo1savesetsavesignature)
 - [`getSaveName`](#fo1savegetsavename)
+- [`setSaveName`](#fo1savesetsavename)
 - [`getPlayerName`](#fo1savegetplayername)
-
-
-
-## `FO1Save::getFO1SAVE`
-
-**Params**
-
-* `void`
-
-**Returns**
-
-[`FO1SAVE*`](./api_fo1.md#fo1save) or `NULL`
-
-**Examples**
-
-```cpp
-FO1Save* savepp = new FO1Save("fo1.dat");
-
-FO1SAVE* save = savepp->getFO1SAVE();
-```
-
-
-
-## `FO1Save::setFO1SAVE`
-
-**Params**
-
-[`FO1SAVE*`](./api_fo1.md#fo1save) `save`
-
-**Returns**
-
-`void`
-
-**Examples**
-
-```cpp
-FO1Save* savepp = new FO1Save();
-
-FO1SAVE* save = readFO1Save("fo1.dat");
-
-savepp->setFO1SAVE(save);
-```
+- [`setPlayerName`](#fo1savesetplayername)
 
 
 
@@ -180,7 +153,7 @@ delete savepp;
 
 
 
-## `FO1Save::readSave`
+## `FO1Save::read`
 
 **Params**
 
@@ -195,7 +168,7 @@ delete savepp;
 ```cpp
 FO1Save* savepp = new FO1Save();
 
-bool result = savepp->readSave("fo1.dat");
+bool result = savepp->read("fo1.dat");
 
 if (result) {
     printf("FO1 Save File Read\n");
@@ -204,7 +177,7 @@ if (result) {
 
 
 
-## `FO1Save::writeSave`
+## `FO1Save::write`
 
 **Params**
 
@@ -219,7 +192,7 @@ if (result) {
 ```cpp
 FO1Save* savepp = new FO1Save("fo1.dat");
 
-bool result = savepp->writeSave();
+bool result = savepp->write();
 
 if (result) {
     printf("FO1 Save File Written\n");
@@ -228,7 +201,7 @@ if (result) {
 
 
 
-## `FO1Save::closeSave`
+## `FO1Save::close`
 
 **Params**
 
@@ -243,7 +216,7 @@ if (result) {
 ```cpp
 FO1Save* savepp = new FO1Save("fo1.dat");
 
-savepp->closeSave();
+savepp->close();
 ```
 
 
@@ -294,7 +267,7 @@ if (result) {
 
 
 
-## `FO1Save::printSave`
+## `FO1Save::print`
 
 **Params**
 
@@ -309,12 +282,12 @@ if (result) {
 ```cpp
 FO1Save* savepp = new FO1Save("fo1.dat");
 
-savepp->printSave();
+savepp->print();
 ```
 
 
 
-## `FO1Save::printSaveProps`
+## `FO1Save::printProps`
 
 **Params**
 
@@ -329,12 +302,12 @@ savepp->printSave();
 ```cpp
 FO1Save* savepp = new FO1Save("fo1.dat");
 
-savepp->printSaveProps();
+savepp->printProps();
 ```
 
 
 
-## `FO1Save::printSavePropAddresses`
+## `FO1Save::printPropAddresses`
 
 **Params**
 
@@ -349,7 +322,59 @@ savepp->printSaveProps();
 ```cpp
 FO1Save* savepp = new FO1Save("fo1.dat");
 
-savepp->printSavePropAddresses();
+savepp->printPropAddresses();
+```
+
+
+
+## `FO1Save::createSampleSave` (*static*)
+
+**Params**
+
+* `void`
+
+**Returns**
+
+`bool`
+
+
+
+## `FO1Save::getFO1SAVE`
+
+**Params**
+
+* `void`
+
+**Returns**
+
+[`FO1SAVE*`](./api_fo1.md#fo1save) or `NULL`
+
+**Examples**
+
+```cpp
+FO1Save* savepp = new FO1Save("fo1.dat");
+
+FO1SAVE* save = savepp->getFO1SAVE();
+```
+
+## `FO1Save::setFO1SAVE`
+
+**Params**
+
+[`FO1SAVE*`](./api_fo1.md#fo1save) `save`
+
+**Returns**
+
+`void`
+
+**Examples**
+
+```cpp
+FO1Save* savepp = new FO1Save();
+
+FO1SAVE* save = readFO1Save("fo1.dat");
+
+savepp->setFO1SAVE(save);
 ```
 
 
@@ -388,6 +413,16 @@ savepp->printSavePropAddresses();
 
 `string`
 
+## `FO1Save::setSaveSignature`
+
+**Params**
+
+* `string`
+
+**Returns**
+
+`void`
+
 
 
 ## `FO1Save::getSaveName`
@@ -400,6 +435,16 @@ savepp->printSavePropAddresses();
 
 `string`
 
+## `FO1Save::setSaveName`
+
+**Params**
+
+* `string`
+
+**Returns**
+
+`void`
+
 
 
 ## `FO1Save::getPlayerName`
@@ -411,3 +456,13 @@ savepp->printSavePropAddresses();
 **Returns**
 
 `string`
+
+## `FO1Save::setPlayerName`
+
+**Params**
+
+* `string`
+
+**Returns**
+
+`void`

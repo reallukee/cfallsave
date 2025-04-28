@@ -20,11 +20,11 @@ CFallSave ToDo
 # Features
 
 - [x] Common Reader
-- [ ] Common Writer
+- [x] Common Writer
 - [x] Documentation (*Markdown*)
 - [ ] Documentation (*Doxygen*)
 - [x] Save Reading
-- [ ] Save Writing
+- [x] Save Writing
 - [x] *Fallout 1* Support
 - [x] *Fallout 2* Support
 - [x] *Fallout 3* Support
@@ -56,5 +56,5 @@ CFallSave ToDo
 - [ ] Not Generic Write Property
 - [ ] Not Generic Get Property
 - [ ] Not Generic Set Property
-- [ ] Reader C++ Wrapper
-- [ ] Writer C++ Wrapper
+- [ ] ~~Reader C++ Wrapper~~
+- [ ] ~~Writer C++ Wrapper~~

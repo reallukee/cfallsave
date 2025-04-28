@@ -2,7 +2,7 @@
 
 ![Fallout 4 Logo 192x192](../assets/fo4/fo4_logo_192x192.png)
 
-# *Fallout 4* C++ API
+# *Fallout 4*<br /> C++ API
 
 [Back to Documentation](../DOCS.md)
 
@@ -73,78 +73,62 @@
 
 ## `FO4Save`
 
-- [`getFO4Save`](#fo4savegetfo4save)
-- [`setFO4Save`](#fo4savesetfo4save)
+### Constructors
+
 - [`FO4Save`](#fo4savefo4save)
+
+### Destructors
+
 - [`~FO4Save`](#fo4savefo4save-1)
-- [`readSave`](#fo4savereadsave)
-- [`writeSave`](#fo4savewritesave)
-- [`closeSave`](#fo4saveclosesave)
+
+### Methods
+
+- [`read`](#fo4saveread)
+- [`write`](#fo4savewrite)
+- [`close`](#fo4saveclose)
 - [`isSave` (*static*)](#fo4saveissave-static)
 - [`isOpen`](#fo4saveisopen)
-- [`printSave`](#fo4saveprintsave)
-- [`printSaveProps`](#fo4saveprintsaveprops)
-- [`printSavePropAddresses`](#fo4saveprintsavepropaddresses)
-- [`printSaveSnapshot`](#fo4saveprintsavesnapshot)
+- [`print`](#fo4saveprint)
+- [`printProps`](#fo4saveprintprops)
+- [`printPropAddresses`](#fo4saveprintpropaddresses)
+- [`printSnapshot`](#fo4saveprintsnapshot)
+- [`createSampleSave` (*static*)](#fo4savecreatesamplesave-static)
+
+### Properties
+
+- [`getFO4Save`](#fo4savegetfo4save)
+- [`setFO4Save`](#fo4savesetfo4save)
 - [`getGameName`](#fo4savegetgamename)
 - [`getSaveFileName`](#fo4savegetsavefilename)
 - [`getSaveSignature`](#fo4savegetsavesignature)
+- [`setSaveSignature`](#fo4savesetsavesignature)
 - [`getEngineVersion`](#fo4savegetengineversion)
+- [`setEngineVersion`](#fo4savesetengineversion)
 - [`getSaveNumber`](#fo4savegetsavenumber)
+- [`setSaveNumber`](#fo4savesetsavenumber)
 - [`getPlayerName`](#fo4savegetplayername)
+- [`setPlayerName`](#fo4savesetplayername)
 - [`getPlayerLevel`](#fo4savegetplayerlevel)
+- [`setPlayerLevel`](#fo4savesetplayerlevel)
 - [`getPlayerLocation`](#fo4savegetplayerlocation)
+- [`setPlayerLocation`](#fo4savesetplayerlocation)
 - [`getPlayerPlaytime`](#fo4savegetplayerplaytime)
+- [`setPlayerPlaytime`](#fo4savesetplayerplaytime)
 - [`getPlayerRace`](#fo4savegetplayerrace)
+- [`setPlayerRace`](#fo4savesetplayerrace)
 - [`getPlayerSex`](#fo4savegetplayersex)
+- [`setPlayerSex`](#fo4savesetplayersex)
 - [`getPlayerCurrentXp`](#fo4savegetplayercurrentxp)
+- [`setPlayerCurrentXp`](#fo4savesetplayercurrentxp)
 - [`getPlayerRequiredXp`](#fo4savegetplayerrequiredxp)
+- [`setPlayerRequiredXp`](#fo4savesetplayerrequiredxp)
 - [`getSnapshotWidth`](#fo4savegetsnapshotwidth)
+- [`setSnapshotWidth`](#fo4savesetsnapshotwidth)
 - [`getSnapshotHeight`](#fo4savegetsnapshotheight)
+- [`setSnapshotHeight`](#fo4savesetsnapshotheight)
 - [`getSnapshotLength`](#fo4savegetsnapshotlength)
 - [`getSnapshot`](#fo4savegetsnapshot)
-
-
-
-## `FO4Save::getFO4SAVE`
-
-**Params**
-
-* `void`
-
-**Returns**
-
-[`FO4SAVE*`](./api_fo4.md#fo4save) or `NULL`
-
-**Examples**
-
-```cpp
-FO4Save* savepp = new FO4Save("fo4.fos");
-
-FO4SAVE* save = savepp->getFO4SAVE();
-```
-
-
-
-## `FO4Save::setFO4SAVE`
-
-**Params**
-
-[`FO4SAVE*`](./api_fo4.md#fo4save) `save`
-
-**Returns**
-
-`void`
-
-**Examples**
-
-```cpp
-FO4Save* savepp = new FO4Save();
-
-FO4SAVE* save = readFO4Save("fo4.fos");
-
-savepp->setFO4SAVE(save);
-```
+- [`setSnapshot`](#fo4savesetsnapshot)
 
 
 
@@ -204,7 +188,7 @@ delete savepp;
 
 
 
-## `FO4Save::readSave`
+## `FO4Save::read`
 
 **Params**
 
@@ -219,7 +203,7 @@ delete savepp;
 ```cpp
 FO4Save* savepp = new FO4Save();
 
-bool result = savepp->readSave("fo4.fos");
+bool result = savepp->read("fo4.fos");
 
 if (result) {
     printf("FO4 Save File Read\n");
@@ -228,7 +212,7 @@ if (result) {
 
 
 
-## `FO4Save::writeSave`
+## `FO4Save::write`
 
 **Params**
 
@@ -243,7 +227,7 @@ if (result) {
 ```cpp
 FO4Save* savepp = new FO4Save("fo4.fos");
 
-bool result = savepp->writeSave();
+bool result = savepp->write();
 
 if (result) {
     printf("FO4 Save File Written\n");
@@ -252,7 +236,7 @@ if (result) {
 
 
 
-## `FO4Save::closeSave`
+## `FO4Save::close`
 
 **Params**
 
@@ -267,7 +251,7 @@ if (result) {
 ```cpp
 FO4Save* savepp = new FO4Save("fo4.fos");
 
-savepp->closeSave();
+savepp->close();
 ```
 
 
@@ -318,7 +302,7 @@ if (result) {
 
 
 
-## `FO4Save::printSave`
+## `FO4Save::print`
 
 **Params**
 
@@ -333,12 +317,12 @@ if (result) {
 ```cpp
 FO4Save* savepp = new FO4Save("fo4.fos");
 
-savepp->printSave();
+savepp->print();
 ```
 
 
 
-## `FO4Save::printSaveProps`
+## `FO4Save::printProps`
 
 **Params**
 
@@ -353,12 +337,12 @@ savepp->printSave();
 ```cpp
 FO4Save* savepp = new FO4Save("fo4.fos");
 
-savepp->printSaveProps();
+savepp->printProps();
 ```
 
 
 
-## `FO4Save::printSavePropAddresses`
+## `FO4Save::printPropAddresses`
 
 **Params**
 
@@ -373,12 +357,12 @@ savepp->printSaveProps();
 ```cpp
 FO4Save* savepp = new FO4Save("fo4.fos");
 
-savepp->printSavePropAddresses();
+savepp->printPropAddresses();
 ```
 
 
 
-## `FO4Save::printSaveSnapshot`
+## `FO4Save::printSnapshot`
 
 **Params**
 
@@ -393,7 +377,59 @@ savepp->printSavePropAddresses();
 ```cpp
 FO4Save* savepp = new FO4Save("fo4.fos");
 
-savepp->printSaveSnapshot();
+savepp->printSnapshot();
+```
+
+
+
+## `FO4Save::createSampleSave` (*static*)
+
+**Params**
+
+* `void`
+
+**Returns**
+
+`bool`
+
+
+
+## `FO4Save::getFO4SAVE`
+
+**Params**
+
+* `void`
+
+**Returns**
+
+[`FO4SAVE*`](./api_fo4.md#fo4save) or `NULL`
+
+**Examples**
+
+```cpp
+FO4Save* savepp = new FO4Save("fo4.fos");
+
+FO4SAVE* save = savepp->getFO4SAVE();
+```
+
+## `FO4Save::setFO4SAVE`
+
+**Params**
+
+[`FO4SAVE*`](./api_fo4.md#fo4save) `save`
+
+**Returns**
+
+`void`
+
+**Examples**
+
+```cpp
+FO4Save* savepp = new FO4Save();
+
+FO4SAVE* save = readFO4Save("fo4.fos");
+
+savepp->setFO4SAVE(save);
 ```
 
 
@@ -432,6 +468,16 @@ savepp->printSaveSnapshot();
 
 `string`
 
+## `FO4Save::setSaveSignature`
+
+**Params**
+
+* `string`
+
+**Returns**
+
+`void`
+
 
 
 ## `FO4Save::getEngineVersion`
@@ -443,6 +489,16 @@ savepp->printSaveSnapshot();
 **Returns**
 
 `unsigned int`
+
+## `FO4Save::setEngineVersion`
+
+**Params**
+
+* `unsigned int`
+
+**Returns**
+
+`void`
 
 
 
@@ -456,6 +512,16 @@ savepp->printSaveSnapshot();
 
 `unsigned int`
 
+## `FO4Save::setSaveNumber`
+
+**Params**
+
+* `unsigned int`
+
+**Returns**
+
+`void`
+
 
 
 ## `FO4Save::getPlayerName`
@@ -468,6 +534,15 @@ savepp->printSaveSnapshot();
 
 `string`
 
+## `FO4Save::setPlayerName`
+
+**Params**
+
+* `string`
+
+**Returns**
+
+`void`
 
 
 
@@ -481,6 +556,16 @@ savepp->printSaveSnapshot();
 
 `unsigned int`
 
+## `FO4Save::setPlayerLevel`
+
+**Params**
+
+* `unsigned int`
+
+**Returns**
+
+`void`
+
 
 
 ## `FO4Save::getPlayerLocation`
@@ -492,6 +577,16 @@ savepp->printSaveSnapshot();
 **Returns**
 
 `string`
+
+## `FO4Save::setPlayerLocation`
+
+**Params**
+
+* `string`
+
+**Returns**
+
+`void`
 
 
 
@@ -505,6 +600,16 @@ savepp->printSaveSnapshot();
 
 `string`
 
+## `FO4Save::setPlayerPlaytime`
+
+**Params**
+
+* `string`
+
+**Returns**
+
+`void`
+
 
 
 ## `FO4Save::getPlayerRace`
@@ -516,6 +621,16 @@ savepp->printSaveSnapshot();
 **Returns**
 
 `string`
+
+## `FO4Save::setPlayerRace`
+
+**Params**
+
+* `string`
+
+**Returns**
+
+`void`
 
 
 
@@ -529,6 +644,16 @@ savepp->printSaveSnapshot();
 
 `short unsigned int`
 
+## `FO4Save::setPlayerSex`
+
+**Params**
+
+* `short unsigned int`
+
+**Returns**
+
+`void`
+
 
 
 ## `FO4Save::getPlayerCurrentXp`
@@ -540,6 +665,16 @@ savepp->printSaveSnapshot();
 **Returns**
 
 `float`
+
+## `FO4Save::setPlayerCurrentXp`
+
+**Params**
+
+* `float`
+
+**Returns**
+
+`void`
 
 
 
@@ -553,6 +688,16 @@ savepp->printSaveSnapshot();
 
 `float`
 
+## `FO4Save::setPlayerRequiredXp`
+
+**Params**
+
+* `float`
+
+**Returns**
+
+`void`
+
 
 
 ## `FO4Save::getSnapshotWidth`
@@ -565,6 +710,16 @@ savepp->printSaveSnapshot();
 
 `unsigned int`
 
+## `FO4Save::setSnapshotWidth`
+
+**Params**
+
+* `unsigned int`
+
+**Returns**
+
+`void`
+
 
 
 ## `FO4Save::getSnapshotHeight`
@@ -576,6 +731,16 @@ savepp->printSaveSnapshot();
 **Returns**
 
 `unsigned int`
+
+## `FO4Save::setSnapshotHeight`
+
+**Params**
+
+* `unsigned int`
+
+**Returns**
+
+`void`
 
 
 
@@ -600,3 +765,13 @@ savepp->printSaveSnapshot();
 **Returns**
 
 `unsigned char*`
+
+## `FO4Save::setSnapshot`
+
+**Params**
+
+* `unsigned char*`
+
+**Returns**
+
+`void`

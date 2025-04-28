@@ -38,9 +38,6 @@
 
 # Functions
 
-> ![NOTE]
-> This section is not yet complete
-
 * [`readFO2Save`](#readfo2save)
 * [`writeFO2Save`](#writefo2save)
 * [`isFO2Save`](#isfo2save)
@@ -77,8 +74,8 @@ FO2SAVE* save = readFO2Save("fo2.dat");
 
 ## `writeFO2Save`
 
-> [!WARNING]
-> This function is not yet implemented!
+> [!CAUTION]
+> Experimental function!
 
 **Params**
 

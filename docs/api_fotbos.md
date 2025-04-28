@@ -38,9 +38,6 @@
 
 # Functions
 
-> ![NOTE]
-> This section is not yet complete
-
 * [`readFOTBOSSave`](#readfotbossave)
 * [`writeFOTBOSSave`](#writefotbossave)
 * [`isFOTBOSSave`](#isfotbossave)
@@ -77,8 +74,8 @@ FOTBOSSAVE* save = readFOTBOSSave("fotbos.sav");
 
 ## `writeFOTBOSSave`
 
-> [!WARNING]
-> This function is not yet implemented!
+> [!CAUTION]
+> Experimental function!
 
 **Params**
 

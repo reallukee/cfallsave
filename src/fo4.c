@@ -131,12 +131,56 @@ bool writeFO4Save(
     FO4SAVE* save
 )
 {
-    if (save == NULL)
+    if (save == NULL || save->save == NULL)
     {
         return false;
     }
 
-    return true;
+    long unsigned int address = 0;
+    bool fail = false;
+
+    save->propAddresses[FO4SAVE_PROPS_SAVE_SIGNATURE] = address;
+    fail |= !writeFixedString(save->save, save->saveSignature, FO4SAVE_SIGNATURE_LENGTH, &address, 0, true);
+
+    save->propAddresses[FO4SAVE_PROPS_ENGINE_VERSION] = address + 4;
+    fail |= !writeUInt(save->save, &save->engineVersion, &address, 4, true);
+
+    save->propAddresses[FO4SAVE_PROPS_SAVE_NUMBER] = address;
+    fail |= !writeUInt(save->save, &save->saveNumber, &address, 0, true);
+
+    save->propAddresses[FO4SAVE_PROPS_PLAYER_NAME] = address;
+    fail |= !writeString(save->save, &save->playerName, &address, 0, 0, true);
+
+    save->propAddresses[FO4SAVE_PROPS_PLAYER_LEVEL] = address;
+    fail |= !writeUInt(save->save, &save->playerLevel, &address, 0, true);
+
+    save->propAddresses[FO4SAVE_PROPS_PLAYER_LOCATION] = address;
+    fail |= !writeString(save->save, &save->playerLocation, &address, 0, 0, true);
+
+    save->propAddresses[FO4SAVE_PROPS_PLAYER_PLAYTIME] = address;
+    fail |= !writeString(save->save, &save->playerPlaytime, &address, 0, 0, true);
+
+    save->propAddresses[FO4SAVE_PROPS_PLAYER_RACE] = address;
+    fail |= !writeString(save->save, &save->playerRace, &address, 0, 0, true);
+
+    save->propAddresses[FO4SAVE_PROPS_PLAYER_SEX] = address;
+    fail |= !writeUShort(save->save, &save->playerSex, &address, 0, true);
+
+    save->propAddresses[FO4SAVE_PROPS_PLAYER_CURRENT_XP] = address;
+    fail |= !writeFloat(save->save, &save->playerCurrentXp, &address, 0, true);
+
+    save->propAddresses[FO4SAVE_PROPS_PLAYER_REQUIRED_XP] = address;
+    fail |= !writeFloat(save->save, &save->playerRequiredXp, &address, 0, true);
+
+    save->propAddresses[FO4SAVE_PROPS_SNAPSHOT_WIDTH] = address + 8;
+    fail |= !writeUInt(save->save, &save->snapshotWidth, &address, 8, true);
+
+    save->propAddresses[FO4SAVE_PROPS_SNAPSHOT_HEIGHT] = address;
+    fail |= !writeUInt(save->save, &save->snapshotHeight, &address, 0, true);
+
+    fflush(save->save);
+
+    return fail;
 }
 
 bool isFO4Save(

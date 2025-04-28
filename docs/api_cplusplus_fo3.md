@@ -2,7 +2,7 @@
 
 ![Fallout 3 Logo 192x192](../assets/fo3/fo3_logo_192x192.png)
 
-# *Fallout 3* C++ API
+# *Fallout 3*<br /> C++ API
 
 [Back to Documentation](../DOCS.md)
 
@@ -70,75 +70,56 @@
 
 ## `FO3Save`
 
-- [`getFO3Save`](#fo3savegetfo3save)
-- [`setFO3Save`](#fo3savesetfo3save)
+### Constructors
+
 - [`FO3Save`](#fo3savefo3save)
+
+### Destructors
+
 - [`~FO3Save`](#fo3savefo3save-1)
-- [`readSave`](#fo3savereadsave)
-- [`writeSave`](#fo3savewritesave)
-- [`closeSave`](#fo3saveclosesave)
+
+### Methods
+
+- [`read`](#fo3saveread)
+- [`write`](#fo3savewrite)
+- [`close`](#fo3saveclose)
 - [`isSave` (*static*)](#fo3saveissave-static)
 - [`isOpen`](#fo3saveisopen)
-- [`printSave`](#fo3saveprintsave)
-- [`printSaveProps`](#fo3saveprintsaveprops)
-- [`printSavePropAddresses`](#fo3saveprintsavepropaddresses)
-- [`printSaveSnapshot`](#fo3saveprintsavesnapshot)
+- [`print`](#fo3saveprint)
+- [`printProps`](#fo3saveprintprops)
+- [`printPropAddresses`](#fo3saveprintpropaddresses)
+- [`printSnapshot`](#fo3saveprintsnapshot)
+- [`createSampleSave` (*static*)](#fo3savecreatesamplesave-static)
+
+### Properties
+
+- [`getFO3Save`](#fo3savegetfo3save)
+- [`setFO3Save`](#fo3savesetfo3save)
 - [`getGameName`](#fo3savegetgamename)
 - [`getSaveFileName`](#fo3savegetsavefilename)
 - [`getSaveSignature`](#fo3savegetsavesignature)
+- [`setSaveSignature`](#fo3savesetsavesignature)
 - [`getEngineVersion`](#fo3savegetengineversion)
+- [`setEngineVersion`](#fo3savesetengineversion)
 - [`getSaveNumber`](#fo3savegetsavenumber)
+- [`setSaveNumber`](#fo3savesetsavenumber)
 - [`getPlayerName`](#fo3savegetplayername)
+- [`setPlayerName`](#fo3savesetplayername)
 - [`getPlayerLevel`](#fo3savegetplayerlevel)
+- [`setPlayerLevel`](#fo3savesetplayerlevel)
 - [`getPlayerTitle`](#fo3savegetplayertitle)
+- [`setPlayerTitle`](#fo3savesetplayertitle)
 - [`getPlayerLocation`](#fo3savegetplayerlocation)
+- [`setPlayerLocation`](#fo3savesetplayerlocation)
 - [`getPlayerPlaytime`](#fo3savegetplayerplaytime)
+- [`setPlayerPlaytime`](#fo3savesetplayerplaytime)
 - [`getSnapshotWidth`](#fo3savegetsnapshotwidth)
+- [`setSnapshotWidth`](#fo3savesetsnapshotwidth)
 - [`getSnapshotHeight`](#fo3savegetsnapshotheight)
+- [`setSnapshotHeight`](#fo3savesetsnapshotheight)
 - [`getSnapshotLength`](#fo3savegetsnapshotlength)
 - [`getSnapshot`](#fo3savegetsnapshot)
-
-
-
-## `FO3Save::getFO3SAVE`
-
-**Params**
-
-* `void`
-
-**Returns**
-
-[`FO3SAVE*`](./api_fo3.md#fo3save) or `NULL`
-
-**Examples**
-
-```cpp
-FO3Save* savepp = new FO3Save("fo3.fos");
-
-FO3SAVE* save = savepp->getFO3SAVE();
-```
-
-
-
-## `FO3Save::setFO3SAVE`
-
-**Params**
-
-[`FO3SAVE*`](./api_fo3.md#fo3save) `save`
-
-**Returns**
-
-`void`
-
-**Examples**
-
-```cpp
-FO3Save* savepp = new FO3Save();
-
-FO3SAVE* save = readFO3Save("fo3.fos");
-
-savepp->setFO3SAVE(save);
-```
+- [`setSnapshot`](#fo3savesetsnapshot)
 
 
 
@@ -198,7 +179,7 @@ delete savepp;
 
 
 
-## `FO3Save::readSave`
+## `FO3Save::read`
 
 **Params**
 
@@ -213,7 +194,7 @@ delete savepp;
 ```cpp
 FO3Save* savepp = new FO3Save();
 
-bool result = savepp->readSave("fo3.fos");
+bool result = savepp->read("fo3.fos");
 
 if (result) {
     printf("FO3 Save File Read\n");
@@ -222,7 +203,7 @@ if (result) {
 
 
 
-## `FO3Save::writeSave`
+## `FO3Save::write`
 
 **Params**
 
@@ -237,7 +218,7 @@ if (result) {
 ```cpp
 FO3Save* savepp = new FO3Save("fo3.fos");
 
-bool result = savepp->writeSave();
+bool result = savepp->write();
 
 if (result) {
     printf("FO3 Save File Written\n");
@@ -246,7 +227,7 @@ if (result) {
 
 
 
-## `FO3Save::closeSave`
+## `FO3Save::close`
 
 **Params**
 
@@ -261,7 +242,7 @@ if (result) {
 ```cpp
 FO3Save* savepp = new FO3Save("fo3.fos");
 
-savepp->closeSave();
+savepp->close();
 ```
 
 
@@ -312,7 +293,7 @@ if (result) {
 
 
 
-## `FO3Save::printSave`
+## `FO3Save::print`
 
 **Params**
 
@@ -327,12 +308,12 @@ if (result) {
 ```cpp
 FO3Save* savepp = new FO3Save("fo3.fos");
 
-savepp->printSave();
+savepp->print();
 ```
 
 
 
-## `FO3Save::printSaveProps`
+## `FO3Save::printProps`
 
 **Params**
 
@@ -347,12 +328,12 @@ savepp->printSave();
 ```cpp
 FO3Save* savepp = new FO3Save("fo3.fos");
 
-savepp->printSaveProps();
+savepp->printProps();
 ```
 
 
 
-## `FO3Save::printSavePropAddresses`
+## `FO3Save::printPropAddresses`
 
 **Params**
 
@@ -367,12 +348,12 @@ savepp->printSaveProps();
 ```cpp
 FO3Save* savepp = new FO3Save("fo3.fos");
 
-savepp->printSavePropAddresses();
+savepp->printPropAddresses();
 ```
 
 
 
-## `FO3Save::printSaveSnapshot`
+## `FO3Save::printSnapshot`
 
 **Params**
 
@@ -387,7 +368,59 @@ savepp->printSavePropAddresses();
 ```cpp
 FO3Save* savepp = new FO3Save("fo3.fos");
 
-savepp->printSaveSnapshot();
+savepp->printSnapshot();
+```
+
+
+
+## `FO3Save::createSampleSave` (*static*)
+
+**Params**
+
+* `void`
+
+**Returns**
+
+`bool`
+
+
+
+## `FO3Save::getFO3SAVE`
+
+**Params**
+
+* `void`
+
+**Returns**
+
+[`FO3SAVE*`](./api_fo3.md#fo3save) or `NULL`
+
+**Examples**
+
+```cpp
+FO3Save* savepp = new FO3Save("fo3.fos");
+
+FO3SAVE* save = savepp->getFO3SAVE();
+```
+
+## `FO3Save::setFO3SAVE`
+
+**Params**
+
+[`FO3SAVE*`](./api_fo3.md#fo3save) `save`
+
+**Returns**
+
+`void`
+
+**Examples**
+
+```cpp
+FO3Save* savepp = new FO3Save();
+
+FO3SAVE* save = readFO3Save("fo3.fos");
+
+savepp->setFO3SAVE(save);
 ```
 
 
@@ -426,6 +459,16 @@ savepp->printSaveSnapshot();
 
 `string`
 
+## `FO3Save::setSaveSignature`
+
+**Params**
+
+* `string`
+
+**Returns**
+
+`void`
+
 
 
 ## `FO3Save::getEngineVersion`
@@ -437,6 +480,16 @@ savepp->printSaveSnapshot();
 **Returns**
 
 `unsigned int`
+
+## `FO3Save::setEngineVersion`
+
+**Params**
+
+* `unsigned int`
+
+**Returns**
+
+`void`
 
 
 
@@ -450,6 +503,16 @@ savepp->printSaveSnapshot();
 
 `unsigned int`
 
+## `FO3Save::setSaveNumber`
+
+**Params**
+
+* `unsigned int`
+
+**Returns**
+
+`void`
+
 
 
 ## `FO3Save::getPlayerName`
@@ -462,6 +525,15 @@ savepp->printSaveSnapshot();
 
 `string`
 
+## `FO3Save::setPlayerName`
+
+**Params**
+
+* `string`
+
+**Returns**
+
+`void`
 
 
 
@@ -475,6 +547,16 @@ savepp->printSaveSnapshot();
 
 `unsigned int`
 
+## `FO3Save::setPlayerLevel`
+
+**Params**
+
+* `unsigned int`
+
+**Returns**
+
+`void`
+
 
 
 ## `FO3Save::getPlayerTitle`
@@ -486,6 +568,16 @@ savepp->printSaveSnapshot();
 **Returns**
 
 `string`
+
+## `FO3Save::setPlayerTitle`
+
+**Params**
+
+* `string`
+
+**Returns**
+
+`void`
 
 
 
@@ -499,6 +591,16 @@ savepp->printSaveSnapshot();
 
 `string`
 
+## `FO3Save::setPlayerLocation`
+
+**Params**
+
+* `string`
+
+**Returns**
+
+`void`
+
 
 
 ## `FO3Save::getPlayerPlaytime`
@@ -510,6 +612,16 @@ savepp->printSaveSnapshot();
 **Returns**
 
 `string`
+
+## `FO3Save::setPlayerPlaytime`
+
+**Params**
+
+* `string`
+
+**Returns**
+
+`void`
 
 
 
@@ -523,6 +635,16 @@ savepp->printSaveSnapshot();
 
 `unsigned int`
 
+## `FO3Save::setSnapshotWidth`
+
+**Params**
+
+* `unsigned int`
+
+**Returns**
+
+`void`
+
 
 
 ## `FO3Save::getSnapshotHeight`
@@ -534,6 +656,16 @@ savepp->printSaveSnapshot();
 **Returns**
 
 `unsigned int`
+
+## `FO3Save::setSnapshotHeight`
+
+**Params**
+
+* `unsigned int`
+
+**Returns**
+
+`void`
 
 
 
@@ -558,3 +690,13 @@ savepp->printSaveSnapshot();
 **Returns**
 
 `unsigned char*`
+
+## `FO3Save::setSnapshot`
+
+**Params**
+
+* `unsigned char*`
+
+**Returns**
+
+`void`

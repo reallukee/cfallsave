@@ -38,9 +38,6 @@
 
 # Functions
 
-> ![NOTE]
-> This section is not yet complete
-
 * [`readFO3Save`](#readfo3save)
 * [`writeFO3Save`](#writefo3save)
 * [`isFO3Save`](#isfo3save)
@@ -78,8 +75,8 @@ FO3SAVE* save = readFO3Save("fo3.fos");
 
 ## `writeFO3Save`
 
-> [!WARNING]
-> This function is not yet implemented!
+> [!CAUTION]
+> Experimental function!
 
 **Params**
 

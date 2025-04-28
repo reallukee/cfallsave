@@ -86,10 +86,30 @@ bool writeFOTBOSSave(
     FOTBOSSAVE* save
 )
 {
-    if (save == NULL)
+    if (save == NULL || save->save == NULL)
     {
         return false;
     }
+
+    long unsigned int address = 0;
+    bool fail = false;
+
+    save->propAddresses[FOTBOSSAVE_PROPS_SAVE_SIGNATURE] = address;
+    fail |= !writeFixedString(save->save, save->saveSignature, FOTBOSSAVE_SIGNATURE_LENGTH, &address, 0, true);
+
+    save->propAddresses[FOTBOSSAVE_PROPS_SAVE_NAME] = address + 8;
+    fail |= !writeCURSEDString(save->save, &save->saveName, &address, 8, 2, true);
+
+    save->propAddresses[FOTBOSSAVE_PROPS_PLAYER_NAME] = address;
+    fail |= !writeCURSEDString(save->save, &save->playerName, &address, 0, 2, true);
+
+    save->propAddresses[FOTBOSSAVE_PROPS_PLAYER_LOCATION] = address;
+    fail |= !writeCURSEDString(save->save, &save->playerLocation, &address, 0, 2, true);
+
+    save->propAddresses[FOTBOSSAVE_PROPS_GAME_DATE_TIME] = address;
+    fail |= !writeCURSEDString(save->save, &save->gameDateTime, &address, 0, 2, true);
+
+    fflush(save->save);
 
     return true;
 }

@@ -178,12 +178,12 @@ closeFO2Save(save);
 ```c
 FO2SAVE* save = readFO2Save("fo2.dat");
 
-int engineVersion = 0;
+char saveName[FO2SAVE_STRING_SIZE] = "Save 2";
 
-bool result = getFO2SaveProp(save, FO2SAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
+bool result = getFO2SaveProp(save, FO2SAVE_PROPS_SAVE_NAME, (void**)&saveName);
 
 if (result) {
-    printf("Property: %u\n", engineVersion);
+    printf("Property: %s\n", saveName);
 }
 ```
 
@@ -206,12 +206,12 @@ if (result) {
 ```c
 FO2SAVE* save = readFO2Save("fo2.dat");
 
-int engineVersion = 0;
+char saveName[FO2SAVE_STRING_SIZE] = "Save 2";
 
-bool result = setFO2SaveProp(save, FO2SAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
+bool result = setFO2SaveProp(save, FO2SAVE_PROPS_SAVE_NAME, (void**)&saveName);
 
 if (result) {
-    printf("Property: %u\n", engineVersion);
+    printf("Property: %s\n", saveName);
 }
 ```
 
@@ -234,12 +234,12 @@ if (result) {
 ```c
 FO2SAVE* save = readFO2Save("fo2.dat");
 
-int engineVersion = 0;
+char saveName[FO2SAVE_STRING_SIZE] = "Save 2";
 
-bool result = readFO2SaveProp(save, FO2SAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
+bool result = readFO2SaveProp(save, FO2SAVE_PROPS_SAVE_NAME, (void**)&saveName);
 
 if (result) {
-    printf("Property: %u\n", engineVersion);
+    printf("Property: %s\n", saveName);
 }
 ```
 
@@ -265,12 +265,12 @@ if (result) {
 ```c
 FO2SAVE* save = readFO2Save("fo2.dat");
 
-int engineVersion = 0;
+char saveName[FO2SAVE_STRING_SIZE] = "Save 2";
 
-bool result = writeFO2SaveProp(save, FO2SAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
+bool result = writeFO2SaveProp(save, FO2SAVE_PROPS_SAVE_NAME, (void**)&saveName);
 
 if (result) {
-    printf("Property: %u\n", engineVersion);
+    printf("Property: %s\n", saveName);
 }
 ```
 

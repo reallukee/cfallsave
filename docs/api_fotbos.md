@@ -178,12 +178,12 @@ closeFOTBOSSave(save);
 ```c
 FOTBOSSAVE* save = readFOTBOSSave("fotbos.sav");
 
-int engineVersion = 0;
+char* saveName;
 
-bool result = getFOTBOSSaveProp(save, FOTBOSSAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
+bool result = getFOTBOSSaveProp(save, FOTBOSSAVE_PROPS_SAVE_NAME, (void**)&saveName);
 
 if (result) {
-    printf("Property: %u\n", engineVersion);
+    printf("Property: %s\n", saveName);
 }
 ```
 
@@ -206,12 +206,12 @@ if (result) {
 ```c
 FOTBOSSAVE* save = readFOTBOSSave("fotbos.sav");
 
-int engineVersion = 0;
+char* saveName;
 
-bool result = setFOTBOSSaveProp(save, FOTBOSSAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
+bool result = setFOTBOSSaveProp(save, FOTBOSSAVE_PROPS_SAVE_NAME, (void**)&saveName);
 
 if (result) {
-    printf("Property: %u\n", engineVersion);
+    printf("Property: %s\n", saveName);
 }
 ```
 
@@ -234,12 +234,12 @@ if (result) {
 ```c
 FOTBOSSAVE* save = readFOTBOSSave("fotbos.sav");
 
-int engineVersion = 0;
+char* saveName;
 
-bool result = readFOTBOSSaveProp(save, FOTBOSSAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
+bool result = readFOTBOSSaveProp(save, FOTBOSSAVE_PROPS_SAVE_NAME, (void**)&saveName);
 
 if (result) {
-    printf("Property: %u\n", engineVersion);
+    printf("Property: %s\n", saveName);
 }
 ```
 
@@ -265,12 +265,12 @@ if (result) {
 ```c
 FOTBOSSAVE* save = readFOTBOSSave("fotbos.sav");
 
-int engineVersion = 0;
+char* saveName;
 
-bool result = writeFOTBOSSaveProp(save, FOTBOSSAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
+bool result = writeFOTBOSSaveProp(save, FOTBOSSAVE_PROPS_SAVE_NAME, (void**)&saveName);
 
 if (result) {
-    printf("Property: %u\n", engineVersion);
+    printf("Property: %s\n", saveName);
 }
 ```
 

@@ -99,7 +99,7 @@ bool writeFO1Save(
 
     fflush(save->save);
 
-    return true;
+    return fail;
 }
 
 bool isFO1Save(
@@ -198,7 +198,7 @@ bool getFO1SaveProp(
         break;
     }
 
-    return false;
+    return true;
 }
 
 bool setFO1SaveProp(
@@ -230,7 +230,7 @@ bool setFO1SaveProp(
         break;
     }
 
-    return false;
+    return true;
 }
 
 

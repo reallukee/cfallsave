@@ -162,7 +162,7 @@ bool writeFO3Save(
 
     fflush(save->save);
 
-    return true;
+    return fail;
 }
 
 bool isFO3Save(
@@ -315,7 +315,7 @@ bool getFO3SaveProp(
         break;
     }
 
-    return false;
+    return true;
 }
 
 bool setFO3SaveProp(
@@ -378,7 +378,7 @@ bool setFO3SaveProp(
         break;
     }
 
-    return false;
+    return true;
 }
 
 

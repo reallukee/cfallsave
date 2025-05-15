@@ -111,7 +111,7 @@ bool writeFOTBOSSave(
 
     fflush(save->save);
 
-    return true;
+    return fail;
 }
 
 bool isFOTBOSSave(
@@ -223,7 +223,7 @@ bool getFOTBOSSaveProp(
         break;
     }
 
-    return false;
+    return true;
 }
 
 bool setFOTBOSSaveProp(
@@ -263,7 +263,7 @@ bool setFOTBOSSaveProp(
         break;
     }
 
-    return false;
+    return true;
 }
 
 

@@ -328,7 +328,7 @@ bool getFO4SaveProp(
         break;
     }
 
-    return false;
+    return true;
 }
 
 bool setFO4SaveProp(
@@ -403,7 +403,7 @@ bool setFO4SaveProp(
         break;
     }
 
-    return false;
+    return true;
 }
 
 

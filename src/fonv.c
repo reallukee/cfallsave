@@ -162,7 +162,7 @@ bool writeFONVSave(
 
     fflush(save->save);
 
-    return true;
+    return fail;
 }
 
 bool isFONVSave(
@@ -315,7 +315,7 @@ bool getFONVSaveProp(
         break;
     }
 
-    return false;
+    return true;
 }
 
 bool setFONVSaveProp(
@@ -378,7 +378,7 @@ bool setFONVSaveProp(
         break;
     }
 
-    return false;
+    return true;
 }
 
 

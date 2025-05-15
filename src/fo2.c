@@ -99,7 +99,7 @@ bool writeFO2Save(
 
     fflush(save->save);
 
-    return true;
+    return fail;
 }
 
 bool isFO2Save(
@@ -198,7 +198,7 @@ bool getFO2SaveProp(
         break;
     }
 
-    return false;
+    return true;
 }
 
 bool setFO2SaveProp(
@@ -230,7 +230,7 @@ bool setFO2SaveProp(
         break;
     }
 
-    return false;
+    return true;
 }
 
 
@@ -417,7 +417,7 @@ bool createFO2SampleSave()
     char playerName[FO2SAVE_STRING_SIZE] = "John Fallout";
     fwrite(playerName, sizeof(*playerName), FO2SAVE_STRING_SIZE, save);
 
-    char saveName[FO2SAVE_STRING_SIZE] = "Save 1";
+    char saveName[FO2SAVE_STRING_SIZE] = "Save 2";
     fwrite(saveName, sizeof(*saveName), FO2SAVE_STRING_SIZE, save);
 
     fflush(save);

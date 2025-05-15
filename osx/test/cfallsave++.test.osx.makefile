@@ -1,9 +1,10 @@
 TARGET     = cfallsave++.test
 TARGET_EXT = .bin
 LIB_TARGET = cfallsave++
-CXX        = clang++
-CXXFLAGS   = -Wall -Wextra -fPIC
-LDFLAGS    = -L../bin -l$(LIB_TARGET) -Wl,-rpath,@executable_path
+
+CXX      = clang++
+CXXFLAGS = -Wall -Wextra -fPIC
+LDFLAGS  = -L../bin -l$(LIB_TARGET) -Wl,-rpath,@executable_path
 
 CPP_SOURCE_EXT = .cpp
 CPP_HEADER_EXT = .hpp
@@ -26,14 +27,14 @@ OBJECTS = $(patsubst %$(CPP_SOURCE_EXT), $(OBJ_DIR)/%$(CPP_OBJECT_EXT), $(SOURCE
 
 .PHONY: help build rebuild clean full-clean default
 
-default: help
+default: build
 
 help:
 	@echo "help       : No description needed"
 	@echo "build      : Build project"
-	@echo "rebuild    : Rebuild project (clean + build)"
-	@echo "clean      : Clean output files"
-	@echo "full-clean : Clean ALL output files"
+	@echo "rebuild    : Rebuild project"
+	@echo "clean      : Clean output"
+	@echo "full-clean : Clean ALL output"
 
 $(OBJ_DIR)/%$(CPP_OBJECT_EXT): $(SRC_DIR)/%$(CPP_SOURCE_EXT) | $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
@@ -45,7 +46,7 @@ $(OBJ_DIR) $(BIN_DIR):
 	mkdir -p $@
 
 clean:
-	rm -rf $(OBJ_DIR)
+	rm -rf $(OBJ_DIR)/*$(CPP_OBJECT_EXT)
 	rm -f $(BIN_DIR)/$(TARGET)$(TARGET_EXT)
 
 full-clean:

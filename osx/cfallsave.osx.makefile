@@ -1,8 +1,14 @@
-TARGET     = cfallsave
-TARGET_EXT = .dylib
-CC         = clang
-CFLAGS     = -Wall -Wextra -fPIC
-LDFLAGS    = -dynamiclib -install_name @executable_path/lib$(TARGET)$(TARGET_EXT)
+TARGET             = cfallsave
+TARGET_VERSION     = 2.0.0
+TARGET_MIN_VERSION = 2.0.0
+TARGET_EXT         = .dylib
+
+CC      = clang
+CFLAGS  = -Wall -Wextra -fPIC
+LDFLAGS = -dynamiclib \
+    -install_name @executable_path/lib$(TARGET)$(TARGET_EXT) \
+    -current_version $(TARGET_VERSION) \
+    -compatibility_version $(TARGET_MIN_VERSION)
 
 C_SOURCE_EXT = .c
 C_HEADER_EXT = .h
@@ -25,14 +31,14 @@ OBJECTS = $(patsubst %$(C_SOURCE_EXT), $(OBJ_DIR)/%$(C_OBJECT_EXT), $(SOURCES))
 
 .PHONY: help build rebuild clean full-clean default
 
-default: help
+default: build
 
 help:
 	@echo "help       : No description needed"
 	@echo "build      : Build project"
-	@echo "rebuild    : Rebuild project (clean + build)"
-	@echo "clean      : Clean output files"
-	@echo "full-clean : Clean ALL output files"
+	@echo "rebuild    : Rebuild project"
+	@echo "clean      : Clean output"
+	@echo "full-clean : Clean ALL output"
 
 $(OBJ_DIR)/%$(C_OBJECT_EXT): $(SRC_DIR)/%$(C_SOURCE_EXT) | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -44,7 +50,7 @@ $(OBJ_DIR) $(BIN_DIR):
 	mkdir -p $@
 
 clean:
-	rm -rf $(OBJ_DIR)
+	rm -f $(OBJ_DIR)/*$(C_OBJECT_EXT)
 	rm -f $(BIN_DIR)/lib$(TARGET)$(TARGET_EXT)
 
 full-clean:

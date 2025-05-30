@@ -31,10 +31,10 @@ CFallSave ToDo
 - [x] *Fallout: New Vegas* Support
 - [x] *Fallout 4* Support
 - [x] *Fallout Tactics: Brotherhood of Steel* Support
-- [ ] Generic Fallout Reader (FOX)
-- [ ] Generic Fallout Writer (FOX)
-- [ ] Generic Fallout Reader (FOX) C++
-- [ ] Generic Fallout Writer (FOX) C++
+- [ ] ~~Generic Fallout Reader (FOX)~~
+- [ ] ~~Generic Fallout Writer (FOX)~~
+- [ ] ~~Generic Fallout Reader (FOX) C++~~
+- [ ] ~~Generic Fallout Writer (FOX) C++~~
 - [ ] More support for *Fallout 1*
 - [ ] More support for *Fallout 2*
 - [ ] More support for *Fallout 3*
@@ -45,8 +45,8 @@ CFallSave ToDo
 - [x] Write Property
 - [x] Get Property
 - [x] Set Property
-- [ ] Reader Documentation
-- [ ] Writer Documentation
+- [ ] ~~Reader Documentation~~
+- [ ] ~~Writer Documentation~~
 
 
 

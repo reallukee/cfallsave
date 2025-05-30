@@ -3,6 +3,6 @@
     "*.makefile": "makefile"
   },
   "material-icon-theme.files.associations": {
-      "*.makefile": "makefile"
+    "*.makefile": "makefile"
   }
 }

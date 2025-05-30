@@ -19,10 +19,11 @@ ipch/
 *.pdb
 *.exp
 
-# Fallout
-*.dat
-*.sav
-*.fos
+# Binary (macOS)
+*.bin
+*.dylib
+*.a
+*.o
 
 # Compilation
 [Bb]in/

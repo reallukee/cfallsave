@@ -4,6 +4,9 @@ indent_style = space
 indent_size = 4
 trim_trailing_whitespace = true
 
+[*.sln]
+indent_style = tab
+
 [*.md]
 indent_size = 2
 

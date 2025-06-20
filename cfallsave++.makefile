@@ -4,7 +4,7 @@ TARGET_EXT     = .so
 
 CXX      = g++
 CXXFLAGS = -Wall -Wextra -fPIC
-LDFLAGS  = -shared -Wl,-soname,lib$(TARGET)$(TARGET_EXT).$(TARGET_VERSION)
+LDFLAGS  = -shared -Wl,-soname,lib$(TARGET)$(TARGET_EXT)#.$(TARGET_VERSION)
 
 C_SOURCE_EXT   = .c
 C_HEADER_EXT   = .h

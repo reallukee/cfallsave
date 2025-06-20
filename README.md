@@ -4,9 +4,11 @@
 
 # CFallSave
 
-![CFallSave License](https://img.shields.io/github/license/reallukee/cfallsave)
+![License](https://img.shields.io/github/license/reallukee/cfallsave)
+![Release](https://img.shields.io/github/v/release/reallukee/cfallsave?include_prereleases)
+![Build](https://img.shields.io/github/actions/workflow/status/reallukee/cfallsave/build.yml)
 
-☢️ A C/C++ Library to Read and Write Fallout Save Files
+☢️ A C/C++ library to read and write Fallout save files
 
 </div>
 
@@ -159,7 +161,7 @@ Snapshot Height    : 0000000000000127 007F
 
 # Releases
 
-> Zzz... Zzz... Zzz...
+> [Download](https://github.com/reallukee/cfallsave/releases/latest)
 
 
 

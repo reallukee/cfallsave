@@ -3,7 +3,7 @@
  * CFallSave++
  * -----------
  *
- * A C/C++ Library to Read and Write Fallout Save Files
+ * A C/C++ library to read and write Fallout save files
  *
  * File Name   : fo4.hpp
  *

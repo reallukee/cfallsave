@@ -10,6 +10,10 @@ on:
       - "**/*.h"
       - "**/*.hpp"
       - "**/*.makefile"
+      - "**/*.vcxproj"
+      - "**/*.vcxproj.filter"
+      - "**/*.sln"
+      - "**/*.slnx"
 
 jobs:
   linux:

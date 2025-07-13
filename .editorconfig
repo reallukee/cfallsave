@@ -19,6 +19,9 @@ indent_size = 2
 [*.yml]
 indent_size = 2
 
+[*.slnx]
+indent_size = 2
+
 [*.vcxproj]
 indent_size = 2
 

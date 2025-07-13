@@ -22,6 +22,11 @@ int main(int argc, char* argv[])
 {
     char* saveName = "fo4.fos";
 
+    if (argc > 1)
+    {
+        saveName = argv[1];
+    }
+
     if (!isFO4Save(saveName))
     {
         return 1;

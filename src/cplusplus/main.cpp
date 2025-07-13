@@ -24,6 +24,11 @@ int main(int argc, char* argv[])
 {
     string saveName = "fo4.fos";
 
+    if (argc > 1)
+    {
+        saveName = argv[1];
+    }
+
     if (!FO4Save::isSave(saveName))
     {
         return 1;

@@ -1,0 +1,14 @@
+<Solution>
+  <Configurations>
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/test/">
+    <Project Path="test/cfallsave++.test/cfallsave++.test.vcxproj" />
+    <Project Path="test/cfallsave.test/cfallsave.test.vcxproj" />
+  </Folder>
+  <Project Path="cfallsave++.dev/cfallsave++.dev.vcxproj" />
+  <Project Path="cfallsave++/cfallsave++.vcxproj" />
+  <Project Path="cfallsave.dev/cfallsave.dev.vcxproj" />
+  <Project Path="cfallsave/cfallsave.vcxproj" />
+</Solution>

@@ -13,8 +13,8 @@ CFallSave Changelog
 # Summary
 
 * [`v2.0.0`](#v200-20250714)
-* [`v2.0.0-RC2`](#v200-rc-2-20250620)
-* [`v2.0.0-RC1`](#v200-rc-1-20250530)
+* [`v2.0.0-RC2`](#v200-rc2-20250620)
+* [`v2.0.0-RC1`](#v200-rc1-20250530)
 
 
 
@@ -48,8 +48,8 @@ CFallSave Changelog
 
 ## Removed
 
-*Nothing
-*
+*Nothing*
+
 
 
 # [`v2.0.0-RC1` `(2025/05/30)`](https://github.com/reallukee/cfallsave/releases/tag/v2.0.0-rc1)

@@ -1,6 +1,7 @@
-TARGET     = cfallsave.test
-TARGET_EXT = .bin
-LIB_TARGET = cfallsave
+TARGET         = cfallsave.test
+TARGET_EXT     = .bin
+LIB_TARGET     = cfallsave
+LIB_TARGET_EXT = .so
 
 CC      = gcc
 CFLAGS  = -Wall -Wextra -fPIC
@@ -39,7 +40,7 @@ help:
 $(OBJ_DIR)/%$(C_OBJECT_EXT): $(SRC_DIR)/%$(C_SOURCE_EXT) | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(BIN_DIR)/$(TARGET)$(TARGET_EXT): $(OBJECTS) | $(BIN_DIR)
+$(BIN_DIR)/$(TARGET)$(TARGET_EXT): $(OBJECTS) ../bin/lib$(LIB_TARGET)$(LIB_TARGET_EXT) | $(BIN_DIR)
 	$(CC) $(OBJECTS) -o $@ $(LDFLAGS)
 
 $(OBJ_DIR) $(BIN_DIR):

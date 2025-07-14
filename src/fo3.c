@@ -96,7 +96,7 @@ FO3SAVE* readFO3Save(
         return NULL;
     }
 
-    save->snapshot = (unsigned char*)malloc(save->snapshotLength);
+    save->snapshot = (unsigned char*)calloc(save->snapshotLength, 1);
 
     if (save->snapshot == NULL)
     {

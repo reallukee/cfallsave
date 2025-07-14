@@ -132,7 +132,7 @@ bool writeCURSEDString(
         *address += 2;
     }
 
-    char* cursedValue = (char*)malloc(length * 2);
+    char* cursedValue = (char*)calloc(length * 2, 1);
 
     if (cursedValue == NULL)
     {

@@ -96,7 +96,7 @@ bool readString(
         free(*value);
     }
 
-    *value = (char*)malloc(length + 1);
+    *value = (char*)calloc(length + 1, 1);
 
     if (*value == NULL)
     {
@@ -148,7 +148,7 @@ bool readCURSEDString(
         *address += 2;
     }
 
-    char* cursedValue = (char*)malloc(length * 2);
+    char* cursedValue = (char*)calloc(length * 2, 1);
 
     if (cursedValue == NULL)
     {
@@ -169,7 +169,7 @@ bool readCURSEDString(
         free(*value);
     }
 
-    *value = (char*)malloc(length + 1);
+    *value = (char*)calloc(length + 1, 1);
 
     if (*value == NULL)
     {

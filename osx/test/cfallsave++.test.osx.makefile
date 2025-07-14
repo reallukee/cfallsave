@@ -1,6 +1,7 @@
-TARGET     = cfallsave++.test
-TARGET_EXT = .bin
-LIB_TARGET = cfallsave++
+TARGET         = cfallsave++.test
+TARGET_EXT     = .bin
+LIB_TARGET     = cfallsave++
+LIB_TARGET_EXT = .dylib
 
 CXX      = clang++
 CXXFLAGS = -Wall -Wextra -fPIC
@@ -39,7 +40,7 @@ help:
 $(OBJ_DIR)/%$(CPP_OBJECT_EXT): $(SRC_DIR)/%$(CPP_SOURCE_EXT) | $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(BIN_DIR)/$(TARGET)$(TARGET_EXT): $(OBJECTS) | $(BIN_DIR)
+$(BIN_DIR)/$(TARGET)$(TARGET_EXT): $(OBJECTS) ../bin/lib$(LIB_TARGET)$(LIB_TARGET_EXT) | $(BIN_DIR)
 	$(CXX) $(OBJECTS) -o $@ $(LDFLAGS)
 
 $(OBJ_DIR) $(BIN_DIR):

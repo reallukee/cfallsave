@@ -1,6 +1,7 @@
-TARGET         = cfallsave++
-TARGET_VERSION = 2
-TARGET_EXT     = .dylib
+TARGET             = cfallsave++
+TARGET_VERSION     = 2
+TARGET_MIN_VERSION = 2
+TARGET_EXT         = .dylib
 
 CXX      = clang++
 CXXFLAGS = -Wall -Wextra -fPIC

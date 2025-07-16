@@ -1,6 +1,7 @@
-TARGET         = cfallsave++
-TARGET_VERSION = 2
-TARGET_EXT     = .bin
+TARGET             = cfallsave++
+TARGET_VERSION     = 2
+TARGET_MIN_VERSION = 2
+TARGET_EXT         = .bin
 
 CXX      = clang++
 CXXFLAGS = -Wall -Wextra

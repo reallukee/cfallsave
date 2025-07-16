@@ -12,22 +12,12 @@
  *
  * Author      : Luca Pollicino
  *               (https://github.com/reallukee)
- * Version     : 2.0.0
+ * Version     : 2.1.0
  * License     : MIT
  */
 
 #ifndef CFALLSAVEPP_EXPORT_HPP
 #define CFALLSAVEPP_EXPORT_HPP
-
-#define CFALLSAVEPP_LIBRARY
-
-// #ifdef CFALLSAVE_LIBRARY
-//     #undef CFALLSAVE_LIBRARY
-// #endif // CFALLSAVE_LIBRARY
-
-// #ifdef CFALLSAVE_API
-//     #undef CFALLSAVE_API
-// #endif // CFALLSAVE_API
 
 #if defined(_WIN32) || defined(_WIN64)
     #ifdef CFALLSAVEPP_LIBRARY

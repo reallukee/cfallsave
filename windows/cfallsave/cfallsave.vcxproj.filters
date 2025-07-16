@@ -15,34 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\cfallsave.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\export.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\fo1.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\fo2.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\fo3.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\fo4.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\fonv.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\fotbos.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\fox.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\header.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\cfallsave.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\version.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\reader.h">
@@ -51,39 +33,63 @@
     <ClInclude Include="..\..\src\writer.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\fo1.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\fo2.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\fotbos.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\fo3.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\fonv.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\fo4.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\fox.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
     <ClInclude Include="resource.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\fo1.c">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fo2.c">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fo3.c">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fo4.c">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fonv.c">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fotbos.c">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fox.c">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\main.c">
+    <ClCompile Include="..\..\src\version.c">
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\reader.c">
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\writer.c">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fo1.c">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fo2.c">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fotbos.c">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fo3.c">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fonv.c">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fo4.c">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fox.c">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\main.c">
       <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>

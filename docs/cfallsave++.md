@@ -15,6 +15,7 @@
 * [Code](#code)
 * [Naming](#naming)
 * [Macros](#macros)
+* [Version](#version)
 
 
 
@@ -39,17 +40,45 @@
 
 # Macros
 
-| Macro                       | Value   |
-| :-------------------------- | :------ |
-| `CFALLSAVE_VERSION`         | `200`   |
-| `CFALLSAVE_MIN_VERSION`     | `200`   |
-| `CFALLSAVE_VERSION_S`       | `2.0.0` |
-| `CFALLSAVE_MIN_VERSION_S`   | `2.0.0` |
-| `CFALLSAVE_LIBRARY`         |         |
-| `CFALLSAVE_API`             |         |
-| `CFALLSAVEPP_VERSION`       | `200`   |
-| `CFALLSAVEPP_MIN_VERSION`   | `200`   |
-| `CFALLSAVEPP_VERSION_S`     | `2.0.0` |
-| `CFALLSAVEPP_MIN_VERSION_S` | `2.0.0` |
-| `CFALLSAVEPP_LIBRARY`       |         |
-| `CFALLSAVEPP_API`           |         |
+> [!NOTE]
+> CFallSave++ follows [SemVer standard](https://semver.org/)!
+
+| Macro                                      | Value                              |
+| :----------------------------------------- | :--------------------------------- |
+| `CFALLSAVEPP_VERSION`                      | `ABC`                              |
+| `CFALLSAVEPP_VERSION_MAJOR`                | `A`                                |
+| `CFALLSAVEPP_VERSION_MINOR`                | `B`                                |
+| `CFALLSAVEPP_VERSION_PATCH`                | `C`                                |
+| `CFALLSAVEPP_FRIENDLY_VERSION`             | `A.B.C`                            |
+| `CFALLSAVEPP_MIN_VERSION`                  | `ABC`                              |
+| `CFALLSAVEPP_MIN_VERSION_MAJOR`            | `A`                                |
+| `CFALLSAVEPP_MIN_VERSION_MINOR`            | `B`                                |
+| `CFALLSAVEPP_MIN_VERSION_PATCH`            | `C`                                |
+| `CFALLSAVEPP_FRIENDLY_MIN_VERSION`         | `A.B.C`                            |
+| `CFALLSAVEPP_VERSION_S` (*DEPRECATED*)     | `CFALLSAVEPP_FRIENDLY_VERSION`     |
+| `CFALLSAVEPP_MIN_VERSION_S` (*DEPRECATED*) | `CFALLSAVEPP_FRIENDLY_MIN_VERSION` |
+| `CFALLSAVEPP_LIBRARY`                      |                                    |
+| `CFALLSAVEPP_API`                          |                                    |
+
+> [!NOTE]
+> `CFALLSAVEPP_LIBRARY` is only defined on Windows!
+>
+> Read more about [dllexport-dllimport](https://learn.microsoft.com/cpp/cpp/dllexport-dllimport).
+
+
+
+# Version
+
+> Headers: [`version.hpp`](../src/cplusplus/version.hpp)
+
+* `int cfspp_getVersion()`
+* `int cfspp_getVersionMajor()`
+* `int cfspp_getVersionMinor()`
+* `int cfspp_getVersionPatch()`
+* `const char* cfspp_getFriendlyVersion()`
+* `int cfspp_getMinVersion()`
+* `int cfspp_getMinVersionMajor()`
+* `int cfspp_getMinVersionMinor()`
+* `int cfspp_getMinVersionPatch()`
+* `const char* cfspp_getMinFriendlyVersion()`
+* `bool cfspp_isCompatible(int major, int minor, int patch)`

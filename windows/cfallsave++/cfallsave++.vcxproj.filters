@@ -21,64 +21,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\cplusplus\cfallsave++.hpp">
-      <Filter>File di intestazione</Filter>
+    <ClInclude Include="..\..\src\export.h">
+      <Filter>File di intestazione\CFallSave</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\cplusplus\export.hpp">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\cplusplus\fo1.hpp">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\cplusplus\fo2.hpp">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\cplusplus\fo3.hpp">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\cplusplus\fo4.hpp">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\cplusplus\fonv.hpp">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\cplusplus\fotbos.hpp">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\cplusplus\fox.hpp">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\cplusplus\header.hpp">
-      <Filter>File di intestazione</Filter>
+    <ClInclude Include="..\..\src\header.h">
+      <Filter>File di intestazione\CFallSave</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\cfallsave.h">
       <Filter>File di intestazione\CFallSave</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\export.h">
-      <Filter>File di intestazione\CFallSave</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\fo1.h">
-      <Filter>File di intestazione\CFallSave</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\fo2.h">
-      <Filter>File di intestazione\CFallSave</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\fo3.h">
-      <Filter>File di intestazione\CFallSave</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\fo4.h">
-      <Filter>File di intestazione\CFallSave</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\fonv.h">
-      <Filter>File di intestazione\CFallSave</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\fotbos.h">
-      <Filter>File di intestazione\CFallSave</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\fox.h">
-      <Filter>File di intestazione\CFallSave</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\header.h">
+    <ClInclude Include="..\..\src\version.h">
       <Filter>File di intestazione\CFallSave</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\reader.h">
@@ -87,34 +39,73 @@
     <ClInclude Include="..\..\src\writer.h">
       <Filter>File di intestazione\CFallSave</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\fo1.h">
+      <Filter>File di intestazione\CFallSave</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\fo2.h">
+      <Filter>File di intestazione\CFallSave</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\fotbos.h">
+      <Filter>File di intestazione\CFallSave</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\fo3.h">
+      <Filter>File di intestazione\CFallSave</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\fonv.h">
+      <Filter>File di intestazione\CFallSave</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\fo4.h">
+      <Filter>File di intestazione\CFallSave</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\fox.h">
+      <Filter>File di intestazione\CFallSave</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\cplusplus\export.hpp">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\cplusplus\header.hpp">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\cplusplus\cfallsave++.hpp">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\cplusplus\version.hpp">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\cplusplus\fo1.hpp">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\cplusplus\fo2.hpp">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\cplusplus\fotbos.hpp">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\cplusplus\fo3.hpp">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\cplusplus\fonv.hpp">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\cplusplus\fo4.hpp">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\cplusplus\fox.hpp">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
     <ClInclude Include="resource.hpp">
       <Filter>File di intestazione</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\cplusplus\fo1.cpp">
-      <Filter>File di origine</Filter>
+    <ClCompile Include="..\..\src\version.c">
+      <Filter>File di origine\CFallSave</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\cplusplus\fo2.cpp">
-      <Filter>File di origine</Filter>
+    <ClCompile Include="..\..\src\reader.c">
+      <Filter>File di origine\CFallSave</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\cplusplus\fo3.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\cplusplus\fo4.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\cplusplus\fonv.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\cplusplus\fotbos.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\cplusplus\fox.cpp">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\cplusplus\main.cpp">
-      <Filter>File di origine</Filter>
+    <ClCompile Include="..\..\src\writer.c">
+      <Filter>File di origine\CFallSave</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\fo1.c">
       <Filter>File di origine\CFallSave</Filter>
@@ -122,16 +113,16 @@
     <ClCompile Include="..\..\src\fo2.c">
       <Filter>File di origine\CFallSave</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\fo3.c">
+    <ClCompile Include="..\..\src\fotbos.c">
       <Filter>File di origine\CFallSave</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\fo4.c">
+    <ClCompile Include="..\..\src\fo3.c">
       <Filter>File di origine\CFallSave</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\fonv.c">
       <Filter>File di origine\CFallSave</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\fotbos.c">
+    <ClCompile Include="..\..\src\fo4.c">
       <Filter>File di origine\CFallSave</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\fox.c">
@@ -140,11 +131,32 @@
     <ClCompile Include="..\..\src\main.c">
       <Filter>File di origine\CFallSave</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\reader.c">
-      <Filter>File di origine\CFallSave</Filter>
+    <ClCompile Include="..\..\src\cplusplus\version.cpp">
+      <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\src\writer.c">
-      <Filter>File di origine\CFallSave</Filter>
+    <ClCompile Include="..\..\src\cplusplus\fo1.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\cplusplus\fo2.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\cplusplus\fotbos.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\cplusplus\fo3.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\cplusplus\fonv.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\cplusplus\fo4.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\cplusplus\fox.cpp">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\cplusplus\main.cpp">
+      <Filter>File di origine</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

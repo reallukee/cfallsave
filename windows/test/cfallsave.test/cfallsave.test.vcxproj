@@ -19,14 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\test\src\cli.h" />
-    <ClInclude Include="..\..\..\test\src\commands.h" />
     <ClInclude Include="..\..\..\test\src\header.h" />
+    <ClInclude Include="..\..\..\test\src\commands.h" />
+    <ClInclude Include="..\..\..\test\src\cli.h" />
     <ClInclude Include="resource.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\test\src\cli.c" />
     <ClCompile Include="..\..\..\test\src\commands.c" />
+    <ClCompile Include="..\..\..\test\src\cli.c" />
     <ClCompile Include="..\..\..\test\src\main.c" />
   </ItemGroup>
   <ItemGroup>

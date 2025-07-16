@@ -15,13 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\test\src\cplusplus\cli.hpp">
+    <ClInclude Include="..\..\..\test\src\cplusplus\header.hpp">
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\test\src\cplusplus\commands.hpp">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\test\src\cplusplus\header.hpp">
+    <ClInclude Include="..\..\..\test\src\cplusplus\cli.hpp">
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="resource.hpp">
@@ -29,10 +29,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\test\src\cplusplus\cli.cpp">
+    <ClCompile Include="..\..\..\test\src\cplusplus\commands.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\test\src\cplusplus\commands.cpp">
+    <ClCompile Include="..\..\..\test\src\cplusplus\cli.cpp">
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\test\src\cplusplus\main.cpp">

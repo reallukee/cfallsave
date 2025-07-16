@@ -19,36 +19,36 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\cfallsave.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="..\..\src\export.h" />
+    <ClInclude Include="..\..\src\header.h" />
+    <ClInclude Include="..\..\src\cfallsave.h" />
+    <ClInclude Include="..\..\src\version.h" />
+    <ClInclude Include="..\..\src\reader.h" />
+    <ClInclude Include="..\..\src\writer.h" />
     <ClInclude Include="..\..\src\fo1.h" />
     <ClInclude Include="..\..\src\fo2.h" />
-    <ClInclude Include="..\..\src\fo3.h" />
-    <ClInclude Include="..\..\src\fo4.h" />
-    <ClInclude Include="..\..\src\fonv.h" />
     <ClInclude Include="..\..\src\fotbos.h" />
+    <ClInclude Include="..\..\src\fo3.h" />
+    <ClInclude Include="..\..\src\fonv.h" />
+    <ClInclude Include="..\..\src\fo4.h" />
     <ClInclude Include="..\..\src\fox.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="..\..\src\header.h" />
-    <ClInclude Include="..\..\src\reader.h" />
-    <ClInclude Include="..\..\src\writer.h" />
+    <ClInclude Include="..\cfallsave\resource.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\..\src\version.c" />
+    <ClCompile Include="..\..\src\reader.c" />
+    <ClCompile Include="..\..\src\writer.c" />
     <ClCompile Include="..\..\src\fo1.c" />
     <ClCompile Include="..\..\src\fo2.c" />
-    <ClCompile Include="..\..\src\fo3.c" />
-    <ClCompile Include="..\..\src\fo4.c" />
-    <ClCompile Include="..\..\src\fonv.c" />
     <ClCompile Include="..\..\src\fotbos.c" />
+    <ClCompile Include="..\..\src\fo3.c" />
+    <ClCompile Include="..\..\src\fonv.c" />
+    <ClCompile Include="..\..\src\fo4.c" />
     <ClCompile Include="..\..\src\fox.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -56,8 +56,18 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="..\..\src\main.c" />
-    <ClCompile Include="..\..\src\reader.c" />
-    <ClCompile Include="..\..\src\writer.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\cfallsave\cfallsave.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\assets\cfallsave_logo.ico" />
+    <Image Include="..\..\assets\fo1\fo1_logo.ico" />
+    <Image Include="..\..\assets\fo2\fo2_logo.ico" />
+    <Image Include="..\..\assets\fotbos\fotbos_logo.ico" />
+    <Image Include="..\..\assets\fo3\fo3_logo.ico" />
+    <Image Include="..\..\assets\fonv\fonv_logo.ico" />
+    <Image Include="..\..\assets\fo4\fo4_logo.ico" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -135,7 +145,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>CFALLSAVE_LIBRARY;WIN32;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -153,7 +163,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>CFALLSAVE_LIBRARY;WIN32;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -171,7 +181,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>CFALLSAVE_LIBRARY;_DEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
@@ -189,7 +199,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>CFALLSAVE_LIBRARY;NDEBUG;_CONSOLE;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>

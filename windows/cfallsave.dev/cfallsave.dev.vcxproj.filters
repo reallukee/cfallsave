@@ -15,34 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\cfallsave.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\export.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\src\fo1.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\fo2.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\fo3.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\fo4.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\fonv.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\fotbos.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
-    <ClInclude Include="..\..\src\fox.h">
-      <Filter>File di intestazione</Filter>
-    </ClInclude>
     <ClInclude Include="..\..\src\header.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\cfallsave.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\version.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="..\..\src\reader.h">
@@ -51,30 +33,33 @@
     <ClInclude Include="..\..\src\writer.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
+    <ClInclude Include="..\..\src\fo1.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\fo2.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\fotbos.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\fo3.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\fonv.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\fo4.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\src\fox.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
+    <ClInclude Include="..\cfallsave\resource.h">
+      <Filter>File di intestazione</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\fo1.c">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fo2.c">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fo3.c">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fo4.c">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fonv.c">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fotbos.c">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\fox.c">
-      <Filter>File di origine</Filter>
-    </ClCompile>
-    <ClCompile Include="..\..\src\main.c">
+    <ClCompile Include="..\..\src\version.c">
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="..\..\src\reader.c">
@@ -83,5 +68,57 @@
     <ClCompile Include="..\..\src\writer.c">
       <Filter>File di origine</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\src\fo1.c">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fo2.c">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fotbos.c">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fo3.c">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fonv.c">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fo4.c">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\fox.c">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\src\main.c">
+      <Filter>File di origine</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="..\cfallsave\cfallsave.rc">
+      <Filter>File di risorse</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\assets\cfallsave_logo.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="..\..\assets\fo1\fo1_logo.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="..\..\assets\fo2\fo2_logo.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="..\..\assets\fotbos\fotbos_logo.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="..\..\assets\fo3\fo3_logo.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="..\..\assets\fonv\fonv_logo.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
+    <Image Include="..\..\assets\fo4\fo4_logo.ico">
+      <Filter>File di risorse</Filter>
+    </Image>
   </ItemGroup>
 </Project>

@@ -19,14 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\test\src\cplusplus\cli.hpp" />
-    <ClInclude Include="..\..\..\test\src\cplusplus\commands.hpp" />
     <ClInclude Include="..\..\..\test\src\cplusplus\header.hpp" />
+    <ClInclude Include="..\..\..\test\src\cplusplus\commands.hpp" />
+    <ClInclude Include="..\..\..\test\src\cplusplus\cli.hpp" />
     <ClInclude Include="resource.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\test\src\cplusplus\cli.cpp" />
     <ClCompile Include="..\..\..\test\src\cplusplus\commands.cpp" />
+    <ClCompile Include="..\..\..\test\src\cplusplus\cli.cpp" />
     <ClCompile Include="..\..\..\test\src\cplusplus\main.cpp" />
   </ItemGroup>
   <ItemGroup>

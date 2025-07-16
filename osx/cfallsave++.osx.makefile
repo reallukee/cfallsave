@@ -1,7 +1,6 @@
-TARGET             = cfallsave++
-TARGET_VERSION     = 2.0.0
-TARGET_MIN_VERSION = 2.0.0
-TARGET_EXT         = .dylib
+TARGET         = cfallsave++
+TARGET_VERSION = 2
+TARGET_EXT     = .dylib
 
 CXX      = clang++
 CXXFLAGS = -Wall -Wextra -fPIC
@@ -67,10 +66,9 @@ $(OBJ_DIR) $(CPP_OBJ_DIR) $(BIN_DIR):
 clean:
 	rm -f $(OBJ_DIR)/*$(C_OBJECT_EXT)
 	rm -f $(CPP_OBJ_DIR)/*$(CPP_OBJECT_EXT)
-	rm -f $(BIN_DIR)/lib$(TARGET)$(TARGET_EXT)
 
-full-clean:
-	rm -rf $(OBJ_DIR) $(CPP_OBJ_DIR) $(BIN_DIR)
+full-clean: clean
+	rm -f $(BIN_DIR)/lib$(TARGET)$(TARGET_EXT)
 
 build: $(BIN_DIR)/lib$(TARGET)$(TARGET_EXT)
 

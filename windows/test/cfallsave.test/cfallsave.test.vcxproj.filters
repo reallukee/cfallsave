@@ -15,13 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\test\src\cli.h">
+    <ClInclude Include="..\..\..\test\src\header.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="..\..\..\test\src\commands.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
-    <ClInclude Include="..\..\..\test\src\header.h">
+    <ClInclude Include="..\..\..\test\src\cli.h">
       <Filter>File di intestazione</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
@@ -29,10 +29,10 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\test\src\cli.c">
+    <ClCompile Include="..\..\..\test\src\commands.c">
       <Filter>File di origine</Filter>
     </ClCompile>
-    <ClCompile Include="..\..\..\test\src\commands.c">
+    <ClCompile Include="..\..\..\test\src\cli.c">
       <Filter>File di origine</Filter>
     </ClCompile>
     <ClCompile Include="..\..\..\test\src\main.c">

@@ -19,75 +19,52 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\src\cplusplus\cfallsave++.hpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\..\src\cplusplus\export.hpp" />
-    <ClInclude Include="..\..\src\cplusplus\fo1.hpp" />
-    <ClInclude Include="..\..\src\cplusplus\fo2.hpp" />
-    <ClInclude Include="..\..\src\cplusplus\fo3.hpp" />
-    <ClInclude Include="..\..\src\cplusplus\fo4.hpp" />
-    <ClInclude Include="..\..\src\cplusplus\fonv.hpp" />
-    <ClInclude Include="..\..\src\cplusplus\fotbos.hpp" />
-    <ClInclude Include="..\..\src\cplusplus\fox.hpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClInclude>
-    <ClInclude Include="..\..\src\cplusplus\header.hpp" />
-    <ClInclude Include="..\..\src\cfallsave.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClInclude>
     <ClInclude Include="..\..\src\export.h" />
+    <ClInclude Include="..\..\src\header.h" />
+    <ClInclude Include="..\..\src\cfallsave.h" />
+    <ClInclude Include="..\..\src\version.h" />
+    <ClInclude Include="..\..\src\reader.h" />
+    <ClInclude Include="..\..\src\writer.h" />
     <ClInclude Include="..\..\src\fo1.h" />
     <ClInclude Include="..\..\src\fo2.h" />
-    <ClInclude Include="..\..\src\fo3.h" />
-    <ClInclude Include="..\..\src\fo4.h" />
-    <ClInclude Include="..\..\src\fonv.h" />
     <ClInclude Include="..\..\src\fotbos.h" />
+    <ClInclude Include="..\..\src\fo3.h" />
+    <ClInclude Include="..\..\src\fonv.h" />
+    <ClInclude Include="..\..\src\fo4.h" />
     <ClInclude Include="..\..\src\fox.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="..\..\src\header.h" />
-    <ClInclude Include="..\..\src\reader.h" />
-    <ClInclude Include="..\..\src\writer.h" />
+    <ClInclude Include="..\..\src\cplusplus\export.hpp" />
+    <ClInclude Include="..\..\src\cplusplus\header.hpp" />
+    <ClInclude Include="..\..\src\cplusplus\cfallsave++.hpp" />
+    <ClInclude Include="..\..\src\cplusplus\version.hpp" />
+    <ClInclude Include="..\..\src\cplusplus\fo1.hpp" />
+    <ClInclude Include="..\..\src\cplusplus\fo2.hpp" />
+    <ClInclude Include="..\..\src\cplusplus\fotbos.hpp" />
+    <ClInclude Include="..\..\src\cplusplus\fo3.hpp" />
+    <ClInclude Include="..\..\src\cplusplus\fonv.hpp" />
+    <ClInclude Include="..\..\src\cplusplus\fo4.hpp" />
+    <ClInclude Include="..\..\src\cplusplus\fox.hpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="resource.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\src\cplusplus\fo1.cpp" />
-    <ClCompile Include="..\..\src\cplusplus\fo2.cpp" />
-    <ClCompile Include="..\..\src\cplusplus\fo3.cpp" />
-    <ClCompile Include="..\..\src\cplusplus\fo4.cpp" />
-    <ClCompile Include="..\..\src\cplusplus\fonv.cpp" />
-    <ClCompile Include="..\..\src\cplusplus\fotbos.cpp" />
-    <ClCompile Include="..\..\src\cplusplus\fox.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
-    <ClCompile Include="..\..\src\cplusplus\main.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
-    </ClCompile>
+    <ClCompile Include="..\..\src\version.c" />
+    <ClCompile Include="..\..\src\reader.c" />
+    <ClCompile Include="..\..\src\writer.c" />
     <ClCompile Include="..\..\src\fo1.c" />
     <ClCompile Include="..\..\src\fo2.c" />
-    <ClCompile Include="..\..\src\fo3.c" />
-    <ClCompile Include="..\..\src\fo4.c" />
-    <ClCompile Include="..\..\src\fonv.c" />
     <ClCompile Include="..\..\src\fotbos.c" />
+    <ClCompile Include="..\..\src\fo3.c" />
+    <ClCompile Include="..\..\src\fonv.c" />
+    <ClCompile Include="..\..\src\fo4.c" />
     <ClCompile Include="..\..\src\fox.c">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
@@ -100,8 +77,25 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
     </ClCompile>
-    <ClCompile Include="..\..\src\reader.c" />
-    <ClCompile Include="..\..\src\writer.c" />
+    <ClCompile Include="..\..\src\cplusplus\version.cpp" />
+    <ClCompile Include="..\..\src\cplusplus\fo1.cpp" />
+    <ClCompile Include="..\..\src\cplusplus\fo2.cpp" />
+    <ClCompile Include="..\..\src\cplusplus\fotbos.cpp" />
+    <ClCompile Include="..\..\src\cplusplus\fo3.cpp" />
+    <ClCompile Include="..\..\src\cplusplus\fonv.cpp" />
+    <ClCompile Include="..\..\src\cplusplus\fo4.cpp" />
+    <ClCompile Include="..\..\src\cplusplus\fox.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="..\..\src\cplusplus\main.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Release|x64'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="cfallsave++.rc" />
@@ -191,7 +185,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>CFALLSAVE_LIBRARY;CFALLSAVEPP_LIBRARY;WIN32;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.hpp</PrecompiledHeaderFile>
@@ -210,7 +204,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>CFALLSAVE_LIBRARY;CFALLSAVEPP_LIBRARY;WIN32;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.hpp</PrecompiledHeaderFile>
@@ -229,7 +223,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>CFALLSAVE_LIBRARY;CFALLSAVEPP_LIBRARY;_DEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.hpp</PrecompiledHeaderFile>
@@ -248,7 +242,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
-      <PreprocessorDefinitions>NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>CFALLSAVE_LIBRARY;CFALLSAVEPP_LIBRARY;NDEBUG;_WINDOWS;_USRDLL;_CRT_SECURE_NO_WARNINGS;_CRT_NONSTDC_NO_DEPRECATE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <PrecompiledHeaderFile>pch.hpp</PrecompiledHeaderFile>

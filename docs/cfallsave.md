@@ -15,6 +15,7 @@
 * [Code](#code)
 * [Naming](#naming)
 * [Macros](#macros)
+* [Version](#version)
 
 
 
@@ -39,11 +40,45 @@
 
 # Macros
 
-| Macro                     | Value   |
-| :------------------------ | :------ |
-| `CFALLSAVE_VERSION`       | `200`   |
-| `CFALLSAVE_MIN_VERSION`   | `200`   |
-| `CFALLSAVE_VERSION_S`     | `2.0.0` |
-| `CFALLSAVE_MIN_VERSION_S` | `2.0.0` |
-| `CFALLSAVE_LIBRARY`       |         |
-| `CFALLSAVE_API`           |         |
+> [!NOTE]
+> CFallSave follows [SemVer standard](https://semver.org/)!
+
+| Macro                                    | Value                            |
+| :--------------------------------------- | :------------------------------- |
+| `CFALLSAVE_VERSION`                      | `ABC`                            |
+| `CFALLSAVE_VERSION_MAJOR`                | `A`                              |
+| `CFALLSAVE_VERSION_MINOR`                | `B`                              |
+| `CFALLSAVE_VERSION_PATCH`                | `C`                              |
+| `CFALLSAVE_FRIENDLY_VERSION`             | `A.B.C`                          |
+| `CFALLSAVE_MIN_VERSION`                  | `ABC`                            |
+| `CFALLSAVE_MIN_VERSION_MAJOR`            | `A`                              |
+| `CFALLSAVE_MIN_VERSION_MINOR`            | `B`                              |
+| `CFALLSAVE_MIN_VERSION_PATCH`            | `C`                              |
+| `CFALLSAVE_FRIENDLY_MIN_VERSION`         | `A.B.C`                          |
+| `CFALLSAVE_VERSION_S` (*DEPRECATED*)     | `CFALLSAVE_FRIENDLY_VERSION`     |
+| `CFALLSAVE_MIN_VERSION_S` (*DEPRECATED*) | `CFALLSAVE_FRIENDLY_MIN_VERSION` |
+| `CFALLSAVE_LIBRARY`                      |                                  |
+| `CFALLSAVE_API`                          |                                  |
+
+> [!NOTE]
+> `CFALLSAVE_LIBRARY` is only defined on Windows!
+>
+> Read more about [dllexport-dllimport](https://learn.microsoft.com/cpp/cpp/dllexport-dllimport).
+
+
+
+# Version
+
+> Headers: [`version.h`](../src/version.h)
+
+* `int cfs_getVersion()`
+* `int cfs_getVersionMajor()`
+* `int cfs_getVersionMinor()`
+* `int cfs_getVersionPatch()`
+* `const char* cfs_getFriendlyVersion()`
+* `int cfs_getMinVersion()`
+* `int cfs_getMinVersionMajor()`
+* `int cfs_getMinVersionMinor()`
+* `int cfs_getMinVersionPatch()`
+* `const char* cfs_getMinFriendlyVersion()`
+* `bool cfs_isCompatible(int major, int minor, int patch)`

@@ -12,9 +12,47 @@ CFallSave Changelog
 
 # Summary
 
+* [`v2.1.0`](#v210-20250716)
 * [`v2.0.0`](#v200-20250714)
 * [`v2.0.0-RC2`](#v200-rc2-20250620)
 * [`v2.0.0-RC1`](#v200-rc1-20250530)
+
+
+
+# [`v2.1.0` `(2025/07/16)`](https://github.com/reallukee/cfallsave/releases/tag/v2.1.0)
+
+## Added
+
+* `version.h` header
+* `version.c` implementation
+* `version.hpp` header
+* `version.cpp` implementation
+* `CFALLSAVE_FRIENDLY_VERSION` macro
+* `CFALLSAVE_FRIENDLY_MIN_VERSION` macro
+* `CFALLSAVEPP_FRIENDLY_VERSION` macro
+* `CFALLSAVEPP_FRIENDLY_MIN_VERSION` macro
+* Other CFallSave version macros
+* Other CFallSave++ version macros
+* Scripts
+
+## Changed
+
+* Linux makefiles
+* Windows projects
+* macOS makefiles
+* `CFALLSAVE_LIBRARY` is now defined in Windows projects
+* `CFALLSAVEPP_LIBRARY` is now defined in Windows projects
+* `CFALLSAVE_VERSION_S` is now deprecated!
+* `CFALLSAVE_MIN_VERSION_S` is now deprecated!
+* `CFALLSAVEPP_VERSION_S` is now deprecated!
+* `CFALLSAVEPP_MIN_VERSION_S` is now deprecated!
+* Updated CFallSave documentation
+* Updated CFallSave++ documentation
+
+## Removed
+
+* `CFALLSAVE_LIBRARY` macro from `export.h` header
+* `CFALLSAVEPP_LIBRARY` macro from `export.hpp` header
 
 
 

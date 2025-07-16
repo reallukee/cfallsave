@@ -47,10 +47,9 @@ $(OBJ_DIR) $(BIN_DIR):
 
 clean:
 	rm -f $(OBJ_DIR)/*$(C_OBJECT_EXT)
-	rm -f $(BIN_DIR)/$(TARGET)$(TARGET_EXT)
 
-full-clean:
-	rm -rf $(OBJ_DIR) $(BIN_DIR)
+full-clean: clean
+	rm -f $(BIN_DIR)/$(TARGET)$(TARGET_EXT)
 
 build: $(BIN_DIR)/$(TARGET)$(TARGET_EXT)
 

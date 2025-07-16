@@ -63,8 +63,13 @@ void about()
 
     printf("********************\n");
     printf("* CFallSave++ Test *\n");
-    printf("*      v%s      *\n", CFALLSAVEPP_VERSION_S);
+    printf("*      v%s      *\n", CFALLSAVEPP_FRIENDLY_VERSION);
     printf("********************\n");
+
+    printf("\n");
+
+    printf("CFallSave++ Version         : %s\n", cfspp_getFriendlyVersion());
+    printf("CFallSave++ Minimum Version : %s\n", cfspp_getMinFriendlyVersion());
 
     printf("\n");
 }

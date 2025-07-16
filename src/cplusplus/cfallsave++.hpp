@@ -21,6 +21,8 @@
 #ifndef CFALLSAVEPP_API_HPP
 #define CFALLSAVEPP_API_HPP
 
+#include "version.hpp"
+
 #include "fo1.hpp"      // Fallout 1 API
 #include "fo2.hpp"      // Fallout 2 API
 #include "fotbos.hpp"   // Fallout Tactics: Brotherhood of Steel

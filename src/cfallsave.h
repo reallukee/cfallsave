@@ -21,6 +21,8 @@
 #ifndef CFALLSAVE_API_H
 #define CFALLSAVE_API_H
 
+#include "version.h"
+
 #include "fo1.h"    // Fallout 1 API
 #include "fo2.h"    // Fallout 2 API
 #include "fotbos.h" // Fallout Tactics: Brotherhood of Steel

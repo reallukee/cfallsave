@@ -210,8 +210,8 @@ Snapshot Height    : 0000000000000127 007F
 
 ## 2. Sources
 
-* Using [git](#using-git)
-* Using [GitHub](#using-github)
+* [Using git](#using-git)
+* [Using GitHub](#using-github)
 
 
 

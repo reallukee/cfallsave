@@ -12,7 +12,7 @@
  *
  * Author      : Luca Pollicino
  *               (https://github.com/reallukee)
- * Version     : 2.0.0
+ * Version     : 2.2.0
  * License     : MIT
  */
 
@@ -250,11 +250,5 @@ CFALLSAVE_API bool printFOTBOSSaveProps(
 CFALLSAVE_API bool printFOTBOSSavePropAddresses(
     FOTBOSSAVE* save
 );
-
-
-
-/// @brief  Create a Fallout Tactics: Brotherhood of Steel sample save.
-/// @return True if is successful, otherwise false.
-CFALLSAVE_API bool createFOTBOSSampleSave();
 
 #endif // !CFALLSAVE_FOTBOS_H

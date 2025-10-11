@@ -12,7 +12,7 @@
  *
  * Author      : Luca Pollicino
  *               (https://github.com/reallukee)
- * Version     : 2.0.0
+ * Version     : 2.2.0
  * License     : MIT
  */
 
@@ -159,13 +159,6 @@ namespace cfallsavepp
     void FO1Save::printPropAddresses()
     {
         printFO1SavePropAddresses(this->save);
-    }
-
-
-
-    bool FO1Save::createSampleSave()
-    {
-        return createFO1SampleSave();
     }
 
 

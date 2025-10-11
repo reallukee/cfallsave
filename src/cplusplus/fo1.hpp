@@ -12,7 +12,7 @@
  *
  * Author      : Luca Pollicino
  *               (https://github.com/reallukee)
- * Version     : 2.0.0
+ * Version     : 2.2.0
  * License     : MIT
  */
 
@@ -63,8 +63,6 @@ namespace cfallsavepp
         void print();
         void printProps();
         void printPropAddresses();
-
-        static bool createSampleSave();
 
 
 

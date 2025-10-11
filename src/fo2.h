@@ -12,7 +12,7 @@
  *
  * Author      : Luca Pollicino
  *               (https://github.com/reallukee)
- * Version     : 2.0.0
+ * Version     : 2.2.0
  * License     : MIT
  */
 
@@ -248,11 +248,5 @@ CFALLSAVE_API bool printFO2SaveProps(
 CFALLSAVE_API bool printFO2SavePropAddresses(
     FO2SAVE* save
 );
-
-
-
-/// @brief  Create a Fallout 2 sample save.
-/// @return True if is successful, otherwise false.
-CFALLSAVE_API bool createFO2SampleSave();
 
 #endif  // !CFALLSAVE_FO2_H

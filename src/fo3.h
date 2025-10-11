@@ -12,7 +12,7 @@
  *
  * Author      : Luca Pollicino
  *               (https://github.com/reallukee)
- * Version     : 2.0.0
+ * Version     : 2.2.0
  * License     : MIT
  */
 
@@ -285,11 +285,5 @@ CFALLSAVE_API bool printFO3SavePropAddresses(
 CFALLSAVE_API bool printFO3SaveSnapshot(
     FO3SAVE* save
 );
-
-
-
-/// @brief  Create a Fallout 3 sample save.
-/// @return True if is successful, otherwise false.
-CFALLSAVE_API bool createFO3SampleSave();
 
 #endif // !CFALLSAVE_FO3_H

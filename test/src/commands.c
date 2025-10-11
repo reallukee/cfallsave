@@ -1,15 +1,5 @@
 #include "commands.h"
 
-void createSampleSaves()
-{
-    createFO1SampleSave();
-    createFO2SampleSave();
-    createFOTBOSSampleSave();
-    createFO3SampleSave();
-    createFONVSampleSave();
-    createFO4SampleSave();
-}
-
 bool readFO1(char* saveName)
 {
     if (!isFO1Save(saveName))

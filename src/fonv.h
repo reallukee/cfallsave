@@ -12,7 +12,7 @@
  *
  * Author      : Luca Pollicino
  *               (https://github.com/reallukee)
- * Version     : 2.0.0
+ * Version     : 2.2.0
  * License     : MIT
  */
 
@@ -285,11 +285,5 @@ CFALLSAVE_API bool printFONVSavePropAddresses(
 CFALLSAVE_API bool printFONVSaveSnapshot(
     FONVSAVE* save
 );
-
-
-
-/// @brief  Create a Fallout: New Vegas sample save.
-/// @return True if is successful, otherwise false.
-CFALLSAVE_API bool createFONVSampleSave();
 
 #endif // !CFALLSAVE_FONV_H

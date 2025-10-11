@@ -12,7 +12,7 @@
  *
  * Author      : Luca Pollicino
  *               (https://github.com/reallukee)
- * Version     : 2.0.0
+ * Version     : 2.2.0
  * License     : MIT
  */
 
@@ -393,38 +393,6 @@ bool printFO2SavePropAddresses(
     {
         printf("%-14s : %016lu %04lX\n", propNames[i], *propAddresses[i], *propAddresses[i]);
     }
-
-    return true;
-}
-
-
-
-bool createFO2SampleSave()
-{
-    FILE* save = fopen("fo2.dat", "wb");
-
-    if (save == NULL)
-    {
-        return false;
-    }
-
-    unsigned char* emptyBuffer = (unsigned char*)calloc(64, 1);
-
-    fwrite(FO2SAVE_SIGNATURE, 1, FO2SAVE_SIGNATURE_LENGTH, save);
-
-    fwrite(emptyBuffer, 12, sizeof(*emptyBuffer), save);
-
-    char playerName[FO2SAVE_STRING_SIZE] = "John Fallout";
-    fwrite(playerName, sizeof(*playerName), FO2SAVE_STRING_SIZE, save);
-
-    char saveName[FO2SAVE_STRING_SIZE] = "Save 2";
-    fwrite(saveName, sizeof(*saveName), FO2SAVE_STRING_SIZE, save);
-
-    fflush(save);
-
-    fclose(save);
-
-    free(emptyBuffer);
 
     return true;
 }

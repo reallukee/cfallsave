@@ -3,7 +3,6 @@
 
 #include "header.hpp"
 
-void createSampleSaves();
 bool readFO1(char* saveName);
 bool readFO2(char* saveName);
 bool readFOTBOS(char* saveName);

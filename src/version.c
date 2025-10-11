@@ -12,7 +12,7 @@
  *
  * Author      : Luca Pollicino
  *               (https://github.com/reallukee)
- * Version     : 2.1.0
+ * Version     : 2.2.0
  * License     : MIT
  */
 
@@ -92,7 +92,7 @@ bool cfs_isCompatible(
         return false;
     }
 
-    printf("%s", CFALLSAVE_MIN_VERSION_S);
+    printf("%s", CFALLSAVE_FRIENDLY_MIN_VERSION);
 
     if (minor == CFALLSAVE_MIN_VERSION_MINOR && patch < CFALLSAVE_MIN_VERSION_PATCH)
     {

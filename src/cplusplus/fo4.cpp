@@ -12,7 +12,7 @@
  *
  * Author      : Luca Pollicino
  *               (https://github.com/reallukee)
- * Version     : 2.0.0
+ * Version     : 2.2.0
  * License     : MIT
  */
 
@@ -198,13 +198,6 @@ namespace cfallsavepp
     void FO4Save::printSnapshot()
     {
         printFO4SaveSnapshot(this->save);
-    }
-
-
-
-    bool FO4Save::createSampleSave()
-    {
-        return createFO4SampleSave();
     }
 
 

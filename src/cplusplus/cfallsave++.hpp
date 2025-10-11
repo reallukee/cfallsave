@@ -14,7 +14,7 @@
  *
  * Author      : Luca Pollicino
  *               (https://github.com/reallukee)
- * Version     : 2.1.0
+ * Version     : 2.2.0
  * License     : MIT
  */
 
@@ -32,12 +32,12 @@
 
 // #include "fox.hpp"      // Fallout X
 
-#define CFALLSAVEPP_VERSION             210
+#define CFALLSAVEPP_VERSION             220
 #define CFALLSAVEPP_VERSION_MAJOR       2
-#define CFALLSAVEPP_VERSION_MINOR       1
+#define CFALLSAVEPP_VERSION_MINOR       2
 #define CFALLSAVEPP_VERSION_PATCH       0
 
-#define CFALLSAVEPP_FRIENDLY_VERSION    "2.1.0"
+#define CFALLSAVEPP_FRIENDLY_VERSION    "2.2.0"
 
 /**
  * The minimum version represents the minimum interface
@@ -55,22 +55,9 @@
 
 #define CFALLSAVEPP_MIN_VERSION             200
 #define CFALLSAVEPP_MIN_VERSION_MAJOR       2
-#define CFALLSAVEPP_MIN_VERSION_MINOR       0
+#define CFALLSAVEPP_MIN_VERSION_MINOR       2
 #define CFALLSAVEPP_MIN_VERSION_PATCH       0
 
-#define CFALLSAVEPP_FRIENDLY_MIN_VERSION    "2.0.0"
-
-/**
- * These macros are considered deprecated starting with
- * version 2.1.0. Their values will correspond to the
- * new dedicated macros.
- * Please use CFALLSAVEPP_FRIENDLY_VERSION and
- * CFALLSAVEPP_FRIENDLY_MIN_VERSION instead.
- * They will be removed in the next major release
- * (If there is a next major release, LOL).
- */
-
-#define CFALLSAVEPP_VERSION_S     CFALLSAVEPP_FRIENDLY_VERSION
-#define CFALLSAVEPP_MIN_VERSION_S CFALLSAVEPP_FRIENDLY_MIN_VERSION
+#define CFALLSAVEPP_FRIENDLY_MIN_VERSION    "2.2.0"
 
 #endif // !CFALLSAVEPP_API_HPP

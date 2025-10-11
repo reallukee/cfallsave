@@ -21,11 +21,6 @@ void commandLineArgs(int argc, char* argv[])
         about();
     }
 
-    if (strcmp(argv[1], "create-sample-saves") == 0 && argc > 1)
-    {
-        createSampleSaves();
-    }
-
     if (strcmp(argv[1], "read-fo1") == 0 && argc > 2)
     {
         readFO1(argv[2]);
@@ -87,7 +82,6 @@ void help()
 
     printf("\n");
 
-    printf(" - create-sample-saves\n");
     printf(" - read-fo1 <Save>\n");
     printf(" - read-fo2 <Save>\n");
     printf(" - read-fotbos <Save>\n");

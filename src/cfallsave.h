@@ -14,7 +14,7 @@
  *
  * Author      : Luca Pollicino
  *               (https://github.com/reallukee)
- * Version     : 2.1.0
+ * Version     : 2.2.0
  * License     : MIT
  */
 
@@ -32,12 +32,12 @@
 
 // #include "fox.h"    // Fallout X
 
-#define CFALLSAVE_VERSION           210
+#define CFALLSAVE_VERSION           220
 #define CFALLSAVE_VERSION_MAJOR     2
-#define CFALLSAVE_VERSION_MINOR     1
+#define CFALLSAVE_VERSION_MINOR     2
 #define CFALLSAVE_VERSION_PATCH     0
 
-#define CFALLSAVE_FRIENDLY_VERSION  "2.1.0"
+#define CFALLSAVE_FRIENDLY_VERSION  "2.2.0"
 
 /**
  * The minimum version represents the minimum interface
@@ -55,22 +55,9 @@
 
 #define CFALLSAVE_MIN_VERSION           200
 #define CFALLSAVE_MIN_VERSION_MAJOR     2
-#define CFALLSAVE_MIN_VERSION_MINOR     0
+#define CFALLSAVE_MIN_VERSION_MINOR     2
 #define CFALLSAVE_MIN_VERSION_PATCH     0
 
-#define CFALLSAVE_FRIENDLY_MIN_VERSION  "2.0.0"
-
-/**
- * These macros are considered deprecated starting with
- * version 2.1.0. Their values will correspond to the
- * new dedicated macros.
- * Please use CFALLSAVE_FRIENDLY_VERSION and
- * CFALLSAVE_FRIENDLY_MIN_VERSION instead.
- * They will be removed in the next major release
- * (If there is a next major release, LOL).
- */
-
-#define CFALLSAVE_VERSION_S     CFALLSAVE_FRIENDLY_VERSION
-#define CFALLSAVE_MIN_VERSION_S CFALLSAVE_FRIENDLY_MIN_VERSION
+#define CFALLSAVE_FRIENDLY_MIN_VERSION  "2.2.0"
 
 #endif  // !CFALLSAVE_API_H

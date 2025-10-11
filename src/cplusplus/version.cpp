@@ -12,7 +12,7 @@
  *
  * Author      : Luca Pollicino
  *               (https://github.com/reallukee)
- * Version     : 2.1.0
+ * Version     : 2.2.0
  * License     : MIT
  */
 
@@ -94,7 +94,7 @@ namespace cfallsavepp
             return false;
         }
 
-        printf("%s", CFALLSAVEPP_MIN_VERSION_S);
+        printf("%s", CFALLSAVEPP_FRIENDLY_MIN_VERSION);
 
         if (minor == CFALLSAVEPP_MIN_VERSION_MINOR && patch < CFALLSAVEPP_MIN_VERSION_PATCH)
         {

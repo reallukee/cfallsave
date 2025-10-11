@@ -12,7 +12,7 @@
  *
  * Author      : Luca Pollicino
  *               (https://github.com/reallukee)
- * Version     : 2.0.0
+ * Version     : 2.2.0
  * License     : MIT
  */
 
@@ -248,11 +248,5 @@ CFALLSAVE_API bool printFO1SaveProps(
 CFALLSAVE_API bool printFO1SavePropAddresses(
     FO1SAVE* save
 );
-
-
-
-/// @brief  Create a Fallout 1 sample save.
-/// @return True if is successful, otherwise false.
-CFALLSAVE_API bool createFO1SampleSave();
 
 #endif  // !CFALLSAVE_FO1_H

@@ -1,15 +1,5 @@
 #include "commands.hpp"
 
-void createSampleSaves()
-{
-    FO1Save::createSampleSave();
-    FO2Save::createSampleSave();
-    FOTBOSSave::createSampleSave();
-    FO3Save::createSampleSave();
-    FONVSave::createSampleSave();
-    FO4Save::createSampleSave();
-}
-
 bool readFO1(char* saveName)
 {
     if (!isFO1Save(saveName))

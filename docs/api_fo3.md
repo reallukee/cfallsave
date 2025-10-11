@@ -51,7 +51,6 @@
 * [`printFO3SaveProps`](#printfo3saveprops)
 * [`printFO3SavePropAddresses`](#printfo3savepropaddresses)
 * [`printFO3SaveSnapshot`](#printfo3savesnapshot)
-* [`createFO3SampleSave`](#createfo3samplesave)
 
 
 
@@ -354,16 +353,6 @@ FO3SAVE* save = readFO3Save("fo3.fos");
 
 printFO3SaveSnapshot(save);
 ```
-
-
-
-## `createFO3SampleSave`
-
-`void`
-
-**Returns**
-
-`bool`
 
 
 

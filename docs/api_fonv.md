@@ -51,7 +51,6 @@
 * [`printFONVSaveProps`](#printfonvsaveprops)
 * [`printFONVSavePropAddresses`](#printfonvsavepropaddresses)
 * [`printFONVSaveSnapshot`](#printfonvsavesnapshot)
-* [`createFONVSampleSave`](#createfonvsamplesave)
 
 
 
@@ -354,16 +353,6 @@ FONVSAVE* save = readFONVSave("fonv.fos");
 
 printFONVSaveSnapshot(save);
 ```
-
-
-
-## `createFONVSampleSave`
-
-`void`
-
-**Returns**
-
-`bool`
 
 
 

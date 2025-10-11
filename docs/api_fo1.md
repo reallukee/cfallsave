@@ -50,7 +50,6 @@
 * [`printFO1Save`](#printfo1save)
 * [`printFO1SaveProps`](#printfo1saveprops)
 * [`printFO1SavePropAddresses`](#printfo1savepropaddresses)
-* [`createFO1SampleSave`](#createfo1samplesave)
 
 
 
@@ -333,16 +332,6 @@ FO1SAVE* save = readFO1Save("fo1.dat");
 
 printFO1SavePropAddresses(save);
 ```
-
-
-
-## `createFO1SampleSave`
-
-`void`
-
-**Returns**
-
-`bool`
 
 
 

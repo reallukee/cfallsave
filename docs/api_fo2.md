@@ -50,7 +50,6 @@
 * [`printFO2Save`](#printfo2save)
 * [`printFO2SaveProps`](#printfo2saveprops)
 * [`printFO2SavePropAddresses`](#printfo2savepropaddresses)
-* [`createFO2SampleSave`](#createfo2samplesave)
 
 
 
@@ -333,16 +332,6 @@ FO2SAVE* save = readFO2Save("fo2.dat");
 
 printFO2SavePropAddresses(save);
 ```
-
-
-
-## `createFO2SampleSave`
-
-`void`
-
-**Returns**
-
-`bool`
 
 
 

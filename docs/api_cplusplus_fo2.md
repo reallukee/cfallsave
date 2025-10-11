@@ -80,7 +80,6 @@
 - [`print`](#fo2saveprint)
 - [`printProps`](#fo2saveprintprops)
 - [`printPropAddresses`](#fo2saveprintpropaddresses)
-- [`createSampleSave` (*static*)](#fo2savecreatesamplesave-static)
 
 ### Properties
 
@@ -324,18 +323,6 @@ FO2Save* savepp = new FO2Save("fo2.dat");
 
 savepp->printPropAddresses();
 ```
-
-
-
-## `FO2Save::createSampleSave` (*static*)
-
-**Params**
-
-* `void`
-
-**Returns**
-
-`bool`
 
 
 

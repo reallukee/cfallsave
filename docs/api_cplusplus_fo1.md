@@ -80,7 +80,6 @@
 - [`print`](#fo1saveprint)
 - [`printProps`](#fo1saveprintprops)
 - [`printPropAddresses`](#fo1saveprintpropaddresses)
-- [`createSampleSave` (*static*)](#fo1savecreatesamplesave-static)
 
 ### Properties
 
@@ -324,18 +323,6 @@ FO1Save* savepp = new FO1Save("fo1.dat");
 
 savepp->printPropAddresses();
 ```
-
-
-
-## `FO1Save::createSampleSave` (*static*)
-
-**Params**
-
-* `void`
-
-**Returns**
-
-`bool`
 
 
 

@@ -89,7 +89,6 @@
 - [`printProps`](#fo3saveprintprops)
 - [`printPropAddresses`](#fo3saveprintpropaddresses)
 - [`printSnapshot`](#fo3saveprintsnapshot)
-- [`createSampleSave` (*static*)](#fo3savecreatesamplesave-static)
 
 ### Properties
 
@@ -370,18 +369,6 @@ FO3Save* savepp = new FO3Save("fo3.fos");
 
 savepp->printSnapshot();
 ```
-
-
-
-## `FO3Save::createSampleSave` (*static*)
-
-**Params**
-
-* `void`
-
-**Returns**
-
-`bool`
 
 
 

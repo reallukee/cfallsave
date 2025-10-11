@@ -82,7 +82,6 @@
 - [`print`](#fotbossaveprint)
 - [`printProps`](#fotbossaveprintprops)
 - [`printPropAddresses`](#fotbossaveprintpropaddresses)
-- [`createSampleSave` (*static*)](#fotbossavecreatesamplesave-static)
 
 ### Properties
 
@@ -330,18 +329,6 @@ FOTBOSSave* savepp = new FOTBOSSave("fotbos.sav");
 
 savepp->printPropAddresses();
 ```
-
-
-
-## `FOTBOSSave::createSampleSave` (*static*)
-
-**Params**
-
-* `void`
-
-**Returns**
-
-`bool`
 
 
 

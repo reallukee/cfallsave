@@ -89,7 +89,6 @@
 - [`printProps`](#fonvsaveprintprops)
 - [`printPropAddresses`](#fonvsaveprintpropaddresses)
 - [`printSnapshot`](#fonvsaveprintsnapshot)
-- [`createSampleSave` (*static*)](#fonvsavecreatesamplesave-static)
 
 ### Properties
 
@@ -370,18 +369,6 @@ FONVSave* savepp = new FONVSave("fonv.fos");
 
 savepp->printSnapshot();
 ```
-
-
-
-## `FONVSave::createSampleSave` (*static*)
-
-**Params**
-
-* `void`
-
-**Returns**
-
-`bool`
 
 
 

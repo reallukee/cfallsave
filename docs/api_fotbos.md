@@ -50,7 +50,6 @@
 * [`printFOTBOSSave`](#printfotbossave)
 * [`printFOTBOSSaveProps`](#printfotbossaveprops)
 * [`printFOTBOSSavePropAddresses`](#printfotbossavepropaddresses)
-* [`createFOTBOSSampleSave`](#createfotbossamplesave)
 
 
 
@@ -333,16 +332,6 @@ FOTBOSSAVE* save = readFOTBOSSave("fotbos.sav");
 
 printFOTBOSSavePropAddresses(save);
 ```
-
-
-
-## `createFOTBOSSampleSave`
-
-`void`
-
-**Returns**
-
-`bool`
 
 
 

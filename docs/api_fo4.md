@@ -51,7 +51,6 @@
 * [`printFO4SaveProps`](#printfo4saveprops)
 * [`printFO4SavePropAddresses`](#printfo4savepropaddresses)
 * [`printFO4SaveSnapshot`](#printfo4savesnapshot)
-* [`createFO4SampleSave`](#createfo4samplesave)
 
 
 
@@ -354,16 +353,6 @@ FO4SAVE* save = readFO4Save("fo4.fos");
 
 printFO4SaveSnapshot(save);
 ```
-
-
-
-## `createFO4SampleSave`
-
-`void`
-
-**Returns**
-
-`bool`
 
 
 

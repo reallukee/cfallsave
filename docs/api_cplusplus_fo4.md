@@ -92,7 +92,6 @@
 - [`printProps`](#fo4saveprintprops)
 - [`printPropAddresses`](#fo4saveprintpropaddresses)
 - [`printSnapshot`](#fo4saveprintsnapshot)
-- [`createSampleSave` (*static*)](#fo4savecreatesamplesave-static)
 
 ### Properties
 
@@ -379,18 +378,6 @@ FO4Save* savepp = new FO4Save("fo4.fos");
 
 savepp->printSnapshot();
 ```
-
-
-
-## `FO4Save::createSampleSave` (*static*)
-
-**Params**
-
-* `void`
-
-**Returns**
-
-`bool`
 
 
 

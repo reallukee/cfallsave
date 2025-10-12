@@ -1,6 +1,6 @@
 <div align="center">
 
-![ToDo Logo 192x192](./assets/todo/todo_logo_192x192.gif)
+![ToDo Logo 192x192](./assets/repo/todo/todo_logo_192x192.gif)
 
 # ToDo
 

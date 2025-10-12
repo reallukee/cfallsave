@@ -1,6 +1,6 @@
 <div align="center">
 
-![Examples Logo 192x192](./assets/examples/examples_logo_192x192.gif)
+![Examples Logo 192x192](./assets/repo/examples/examples_logo_192x192.gif)
 
 # Examples
 

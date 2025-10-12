@@ -1,6 +1,6 @@
 <div align="center">
 
-![Documentation Logo 192x192](./assets/docs/docs_logo_192x192.gif)
+![Documentation Logo 192x192](./assets/repo/docs/docs_logo_192x192.gif)
 
 # Documentation
 

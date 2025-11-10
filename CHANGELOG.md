@@ -12,10 +12,36 @@ CFallSave Changelog
 
 # Summary
 
+* [`v2.2.0`](#v220-20251110)
 * [`v2.1.0`](#v210-20250716)
 * [`v2.0.0`](#v200-20250714)
 * [`v2.0.0-RC2`](#v200-rc2-20250620)
 * [`v2.0.0-RC1`](#v200-rc1-20250530)
+
+
+
+# [`v2.2.0` `(2025/11/10)`](https://github.com/reallukee/cfallsave/releases/tag/v2.2.0)
+
+## Added
+
+*None*
+
+## Changed
+
+*None*
+
+## Removed
+
+* *Fallout 1* sample save function
+* *Fallout 2* sample save function
+* *Fallout 3* sample save function
+* *Fallout: New Vegas* sample save function
+* *Fallout 4* sample save function
+* *Fallout Tactics: Brotherhood of Steel* sample save function
+* `CFALLSAVE_VERSION_S`
+* `CFALLSAVE_MIN_VERSION_S`
+* `CFALLSAVEPP_VERSION_S`
+* `CFALLSAVEPP_MIN_VERSION_S`
 
 
 
@@ -64,12 +90,12 @@ CFallSave Changelog
 
 ## Changed
 
-* `malloc` -> `calloc`
+* Memory allocation
 * Makefiles
 
 ## Removed
 
-*Nothing*
+*None*
 
 
 
@@ -86,7 +112,7 @@ CFallSave Changelog
 
 ## Removed
 
-*Nothing*
+*None*
 
 
 
@@ -98,8 +124,8 @@ CFallSave Changelog
 
 ## Changed
 
-*Nothing*
+*None*
 
 ## Removed
 
-*Nothing*
+*None*

@@ -1,14 +1,15 @@
 <Solution>
   <Configurations>
+    <Platform Name="ARM64" />
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
   <Folder Name="/test/">
-    <Project Path="test/cfallsave++.test/cfallsave++.test.vcxproj" />
-    <Project Path="test/cfallsave.test/cfallsave.test.vcxproj" />
+    <Project Path="test/cfallsave++.test/cfallsave++.test.vcxproj" Id="8dd0e221-1c79-4572-9173-93a41f52c923" />
+    <Project Path="test/cfallsave.test/cfallsave.test.vcxproj" Id="cef70c81-3150-46d2-973a-1b63a8cf8034" />
   </Folder>
-  <Project Path="cfallsave++.dev/cfallsave++.dev.vcxproj" />
-  <Project Path="cfallsave++/cfallsave++.vcxproj" />
-  <Project Path="cfallsave.dev/cfallsave.dev.vcxproj" />
-  <Project Path="cfallsave/cfallsave.vcxproj" />
+  <Project Path="cfallsave++.dev/cfallsave++.dev.vcxproj" Id="33f3a571-35d4-4724-a5db-e239e67810fe" />
+  <Project Path="cfallsave++/cfallsave++.vcxproj" Id="0d4005c1-5709-429c-8bcf-095b402ec591" />
+  <Project Path="cfallsave.dev/cfallsave.dev.vcxproj" Id="c3b09f29-dda2-4e0e-bc41-3e8d76f31738" />
+  <Project Path="cfallsave/cfallsave.vcxproj" Id="226aa5b9-ad74-490b-ad98-2a4e53ff5d38" />
 </Solution>

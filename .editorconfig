@@ -1,13 +1,11 @@
+# All files
 [*]
 end_of_line = crlf
 indent_style = space
 indent_size = 4
 trim_trailing_whitespace = true
 
-#
 # Repository
-#
-
 [*.md]
 indent_size = 2
 
@@ -17,20 +15,14 @@ indent_size = 2
 [*.yml]
 indent_size = 2
 
-#
 # C/C++
-#
-
 [*.makefile]
 indent_style = tab
 
 [makefile]
 indent_style = tab
 
-#
 # Visual Studio
-#
-
 [*.sln]
 indent_style = tab
 
@@ -52,9 +44,6 @@ trim_trailing_whitespace = false
 [resource.hxx]
 trim_trailing_whitespace = false
 
-#
 # Scripts
-#
-
 [*.sh]
 end_of_line = lf

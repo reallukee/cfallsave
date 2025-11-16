@@ -1,6 +1,11 @@
+# All files
 * text=auto
 * eol=crlf
 
+# Shell files MUST USE LF format!
+*.sh text eol=lf
+
+# Scripts shouldn't be counted in the code base's statistics
 *.sh linguist-vendored=true
 *.cmd linguist-vendored=true
 *.ps1 linguist-vendored=true

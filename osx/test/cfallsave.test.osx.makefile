@@ -1,11 +1,17 @@
+# --------------------
+# CFallSave Builder v3
+# --------------------
+#
+# /!\ MACOS ONLY /!\
+
 TARGET         = cfallsave.test
-TARGET_EXT     = .bin
+TARGET_EXT     = .out
 LIB_TARGET     = cfallsave
 LIB_TARGET_EXT = .dylib
 
 CC      = clang
 CFLAGS  = -Wall -Wextra -fPIC
-LDFLAGS = -L../bin -l$(LIB_TARGET) -Wl,-rpath,@executable_path
+LDFLAGS = -L../bin/$(ARCH) -l$(LIB_TARGET) -Wl,-rpath,@executable_path
 
 C_SOURCE_EXT = .c
 C_HEADER_EXT = .h
@@ -24,6 +30,22 @@ ALL_HEADERS = $(notdir $(wildcard $(SRC_DIR)/*$(C_HEADER_EXT)))
 SOURCES = $(filter-out $(EXCLUDED_SOURCES), $(ALL_SOURCES))
 HEADERS = $(filter-out $(EXCLUDED_HEADERS), $(ALL_HEADERS))
 
+ARCH ?= $(shell uname -m)
+
+#ifeq ($(filter $(ARCH),x86_64),$(ARCH))
+#    CFLAGS  += -arch x86_64
+#    LDFLAGS += -arch x86_64
+#    OBJ_DIR := $(OBJ_DIR)/x86_64
+#    BIN_DIR := $(BIN_DIR)/x86_64
+#endif
+
+ifeq ($(filter $(ARCH),arm64),$(ARCH))
+    CFLAGS  += -arch arm64
+    LDFLAGS += -arch arm64
+    OBJ_DIR := $(OBJ_DIR)/arm64
+    BIN_DIR := $(BIN_DIR)/arm64
+endif
+
 OBJECTS = $(patsubst %$(C_SOURCE_EXT), $(OBJ_DIR)/%$(C_OBJECT_EXT), $(SOURCES))
 
 .PHONY: help build rebuild clean full-clean default
@@ -31,16 +53,12 @@ OBJECTS = $(patsubst %$(C_SOURCE_EXT), $(OBJ_DIR)/%$(C_OBJECT_EXT), $(SOURCES))
 default: build
 
 help:
-	@echo "help       : No description needed"
-	@echo "build      : Build project"
-	@echo "rebuild    : Rebuild project"
-	@echo "clean      : Clean output"
-	@echo "full-clean : Clean ALL output"
+	@cat ../../make/docs/help.txt
 
 $(OBJ_DIR)/%$(C_OBJECT_EXT): $(SRC_DIR)/%$(C_SOURCE_EXT) | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(BIN_DIR)/$(TARGET)$(TARGET_EXT): $(OBJECTS) ../bin/lib$(LIB_TARGET)$(LIB_TARGET_EXT) | $(BIN_DIR)
+$(BIN_DIR)/$(TARGET)$(TARGET_EXT): $(OBJECTS) ../bin/$(ARCH)/lib$(LIB_TARGET)$(LIB_TARGET_EXT) | $(BIN_DIR)
 	$(CC) $(OBJECTS) -o $@ $(LDFLAGS)
 
 $(OBJ_DIR) $(BIN_DIR):

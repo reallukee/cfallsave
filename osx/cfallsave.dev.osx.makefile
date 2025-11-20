@@ -1,7 +1,13 @@
+# --------------------
+# CFallSave Builder v3
+# --------------------
+#
+# /!\ MACOS ONLY /!\
+
 TARGET             = cfallsave
 TARGET_VERSION     = 2
 TARGET_MIN_VERSION = 2
-TARGET_EXT         = .bin
+TARGET_EXT         = .out
 
 CC      = clang
 CFLAGS  = -Wall -Wextra
@@ -15,14 +21,30 @@ SRC_DIR = ../src
 OBJ_DIR = obj/$(TARGET).dev
 BIN_DIR = bin
 
-EXCLUDED_HEADERS = fox.h
-EXCLUDED_SOURCES = fox.c
+EXCLUDED_HEADERS = #fox.h
+EXCLUDED_SOURCES = #fox.c
 
 ALL_SOURCES = $(notdir $(wildcard $(SRC_DIR)/*$(C_SOURCE_EXT)))
 ALL_HEADERS = $(notdir $(wildcard $(SRC_DIR)/*$(C_HEADER_EXT)))
 
 SOURCES = $(filter-out $(EXCLUDED_SOURCES), $(ALL_SOURCES))
 HEADERS = $(filter-out $(EXCLUDED_HEADERS), $(ALL_HEADERS))
+
+ARCH ?= $(shell uname -m)
+
+#ifeq ($(filter $(ARCH),x86_64),$(ARCH))
+#    CFLAGS  += -arch x86_64
+#    LDFLAGS += -arch x86_64
+#    OBJ_DIR := $(OBJ_DIR)/x86_64
+#    BIN_DIR := $(BIN_DIR)/x86_64
+#endif
+
+ifeq ($(filter $(ARCH),arm64),$(ARCH))
+    CFLAGS  += -arch arm64
+    LDFLAGS += -arch arm64
+    OBJ_DIR := $(OBJ_DIR)/arm64
+    BIN_DIR := $(BIN_DIR)/arm64
+endif
 
 OBJECTS = $(patsubst %$(C_SOURCE_EXT), $(OBJ_DIR)/%$(C_OBJECT_EXT), $(SOURCES))
 
@@ -31,11 +53,7 @@ OBJECTS = $(patsubst %$(C_SOURCE_EXT), $(OBJ_DIR)/%$(C_OBJECT_EXT), $(SOURCES))
 default: build
 
 help:
-	@echo "help       : No description needed"
-	@echo "build      : Build project"
-	@echo "rebuild    : Rebuild project"
-	@echo "clean      : Clean output"
-	@echo "full-clean : Clean ALL output"
+	@cat ../make/docs/help.txt
 
 $(OBJ_DIR)/%$(C_OBJECT_EXT): $(SRC_DIR)/%$(C_SOURCE_EXT) | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -c $< -o $@

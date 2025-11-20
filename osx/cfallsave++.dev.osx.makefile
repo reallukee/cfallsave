@@ -1,7 +1,13 @@
+# --------------------
+# CFallSave Builder v3
+# --------------------
+#
+# /!\ MACOS ONLY /!\
+
 TARGET             = cfallsave++
 TARGET_VERSION     = 2
 TARGET_MIN_VERSION = 2
-TARGET_EXT         = .bin
+TARGET_EXT         = .out
 
 CXX      = clang++
 CXXFLAGS = -Wall -Wextra
@@ -20,10 +26,10 @@ CPP_SRC_DIR = $(SRC_DIR)/cplusplus
 CPP_OBJ_DIR = $(OBJ_DIR)/cplusplus
 BIN_DIR     = bin
 
-EXCLUDED_HEADERS     = cfallsave.h fox.h
-EXCLUDED_SOURCES     = main.c fox.c
-EXCLUDED_CPP_HEADERS = fox.hpp
-EXCLUDED_CPP_SOURCES = fox.cpp
+EXCLUDED_HEADERS     = cfallsave.h #fox.h
+EXCLUDED_SOURCES     = main.c      #fox.c
+EXCLUDED_CPP_HEADERS = #fox.hpp
+EXCLUDED_CPP_SOURCES = #fox.cpp
 
 ALL_SOURCES     = $(notdir $(wildcard $(SRC_DIR)/*${C_SOURCE_EXT}))
 ALL_HEADERS     = $(notdir $(wildcard $(SRC_DIR)/*${C_HEADER_EXT}))
@@ -35,6 +41,22 @@ HEADERS     = $(filter-out $(EXCLUDED_HEADERS), $(ALL_HEADERS))
 CPP_SOURCES = $(filter-out $(EXCLUDED_CPP_SOURCES), $(ALL_CPP_SOURCES))
 CPP_HEADERS = $(filter-out $(EXCLUDED_CPP_HEADERS), $(ALL_CPP_HEADERS))
 
+ARCH ?= $(shell uname -m)
+
+#ifeq ($(filter $(ARCH),x86_64),$(ARCH))
+#    CFLAGS  += -arch x86_64
+#    LDFLAGS += -arch x86_64
+#    OBJ_DIR := $(OBJ_DIR)/x86_64
+#    BIN_DIR := $(BIN_DIR)/x86_64
+#endif
+
+ifeq ($(filter $(ARCH),arm64),$(ARCH))
+    CFLAGS  += -arch arm64
+    LDFLAGS += -arch arm64
+    OBJ_DIR := $(OBJ_DIR)/arm64
+    BIN_DIR := $(BIN_DIR)/arm64
+endif
+
 OBJECTS = $(patsubst %$(C_SOURCE_EXT), $(OBJ_DIR)/%$(C_OBJECT_EXT), $(SOURCES)) \
 	$(patsubst %$(CPP_SOURCE_EXT), $(CPP_OBJ_DIR)/%$(CPP_OBJECT_EXT), $(CPP_SOURCES))
 
@@ -43,11 +65,7 @@ OBJECTS = $(patsubst %$(C_SOURCE_EXT), $(OBJ_DIR)/%$(C_OBJECT_EXT), $(SOURCES)) 
 default: build
 
 help:
-	@echo "help       : No description needed"
-	@echo "build      : Build project"
-	@echo "rebuild    : Rebuild project"
-	@echo "clean      : Clean output"
-	@echo "full-clean : Clean ALL output"
+	@cat ../make/docs/help.txt
 
 $(OBJ_DIR)/%$(C_OBJECT_EXT): $(SRC_DIR)/%$(C_SOURCE_EXT) | $(OBJ_DIR)
 	$(CXX) -x c++ $(CXXFLAGS) -c $< -o $@

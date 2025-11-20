@@ -1,10 +1,10 @@
 // Compile and execute using:
 //
-//   gcc reader.c ../src/reader.c -o reader.bin && ./reader.bin
+//   gcc reader.c ../src/reader.c -o reader.out && ./reader.out
 
 #include "../src/reader.h"
 
-int main(int argc, char* argv[])
+int main(int argc, const char* argv[])
 {
     FILE* file = fopen("wr.dat", "rb+");
 

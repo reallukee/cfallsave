@@ -1,6 +1,6 @@
 // Compile and execute using:
 //
-//   gcc fotbos.c ../src/fotbos.c -o fotbos.bin && ./fotbos.bin
+//   gcc fotbos.c ../src/fotbos.c -o fotbos.out && ./fotbos.out
 
 #include "../src/fotbos.h"
 

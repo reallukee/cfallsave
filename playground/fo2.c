@@ -1,6 +1,6 @@
 // Compile and execute using:
 //
-//   gcc fo2.c ../src/fo2.c -o fo2.bin && ./fo2.bin
+//   gcc fo2.c ../src/fo2.c -o fo2.out && ./fo2.out
 
 #include "../src/fo2.h"
 

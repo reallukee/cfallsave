@@ -1,6 +1,6 @@
 // Compile and execute using:
 //
-//   gcc fonv.c ../src/fonv.c -o fonv.bin && ./fonv.bin
+//   gcc fonv.c ../src/fonv.c -o fonv.out && ./fonv.out
 
 #include "../src/fonv.h"
 

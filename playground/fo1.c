@@ -1,6 +1,6 @@
 // Compile and execute using:
 //
-//   gcc fo1.c ../src/fo1.c -o fo1.bin && ./fo1.bin
+//   gcc fo1.c ../src/fo1.c -o fo1.out && ./fo1.out
 
 #include "../src/fo1.h"
 

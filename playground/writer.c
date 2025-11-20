@@ -1,10 +1,10 @@
 // Compile and execute using:
 //
-//   gcc writer.c ../src/writer.c -o writer.bin && ./writer.bin
+//   gcc writer.c ../src/writer.c -o writer.out && ./writer.out
 
 #include "../src/writer.h"
 
-int main(int argc, char* argv[])
+int main(int argc, const char* argv[])
 {
     FILE* file = fopen("wr.dat", "wb+");
 

@@ -2,7 +2,7 @@
 
 #include "commands.hpp"
 
-void commandLineArgs(int argc, char* argv[])
+void commandLineArgs(int argc, const char* argv[])
 {
     if (argc == 1)
     {

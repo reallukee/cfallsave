@@ -1,6 +1,6 @@
 #include "commands.hpp"
 
-bool readFO1(char* saveName)
+bool readFO1(const char* saveName)
 {
     if (!isFO1Save(saveName))
     {
@@ -21,7 +21,7 @@ bool readFO1(char* saveName)
     return true;
 }
 
-bool readFO2(char* saveName)
+bool readFO2(const char* saveName)
 {
     if (!isFO2Save(saveName))
     {
@@ -42,7 +42,7 @@ bool readFO2(char* saveName)
     return true;
 }
 
-bool readFOTBOS(char* saveName)
+bool readFOTBOS(const char* saveName)
 {
     if (!isFOTBOSSave(saveName))
     {
@@ -63,7 +63,7 @@ bool readFOTBOS(char* saveName)
     return true;
 }
 
-bool readFO3(char* saveName)
+bool readFO3(const char* saveName)
 {
     if (!isFO3Save(saveName))
     {
@@ -84,7 +84,7 @@ bool readFO3(char* saveName)
     return true;
 }
 
-bool readFONV(char* saveName)
+bool readFONV(const char* saveName)
 {
     if (!isFONVSave(saveName))
     {
@@ -105,7 +105,7 @@ bool readFONV(char* saveName)
     return true;
 }
 
-bool readFO4(char* saveName)
+bool readFO4(const char* saveName)
 {
     if (!isFO4Save(saveName))
     {

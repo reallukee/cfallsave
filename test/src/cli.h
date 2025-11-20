@@ -3,7 +3,7 @@
 
 #include "header.h"
 
-void commandLineArgs(int argc, char* argv[]);
+void commandLineArgs(int argc, const char* argv[]);
 void about();
 void help();
 

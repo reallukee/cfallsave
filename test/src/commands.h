@@ -3,11 +3,11 @@
 
 #include "header.h"
 
-bool readFO1(char* saveName);
-bool readFO2(char* saveName);
-bool readFOTBOS(char* saveName);
-bool readFO3(char* saveName);
-bool readFONV(char* saveName);
-bool readFO4(char* saveName);
+bool readFO1(const char* saveName);
+bool readFO2(const char* saveName);
+bool readFOTBOS(const char* saveName);
+bool readFO3(const char* saveName);
+bool readFONV(const char* saveName);
+bool readFO4(const char* saveName);
 
 #endif // !COMMANDS_H

@@ -5,25 +5,25 @@ ipch/
 *.vcxproj.user
 *.aps
 
-# Binary (Linux)
-*.bin
+# Output (Linux)
+*.o
+*.out
 *.so
 *.a
-*.o
 
-# Binary (Windows)
+# Output (Windows)
+*.obj
 *.exe
 *.dll
 *.lib
-*.obj
 *.pdb
 *.exp
 
-# Binary (macOS)
-*.bin
+# Output (macOS)
+*.o
+*.out
 *.dylib
 *.a
-*.o
 
 # Compilation
 [Bb]in/

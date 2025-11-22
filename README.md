@@ -36,7 +36,7 @@
 ```c
 #include <cfallsave.h>
 
-int main(int argc, char* argv[])
+int main(int argc, const char* argv[])
 {
     char* saveName = "fo4.fos";
 
@@ -67,7 +67,7 @@ int main(int argc, char* argv[])
 
 using namespace cfallsavepp;
 
-int main(int argc, char* argv[])
+int main(int argc, const char* argv[])
 {
     string saveName = "fo4.fos";
 
@@ -147,9 +147,11 @@ Snapshot Height    : 0000000000000127 007F
 * `assets` Project assets
 * `docs` Documentation
 * `examples` Examples
+* `make` Make
 * `osx` macOS build files
   * `test` macOS test build files
 * `playground` Test files
+* `scripts` Scripts
 * `src` C sources
   * `cplusplus` C++ sources
 * `test` C test sources
@@ -193,9 +195,9 @@ Snapshot Height    : 0000000000000127 007F
 ### Windows Requirements
 
 * *git*
-* [*Visual Studio 2022*](https://aka.ms/vs/17/release/vs_Community.exe)
+* [*Visual Studio 2026*](https://aka.ms/vs/18/release/vs_Community.exe)
     * *Desktop development with C++*
-* [*Build Tools for Visual Studio 2022*](https://aka.ms/vs/17/release/vs_BuildTools.exe)
+* [*Build Tools for Visual Studio 2026*](https://aka.ms/vs/18/release/vs_BuildTools.exe)
     * *Desktop development with C++*
 
 
@@ -215,7 +217,7 @@ Snapshot Height    : 0000000000000127 007F
 
 
 
-### Using `git`
+### Using git
 
 ```terminal
 git clone https://github.com/reallukee/cfallsave.git
@@ -223,7 +225,7 @@ git clone https://github.com/reallukee/cfallsave.git
 
 
 
-### Using `GitHub`
+### Using GitHub
 
 > [Download from GitHub](https://github.com/reallukee/cfallsave/archive/refs/heads/main.zip)
 
@@ -231,13 +233,13 @@ git clone https://github.com/reallukee/cfallsave.git
 
 ## 3. Building
 
-* [Linux Building](#linux-building)
-* [Windows Building](#windows-building)
-* [macOS Building](#macos-building)
+* [Linux building](#linux-building)
+* [Windows building](#windows-building)
+* [macOS building](#macos-building)
 
 
 
-### Linux Building
+### Linux building
 
 1. Enter repository
 
@@ -263,16 +265,16 @@ git clone https://github.com/reallukee/cfallsave.git
 
 
 
-### Windows Building
+### Windows building
 
 1. Setup environment
 
     ```cmd
-    REM Visual Studio 2022
-    CALL "%ProgramFiles%\Microsoft Visual Studio\2022\Community\Common7\Tools\vsdevcmd"
+    REM Visual Studio 2026
+    CALL "%ProgramFiles%\Microsoft Visual Studio\18\Community\Common7\Tools\vsdevcmd"
 
-    REM Build Tools for Visual Studio 2022
-    CALL "%ProgramFiles% (x86)\Microsoft Visual Studio\2022\BuildTools\Common7\Tools\vsdevcmd"
+    REM Build Tools for Visual Studio 2026
+    CALL "%ProgramFiles% (x86)\Microsoft Visual Studio\18\BuildTools\Common7\Tools\vsdevcmd"
     ```
 
 2. Enter repository
@@ -288,11 +290,15 @@ git clone https://github.com/reallukee/cfallsave.git
     msbuild cfallsave.sln /p:Configuration=Release /p:Platform=x86 /t:cfallsave
     REM CFallSave x64
     msbuild cfallsave.sln /p:Configuration=Release /p:Platform=x64 /t:cfallsave
+    REM CFallSave arm64
+    msbuild cfallsave.sln /p:Configuration=Release /p:Platform=arm64 /t:cfallsave
 
     REM CFallSave++ x86
     msbuild cfallsave.sln /p:Configuration=Release /p:Platform=x86 /t:cfallsave++
     REM CFallSave++ x64
     msbuild cfallsave.sln /p:Configuration=Release /p:Platform=x64 /t:cfallsave++
+    REM CFallSave++ arm64
+    msbuild cfallsave.sln /p:Configuration=Release /p:Platform=arm64 /t:cfallsave++
     ```
 
 4. View output
@@ -303,7 +309,7 @@ git clone https://github.com/reallukee/cfallsave.git
 
 
 
-### macOS Building
+### macOS building
 
 1. Enter repository
 

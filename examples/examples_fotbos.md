@@ -26,7 +26,7 @@
 #include <stdio.h>
 #include <cfallsave.h>
 
-int main(int argc, char* argv[])
+int main(int argc, const char* argv[])
 {
     char* saveName = "fotbos.sav";
 
@@ -69,7 +69,7 @@ int main(int argc, char* argv[])
 #include <stdio.h>
 #include <cfallsave.h>
 
-int main(int argc, char* argv[])
+int main(int argc, const char* argv[])
 {
     char* saveName = "fotbos.sav";
 
@@ -124,7 +124,7 @@ int main(int argc, char* argv[])
 #include <stdio.h>
 #include <cfallsave.h>
 
-int main(int argc, char* argv[])
+int main(int argc, const char* argv[])
 {
     char* saveName = "fotbos.sav";
 

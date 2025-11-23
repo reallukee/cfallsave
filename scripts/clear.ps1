@@ -4,8 +4,8 @@ $folders = @(
     "windows\.vs",
     "windows\bin",
     "windows\obj",
-    "osx\bin",
-    "osx\obj"
+    "macos\bin",
+    "macos\obj"
 )
 
 foreach ($folder in $folders) {

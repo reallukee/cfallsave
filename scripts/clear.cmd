@@ -2,7 +2,7 @@
 
 setlocal enabledelayedexpansion
 
-set folders=bin obj windows\.vs windows\bin windows\obj osx\bin osx\obj
+set folders=bin obj windows\.vs windows\bin windows\obj macos\bin macos\obj
 
 for %%f in (%folders%) do (
     if exist "..\%%f\" (

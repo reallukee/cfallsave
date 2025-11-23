@@ -6,8 +6,8 @@ folders=(
     "windows/.vs"
     "windows/bin"
     "windows/obj"
-    "osx/bin"
-    "osx/obj"
+    "macos/bin"
+    "macos/obj"
 )
 
 for folder in "${folders[@]}"; do

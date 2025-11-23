@@ -148,7 +148,7 @@ Snapshot Height    : 0000000000000127 007F
 * `docs` Documentation
 * `examples` Examples
 * `make` Make
-* `osx` macOS build files
+* `macos` macOS build files
   * `test` macOS test build files
 * `playground` Test files
 * `scripts` Scripts
@@ -314,17 +314,17 @@ git clone https://github.com/reallukee/cfallsave.git
 1. Enter repository
 
     ```bash
-    cd cfallsave/osx/
+    cd cfallsave/macos/
     ```
 
 2. Build using *make*
 
     ```bash
     # CFallSave
-    make -f cfallsave.osx.makefile build
+    make -f cfallsave.macos.makefile build
 
     # CFallSave++
-    make -f cfallsave++.osx.makefile build
+    make -f cfallsave++.macos.makefile build
     ```
 
 3. View output

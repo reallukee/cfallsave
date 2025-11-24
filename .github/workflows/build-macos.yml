@@ -1,0 +1,72 @@
+# macOS build workflow
+
+name: Build macOS
+
+on:
+  push:
+    branches:
+      - "**"
+    paths:
+      - "macos/**/*.makefile"
+      - "macos/**/makefile"
+      - "src/**/*.h"
+      - "src/**/*.c"
+      - "src/**/*.hpp"
+      - "src/**/*.cpp"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up environment
+        run: |
+          sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
+
+      - name: Building
+        run: |
+          cd macos/
+
+          make
+
+      - name: Builiding test
+        run: |
+          cd macos/test/
+
+          make
+
+      - name: Checking
+        run: |
+          cd macos/bin/
+
+          archs=(
+            "arm64"
+          )
+
+          outputs=(
+            "libcfallsave.dylib"
+            "cfallsave.out"
+            "cfallsave.test.out"
+            "libcfallsave++.dylib"
+            "cfallsave++.out"
+            "cfallsave++.test.out"
+          )
+
+          for arch in "${archs[@]}"; do
+            if [ ! -d "$arch" ]; then
+              echo "$arch build for macOS failed!"
+
+              exit 1
+            else
+              for output in "${outputs[@]}"; do
+                if [ ! -f "$output" ]; then
+                  echo "$output build for macOS failed!"
+
+                  exit 1
+                fi
+              done
+            fi
+          done

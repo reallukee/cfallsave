@@ -1,0 +1,74 @@
+# Linux build workflow
+
+name: Build Linux
+
+on:
+  push:
+    branches:
+      - "**"
+    paths:
+      - "test/*.makefile"
+      - "test/makefile"
+      - "*.makefile"
+      - "makefile"
+      - "src/**/*.h"
+      - "src/**/*.c"
+      - "src/**/*.hpp"
+      - "src/**/*.cpp"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up environment
+        run: |
+          sudo apt install gcc g++ gcc-i686-linux-gnu g++-i686-linux-gnu gcc-aarch64-linux-gnu g++-aarch64-linux-gnu make
+
+      - name: Building
+        run: |
+          make
+
+      - name: Builiding test
+        run: |
+          cd test/
+
+          make
+
+      - name: Checking
+        run: |
+          cd bin/
+
+          archs=(
+            "i686"
+            "x86_64"
+            "aarch64"
+          )
+
+          outputs=(
+            "libcfallsave.so"
+            "cfallsave.out"
+            "cfallsave.test.out"
+            "libcfallsave++.so"
+            "cfallsave++.out"
+            "cfallsave++.test.out"
+          )
+
+          for arch in "${archs[@]}"; do
+            if [ ! -d "$arch" ]; then
+              echo "$arch build for Linux failed!"
+
+              exit 1
+            else
+              for output in "${outputs[@]}"; do
+                if [ ! -f "$output" ]; then
+                  echo "$output build for Linux failed!"
+
+                  exit 1
+                fi
+              done
+            fi
+          done

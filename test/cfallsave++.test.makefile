@@ -1,11 +1,18 @@
+# --------------------
+# CFallSave Builder v3
+# --------------------
+#
+# /!\ LINUX ONLY /!\
+# For macOS makefiles check /macos/!
+
 TARGET         = cfallsave++.test
-TARGET_EXT     = .bin
+TARGET_EXT     = .out
 LIB_TARGET     = cfallsave++
 LIB_TARGET_EXT = .so
 
-CXX      = g++
+CXX      = g++  # Default Compiler
 CXXFLAGS = -Wall -Wextra -fPIC
-LDFLAGS  = -L../bin -l$(LIB_TARGET) -Wl,-rpath,.
+LDFLAGS  = -L../bin/$(ARCH) -l$(LIB_TARGET) -Wl,-rpath,.
 
 CPP_SOURCE_EXT = .cpp
 CPP_HEADER_EXT = .hpp
@@ -24,6 +31,26 @@ ALL_HEADERS = $(notdir $(wildcard $(SRC_DIR)/*$(CPP_HEADER_EXT)))
 SOURCES = $(filter-out $(EXCLUDED_SOURCES), $(ALL_SOURCES))
 HEADERS = $(filter-out $(EXCLUDED_HEADERS), $(ALL_HEADERS))
 
+ARCH ?= $(shell uname -m)
+
+ifeq ($(filter $(ARCH),i686),$(ARCH))
+    CC       = i686-linux-gnu-gcc
+    OBJ_DIR := $(OBJ_DIR)/i686
+    BIN_DIR := $(BIN_DIR)/i686
+endif
+
+ifeq ($(filter $(ARCH),x86_64),$(ARCH))
+    CC       =  x86_64-linux-gnu-gcc
+    OBJ_DIR := $(OBJ_DIR)/x86_64
+    BIN_DIR := $(BIN_DIR)/x86_64
+endif
+
+ifeq ($(filter $(ARCH),aarch64),$(ARCH))
+    CC       = aarch64-linux-gnu-gcc
+    OBJ_DIR := $(OBJ_DIR)/aarch64
+    BIN_DIR := $(BIN_DIR)/aarch64
+endif
+
 OBJECTS = $(patsubst %$(CPP_SOURCE_EXT), $(OBJ_DIR)/%$(CPP_OBJECT_EXT), $(SOURCES))
 
 .PHONY: help build rebuild clean full-clean default
@@ -31,16 +58,12 @@ OBJECTS = $(patsubst %$(CPP_SOURCE_EXT), $(OBJ_DIR)/%$(CPP_OBJECT_EXT), $(SOURCE
 default: build
 
 help:
-	@echo "help       : No description needed"
-	@echo "build      : Build project"
-	@echo "rebuild    : Rebuild project"
-	@echo "clean      : Clean output"
-	@echo "full-clean : Clean ALL output"
+	@cat ../make/docs/help.txt
 
 $(OBJ_DIR)/%$(CPP_OBJECT_EXT): $(SRC_DIR)/%$(CPP_SOURCE_EXT) | $(OBJ_DIR)
 	$(CXX) $(CXXFLAGS) -c $< -o $@
 
-$(BIN_DIR)/$(TARGET)$(TARGET_EXT): $(OBJECTS) ../bin/lib$(LIB_TARGET)$(LIB_TARGET_EXT) | $(BIN_DIR)
+$(BIN_DIR)/$(TARGET)$(TARGET_EXT): $(OBJECTS) ../bin/$(ARCH)/lib$(LIB_TARGET)$(LIB_TARGET_EXT) | $(BIN_DIR)
 	$(CXX) $(OBJECTS) -o $@ $(LDFLAGS)
 
 $(OBJ_DIR) $(BIN_DIR):

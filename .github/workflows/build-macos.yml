@@ -48,10 +48,8 @@ jobs:
 
           outputs=(
             "libcfallsave.dylib"
-            "cfallsave.out"
             "cfallsave.test.out"
             "libcfallsave++.dylib"
-            "cfallsave++.out"
             "cfallsave++.test.out"
           )
 
@@ -62,7 +60,7 @@ jobs:
               exit 1
             else
               for output in "${outputs[@]}"; do
-                if [ ! -f "$output" ]; then
+                if [ ! -f "$arch/$output" ]; then
                   echo "$output build for macOS failed!"
 
                   exit 1

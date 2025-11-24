@@ -12,17 +12,17 @@ help:
 	@cat ../../make/docs/help.txt
 
 clean:
-	$(MAKE) -f cfallsave.test.macos.makefile clean
-	$(MAKE) -f cfallsave++.test.macos.makefile clean
+	$(MAKE) -f cfallsave.test.makefile clean
+	$(MAKE) -f cfallsave++.test.makefile clean
 
 full-clean:
-	$(MAKE) -f cfallsave.test.macos.makefile full-clean
-	$(MAKE) -f cfallsave++.test.macos.makefile full-clean
+	$(MAKE) -f cfallsave.test.makefile full-clean
+	$(MAKE) -f cfallsave++.test.makefile full-clean
 
 build:
-#$(MAKE) -f cfallsave.test.macos.makefile ARCH=x86_64
-	$(MAKE) -f cfallsave.test.macos.makefile ARCH=arm64
-#$(MAKE) -f cfallsave++.test.macos.makefile ARCH=x86_64
-	$(MAKE) -f cfallsave++.test.macos.makefile ARCH=arm64
+#$(MAKE) -f cfallsave.test.makefile ARCH=x86_64
+	$(MAKE) -f cfallsave.test.makefile ARCH=arm64
+#$(MAKE) -f cfallsave++.test.makefile ARCH=x86_64
+	$(MAKE) -f cfallsave++.test.makefile ARCH=arm64
 
 rebuild: clean build

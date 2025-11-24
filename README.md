@@ -321,10 +321,10 @@ git clone https://github.com/reallukee/cfallsave.git
 
     ```bash
     # CFallSave
-    make -f cfallsave.macos.makefile build
+    make -f cfallsave.makefile build
 
     # CFallSave++
-    make -f cfallsave++.macos.makefile build
+    make -f cfallsave++.makefile build
     ```
 
 3. View output

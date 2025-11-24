@@ -1,0 +1,11 @@
+--------------------
+CFallSave Builder v3
+--------------------
+
+help                : No description needed
+build               : Build project for current arch
+build ARCH=<arch>   : Build project for target arch
+rebuild             : Rebuild project for current arch
+rebuild ARCH=<arch> : Rebuild project for target arch
+clean               : Clean output
+full-clean          : Clean ALL output

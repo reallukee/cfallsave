@@ -12,7 +12,7 @@
  *
  * Author      : Luca Pollicino
  *               (https://github.com/reallukee)
- * Version     : 2.0.0
+ * Version     : 2.3.0
  * License     : MIT
  */
 
@@ -20,8 +20,11 @@
 
 using namespace cfallsavepp;
 
-int main(int argc, char* argv[])
+int main(int argc, const char* argv[])
 {
+    printf("Version: %s\n", cfspp_getFriendlyVersion());
+    printf("Minimum version: %s\n", cfspp_getMinFriendlyVersion());
+
     string saveName = "fo4.fos";
 
     if (argc > 1)

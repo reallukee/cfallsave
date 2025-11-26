@@ -48,23 +48,19 @@ jobs:
 
           outputs=(
             "libcfallsave.dylib"
+            "cfallsave.dev.out"
             "cfallsave.test.out"
             "libcfallsave++.dylib"
+            "cfallsave++.dev.out"
             "cfallsave++.test.out"
           )
 
           for arch in "${archs[@]}"; do
-            if [ ! -d "$arch" ]; then
-              echo "$arch build for macOS failed!"
+            for output in "${outputs[@]}"; do
+              if [ ! -f "$arch/$output" ]; then
+                echo "$output build for macOS failed!"
 
-              exit 1
-            else
-              for output in "${outputs[@]}"; do
-                if [ ! -f "$arch/$output" ]; then
-                  echo "$output build for macOS failed!"
-
-                  exit 1
-                fi
-              done
-            fi
+                exit 1
+              fi
+            done
           done

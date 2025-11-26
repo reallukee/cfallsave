@@ -1,0 +1,84 @@
+# Windows build workflow
+
+name: Build Windows
+
+on:
+  push:
+    branches:
+      - "**"
+    paths:
+      - "windows/**/*.vcxproj"
+      - "windows/**/*.vcxproj.filters"
+      - "windows/*.sln"
+      - "windows/*.slnx"
+      - "src/**/*.h"
+      - "src/**/*.c"
+      - "src/**/*.hpp"
+      - "src/**/*.cpp"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up environment
+        uses: microsoft/setup-msbuild@v2
+        with:
+          vs-version: "[18.0,)"
+
+      - name: Building
+        run: |
+          cd windows
+
+          $platforms = @(
+            "x86",
+            "x64",
+            "ARM64"
+          )
+
+          $projects = @(
+            "cfallsave",
+            "cfallsave_dev",
+            "test\cfallsave_test",
+            "cfallsave++",
+            "cfallsave++_dev",
+            "test\cfallsave++_test"
+          )
+
+          foreach ($platform in $platforms) {
+            foreach ($project in $projects) {
+              msbuild cfallsave.sln /p:Configuration=Release /p:Platform="${platform}" /t:"${project}"
+            }
+          }
+
+      - name: Checking
+        run: |
+          cd windows\bin
+
+          $platforms = @(
+            "x86",
+            "x64",
+            "ARM64"
+          )
+
+          foreach ($platform in $platforms) {
+            $projects = @(
+              "cfallsave-${platform}.dll",
+              "cfallsave.dev-${platform}.exe",
+              "cfallsave.test-${platform}.exe",
+              "cfallsave++-${platform}.dll",
+              "cfallsave++.dev-${platform}.exe",
+              "cfallsave++.test-${platform}.exe"
+            )
+
+            foreach ($project in $projects) {
+              if (-not (Test-Path "${project}")) {
+                Write-Host -Message "${project} build for Windows failed!"
+
+                exit 1
+              }
+            }
+          }

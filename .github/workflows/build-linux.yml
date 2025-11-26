@@ -50,23 +50,19 @@ jobs:
 
           outputs=(
             "libcfallsave.so"
+            "cfallsave.dev.out"
             "cfallsave.test.out"
             "libcfallsave++.so"
+            "cfallsave++.dev.out"
             "cfallsave++.test.out"
           )
 
           for arch in "${archs[@]}"; do
-            if [ ! -d "$arch" ]; then
-              echo "$arch build for Linux failed!"
+            for output in "${outputs[@]}"; do
+              if [ ! -f "$arch/$output" ]; then
+                echo "$output build for Linux failed!"
 
-              exit 1
-            else
-              for output in "${outputs[@]}"; do
-                if [ ! -f "$arch/$output" ]; then
-                  echo "$output build for Linux failed!"
-
-                  exit 1
-                fi
-              done
-            fi
+                exit 1
+              fi
+            done
           done

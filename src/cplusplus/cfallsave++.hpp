@@ -14,7 +14,7 @@
  *
  * Author      : Luca Pollicino
  *               (https://github.com/reallukee)
- * Version     : 2.2.0
+ * Version     : 2.3.0
  * License     : MIT
  */
 
@@ -32,12 +32,12 @@
 
 // #include "fox.hpp"      // Fallout X
 
-#define CFALLSAVEPP_VERSION             220
+#define CFALLSAVEPP_VERSION             230
 #define CFALLSAVEPP_VERSION_MAJOR       2
-#define CFALLSAVEPP_VERSION_MINOR       2
+#define CFALLSAVEPP_VERSION_MINOR       3
 #define CFALLSAVEPP_VERSION_PATCH       0
 
-#define CFALLSAVEPP_FRIENDLY_VERSION    "2.2.0"
+#define CFALLSAVEPP_FRIENDLY_VERSION    "2.3.0"
 
 /**
  * The minimum version represents the minimum interface

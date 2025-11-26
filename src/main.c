@@ -12,15 +12,18 @@
  *
  * Author      : Luca Pollicino
  *               (https://github.com/reallukee)
- * Version     : 2.0.0
+ * Version     : 2.3.0
  * License     : MIT
  */
 
 #include "cfallsave.h"
 
-int main(int argc, char* argv[])
+int main(int argc, const char* argv[])
 {
-    char* saveName = "fo4.fos";
+    printf("Version: %s\n", cfs_getFriendlyVersion());
+    printf("Minimum version: %s\n", cfs_getMinFriendlyVersion());
+
+    const char* saveName = "fo4.fos";
 
     if (argc > 1)
     {

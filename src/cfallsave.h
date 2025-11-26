@@ -14,7 +14,7 @@
  *
  * Author      : Luca Pollicino
  *               (https://github.com/reallukee)
- * Version     : 2.2.0
+ * Version     : 2.3.0
  * License     : MIT
  */
 
@@ -32,12 +32,12 @@
 
 // #include "fox.h"    // Fallout X
 
-#define CFALLSAVE_VERSION           220
+#define CFALLSAVE_VERSION           230
 #define CFALLSAVE_VERSION_MAJOR     2
-#define CFALLSAVE_VERSION_MINOR     2
+#define CFALLSAVE_VERSION_MINOR     3
 #define CFALLSAVE_VERSION_PATCH     0
 
-#define CFALLSAVE_FRIENDLY_VERSION  "2.2.0"
+#define CFALLSAVE_FRIENDLY_VERSION  "2.3.0"
 
 /**
  * The minimum version represents the minimum interface

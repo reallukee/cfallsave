@@ -5,7 +5,7 @@
  *
  * A C/C++ library to read and write Fallout save files
  *
- * File Name   : writer.c
+ * File Name   : writer.h
  *
  * Title       : WRITER HEADER
  * Description : Questo file contiene le definizioni dei

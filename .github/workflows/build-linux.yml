@@ -32,6 +32,9 @@ jobs:
         run: |
           make
 
+          make -f cfallsave.dev.makefile
+          make -f cfallsave++.dev.makefile
+
       - name: Builiding test
         run: |
           cd test/

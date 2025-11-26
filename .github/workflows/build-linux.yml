@@ -50,10 +50,10 @@ jobs:
 
           outputs=(
             "libcfallsave.so"
-            "cfallsave.dev.out"
+            "cfallsave.out"
             "cfallsave.test.out"
             "libcfallsave++.so"
-            "cfallsave++.dev.out"
+            "cfallsave++.out"
             "cfallsave++.test.out"
           )
 

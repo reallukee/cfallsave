@@ -48,10 +48,10 @@ jobs:
 
           outputs=(
             "libcfallsave.dylib"
-            "cfallsave.dev.out"
+            "cfallsave.out"
             "cfallsave.test.out"
             "libcfallsave++.dylib"
-            "cfallsave++.dev.out"
+            "cfallsave++.out"
             "cfallsave++.test.out"
           )
 

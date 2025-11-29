@@ -32,9 +32,6 @@ jobs:
 
           make
 
-          make -f cfallsave.dev.makefile
-          make -f cfallsave++.dev.makefile
-
       - name: Builiding test
         run: |
           cd macos/test/
@@ -51,10 +48,8 @@ jobs:
 
           outputs=(
             "libcfallsave.dylib"
-            "cfallsave.out"
             "cfallsave.test.out"
             "libcfallsave++.dylib"
-            "cfallsave++.out"
             "cfallsave++.test.out"
           )
 

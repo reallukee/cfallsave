@@ -41,10 +41,8 @@ jobs:
 
           $projects = @(
             "cfallsave",
-            "cfallsave_dev",
             "test\cfallsave_test",
             "cfallsave++",
-            "cfallsave++_dev",
             "test\cfallsave++_test"
           )
 
@@ -67,10 +65,8 @@ jobs:
           foreach ($platform in $platforms) {
             $projects = @(
               "cfallsave-${platform}.dll",
-              "cfallsave.dev-${platform}.exe",
               "cfallsave.test-${platform}.exe",
               "cfallsave++-${platform}.dll",
-              "cfallsave++.dev-${platform}.exe",
               "cfallsave++.test-${platform}.exe"
             )
 

@@ -32,9 +32,6 @@ jobs:
         run: |
           make
 
-          make -f cfallsave.dev.makefile
-          make -f cfallsave++.dev.makefile
-
       - name: Builiding test
         run: |
           cd test/
@@ -53,10 +50,8 @@ jobs:
 
           outputs=(
             "libcfallsave.so"
-            "cfallsave.out"
             "cfallsave.test.out"
             "libcfallsave++.so"
-            "cfallsave++.out"
             "cfallsave++.test.out"
           )
 

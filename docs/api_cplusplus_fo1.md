@@ -169,7 +169,8 @@ FO1Save* savepp = new FO1Save();
 
 bool result = savepp->read("fo1.dat");
 
-if (result) {
+if (result)
+{
     printf("FO1 Save File Read\n");
 }
 ```
@@ -193,7 +194,8 @@ FO1Save* savepp = new FO1Save("fo1.dat");
 
 bool result = savepp->write();
 
-if (result) {
+if (result)
+{
     printf("FO1 Save File Written\n");
 }
 ```
@@ -235,7 +237,8 @@ savepp->close();
 ```cpp
 bool result = FO1Save::isSave("fo1.dat");
 
-if (result) {
+if (result)
+{
     printf("FO1 Save!\n");
 }
 ```
@@ -259,7 +262,8 @@ FO1Save* savepp = new FO1Save("fo1.dat");
 
 bool result = savepp->isOpen();
 
-if (result) {
+if (result)
+{
     printf("FO1 Save is Open\n");
 }
 ```

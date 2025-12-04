@@ -30,13 +30,15 @@ jobs:
         run: |
           cd macos/
 
-          make
+          make -f cfallsave.makefile
+          make -f cfallsave++.makefile
 
       - name: Builiding test
         run: |
           cd macos/test/
 
-          make
+          make -f cfallsave.test.makefile
+          make -f cfallsave++.test.makefile
 
       - name: Checking
         run: |

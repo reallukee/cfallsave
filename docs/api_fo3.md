@@ -110,7 +110,8 @@ bool result = writeFO3Save(save);
 ```c
 bool result = isFO3Save("fo3.fos");
 
-if (result) {
+if (result)
+{
     printf("FO3 Save\n");
 }
 ```
@@ -134,7 +135,8 @@ FO3SAVE* save = readFO3Save("fo3.fos");
 
 bool result = isFO3SaveOpen(save);
 
-if (result) {
+if (result)
+{
     printf("FO3 Save is Open\n");
 }
 ```
@@ -182,7 +184,8 @@ int engineVersion = 0;
 
 bool result = getFO3SaveProp(save, FO3SAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
 
-if (result) {
+if (result)
+{
     printf("Property: %u\n", engineVersion);
 }
 ```
@@ -210,7 +213,8 @@ int engineVersion = 0;
 
 bool result = setFO3SaveProp(save, FO3SAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
 
-if (result) {
+if (result)
+{
     printf("Property: %u\n", engineVersion);
 }
 ```
@@ -238,7 +242,8 @@ int engineVersion = 0;
 
 bool result = readFO3SaveProp(save, FO3SAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
 
-if (result) {
+if (result)
+{
     printf("Property: %u\n", engineVersion);
 }
 ```
@@ -269,7 +274,8 @@ int engineVersion = 0;
 
 bool result = writeFO3SaveProp(save, FO3SAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
 
-if (result) {
+if (result)
+{
     printf("Property: %u\n", engineVersion);
 }
 ```

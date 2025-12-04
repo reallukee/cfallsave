@@ -26,17 +26,19 @@ jobs:
 
       - name: Set up environment
         run: |
-          sudo apt install gcc g++ gcc-i686-linux-gnu g++-i686-linux-gnu gcc-aarch64-linux-gnu g++-aarch64-linux-gnu make
+          sudo apt install gcc g++ make
 
       - name: Building
         run: |
-          make
+          make -f cfallsave.makefile
+          make -f cfallsave++.makefile
 
       - name: Builiding test
         run: |
           cd test/
 
-          make
+          make -f cfallsave.test.makefile
+          make -f cfallsave++.test.makefile
 
       - name: Checking
         run: |

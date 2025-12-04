@@ -110,7 +110,8 @@ bool result = writeFO4Save(save);
 ```c
 bool result = isFO4Save("fo4.fos");
 
-if (result) {
+if (result)
+{
     printf("FO4 Save\n");
 }
 ```
@@ -134,7 +135,8 @@ FO4SAVE* save = readFO4Save("fo4.fos");
 
 bool result = isFO4SaveOpen(save);
 
-if (result) {
+if (result)
+{
     printf("FO4 Save is Open\n");
 }
 ```
@@ -182,7 +184,8 @@ int engineVersion = 0;
 
 bool result = getFO4SaveProp(save, FO4SAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
 
-if (result) {
+if (result)
+{
     printf("Property: %u\n", engineVersion);
 }
 ```
@@ -210,7 +213,8 @@ int engineVersion = 0;
 
 bool result = setFO4SaveProp(save, FO4SAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
 
-if (result) {
+if (result)
+{
     printf("Property: %u\n", engineVersion);
 }
 ```
@@ -238,7 +242,8 @@ int engineVersion = 0;
 
 bool result = readFO4SaveProp(save, FO4SAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
 
-if (result) {
+if (result)
+{
     printf("Property: %u\n", engineVersion);
 }
 ```
@@ -269,7 +274,8 @@ int engineVersion = 0;
 
 bool result = writeFO4SaveProp(save, FO4SAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
 
-if (result) {
+if (result)
+{
     printf("Property: %u\n", engineVersion);
 }
 ```

@@ -195,7 +195,8 @@ FO3Save* savepp = new FO3Save();
 
 bool result = savepp->read("fo3.fos");
 
-if (result) {
+if (result)
+{
     printf("FO3 Save File Read\n");
 }
 ```
@@ -219,7 +220,8 @@ FO3Save* savepp = new FO3Save("fo3.fos");
 
 bool result = savepp->write();
 
-if (result) {
+if (result)
+{
     printf("FO3 Save File Written\n");
 }
 ```
@@ -261,7 +263,8 @@ savepp->close();
 ```cpp
 bool result = FO3Save::isSave("fo3.fos");
 
-if (result) {
+if (result)
+{
     printf("FO3 Save!\n");
 }
 ```
@@ -285,7 +288,8 @@ FO3Save* savepp = new FO3Save("fo3.fos");
 
 bool result = savepp->isOpen();
 
-if (result) {
+if (result)
+{
     printf("FO3 Save is Open\n");
 }
 ```

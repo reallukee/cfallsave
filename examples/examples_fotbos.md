@@ -148,7 +148,8 @@ int main(int argc, const char* argv[])
         (void**)&saveNameProp
     );
 
-    if (result) {
+    if (result)
+    {
         printf("Property: %s\n", saveNameProp);
     }
 

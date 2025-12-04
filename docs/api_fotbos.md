@@ -109,7 +109,8 @@ bool result = writeFOTBOSSave(save);
 ```c
 bool result = isFOTBOSSave("fotbos.sav");
 
-if (result) {
+if (result)
+{
     printf("FOTBOS Save\n");
 }
 ```
@@ -133,7 +134,8 @@ FOTBOSSAVE* save = readFOTBOSSave("fotbos.sav");
 
 bool result = isFOTBOSSaveOpen(save);
 
-if (result) {
+if (result)
+{
     printf("FOTBOS Save is Open\n");
 }
 ```
@@ -181,7 +183,8 @@ char* saveName;
 
 bool result = getFOTBOSSaveProp(save, FOTBOSSAVE_PROPS_SAVE_NAME, (void**)&saveName);
 
-if (result) {
+if (result)
+{
     printf("Property: %s\n", saveName);
 }
 ```
@@ -209,7 +212,8 @@ char* saveName;
 
 bool result = setFOTBOSSaveProp(save, FOTBOSSAVE_PROPS_SAVE_NAME, (void**)&saveName);
 
-if (result) {
+if (result)
+{
     printf("Property: %s\n", saveName);
 }
 ```
@@ -237,7 +241,8 @@ char* saveName;
 
 bool result = readFOTBOSSaveProp(save, FOTBOSSAVE_PROPS_SAVE_NAME, (void**)&saveName);
 
-if (result) {
+if (result)
+{
     printf("Property: %s\n", saveName);
 }
 ```
@@ -268,7 +273,8 @@ char* saveName;
 
 bool result = writeFOTBOSSaveProp(save, FOTBOSSAVE_PROPS_SAVE_NAME, (void**)&saveName);
 
-if (result) {
+if (result)
+{
     printf("Property: %s\n", saveName);
 }
 ```

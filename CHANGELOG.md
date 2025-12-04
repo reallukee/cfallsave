@@ -12,11 +12,37 @@ CFallSave Changelog
 
 # Summary
 
+* [`v2.3.0`](#v230-20251204)
 * [`v2.2.0`](#v220-20251110)
 * [`v2.1.0`](#v210-20250716)
 * [`v2.0.0`](#v200-20250714)
 * [`v2.0.0-RC2`](#v200-rc2-20250620)
 * [`v2.0.0-RC1`](#v200-rc1-20250530)
+
+
+
+# [`v2.3.0` `(2025/12/04)`](https://github.com/reallukee/cfallsave/releases/tag/v2.3.0)
+
+## Added
+
+* Linux explicit i686 support
+* Linux explicit x86_64 support
+* Linux explicit aarch64 support
+* Windows explicit arm64 support
+* macOS explicit arm64 support
+* Linux dedicated build workflow
+* Windows dedicated build workflow
+* macOS dedicated build workflow
+
+## Changed
+
+* Linux makefiles
+* Windows projects
+* macOS makefiles
+
+## Removed
+
+* Build workflow
 
 
 
@@ -91,7 +117,9 @@ CFallSave Changelog
 ## Changed
 
 * Memory allocation
-* Makefiles
+* Linux makefiles
+* Windows projects
+* macOS makefiles
 
 ## Removed
 
@@ -108,7 +136,9 @@ CFallSave Changelog
 ## Changed
 
 * Bug fixing
-* Makefiles
+* Linux makefiles
+* Windows projects
+* macOS makefiles
 
 ## Removed
 

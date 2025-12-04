@@ -110,7 +110,8 @@ bool result = writeFONVSave(save);
 ```c
 bool result = isFONVSave("fonv.fos");
 
-if (result) {
+if (result)
+{
     printf("FONV Save\n");
 }
 ```
@@ -134,7 +135,8 @@ FONVSAVE* save = readFONVSave("fonv.fos");
 
 bool result = isFONVSaveOpen(save);
 
-if (result) {
+if (result)
+{
     printf("FONV Save is Open\n");
 }
 ```
@@ -182,7 +184,8 @@ int engineVersion = 0;
 
 bool result = getFONVSaveProp(save, FONVSAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
 
-if (result) {
+if (result)
+{
     printf("Property: %u\n", engineVersion);
 }
 ```
@@ -210,7 +213,8 @@ int engineVersion = 0;
 
 bool result = setFONVSaveProp(save, FONVSAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
 
-if (result) {
+if (result)
+{
     printf("Property: %u\n", engineVersion);
 }
 ```
@@ -238,7 +242,8 @@ int engineVersion = 0;
 
 bool result = readFONVSaveProp(save, FONVSAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
 
-if (result) {
+if (result)
+{
     printf("Property: %u\n", engineVersion);
 }
 ```
@@ -269,7 +274,8 @@ int engineVersion = 0;
 
 bool result = writeFONVSaveProp(save, FONVSAVE_PROPS_ENGINE_VERSION, (void**)&engineVersion);
 
-if (result) {
+if (result)
+{
     printf("Property: %u\n", engineVersion);
 }
 ```

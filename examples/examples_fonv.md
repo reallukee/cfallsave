@@ -148,7 +148,8 @@ int main(int argc, const char* argv[])
         (void**)&engineVersionProp
     );
 
-    if (result) {
+    if (result)
+    {
         printf("Property: %u\n", engineVersionProp);
     }
 

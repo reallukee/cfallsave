@@ -175,7 +175,8 @@ FOTBOSSave* savepp = new FOTBOSSave();
 
 bool result = savepp->read("fotbos.sav");
 
-if (result) {
+if (result)
+{
     printf("FOTBOS Save File Read\n");
 }
 ```
@@ -199,7 +200,8 @@ FOTBOSSave* savepp = new FOTBOSSave("fotbos.sav");
 
 bool result = savepp->write();
 
-if (result) {
+if (result)
+{
     printf("FOTBOS Save File Written\n");
 }
 ```
@@ -241,7 +243,8 @@ savepp->close();
 ```cpp
 bool result = FOTBOSSave::isSave("fotbps.sav");
 
-if (result) {
+if (result)
+{
     printf("FOTBOS Save!\n");
 }
 ```
@@ -265,7 +268,8 @@ FOTBOSSave* savepp = new FOTBOSSave("fotbos.sav");
 
 bool result = savepp->isOpen();
 
-if (result) {
+if (result)
+{
     printf("FOTBOS Save is Open\n");
 }
 ```

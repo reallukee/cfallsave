@@ -6,11 +6,15 @@
 
 ![License](https://img.shields.io/github/license/reallukee/cfallsave)
 ![Release](https://img.shields.io/github/v/release/reallukee/cfallsave?include_prereleases)
-![Build](https://img.shields.io/github/actions/workflow/status/reallukee/cfallsave/build.yml)
+![Language](https://img.shields.io/github/languages/top/reallukee/cfallsave)
 
 ☢️ A C/C++ library to read and write Fallout save files
 
 </div>
+
+<br />
+
+> [CFallSave NEXT HUGE version HERE!](https://github.com/reallukee/cfallsave/tree/next)
 
 
 
@@ -142,20 +146,22 @@ Snapshot Height    : 0000000000000127 007F
 
 # Organization
 
-* `.github` GitHub settings
-* `.vscode` Visual Studio Code settings
+* `.github` GitHub folder
+  * `workflows` GitHub workflows
+* `.vscode` Visual Studio Code folder
 * `assets` Project assets
 * `docs` Documentation
 * `examples` Examples
-* `make` Make
 * `macos` macOS build files
   * `test` macOS test build files
+* `make` Make
 * `playground` Test files
 * `scripts` Scripts
 * `src` C sources
   * `cplusplus` C++ sources
-* `test` C test sources
-  * `cplusplus` C++ test sources
+* `test` Test
+  * `src` C test sources
+    * `cplusplus` C++ test sources
 * `windows` Windows build files
   * `test` Windows test build files
 
@@ -177,36 +183,43 @@ Snapshot Height    : 0000000000000127 007F
 
 ## 1. Requirements
 
-- [Linux Requirements](#linux-requirements)
-- [Windows Requirements](#windows-requirements)
-- [macOS Requirements](#macos-requirements)
+* [Linux Requirements](#linux-requirements)
+* [Windows Requirements](#windows-requirements)
+* [macOS Requirements](#macos-requirements)
 
 
 
 ### Linux Requirements
 
-* *git*
-* *gcc*
-* *g++*
-* *make*
+* `git`
+* `gcc`
+  * `gcc‑i686‑linux‑gnu` (For i686 building)
+  * `gcc-x86-64-linux-gnu` (For x86_64 building)
+  * `gcc‑aarch64‑linux‑gnu` (For aarch64 building)
+* `g++`
+  * `g++‑i686‑linux‑gnu` (For i686 building)
+  * `g++-x86-64-linux-gnu` (For x86_64 building)
+  * `g++‑aarch64‑linux‑gnu` (For aarch64 building)
+* `make`
 
 
 
 ### Windows Requirements
 
-* *git*
-* [*Visual Studio 2026*](https://aka.ms/vs/18/release/vs_Community.exe)
+* `git`
+* [`Visual Studio 2026`](https://aka.ms/vs/18/release/vs_Community.exe)
     * *Desktop development with C++*
-* [*Build Tools for Visual Studio 2026*](https://aka.ms/vs/18/release/vs_BuildTools.exe)
+* [`Build Tools for Visual Studio 2026`](https://aka.ms/vs/18/release/vs_BuildTools.exe)
     * *Desktop development with C++*
 
 
 
 ### macOS Requirements
 
-* *git*
-* *clang*
-* *make*
+* `git`
+* `clang`
+* `clang++`
+* `make`
 
 
 
@@ -247,9 +260,16 @@ git clone https://github.com/reallukee/cfallsave.git
     cd cfallsave/
     ```
 
-2. Build using *make*
+2. Build using `make`
 
     ```bash
+    # Use ARCH=<ARCH> to change the target ARCH.
+    # You can choose between:
+    # * i686    (x86)
+    # * x86_64  (x64)
+    # * aarch64 (arm64)
+    # Otherwise, make will use the same ARCH of the guest.
+
     # CFallSave
     make -f cfallsave.makefile build
 
@@ -317,7 +337,7 @@ git clone https://github.com/reallukee/cfallsave.git
     cd cfallsave/macos/
     ```
 
-2. Build using *make*
+2. Build using `make`
 
     ```bash
     # CFallSave

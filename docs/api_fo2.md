@@ -109,7 +109,8 @@ bool result = writeFO2Save(save);
 ```c
 bool result = isFO2Save("fo2.dat");
 
-if (result) {
+if (result)
+{
     printf("FO2 Save\n");
 }
 ```
@@ -133,7 +134,8 @@ FO2SAVE* save = readFO2Save("fo2.dat");
 
 bool result = isFO2SaveOpen(save);
 
-if (result) {
+if (result)
+{
     printf("FO2 Save is Open\n");
 }
 ```
@@ -181,7 +183,8 @@ char saveName[FO2SAVE_STRING_SIZE] = "Save 2";
 
 bool result = getFO2SaveProp(save, FO2SAVE_PROPS_SAVE_NAME, (void**)&saveName);
 
-if (result) {
+if (result)
+{
     printf("Property: %s\n", saveName);
 }
 ```
@@ -209,7 +212,8 @@ char saveName[FO2SAVE_STRING_SIZE] = "Save 2";
 
 bool result = setFO2SaveProp(save, FO2SAVE_PROPS_SAVE_NAME, (void**)&saveName);
 
-if (result) {
+if (result)
+{
     printf("Property: %s\n", saveName);
 }
 ```
@@ -237,7 +241,8 @@ char saveName[FO2SAVE_STRING_SIZE] = "Save 2";
 
 bool result = readFO2SaveProp(save, FO2SAVE_PROPS_SAVE_NAME, (void**)&saveName);
 
-if (result) {
+if (result)
+{
     printf("Property: %s\n", saveName);
 }
 ```
@@ -268,7 +273,8 @@ char saveName[FO2SAVE_STRING_SIZE] = "Save 2";
 
 bool result = writeFO2SaveProp(save, FO2SAVE_PROPS_SAVE_NAME, (void**)&saveName);
 
-if (result) {
+if (result)
+{
     printf("Property: %s\n", saveName);
 }
 ```

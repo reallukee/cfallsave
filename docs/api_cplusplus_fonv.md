@@ -195,7 +195,8 @@ FONVSave* savepp = new FONVSave();
 
 bool result = savepp->read("fonv.fos");
 
-if (result) {
+if (result)
+{
     printf("FONV Save File Read\n");
 }
 ```
@@ -219,7 +220,8 @@ FONVSave* savepp = new FONVSave("fonv.fos");
 
 bool result = savepp->write();
 
-if (result) {
+if (result)
+{
     printf("FONV Save File Written\n");
 }
 ```
@@ -261,7 +263,8 @@ savepp->close();
 ```cpp
 bool result = FONVSave::isSave("fonv.fos");
 
-if (result) {
+if (result)
+{
     printf("FONV Save!\n");
 }
 ```
@@ -285,7 +288,8 @@ FONVSave* savepp = new FONVSave("fonv.fos");
 
 bool result = savepp->isOpen();
 
-if (result) {
+if (result)
+{
     printf("FONV Save is Open\n");
 }
 ```

@@ -204,7 +204,8 @@ FO4Save* savepp = new FO4Save();
 
 bool result = savepp->read("fo4.fos");
 
-if (result) {
+if (result)
+{
     printf("FO4 Save File Read\n");
 }
 ```
@@ -228,7 +229,8 @@ FO4Save* savepp = new FO4Save("fo4.fos");
 
 bool result = savepp->write();
 
-if (result) {
+if (result)
+{
     printf("FO4 Save File Written\n");
 }
 ```
@@ -270,7 +272,8 @@ savepp->close();
 ```cpp
 bool result = FO4Save::isSave("fo4.fos");
 
-if (result) {
+if (result)
+{
     printf("FO4 Save!\n");
 }
 ```
@@ -294,7 +297,8 @@ FO4Save* savepp = new FO4Save("fo4.fos");
 
 bool result = savepp->isOpen();
 
-if (result) {
+if (result)
+{
     printf("FO4 Save is Open\n");
 }
 ```
